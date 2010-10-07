@@ -90,6 +90,16 @@ public class Operations {
 		return swimmer;
 	}
 
+	public List<Swimmer> deleteSwimmers(List<Swimmer> swimmers, Swimmer swimmer) {
+		List<Swimmer> newSwimmersList = new ArrayList<Swimmer>();
+		for (Swimmer sw : swimmers) {
+			if (!sw.getName().equals(swimmer.getName())) {
+				newSwimmersList.add(sw);
+			}
+		}
+		return newSwimmersList;
+	}
+
 	public List<Event> returnAllEvents() {
 		Scanner scanner;
 		List<Event> events = new ArrayList<Event>();
@@ -138,6 +148,17 @@ public class Operations {
 		}
 
 		return event;
+	}
+
+	public List<Event> deleteEvents(List<Event> events, Event event) {
+		List<Event> newEventsList = new ArrayList<Event>();
+		for (Event ev : events) {
+			if (!ev.getName().equals(event.getName())) {
+				newEventsList.add(ev);
+			}
+		}
+
+		return newEventsList;
 	}
 
 	public List<Registration> getAllRegistrations() {
@@ -270,31 +291,6 @@ public class Operations {
 		return newRegistrationList;
 	}
 
-	public List<Event> deleteEvents(List<Event> events, Event event) {
-		List<Event> newEventsList = new ArrayList<Event>();
-		for (Event ev : events) {
-			if (!ev.getName().equals(event.getName())) {
-				newEventsList.add(ev);
-			}
-		}
-
-		return newEventsList;
-	}
-
-	public List<Swimmer> deleteSwimmers(List<Swimmer> swimmers, Swimmer swimmer) {
-		List<Swimmer> newSwimmersList = new ArrayList<Swimmer>();
-		for (Swimmer sw : swimmers) {
-			if (!sw.getName().equals(swimmer.getName())) {
-				newSwimmersList.add(sw);
-			}
-		}
-		return newSwimmersList;
-	}
-
-	public String setZero(String value) {
-		return (value.length() < 2) ? "0" + value : value;
-	}
-	
 	public void deleteRegistrationForSwimmer(Swimmer swimmer) {
 		List<Registration> registrations = getRegistrationsForSwimmer(swimmer);
 		for (Registration reg : registrations) {
@@ -618,6 +614,10 @@ public class Operations {
 
 	private static String padLeft(String s, int n) {
 		return String.format("%1$#" + n + "s", s).replace(' ', '0');
+	}
+
+	public String setZero(String value) {
+		return (value.length() < 2) ? "0" + value : value;
 	}
 
 }
