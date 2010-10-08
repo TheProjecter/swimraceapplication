@@ -12,6 +12,7 @@ import org.jdesktop.application.TaskMonitor;
 
 import work.TestButton;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -439,6 +440,7 @@ public class SwimRaceOrganizerView extends FrameView {
             testDyn = new TestButton();
             testDyn.setLocationRelativeTo(mainFrame);
         }
+
         SwimRaceOrganizerApp.getApplication().show(testDyn);
     }//GEN-LAST:event_jBTestActionPerformed
 
