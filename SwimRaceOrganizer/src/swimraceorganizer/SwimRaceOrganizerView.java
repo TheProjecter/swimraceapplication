@@ -9,6 +9,9 @@ import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
+
+import work.TestButton;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -114,6 +117,7 @@ public class SwimRaceOrganizerView extends FrameView {
         jRegistrationActions = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLGenerateActions = new javax.swing.JLabel();
+        jBTest = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -207,6 +211,14 @@ public class SwimRaceOrganizerView extends FrameView {
         jLGenerateActions.setText(resourceMap.getString("jLGenerateActions.text")); // NOI18N
         jLGenerateActions.setName("jLGenerateActions"); // NOI18N
 
+        jBTest.setText(resourceMap.getString("jBTest.text")); // NOI18N
+        jBTest.setName("jBTest"); // NOI18N
+        jBTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTestActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -218,12 +230,18 @@ public class SwimRaceOrganizerView extends FrameView {
                     .addComponent(jBgenerateHeats, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBAllSwimmers, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBAddSwimmer, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(143, 143, 143)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBAddSwimmingEvent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                    .addComponent(jBAllEvents, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                    .addComponent(jBAllRegistrations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBAddSwimmingEvent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addComponent(jBAllEvents, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addComponent(jBAllRegistrations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBTest)
+                        .addGap(103, 103, 103))))
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLSwimmerActions)
@@ -276,11 +294,16 @@ public class SwimRaceOrganizerView extends FrameView {
                     .addComponent(jBAllRegistrations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jLGenerateActions)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBgenerateHeats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLGenerateActions)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBgenerateHeats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jBTest)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -410,6 +433,15 @@ public class SwimRaceOrganizerView extends FrameView {
         SwimRaceOrganizerApp.getApplication().show(allRegistrations);
     }//GEN-LAST:event_jBAllRegistrationsActionPerformed
 
+    private void jBTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTestActionPerformed
+        if (testDyn == null) {
+            JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+            testDyn = new TestButton();
+            testDyn.setLocationRelativeTo(mainFrame);
+        }
+        SwimRaceOrganizerApp.getApplication().show(testDyn);
+    }//GEN-LAST:event_jBTestActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAddSwimmer;
     private javax.swing.JButton jBAddSwimmingEvent;
@@ -417,6 +449,7 @@ public class SwimRaceOrganizerView extends FrameView {
     private javax.swing.JButton jBAllRegistrations;
     private javax.swing.JButton jBAllSwimmers;
     private javax.swing.JButton jBRegisterSwimmer;
+    private javax.swing.JButton jBTest;
     private javax.swing.JButton jBgenerateHeats;
     private javax.swing.JLabel jLEventActions;
     private javax.swing.JLabel jLGenerateActions;
@@ -446,4 +479,5 @@ public class SwimRaceOrganizerView extends FrameView {
     private JDialog registerSwimmer;
     private JDialog generateHeats;
     private JDialog allRegistrations;
+    private TestButton testDyn;
 }
