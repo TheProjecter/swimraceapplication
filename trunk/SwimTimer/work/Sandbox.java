@@ -27,10 +27,10 @@ public class Sandbox {
 		String result;
 		Constants con = new Constants();
 		
-		Swimmer swimmer = new Swimmer("Cezar", "1981", "25-29", "M",
-		"Masters Timisoara").getInstance();
-		result = swimmer.registerSwimmer();
-		System.out.println(result);
+//		Swimmer swimmer = new Swimmer("Cezar", "1981", "25-29", "M",
+//		"Masters Timisoara").getInstance();
+//		result = swimmer.registerSwimmer();
+//		System.out.println(result);
 
 		// Event event = new Event("400 liber femei", "400", "liber", "F",
 		// "50m").getInstance();
@@ -112,10 +112,10 @@ public class Sandbox {
 //			System.out.println(ev.getName());
 //		}
 
-//		Event event = sOps.returnEvent("50 fluture barbati");
+		Event event = sOps.returnEvent("100 liber barbati");
 //		List<Heat> heatList = sOps.generateHeats(event);
-//		sOps.registerHeats(heatList);
-		
+//		sOps.registerHeats(heatList, event.getName() + ".csv");
+
 		//sOps.removeLineFromFile("textfile.txt", "b");
 		// for (Heat heats : heatList) {
 		// System.out.println("Heat " + heats.getHeatNumber());
