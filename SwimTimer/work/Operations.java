@@ -399,23 +399,23 @@ public class Operations {
 				out.write("Seria " + heats.getHeatNumber());
 				out.newLine();
 				if (heats.getLane1().equals(null)) {
-					out.write("Culoar " + ";"
+					out.write("Culoar" + ";"
 							+ heats.getLane1().getLaneNumber());
 					out.newLine();
 				} else {
-					out.write("Culoar "
+					out.write("Culoar"
 							+ ";"
 							+ heats.getLane1().getLaneNumber()
-							+ " ; "
+							+ ";"
 							+ heats.getLane1().getSwimmer().getName()
-							+ " ; "
+							+ ";"
 							+ heats.getLane1().getSwimmer().getClub()
-							+ " ; "
+							+ ";"
 							+ heats.getLane1().getSwimmer().getAgeGroup()
-							+ " ; "
+							+ ";"
 							+ padLeft(Integer.toString(heats.getLane1()
 									.getEntryMinutes()), 2)
-							+ "."
+							+ ":"
 							+ padLeft(Integer.toString(heats.getLane1()
 									.getEntrySecondes()), 2)
 							+ ":"
@@ -423,133 +423,133 @@ public class Operations {
 									.getEntryMSeconds()), 2));
 					out.newLine();
 				}
-				out.write("Culoar "
+				out.write("Culoar"
 						+ ";"
 						+ heats.getLane2().getLaneNumber()
-						+ " ; "
+						+ ";"
 						+ heats.getLane2().getSwimmer().getName()
-						+ " ; "
+						+ ";"
 						+ heats.getLane2().getSwimmer().getClub()
-						+ " ; "
+						+ ";"
 						+ heats.getLane2().getSwimmer().getAgeGroup()
-						+ " ; "
+						+ ";"
 						+ padLeft(Integer.toString(heats.getLane2()
 								.getEntryMinutes()), 2)
-						+ "."
+						+ ":"
 						+ padLeft(Integer.toString(heats.getLane2()
 								.getEntrySecondes()), 2)
 						+ ":"
 						+ padLeft(Integer.toString(heats.getLane2()
 								.getEntryMSeconds()), 2));
 				out.newLine();
-				out.write("Culoar "
+				out.write("Culoar"
 						+ ";"
 						+ heats.getLane3().getLaneNumber()
-						+ " ; "
+						+ ";"
 						+ heats.getLane3().getSwimmer().getName()
-						+ " ; "
+						+ ";"
 						+ heats.getLane3().getSwimmer().getClub()
-						+ " ; "
+						+ ";"
 						+ heats.getLane3().getSwimmer().getAgeGroup()
-						+ " ; "
+						+ ";"
 						+ padLeft(Integer.toString(heats.getLane3()
 								.getEntryMinutes()), 2)
-						+ "."
+						+ ":"
 						+ padLeft(Integer.toString(heats.getLane3()
 								.getEntrySecondes()), 2)
 						+ ":"
 						+ padLeft(Integer.toString(heats.getLane3()
 								.getEntryMSeconds()), 2));
 				out.newLine();
-				out.write("Culoar "
+				out.write("Culoar"
 						+ ";"
 						+ heats.getLane4().getLaneNumber()
-						+ " ; "
+						+ ";"
 						+ heats.getLane4().getSwimmer().getName()
-						+ " ; "
+						+ ";"
 						+ heats.getLane4().getSwimmer().getClub()
-						+ " ; "
+						+ ";"
 						+ heats.getLane4().getSwimmer().getAgeGroup()
-						+ " ; "
+						+ ";"
 						+ padLeft(Integer.toString(heats.getLane4()
 								.getEntryMinutes()), 2)
-						+ "."
+						+ ":"
 						+ padLeft(Integer.toString(heats.getLane4()
 								.getEntrySecondes()), 2)
 						+ ":"
 						+ padLeft(Integer.toString(heats.getLane4()
 								.getEntryMSeconds()), 2));
 				out.newLine();
-				out.write("Culoar "
+				out.write("Culoar"
 						+ ";"
 						+ heats.getLane5().getLaneNumber()
-						+ " ; "
+						+ ";"
 						+ heats.getLane5().getSwimmer().getName()
-						+ " ; "
+						+ ";"
 						+ heats.getLane5().getSwimmer().getClub()
-						+ " ; "
+						+ ";"
 						+ heats.getLane5().getSwimmer().getAgeGroup()
-						+ " ; "
+						+ ";"
 						+ padLeft(Integer.toString(heats.getLane5()
 								.getEntryMinutes()), 2)
-						+ "."
+						+ ":"
 						+ padLeft(Integer.toString(heats.getLane5()
 								.getEntrySecondes()), 2)
 						+ ":"
 						+ padLeft(Integer.toString(heats.getLane5()
 								.getEntryMSeconds()), 2));
 				out.newLine();
-				out.write("Culoar "
+				out.write("Culoar"
 						+ ";"
 						+ heats.getLane6().getLaneNumber()
-						+ " ; "
+						+ ";"
 						+ heats.getLane6().getSwimmer().getName()
-						+ " ; "
+						+ ";"
 						+ heats.getLane6().getSwimmer().getClub()
-						+ " ; "
+						+ ";"
 						+ heats.getLane6().getSwimmer().getAgeGroup()
-						+ " ; "
+						+ ";"
 						+ padLeft(Integer.toString(heats.getLane6()
 								.getEntryMinutes()), 2)
-						+ "."
+						+ ":"
 						+ padLeft(Integer.toString(heats.getLane6()
 								.getEntrySecondes()), 2)
 						+ ":"
 						+ padLeft(Integer.toString(heats.getLane6()
 								.getEntryMSeconds()), 2));
 				out.newLine();
-				out.write("Culoar "
+				out.write("Culoar"
 						+ ";"
 						+ heats.getLane7().getLaneNumber()
-						+ " ; "
+						+ ";"
 						+ heats.getLane7().getSwimmer().getName()
-						+ " ; "
+						+ ";"
 						+ heats.getLane7().getSwimmer().getClub()
-						+ " ; "
+						+ ";"
 						+ heats.getLane7().getSwimmer().getAgeGroup()
-						+ " ; "
+						+ ";"
 						+ padLeft(Integer.toString(heats.getLane7()
 								.getEntryMinutes()), 2)
-						+ "."
+						+ ":"
 						+ padLeft(Integer.toString(heats.getLane7()
 								.getEntrySecondes()), 2)
 						+ ":"
 						+ padLeft(Integer.toString(heats.getLane7()
 								.getEntryMSeconds()), 2));
 				out.newLine();
-				out.write("Culoar "
+				out.write("Culoar"
 						+ ";"
 						+ heats.getLane8().getLaneNumber()
-						+ " ; "
+						+ ";"
 						+ heats.getLane8().getSwimmer().getName()
-						+ " ; "
+						+ ";"
 						+ heats.getLane8().getSwimmer().getClub()
-						+ " ; "
+						+ ";"
 						+ heats.getLane8().getSwimmer().getAgeGroup()
-						+ " ; "
+						+ ";"
 						+ padLeft(Integer.toString(heats.getLane8()
 								.getEntryMinutes()), 2)
-						+ "."
+						+ ":"
 						+ padLeft(Integer.toString(heats.getLane8()
 								.getEntrySecondes()), 2)
 						+ ":"
@@ -563,7 +563,7 @@ public class Operations {
 			e.getMessage();
 		}
 	}
-
+	
 	public void removeLineFromFile(String file, String lineToRemove) {
 
 		try {
@@ -616,7 +616,7 @@ public class Operations {
 		return String.format("%1$#" + n + "s", s).replace(' ', '0');
 	}
 
-	public String setZero(String value) {
+	private String setZero(String value) {
 		return (value.length() < 2) ? "0" + value : value;
 	}
 
