@@ -15,7 +15,11 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTabbedPane;
+
+import customComponents.TimesComboBox;
 
 import utils.EventOperations;
 import work.Operations;
@@ -36,10 +40,13 @@ public class AllHeats extends JDialog {
 
 	public AllHeats() {
 		super();
-		fillTimeTables();
 		addComponentsToPane(getContentPane());
 	}
 	
+	/**
+	 * Adding the required components/panels to the dialog the dialog
+	 * @param pane
+	 */
     public void addComponentsToPane(final Container pane) {
     	setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -73,65 +80,65 @@ public class AllHeats extends JDialog {
             heatsPanel.add(new Label(heats.getLane1().getSwimmer().getName()));
             heatsPanel.add(new Label(heats.getLane1().getSwimmer().getAgeGroup()));
             heatsPanel.add(new Label(heats.getLane1().getEntryMinutes()+":"+heats.getLane1().getEntrySecondes()+":"+heats.getLane1().getEntryMSeconds()));
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
+            heatsPanel.add(new TimesComboBox("minutes"));
+            heatsPanel.add(new TimesComboBox("seconds"));
+            heatsPanel.add(new TimesComboBox("mseconds"));
         	// Lane 2
         	heatsPanel.add(new Label("Lane " + heats.getLane2().getLaneNumber()));
             heatsPanel.add(new Label(heats.getLane2().getSwimmer().getName()));
             heatsPanel.add(new Label(heats.getLane2().getSwimmer().getAgeGroup()));
             heatsPanel.add(new Label(heats.getLane2().getEntryMinutes()+":"+heats.getLane2().getEntrySecondes()+":"+heats.getLane2().getEntryMSeconds()));
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
+            heatsPanel.add(new TimesComboBox("minutes"));
+            heatsPanel.add(new TimesComboBox("seconds"));
+            heatsPanel.add(new TimesComboBox("mseconds"));
         	// Lane 3
         	heatsPanel.add(new Label("Lane " + heats.getLane3().getLaneNumber()));
             heatsPanel.add(new Label(heats.getLane3().getSwimmer().getName()));
             heatsPanel.add(new Label(heats.getLane3().getSwimmer().getAgeGroup()));
             heatsPanel.add(new Label(heats.getLane3().getEntryMinutes()+":"+heats.getLane3().getEntrySecondes()+":"+heats.getLane3().getEntryMSeconds()));
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
+            heatsPanel.add(new TimesComboBox("minutes"));
+            heatsPanel.add(new TimesComboBox("seconds"));
+            heatsPanel.add(new TimesComboBox("mseconds"));
         	// Lane 4
         	heatsPanel.add(new Label("Lane " + heats.getLane4().getLaneNumber()));
             heatsPanel.add(new Label(heats.getLane4().getSwimmer().getName()));
             heatsPanel.add(new Label(heats.getLane4().getSwimmer().getAgeGroup()));
             heatsPanel.add(new Label(heats.getLane4().getEntryMinutes()+":"+heats.getLane4().getEntrySecondes()+":"+heats.getLane4().getEntryMSeconds()));
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
+            heatsPanel.add(new TimesComboBox("minutes"));
+            heatsPanel.add(new TimesComboBox("seconds"));
+            heatsPanel.add(new TimesComboBox("mseconds"));
         	// Lane 5
         	heatsPanel.add(new Label("Lane " + heats.getLane5().getLaneNumber()));
             heatsPanel.add(new Label(heats.getLane5().getSwimmer().getName()));
             heatsPanel.add(new Label(heats.getLane5().getSwimmer().getAgeGroup()));
             heatsPanel.add(new Label(heats.getLane5().getEntryMinutes()+":"+heats.getLane5().getEntrySecondes()+":"+heats.getLane5().getEntryMSeconds()));
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
+            heatsPanel.add(new TimesComboBox("minutes"));
+            heatsPanel.add(new TimesComboBox("seconds"));
+            heatsPanel.add(new TimesComboBox("mseconds"));
         	// Lane 6
         	heatsPanel.add(new Label("Lane " + heats.getLane6().getLaneNumber()));
             heatsPanel.add(new Label(heats.getLane6().getSwimmer().getName()));
             heatsPanel.add(new Label(heats.getLane6().getSwimmer().getAgeGroup()));
             heatsPanel.add(new Label(heats.getLane6().getEntryMinutes()+":"+heats.getLane6().getEntrySecondes()+":"+heats.getLane6().getEntryMSeconds()));
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
+            heatsPanel.add(new TimesComboBox("minutes"));
+            heatsPanel.add(new TimesComboBox("seconds"));
+            heatsPanel.add(new TimesComboBox("mseconds"));
         	// Lane 7
         	heatsPanel.add(new Label("Lane " + heats.getLane7().getLaneNumber()));
             heatsPanel.add(new Label(heats.getLane7().getSwimmer().getName()));
             heatsPanel.add(new Label(heats.getLane7().getSwimmer().getAgeGroup()));
             heatsPanel.add(new Label(heats.getLane7().getEntryMinutes()+":"+heats.getLane7().getEntrySecondes()+":"+heats.getLane7().getEntryMSeconds()));
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
+            heatsPanel.add(new TimesComboBox("minutes"));
+            heatsPanel.add(new TimesComboBox("seconds"));
+            heatsPanel.add(new TimesComboBox("mseconds"));
         	// Lane 8
         	heatsPanel.add(new Label("Lane " + heats.getLane8().getLaneNumber()));
             heatsPanel.add(new Label(heats.getLane8().getSwimmer().getName()));
             heatsPanel.add(new Label(heats.getLane8().getSwimmer().getAgeGroup()));
             heatsPanel.add(new Label(heats.getLane8().getEntryMinutes()+":"+heats.getLane8().getEntrySecondes()+":"+heats.getLane8().getEntryMSeconds()));
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
-            heatsPanel.add(new JComboBox());
+            heatsPanel.add(new TimesComboBox("minutes"));
+            heatsPanel.add(new TimesComboBox("seconds"));
+            heatsPanel.add(new TimesComboBox("mseconds"));
             // separators
             heatsPanel.add(new JSeparator());
             heatsPanel.add(new JSeparator());
@@ -141,32 +148,27 @@ public class AllHeats extends JDialog {
             heatsPanel.add(new JSeparator());
             heatsPanel.add(new JSeparator());
         }
-        
-        pane.add(heatsPanel, BorderLayout.NORTH);
+
+        jBCancel.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+            	dispose();
+            }
+        });
+
+
+    	JScrollPane editorScroll = new JScrollPane(heatsPanel);
+    	editorScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    	editorScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+    	pane.setLayout(new BorderLayout());
+    	pane.add(editorScroll);
+    	pane.setPreferredSize(new Dimension(300, 300));
         pane.add(controlsPanel, BorderLayout.SOUTH);
-        
+
         pack();
         setVisible(true);
     }
 
-	public void fillTimeTables() {
-		List<String> minutes = evOperations.getMinutes();
-		List<String> seconds = evOperations.getSeconds();
-		List<String> mSeconde = evOperations.getmSecondes();
-		jCBMinutes.removeAllItems();
-		jCBSeconds.removeAllItems();
-		jCBMSeconds.removeAllItems();
-		for (String m : minutes) {
-			jCBMinutes.addItem(m);
-		}
-		for (String m : seconds) {
-			jCBSeconds.addItem(m);
-		}
-		for (String m : mSeconde) {
-			jCBMSeconds.addItem(m);
-		}
-	}
-    
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
