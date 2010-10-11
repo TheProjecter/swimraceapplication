@@ -11,6 +11,7 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 
 import displays.AllHeats;
+import generators.GenerateHeatOutputs;
 
 import work.TestButton;
 
@@ -437,13 +438,13 @@ public class SwimRaceOrganizerView extends FrameView {
     }//GEN-LAST:event_jBAllRegistrationsActionPerformed
 
     private void jBTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTestActionPerformed
-        if (allHeats == null) {
+        if (generateHeatOutputs == null) {
             JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            allHeats = new AllHeats();
-            allHeats.setLocationRelativeTo(mainFrame);
+            generateHeatOutputs = new GenerateHeatOutputs(mainFrame, true);
+            generateHeatOutputs.setLocationRelativeTo(mainFrame);
         }
 
-        SwimRaceOrganizerApp.getApplication().show(allHeats);
+        SwimRaceOrganizerApp.getApplication().show(generateHeatOutputs);
     }//GEN-LAST:event_jBTestActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -484,4 +485,5 @@ public class SwimRaceOrganizerView extends FrameView {
     private JDialog generateHeats;
     private JDialog allRegistrations;
     private AllHeats allHeats;
+    private GenerateHeatOutputs generateHeatOutputs;
 }
