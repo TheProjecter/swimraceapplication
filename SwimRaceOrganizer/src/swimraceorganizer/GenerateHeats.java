@@ -132,7 +132,7 @@ public class GenerateHeats extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	private void generateHeats(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_generateHeats
+	protected void generateHeats(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_generateHeats
 		List<Heat> heatList = operations.generateHeats(operations
 				.returnEvent(jCBEvent.getSelectedItem().toString()));
 		operations.registerHeats(heatList, heatList.get(0).getEventName() + ".csv");
