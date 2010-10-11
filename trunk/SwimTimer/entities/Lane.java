@@ -1,7 +1,5 @@
 package entities;
 
-import java.util.Comparator;
-
 public class Lane {
 
 	private Swimmer swimmer;
@@ -10,6 +8,7 @@ public class Lane {
 	private Integer resultMinutes;
 	private Integer resultSecondes;
 	private Integer resultMSeconds;
+	private long resultTime;
 	private Integer entryMinutes;
 	private Integer entrySecondes;
 	private Integer entryMSeconds;
@@ -32,6 +31,11 @@ public class Lane {
 		setEntryMinutes(entryMinutes);
 		setEntrySecondes(entrySeconds);
 		setEntryMSeconds(entryMSeconds);
+	}
+
+	public void setResultTime() {
+		this.resultTime = (long) ((this.resultMinutes * 60 * 1000)
+				+ (this.resultSecondes * 1000) + this.resultMSeconds);
 	}
 
 	public Swimmer getSwimmer() {
@@ -112,5 +116,9 @@ public class Lane {
 
 	public void setEntryMSeconds(Integer entryMSeconds) {
 		this.entryMSeconds = entryMSeconds;
+	}
+
+	public long getResultTime() {
+		return resultTime;
 	}
 }

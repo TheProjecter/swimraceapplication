@@ -172,8 +172,8 @@ public class Operations {
 					Registration registration = new Registration(
 							returnSwimmer(entry[0].toString()),
 							returnEvent(entry[5]), Integer.parseInt(entry[6]),
-							Integer.parseInt(entry[7]), Integer
-									.parseInt(entry[8]));
+							Integer.parseInt(entry[7]),
+							Integer.parseInt(entry[8]));
 					registrationsList.add(registration);
 				}
 			} finally {
@@ -201,10 +201,10 @@ public class Operations {
 							&& Integer.parseInt(entry[8]) == mSeconds) {
 						Registration registration = new Registration(
 								returnSwimmer(entry[0].toString()),
-								returnEvent(entry[5]), Integer
-										.parseInt(entry[6]), Integer
-										.parseInt(entry[7]), Integer
-										.parseInt(entry[8]));
+								returnEvent(entry[5]),
+								Integer.parseInt(entry[6]),
+								Integer.parseInt(entry[7]),
+								Integer.parseInt(entry[8]));
 						return registration;
 					}
 				}
@@ -229,10 +229,10 @@ public class Operations {
 							event.getName().toLowerCase())) {
 						Registration registration = new Registration(
 								returnSwimmer(entry[0].toString()),
-								returnEvent(entry[5]), Integer
-										.parseInt(entry[6]), Integer
-										.parseInt(entry[7]), Integer
-										.parseInt(entry[8]));
+								returnEvent(entry[5]),
+								Integer.parseInt(entry[6]),
+								Integer.parseInt(entry[7]),
+								Integer.parseInt(entry[8]));
 						registrationsList.add(registration);
 					}
 				}
@@ -257,10 +257,10 @@ public class Operations {
 							swimmer.getName().toLowerCase())) {
 						Registration registration = new Registration(
 								returnSwimmer(entry[0].toString()),
-								returnEvent(entry[5]), Integer
-										.parseInt(entry[6]), Integer
-										.parseInt(entry[7]), Integer
-										.parseInt(entry[8]));
+								returnEvent(entry[5]),
+								Integer.parseInt(entry[6]),
+								Integer.parseInt(entry[7]),
+								Integer.parseInt(entry[8]));
 						registrationsList.add(registration);
 					}
 				}
@@ -272,15 +272,15 @@ public class Operations {
 		}
 		return registrationsList;
 	}
-	
+
 	public List<Registration> deleteRegistration(
 			List<Registration> registrations, Registration registration) {
 		List<Registration> newRegistrationList = new ArrayList<Registration>();
 		for (Registration reg : registrations) {
-			if (!(reg.getSwimmer().getName().equals(
-					registration.getSwimmer().getName())
-					&& reg.getEvent().getName().equals(
-							registration.getEvent().getName())
+			if (!(reg.getSwimmer().getName()
+					.equals(registration.getSwimmer().getName())
+					&& reg.getEvent().getName()
+							.equals(registration.getEvent().getName())
 					&& (reg.getMinutes() == registration.getMinutes())
 					&& (reg.getSeconds() == registration.getSeconds()) && (reg
 					.getmSeconds() == registration.getmSeconds()))) {
@@ -295,14 +295,14 @@ public class Operations {
 		List<Registration> registrations = getRegistrationsForSwimmer(swimmer);
 		for (Registration reg : registrations) {
 			String lineToRemove = reg.getSwimmer().getName() + ";"
-			+ reg.getSwimmer().getBirthYear() + ";"
-			+ reg.getSwimmer().getAgeGroup() + ";"
-			+ reg.getSwimmer().getGender() + ";"
-			+ reg.getSwimmer().getClub() + ";"
-			+ reg.getEvent().getName() + ";"
-			+ setZero(reg.getMinutes().toString()) + ";"
-			+ setZero(reg.getSeconds().toString()) + ";"
-			+ setZero(reg.getmSeconds().toString());
+					+ reg.getSwimmer().getBirthYear() + ";"
+					+ reg.getSwimmer().getAgeGroup() + ";"
+					+ reg.getSwimmer().getGender() + ";"
+					+ reg.getSwimmer().getClub() + ";"
+					+ reg.getEvent().getName() + ";"
+					+ setZero(reg.getMinutes().toString()) + ";"
+					+ setZero(reg.getSeconds().toString()) + ";"
+					+ setZero(reg.getmSeconds().toString());
 			removeLineFromFile(dataFile.get("registrations"), lineToRemove);
 		}
 	}
@@ -311,26 +311,26 @@ public class Operations {
 		List<Registration> registrations = getRegistrationsForEvent(event);
 		for (Registration reg : registrations) {
 			String lineToRemove = reg.getSwimmer().getName() + ";"
-			+ reg.getSwimmer().getBirthYear() + ";"
-			+ reg.getSwimmer().getAgeGroup() + ";"
-			+ reg.getSwimmer().getGender() + ";"
-			+ reg.getSwimmer().getClub() + ";"
-			+ reg.getEvent().getName() + ";"
-			+ setZero(reg.getMinutes().toString()) + ";"
-			+ setZero(reg.getSeconds().toString()) + ";"
-			+ setZero(reg.getmSeconds().toString());
+					+ reg.getSwimmer().getBirthYear() + ";"
+					+ reg.getSwimmer().getAgeGroup() + ";"
+					+ reg.getSwimmer().getGender() + ";"
+					+ reg.getSwimmer().getClub() + ";"
+					+ reg.getEvent().getName() + ";"
+					+ setZero(reg.getMinutes().toString()) + ";"
+					+ setZero(reg.getSeconds().toString()) + ";"
+					+ setZero(reg.getmSeconds().toString());
 			removeLineFromFile(dataFile.get("registrations"), lineToRemove);
 		}
 	}
-	
+
 	public List<Lane> createLanes(Event event) {
 		List<Lane> laneList = new ArrayList<Lane>();
 		List<Registration> registrationsList = getRegistrationsForEvent(event);
 
 		for (Registration reg : registrationsList) {
-			Lane lane = new Lane(reg.getSwimmer(), reg.getEvent(), reg
-					.getEntryTime(), reg.getMinutes(), reg.getSeconds(), reg
-					.getmSeconds());
+			Lane lane = new Lane(reg.getSwimmer(), reg.getEvent(),
+					reg.getEntryTime(), reg.getMinutes(), reg.getSeconds(),
+					reg.getmSeconds());
 			laneList.add(lane);
 		}
 		return laneList;
@@ -387,8 +387,6 @@ public class Operations {
 	public void registerHeats(List<Heat> heatList, String fileName) {
 		Collections.sort(heatList);
 		try {
-//			FileWriter fstream = new FileWriter(dataFile.get("heats")
-//					.toString(), true);
 			FileWriter fstream = new FileWriter(fileName, true);
 			BufferedWriter out = new BufferedWriter(fstream);
 			out.newLine();
@@ -399,8 +397,7 @@ public class Operations {
 				out.write("Seria " + heats.getHeatNumber());
 				out.newLine();
 				if (heats.getLane1().equals(null)) {
-					out.write("Culoar" + ";"
-							+ heats.getLane1().getLaneNumber());
+					out.write("Culoar" + ";" + heats.getLane1().getLaneNumber());
 					out.newLine();
 				} else {
 					out.write("Culoar"
@@ -563,29 +560,19 @@ public class Operations {
 			e.getMessage();
 		}
 	}
-	
+
 	public void removeLineFromFile(String file, String lineToRemove) {
-
 		try {
-
 			File inFile = new File(file);
-
 			if (!inFile.isFile()) {
 				System.out.println("Parameter is not an existing file");
 				return;
 			}
-
-			// Construct the new file that will later be renamed to the original
-			// filename.
 			File tempFile = new File(inFile.getAbsolutePath() + ".tmp");
 
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
-
 			String line = null;
-
-			// Read from the original file and write to the new
-			// unless content matches data to be removed.
 			while ((line = br.readLine()) != null) {
 				if (!line.trim().equals(lineToRemove)) {
 					pw.println(line);
@@ -600,11 +587,9 @@ public class Operations {
 				System.out.println("Could not delete file");
 				return;
 			}
-
 			// Rename the new file to the filename the original file had.
 			if (!tempFile.renameTo(inFile))
 				System.out.println("Could not rename file");
-
 		} catch (FileNotFoundException ex) {
 			ex.printStackTrace();
 		} catch (IOException ex) {
