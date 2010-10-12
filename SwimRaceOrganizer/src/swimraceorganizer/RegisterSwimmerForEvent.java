@@ -17,6 +17,8 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import customComponents.WarrningDialog;
+
 import entities.Event;
 import entities.Registration;
 import entities.Swimmer;

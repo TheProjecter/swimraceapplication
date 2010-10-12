@@ -3,7 +3,6 @@
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" resourceKey="Form.title"/>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
@@ -98,7 +97,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLEvent">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jLEvent.text"/>
         <Property name="name" type="java.lang.String" value="jLEvent" noResource="true"/>
       </Properties>
     </Component>
@@ -109,8 +107,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLStatus">
       <Properties>
-        <Property name="font" type="java.awt.Font" resourceKey="jLStatus.font"/>
-        <Property name="text" type="java.lang.String" resourceKey="jLStatus.text"/>
         <Property name="name" type="java.lang.String" value="jLStatus" noResource="true"/>
       </Properties>
     </Component>

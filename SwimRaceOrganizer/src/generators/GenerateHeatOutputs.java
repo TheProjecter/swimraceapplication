@@ -1,28 +1,21 @@
 package generators;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-
 import displays.AllHeats;
 
-import swimraceorganizer.GenerateHeats;
 import swimraceorganizer.SwimRaceOrganizerApp;
 
 public class GenerateHeatOutputs extends GenerateHeats {
 	
+	private static final long serialVersionUID = 1L;
 	private AllHeats allHeats;
 	
-	public GenerateHeatOutputs(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+	public GenerateHeatOutputs() {
+        super();
         fillEventNames();
     }
 
 	protected void generateHeats(java.awt.event.ActionEvent evt) {
-        if (allHeats == null) {
-            JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            allHeats = new AllHeats();
-            allHeats.setLocationRelativeTo(mainFrame);
-        }
+        allHeats = new AllHeats(this.getSelectedEvent());
         SwimRaceOrganizerApp.getApplication().show(allHeats);
         dispose();
 	}

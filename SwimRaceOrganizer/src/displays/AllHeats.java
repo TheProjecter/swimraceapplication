@@ -3,6 +3,7 @@ package displays;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
@@ -32,17 +33,21 @@ import entities.Swimmer;
 public class AllHeats extends JDialog {
 
 	private Operations operations = new Operations();
-	private GridLayout controlLayout = new GridLayout(1, 4);
+	private GridLayout controlLayout = new GridLayout(1, 6);
 	private List<Lane> resultLanes = new ArrayList<Lane>();
+	private Event event;
 
 	private JButton jBCancel = new JButton("Cancel");
 	private JButton jBGenerateRezults = new JButton("Generate Results");;
 
 	private static final long serialVersionUID = 1L;
 
-	public AllHeats() {
+	public AllHeats(Event event) {
 		super();
+		setEvent(event);
+		setTitle("All heats for " + event.getName());
 		addComponentsToPane(getContentPane());
+		setAlwaysOnTop(true);
 	}
 
 	/**
@@ -60,11 +65,12 @@ public class AllHeats extends JDialog {
 		controlsPanel.add(jBGenerateRezults);
 		controlsPanel.add(new Label(" "));
 		controlsPanel.add(new Label(" "));
+		controlsPanel.add(new Label(" "));
+		controlsPanel.add(new Label(" "));
 		controlsPanel.add(jBCancel);
 
 		// Adding to the heats panel
-		List<Heat> heatList = operations.generateHeats(operations
-				.returnEvent("50 liber"));
+		List<Heat> heatList = operations.generateHeats(event);
 
 		final JPanel heatsPanel = new JPanel();
 		heatsPanel.setLayout(new GridLayout((heatList.size() * 10), 8));
@@ -442,7 +448,7 @@ public class AllHeats extends JDialog {
 		});
 		jBGenerateRezults.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				printResults("50 liber");
+				printResults(event.getName());
 			}
 		});
 
@@ -464,11 +470,12 @@ public class AllHeats extends JDialog {
 
 	private void printResults(String eventName) {
 		try {
-			FileWriter fstream = new FileWriter("Resultate " + eventName, true);
+			FileWriter fstream = new FileWriter("Rezultate " + eventName + ".csv", true);
 			BufferedWriter out = new BufferedWriter(fstream);
 			for (Lane lanes : resultLanes) {
 				out.write(lanes.getSwimmer().getName() + ";"
 						+ lanes.getSwimmer().getAgeGroup() + ";"
+						+ lanes.getSwimmer().getClub() + ";"
 						+ lanes.getResultMinutes() + ";"
 						+ lanes.getResultSecondes() + ";"
 						+ lanes.getResultMSeconds() + ";"
@@ -484,7 +491,7 @@ public class AllHeats extends JDialog {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				AllHeats dialog = new AllHeats();
+				AllHeats dialog = new AllHeats(new Event());
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
 						System.exit(0);
@@ -493,6 +500,14 @@ public class AllHeats extends JDialog {
 				dialog.setVisible(true);
 			}
 		});
+	}
+
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 
 }

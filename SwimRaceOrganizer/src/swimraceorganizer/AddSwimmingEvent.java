@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import customComponents.WarrningDialog;
+
 import entities.Event;
 import entities.Swimmer;
 
