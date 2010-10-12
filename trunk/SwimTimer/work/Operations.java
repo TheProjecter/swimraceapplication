@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.List;
 
+import utils.AgeGroup;
 import utils.Constants;
 
 import entities.Event;
@@ -21,6 +22,7 @@ import entities.Heat;
 import entities.Lane;
 import entities.LaneComparator;
 import entities.Registration;
+import entities.Result;
 import entities.Swimmer;
 
 public class Operations {
@@ -188,7 +190,6 @@ public class Operations {
 	public Registration getRegistration(String swimmerName, String eventName,
 			Integer minutes, Integer seconds, Integer mSeconds) {
 		Scanner scanner;
-		List<Registration> registrationsList = new ArrayList<Registration>();
 		try {
 			scanner = new Scanner(new File(dataFile.get("registrations")));
 			try {
@@ -561,6 +562,75 @@ public class Operations {
 		}
 	}
 
+	public List<Result> returnResults(Event event) {
+
+		List<Result> results = new ArrayList<Result>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("Rezultate "
+					+ event.getName() + ".csv"));
+			try {
+				String line = null;
+				while ((line = br.readLine()) != null) {
+					String[] entry = line.split(";");
+					results.add(new Result(returnSwimmer(entry[0]), Integer
+							.valueOf(entry[3]), Integer.valueOf(entry[4]),
+							Integer.valueOf(entry[5]), Long.valueOf(entry[6])));
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+
+		return results;
+	}
+	
+	/**
+	 * Write the results into a ordered manner (order per age group and result) in a new file
+	 * @param results
+	 * @param event
+	 */
+	public void generateResultTable(List<Result> results, Event event) {
+		AgeGroup ageGroup = new AgeGroup();
+		List<String> ageGroups = ageGroup.getAgeGroups();
+
+		try {
+			FileWriter fstream = new FileWriter("Rezultate Ordonate " + event.getName() + ".csv", true);
+			BufferedWriter out = new BufferedWriter(fstream);
+
+			for(String age : ageGroups) {
+				if (searchAgeGroupInResult(results, age)) {
+					out.write(age);
+					out.newLine();
+					for(Result res : results) {
+						if (res.getSwimmer().getAgeGroup().equals(age)) {
+							out.write(res.getSwimmer().getName() + ";" + res.getSwimmer().getClub()
+									+ ";" + res.getSwimmer().getBirthYear() + ";" +
+									res.getResultMinutes() + ";" + res.getResultSecondes()
+									+ ";" + res.getResultMSeconds());
+							out.newLine();
+						}
+					}
+					out.newLine();
+				}
+			}
+			out.newLine();
+			out.close();
+		} catch (Exception e) {
+			e.getMessage();
+		}
+	}
+
+	public boolean searchAgeGroupInResult(List<Result> results, String age) {
+		for (Result res : results) {
+			if (age.equals(res.getSwimmer().getAgeGroup())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void removeLineFromFile(String file, String lineToRemove) {
 		try {
 			File inFile = new File(file);

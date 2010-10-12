@@ -13,5 +13,4 @@ public class LaneComparator implements Comparator<Lane> {
 		else
 			return -1;
 	}
-
 }
