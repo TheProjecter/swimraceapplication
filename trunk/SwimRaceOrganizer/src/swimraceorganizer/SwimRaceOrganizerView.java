@@ -10,8 +10,13 @@ import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 
+import displays.AllEvents;
 import displays.AllHeats;
+import displays.AllRegistrations;
+import displays.AllSwimmers;
 import generators.GenerateHeatOutputs;
+import generators.GenerateHeatResults;
+import generators.GenerateHeats;
 
 import work.TestButton;
 
@@ -121,7 +126,8 @@ public class SwimRaceOrganizerView extends FrameView {
         jRegistrationActions = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLGenerateActions = new javax.swing.JLabel();
-        jBTest = new javax.swing.JButton();
+        jBStoreResults = new javax.swing.JButton();
+        jBGenerateResults = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -215,11 +221,19 @@ public class SwimRaceOrganizerView extends FrameView {
         jLGenerateActions.setText(resourceMap.getString("jLGenerateActions.text")); // NOI18N
         jLGenerateActions.setName("jLGenerateActions"); // NOI18N
 
-        jBTest.setText(resourceMap.getString("jBTest.text")); // NOI18N
-        jBTest.setName("jBTest"); // NOI18N
-        jBTest.addActionListener(new java.awt.event.ActionListener() {
+        jBStoreResults.setText(resourceMap.getString("jBStoreResults.text")); // NOI18N
+        jBStoreResults.setName("jBStoreResults"); // NOI18N
+        jBStoreResults.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBTestActionPerformed(evt);
+                jBStoreResultsActionPerformed(evt);
+            }
+        });
+
+        jBGenerateResults.setText(resourceMap.getString("jBGenerateResults.text")); // NOI18N
+        jBGenerateResults.setName("jBGenerateResults"); // NOI18N
+        jBGenerateResults.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGenerateResultsActionPerformed(evt);
             }
         });
 
@@ -234,18 +248,17 @@ public class SwimRaceOrganizerView extends FrameView {
                     .addComponent(jBgenerateHeats, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBAllSwimmers, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBAddSwimmer, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBAddSwimmingEvent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                             .addComponent(jBAllEvents, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                            .addComponent(jBAllRegistrations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                            .addComponent(jBAllRegistrations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBTest)
-                        .addGap(103, 103, 103))))
+                        .addComponent(jBStoreResults, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLSwimmerActions)
@@ -270,6 +283,10 @@ public class SwimRaceOrganizerView extends FrameView {
                 .addContainerGap()
                 .addComponent(jRegistrationActions)
                 .addContainerGap(385, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addContainerGap(317, Short.MAX_VALUE)
+                .addComponent(jBGenerateResults, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,16 +315,15 @@ public class SwimRaceOrganizerView extends FrameView {
                     .addComponent(jBAllRegistrations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jLGenerateActions)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBgenerateHeats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jBTest)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(5, 5, 5)
+                .addComponent(jLGenerateActions)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBgenerateHeats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBStoreResults))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBGenerateResults)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -422,7 +438,7 @@ public class SwimRaceOrganizerView extends FrameView {
     private void jBgenerateHeatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBgenerateHeatsActionPerformed
         if (generateHeats == null) {
             JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            generateHeats = new GenerateHeats(mainFrame, true);
+            generateHeats = new GenerateHeats();
             generateHeats.setLocationRelativeTo(mainFrame);
         }
         SwimRaceOrganizerApp.getApplication().show(generateHeats);
@@ -437,15 +453,23 @@ public class SwimRaceOrganizerView extends FrameView {
         SwimRaceOrganizerApp.getApplication().show(allRegistrations);
     }//GEN-LAST:event_jBAllRegistrationsActionPerformed
 
-    private void jBTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTestActionPerformed
+    private void jBStoreResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBStoreResultsActionPerformed
         if (generateHeatOutputs == null) {
             JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            generateHeatOutputs = new GenerateHeatOutputs(mainFrame, true);
+            generateHeatOutputs = new GenerateHeatOutputs();
             generateHeatOutputs.setLocationRelativeTo(mainFrame);
         }
-
         SwimRaceOrganizerApp.getApplication().show(generateHeatOutputs);
-    }//GEN-LAST:event_jBTestActionPerformed
+    }//GEN-LAST:event_jBStoreResultsActionPerformed
+
+    private void jBGenerateResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerateResultsActionPerformed
+        if (generateHeatResults == null) {
+            JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+            generateHeatResults = new GenerateHeatResults();
+            generateHeatResults.setLocationRelativeTo(mainFrame);
+        }
+        SwimRaceOrganizerApp.getApplication().show(generateHeatResults);
+    }//GEN-LAST:event_jBGenerateResultsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAddSwimmer;
@@ -453,8 +477,9 @@ public class SwimRaceOrganizerView extends FrameView {
     private javax.swing.JButton jBAllEvents;
     private javax.swing.JButton jBAllRegistrations;
     private javax.swing.JButton jBAllSwimmers;
+    private javax.swing.JButton jBGenerateResults;
     private javax.swing.JButton jBRegisterSwimmer;
-    private javax.swing.JButton jBTest;
+    private javax.swing.JButton jBStoreResults;
     private javax.swing.JButton jBgenerateHeats;
     private javax.swing.JLabel jLEventActions;
     private javax.swing.JLabel jLGenerateActions;
@@ -486,4 +511,5 @@ public class SwimRaceOrganizerView extends FrameView {
     private JDialog allRegistrations;
     private AllHeats allHeats;
     private GenerateHeatOutputs generateHeatOutputs;
+    private GenerateHeatResults generateHeatResults;
 }

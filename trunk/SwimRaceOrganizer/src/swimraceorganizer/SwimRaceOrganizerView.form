@@ -18,7 +18,7 @@
                       <Component id="jBAllSwimmers" alignment="0" min="-2" pref="166" max="-2" attributes="2"/>
                       <Component id="jBAddSwimmer" alignment="0" min="-2" pref="166" max="-2" attributes="2"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -26,14 +26,13 @@
                               <Component id="jBAllEvents" alignment="1" pref="162" max="32767" attributes="2"/>
                               <Component id="jBAllRegistrations" alignment="1" pref="162" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jBTest" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                          <Component id="jBStoreResults" min="-2" pref="164" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="10" pref="10" max="10" attributes="0"/>
@@ -64,6 +63,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jRegistrationActions" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="385" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="317" max="32767" attributes="0"/>
+                  <Component id="jBGenerateResults" min="-2" pref="164" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -98,19 +102,16 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                          <Component id="jLGenerateActions" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jBgenerateHeats" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="jBTest" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <Component id="jLGenerateActions" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jBgenerateHeats" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBStoreResults" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jBGenerateResults" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -234,13 +235,22 @@
             <Property name="name" type="java.lang.String" value="jLGenerateActions" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jBTest">
+        <Component class="javax.swing.JButton" name="jBStoreResults">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jBTest.text"/>
-            <Property name="name" type="java.lang.String" value="jBTest" noResource="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="jBStoreResults.text"/>
+            <Property name="name" type="java.lang.String" value="jBStoreResults" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBTestActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBStoreResultsActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBGenerateResults">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jBGenerateResults.text"/>
+            <Property name="name" type="java.lang.String" value="jBGenerateResults" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBGenerateResultsActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
