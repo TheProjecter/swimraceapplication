@@ -456,7 +456,7 @@ public class AllHeats extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				printResults(event.getName());
 			}
-		});
+		}); 
 
 		heatsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		JScrollPane editorScroll = new JScrollPane(heatsPanel);
