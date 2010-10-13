@@ -345,47 +345,56 @@ public class Operations {
 		}
 	}
 
-	public List<Lane> setLanesInOrder(List<Lane> laneList) {
+	public List<Lane> setLanesInOrder(List<Lane> laneList, int laneNumbers) {
 		List<Lane> arrangedList = new ArrayList<Lane>();
-
-		arrangedList.add(evaluateLane(laneList, 6));
-		arrangedList.add(evaluateLane(laneList, 4));
-		arrangedList.add(evaluateLane(laneList, 2));
-		arrangedList.add(evaluateLane(laneList, 0));
-		arrangedList.add(evaluateLane(laneList, 1));
-		arrangedList.add(evaluateLane(laneList, 3));
-		arrangedList.add(evaluateLane(laneList, 5));
-		arrangedList.add(evaluateLane(laneList, 7));
-
+		
+		if (laneNumbers == 8) {
+			arrangedList.add(evaluateLane(laneList, 6));
+			arrangedList.add(evaluateLane(laneList, 4));
+			arrangedList.add(evaluateLane(laneList, 2));
+			arrangedList.add(evaluateLane(laneList, 0));
+			arrangedList.add(evaluateLane(laneList, 1));
+			arrangedList.add(evaluateLane(laneList, 3));
+			arrangedList.add(evaluateLane(laneList, 5));
+			arrangedList.add(evaluateLane(laneList, 7));
+		} else if (laneNumbers == 6) {
+			arrangedList.add(evaluateLane(laneList, 4));
+			arrangedList.add(evaluateLane(laneList, 2));
+			arrangedList.add(evaluateLane(laneList, 0));
+			arrangedList.add(evaluateLane(laneList, 1));
+			arrangedList.add(evaluateLane(laneList, 3));
+			arrangedList.add(evaluateLane(laneList, 5));
+		}
 		return arrangedList;
 
 	}
 
-	public List<Heat> generateHeats(Event event) {
+	public List<Heat> generateHeats(Event event, String poolType) {
 		List<Lane> laneList = new ArrayList<Lane>();
 		List<Lane> lanesOnHeat = new ArrayList<Lane>();
 		List<Heat> heatList = new ArrayList<Heat>();
-
+		int laneNumbers = (poolType.contains("25") ? 6 : 8);
+		
 		// create and sort lanes
 		laneList = createLanes(event);
 		Collections.sort(laneList, new LaneComparator());
 
-		int heatCount = (laneList.size()) / 8 + 1;
+		int heatCount = (laneList.size()) / laneNumbers + 1;
 		int startPos = 0;
-		int endPos = (8 > laneList.size()) ? laneList.size() : 8;
+		int endPos = (laneNumbers > laneList.size()) ? laneList.size() : laneNumbers;
 		for (int i = heatCount; i > 0; i--) {
 			lanesOnHeat = laneList.subList(startPos, endPos);
-			lanesOnHeat = setLanesInOrder(lanesOnHeat);
+			lanesOnHeat = setLanesInOrder(lanesOnHeat, laneNumbers);
 			heatList.add(new Heat(event.getName(), i, lanesOnHeat));
-			startPos = startPos + 8;
-			endPos = ((endPos + 8) < laneList.size()) ? (endPos + 8) : laneList
+			startPos = startPos + laneNumbers;
+			endPos = ((endPos + laneNumbers) < laneList.size()) ? (endPos + laneNumbers) : laneList
 					.size();
 		}
 
 		return heatList;
 	}
 
-	public void registerHeats(List<Heat> heatList, String fileName) {
+	public void registerHeats(String poolType, List<Heat> heatList, String fileName) {
 		Collections.sort(heatList);
 		try {
 			FileWriter fstream = new FileWriter(fileName, true);
@@ -516,44 +525,49 @@ public class Operations {
 						+ padLeft(Integer.toString(heats.getLane6()
 								.getEntryMSeconds()), 2));
 				out.newLine();
-				out.write("Culoar"
-						+ ";"
-						+ heats.getLane7().getLaneNumber()
-						+ ";"
-						+ heats.getLane7().getSwimmer().getName()
-						+ ";"
-						+ heats.getLane7().getSwimmer().getClub()
-						+ ";"
-						+ heats.getLane7().getSwimmer().getAgeGroup()
-						+ ";"
-						+ padLeft(Integer.toString(heats.getLane7()
-								.getEntryMinutes()), 2)
-						+ ":"
-						+ padLeft(Integer.toString(heats.getLane7()
-								.getEntrySecondes()), 2)
-						+ ":"
-						+ padLeft(Integer.toString(heats.getLane7()
-								.getEntryMSeconds()), 2));
-				out.newLine();
-				out.write("Culoar"
-						+ ";"
-						+ heats.getLane8().getLaneNumber()
-						+ ";"
-						+ heats.getLane8().getSwimmer().getName()
-						+ ";"
-						+ heats.getLane8().getSwimmer().getClub()
-						+ ";"
-						+ heats.getLane8().getSwimmer().getAgeGroup()
-						+ ";"
-						+ padLeft(Integer.toString(heats.getLane8()
-								.getEntryMinutes()), 2)
-						+ ":"
-						+ padLeft(Integer.toString(heats.getLane8()
-								.getEntrySecondes()), 2)
-						+ ":"
-						+ padLeft(Integer.toString(heats.getLane8()
-								.getEntryMSeconds()), 2));
-				out.newLine();
+				/**
+				 * goes in here only for 50m pool
+				 */
+				if (poolType.contains("50")) {
+					out.write("Culoar"
+							+ ";"
+							+ heats.getLane7().getLaneNumber()
+							+ ";"
+							+ heats.getLane7().getSwimmer().getName()
+							+ ";"
+							+ heats.getLane7().getSwimmer().getClub()
+							+ ";"
+							+ heats.getLane7().getSwimmer().getAgeGroup()
+							+ ";"
+							+ padLeft(Integer.toString(heats.getLane7()
+									.getEntryMinutes()), 2)
+							+ ":"
+							+ padLeft(Integer.toString(heats.getLane7()
+									.getEntrySecondes()), 2)
+							+ ":"
+							+ padLeft(Integer.toString(heats.getLane7()
+									.getEntryMSeconds()), 2));
+					out.newLine();
+					out.write("Culoar"
+							+ ";"
+							+ heats.getLane8().getLaneNumber()
+							+ ";"
+							+ heats.getLane8().getSwimmer().getName()
+							+ ";"
+							+ heats.getLane8().getSwimmer().getClub()
+							+ ";"
+							+ heats.getLane8().getSwimmer().getAgeGroup()
+							+ ";"
+							+ padLeft(Integer.toString(heats.getLane8()
+									.getEntryMinutes()), 2)
+							+ ":"
+							+ padLeft(Integer.toString(heats.getLane8()
+									.getEntrySecondes()), 2)
+							+ ":"
+							+ padLeft(Integer.toString(heats.getLane8()
+									.getEntryMSeconds()), 2));
+					out.newLine();
+				}
 				out.newLine();
 			}
 			out.close();

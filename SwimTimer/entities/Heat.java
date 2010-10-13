@@ -23,23 +23,39 @@ public class Heat  implements Comparable<Heat>{
 
 		setEventName(eventName);
 		setHeatNumber(heatNumber);
-		setLane1(laneList.get(0));
-		this.lane1.setLaneNumber(1);
-		setLane2(laneList.get(1));
-		this.lane2.setLaneNumber(2);
-		setLane3(laneList.get(2));
-		this.lane3.setLaneNumber(3);
-		setLane4(laneList.get(3));
-		this.lane4.setLaneNumber(4);
-		setLane5(laneList.get(4));
-		this.lane5.setLaneNumber(5);
-		setLane6(laneList.get(5));
-		this.lane6.setLaneNumber(6);
-		setLane7(laneList.get(6));
-		this.lane7.setLaneNumber(7);
-		setLane8(laneList.get(7));
-		this.lane8.setLaneNumber(8);
 		setHeatOcupants(laneList.size());
+		
+		if (getHeatOcupants() == 8) {
+			setLane1(laneList.get(0));
+			this.lane1.setLaneNumber(1);
+			setLane2(laneList.get(1));
+			this.lane2.setLaneNumber(2);
+			setLane3(laneList.get(2));
+			this.lane3.setLaneNumber(3);
+			setLane4(laneList.get(3));
+			this.lane4.setLaneNumber(4);
+			setLane5(laneList.get(4));
+			this.lane5.setLaneNumber(5);
+			setLane6(laneList.get(5));
+			this.lane6.setLaneNumber(6);
+			setLane7(laneList.get(6));
+			this.lane7.setLaneNumber(7);
+			setLane8(laneList.get(7));
+			this.lane8.setLaneNumber(8);
+		} else {
+			setLane1(laneList.get(0));
+			this.lane1.setLaneNumber(1);
+			setLane2(laneList.get(1));
+			this.lane2.setLaneNumber(2);
+			setLane3(laneList.get(2));
+			this.lane3.setLaneNumber(3);
+			setLane4(laneList.get(3));
+			this.lane4.setLaneNumber(4);
+			setLane5(laneList.get(4));
+			this.lane5.setLaneNumber(5);
+			setLane6(laneList.get(5));
+			this.lane6.setLaneNumber(6);
+		}
 	}
 
 	public int compareTo(Heat o1) {
