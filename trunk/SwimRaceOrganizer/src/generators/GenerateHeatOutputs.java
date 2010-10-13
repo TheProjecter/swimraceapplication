@@ -8,15 +8,25 @@ public class GenerateHeatOutputs extends GenerateHeats {
 	
 	private static final long serialVersionUID = 1L;
 	private AllHeats allHeats;
+	private String poolType;
 	
-	public GenerateHeatOutputs() {
-        super();
+	public GenerateHeatOutputs(String poolType) {
+        super(poolType);
+        setPoolType(poolType);
         fillEventNames();
     }
 
 	protected void generateHeats(java.awt.event.ActionEvent evt) {
-        allHeats = new AllHeats(this.getSelectedEvent());
+        allHeats = new AllHeats(this.getSelectedEvent(), getPoolType());
         SwimRaceOrganizerApp.getApplication().show(allHeats);
         dispose();
+	}
+
+	public String getPoolType() {
+		return poolType;
+	}
+
+	public void setPoolType(String poolType) {
+		this.poolType = poolType;
 	}
 }

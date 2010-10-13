@@ -36,15 +36,17 @@ public class AllHeats extends JDialog {
 	private GridLayout controlLayout = new GridLayout(1, 6);
 	private List<Lane> resultLanes = new ArrayList<Lane>();
 	private Event event;
-
+	private String poolType;
+	
 	private JButton jBCancel = new JButton("Cancel");
 	private JButton jBGenerateRezults = new JButton("Generate Results");;
 
 	private static final long serialVersionUID = 1L;
 
-	public AllHeats(Event event) {
+	public AllHeats(Event event, String poolType) {
 		super();
 		setEvent(event);
+		setPoolType(poolType);
 		setTitle("All heats for " + event.getName());
 		addComponentsToPane(getContentPane());
 		setAlwaysOnTop(true);
@@ -70,10 +72,13 @@ public class AllHeats extends JDialog {
 		controlsPanel.add(jBCancel);
 
 		// Adding to the heats panel
-		List<Heat> heatList = operations.generateHeats(event);
+		List<Heat> heatList = operations.generateHeats(event, poolType);
 
 		final JPanel heatsPanel = new JPanel();
-		heatsPanel.setLayout(new GridLayout((heatList.size() * 10), 8));
+		/**
+		 * The lines are 8 or 10 based on the pooltype
+		 */
+		heatsPanel.setLayout(new GridLayout((heatList.size() * (poolType.contains("50") ? 10 : 8)), 8));
 
 		for (Heat heats : heatList) {
 			// header
@@ -343,93 +348,94 @@ public class AllHeats extends JDialog {
 							+ lane6.getResultTime());
 				}
 			});
-
-			// Lane 7
-			final TimesComboBox tMCBL7 = new TimesComboBox("minutes");
-			final TimesComboBox tSCBL7 = new TimesComboBox("seconds");
-			final TimesComboBox tMSCBL7 = new TimesComboBox("mseconds");
-			JButton saveL7 = new JButton("Save");
-			heatsPanel.add(new JLabel("Lane "
-					+ heats.getLane7().getLaneNumber()));
-			heatsPanel.add(new JLabel(heats.getLane7().getSwimmer().getName()));
-			heatsPanel.add(new JLabel(heats.getLane7().getSwimmer()
-					.getAgeGroup()));
-			heatsPanel.add(new JLabel(heats.getLane7().getEntryMinutes() + ":"
-					+ heats.getLane7().getEntrySecondes() + ":"
-					+ heats.getLane7().getEntryMSeconds()));
-			heatsPanel.add(tMCBL7);
-			heatsPanel.add(tSCBL7);
-			heatsPanel.add(tMSCBL7);
-			heatsPanel.add(saveL7);
-			final Swimmer swimmerL7 = heats.getLane7().getSwimmer();
-			final Event eventL7 = heats.getLane7().getEvent();
-			saveL7.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					Lane lane7 = new Lane(swimmerL7, eventL7, 0,
-							new Integer(0), new Integer(0), new Integer(0));
-					lane7.setResultMinutes(Integer.parseInt(tMCBL7
-							.getSelectedItem().toString()));
-					lane7.setResultSecondes(Integer.parseInt(tSCBL7
-							.getSelectedItem().toString()));
-					lane7.setResultMSeconds(Integer.parseInt(tMSCBL7
-							.getSelectedItem().toString()));
-					lane7.setResultTime();
-					resultLanes.add(lane7);
-					tMCBL7.setEnabled(false);
-					tSCBL7.setEnabled(false);
-					tMSCBL7.setEnabled(false);
-					System.out.println(lane7.getSwimmer().getName() + ";"
-							+ lane7.getSwimmer().getAgeGroup() + ";"
-							+ lane7.getResultMinutes() + ";"
-							+ lane7.getResultSecondes() + ";"
-							+ lane7.getResultMSeconds() + ";"
-							+ lane7.getResultTime());
-				}
-			});
-
-			// Lane 8
-			final TimesComboBox tMCBL8 = new TimesComboBox("minutes");
-			final TimesComboBox tSCBL8 = new TimesComboBox("seconds");
-			final TimesComboBox tMSCBL8 = new TimesComboBox("mseconds");
-			JButton saveL8 = new JButton("Save");
-			heatsPanel.add(new JLabel("Lane "
-					+ heats.getLane8().getLaneNumber()));
-			heatsPanel.add(new JLabel(heats.getLane8().getSwimmer().getName()));
-			heatsPanel.add(new JLabel(heats.getLane8().getSwimmer()
-					.getAgeGroup()));
-			heatsPanel.add(new JLabel(heats.getLane8().getEntryMinutes() + ":"
-					+ heats.getLane8().getEntrySecondes() + ":"
-					+ heats.getLane8().getEntryMSeconds()));
-			heatsPanel.add(tMCBL8);
-			heatsPanel.add(tSCBL8);
-			heatsPanel.add(tMSCBL8);
-			heatsPanel.add(saveL8);
-			final Swimmer swimmerL8 = heats.getLane8().getSwimmer();
-			final Event eventL8 = heats.getLane8().getEvent();
-			saveL8.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					Lane lane8 = new Lane(swimmerL8, eventL8, 0,
-							new Integer(0), new Integer(0), new Integer(0));
-					lane8.setResultMinutes(Integer.parseInt(tMCBL8
-							.getSelectedItem().toString()));
-					lane8.setResultSecondes(Integer.parseInt(tSCBL8
-							.getSelectedItem().toString()));
-					lane8.setResultMSeconds(Integer.parseInt(tMSCBL8
-							.getSelectedItem().toString()));
-					lane8.setResultTime();
-					resultLanes.add(lane8);
-					tMCBL8.setEnabled(false);
-					tSCBL8.setEnabled(false);
-					tMSCBL8.setEnabled(false);
-					System.out.println(lane8.getSwimmer().getName() + ";"
-							+ lane8.getSwimmer().getAgeGroup() + ";"
-							+ lane8.getResultMinutes() + ";"
-							+ lane8.getResultSecondes() + ";"
-							+ lane8.getResultMSeconds() + ";"
-							+ lane8.getResultTime());
-				}
-			});
-
+			
+			if (poolType.contains("50")) {
+				// Lane 7
+				final TimesComboBox tMCBL7 = new TimesComboBox("minutes");
+				final TimesComboBox tSCBL7 = new TimesComboBox("seconds");
+				final TimesComboBox tMSCBL7 = new TimesComboBox("mseconds");
+				JButton saveL7 = new JButton("Save");
+				heatsPanel.add(new JLabel("Lane "
+						+ heats.getLane7().getLaneNumber()));
+				heatsPanel.add(new JLabel(heats.getLane7().getSwimmer().getName()));
+				heatsPanel.add(new JLabel(heats.getLane7().getSwimmer()
+						.getAgeGroup()));
+				heatsPanel.add(new JLabel(heats.getLane7().getEntryMinutes() + ":"
+						+ heats.getLane7().getEntrySecondes() + ":"
+						+ heats.getLane7().getEntryMSeconds()));
+				heatsPanel.add(tMCBL7);
+				heatsPanel.add(tSCBL7);
+				heatsPanel.add(tMSCBL7);
+				heatsPanel.add(saveL7);
+				final Swimmer swimmerL7 = heats.getLane7().getSwimmer();
+				final Event eventL7 = heats.getLane7().getEvent();
+				saveL7.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Lane lane7 = new Lane(swimmerL7, eventL7, 0,
+								new Integer(0), new Integer(0), new Integer(0));
+						lane7.setResultMinutes(Integer.parseInt(tMCBL7
+								.getSelectedItem().toString()));
+						lane7.setResultSecondes(Integer.parseInt(tSCBL7
+								.getSelectedItem().toString()));
+						lane7.setResultMSeconds(Integer.parseInt(tMSCBL7
+								.getSelectedItem().toString()));
+						lane7.setResultTime();
+						resultLanes.add(lane7);
+						tMCBL7.setEnabled(false);
+						tSCBL7.setEnabled(false);
+						tMSCBL7.setEnabled(false);
+						System.out.println(lane7.getSwimmer().getName() + ";"
+								+ lane7.getSwimmer().getAgeGroup() + ";"
+								+ lane7.getResultMinutes() + ";"
+								+ lane7.getResultSecondes() + ";"
+								+ lane7.getResultMSeconds() + ";"
+								+ lane7.getResultTime());
+					}
+				});
+	
+				// Lane 8
+				final TimesComboBox tMCBL8 = new TimesComboBox("minutes");
+				final TimesComboBox tSCBL8 = new TimesComboBox("seconds");
+				final TimesComboBox tMSCBL8 = new TimesComboBox("mseconds");
+				JButton saveL8 = new JButton("Save");
+				heatsPanel.add(new JLabel("Lane "
+						+ heats.getLane8().getLaneNumber()));
+				heatsPanel.add(new JLabel(heats.getLane8().getSwimmer().getName()));
+				heatsPanel.add(new JLabel(heats.getLane8().getSwimmer()
+						.getAgeGroup()));
+				heatsPanel.add(new JLabel(heats.getLane8().getEntryMinutes() + ":"
+						+ heats.getLane8().getEntrySecondes() + ":"
+						+ heats.getLane8().getEntryMSeconds()));
+				heatsPanel.add(tMCBL8);
+				heatsPanel.add(tSCBL8);
+				heatsPanel.add(tMSCBL8);
+				heatsPanel.add(saveL8);
+				final Swimmer swimmerL8 = heats.getLane8().getSwimmer();
+				final Event eventL8 = heats.getLane8().getEvent();
+				saveL8.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Lane lane8 = new Lane(swimmerL8, eventL8, 0,
+								new Integer(0), new Integer(0), new Integer(0));
+						lane8.setResultMinutes(Integer.parseInt(tMCBL8
+								.getSelectedItem().toString()));
+						lane8.setResultSecondes(Integer.parseInt(tSCBL8
+								.getSelectedItem().toString()));
+						lane8.setResultMSeconds(Integer.parseInt(tMSCBL8
+								.getSelectedItem().toString()));
+						lane8.setResultTime();
+						resultLanes.add(lane8);
+						tMCBL8.setEnabled(false);
+						tSCBL8.setEnabled(false);
+						tMSCBL8.setEnabled(false);
+						System.out.println(lane8.getSwimmer().getName() + ";"
+								+ lane8.getSwimmer().getAgeGroup() + ";"
+								+ lane8.getResultMinutes() + ";"
+								+ lane8.getResultSecondes() + ";"
+								+ lane8.getResultMSeconds() + ";"
+								+ lane8.getResultTime());
+					}
+				});
+			}
 			// separators
 			heatsPanel.add(new JSeparator());
 			heatsPanel.add(new JSeparator());
@@ -491,7 +497,7 @@ public class AllHeats extends JDialog {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				AllHeats dialog = new AllHeats(new Event());
+				AllHeats dialog = new AllHeats(new Event(), new String());
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
 						System.exit(0);
@@ -508,6 +514,14 @@ public class AllHeats extends JDialog {
 
 	public void setEvent(Event event) {
 		this.event = event;
+	}
+
+	public String getPoolType() {
+		return poolType;
+	}
+
+	public void setPoolType(String poolType) {
+		this.poolType = poolType;
 	}
 
 }

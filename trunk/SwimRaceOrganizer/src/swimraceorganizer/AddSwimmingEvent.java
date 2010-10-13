@@ -44,11 +44,12 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 	private javax.swing.JTextField jTEventName;
 	// End of variables declaration//GEN-END:variables
 
-	private WarrningDialog warrningBox;
+	private String poolType;
 
 	/** Creates new form AddSwimmingEvent */
-	public AddSwimmingEvent(java.awt.Frame parent) {
-		super(parent);
+	public AddSwimmingEvent(String poolType) {
+		super();
+		setPoolType(poolType);
 		initComponents();
 		fillGenderCB();
 		fillDistanceCB();
@@ -348,8 +349,7 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				AddSwimmingEvent dialog = new AddSwimmingEvent(
-						new javax.swing.JFrame());
+				AddSwimmingEvent dialog = new AddSwimmingEvent(new String());
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
 						System.exit(0);
@@ -388,7 +388,15 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 
 	public void fillPoolTypeCB() {
 		jCBPoolType.removeAllItems();
-		jCBPoolType.addItem("25 Meters".toString());
-		jCBPoolType.addItem("50 Meters".toString());
+		jCBPoolType.addItem(getPoolType());
+		jCBPoolType.setEditable(false);
+	}
+
+	public String getPoolType() {
+		return poolType;
+	}
+
+	public void setPoolType(String poolType) {
+		this.poolType = poolType;
 	}
 }
