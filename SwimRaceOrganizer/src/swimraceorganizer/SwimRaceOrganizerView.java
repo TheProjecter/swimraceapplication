@@ -26,19 +26,47 @@ import javax.swing.JFrame;
  */
 public class SwimRaceOrganizerView extends FrameView {
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAddSwimmer;
+    private javax.swing.JButton jBAddSwimmingEvent;
+    private javax.swing.JButton jBAllEvents;
+    private javax.swing.JButton jBAllRegistrations;
+    private javax.swing.JButton jBAllSwimmers;
+    private javax.swing.JButton jBGenerateResults;
+    private javax.swing.JButton jBRegisterSwimmer;
+    private javax.swing.JButton jBStoreResults;
+    private javax.swing.JButton jBgenerateHeats;
+    private javax.swing.JLabel jLEventActions;
+    private javax.swing.JLabel jLGenerateActions;
+    private javax.swing.JLabel jLSwimmerActions;
+    private javax.swing.JLabel jRegistrationActions;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JMenuBar menuBar;
+    // End of variables declaration//GEN-END:variables
+
+    private final Icon[] busyIcons = new Icon[15];
+
+    private JDialog aboutBox;
+    private JDialog addSwimmer;
+    private JDialog addSwimmingEvent;
+    private JDialog allSwimmers;
+    private JDialog allEvents;
+    private JDialog registerSwimmer;
+    private JDialog generateHeats;
+    private JDialog allRegistrations;
+    private GenerateHeatOutputs generateHeatOutputs;
+    private GenerateHeatResults generateHeatResults;
+    private SettingsWindow settingsWindow;
+
+    private String poolType;
+    
     public SwimRaceOrganizerView(SingleFrameApplication app) {
         super(app);
 
         initComponents();
 
-        // status bar initialization - message timeout, idle icon and busy animation, etc
-        ResourceMap resourceMap = getResourceMap();
-        int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
-        int busyAnimationRate = resourceMap.getInteger("StatusBar.busyAnimationRate");
-        for (int i = 0; i < busyIcons.length; i++) {
-            busyIcons[i] = resourceMap.getIcon("StatusBar.busyIcons[" + i + "]");
-        }
-        idleIcon = resourceMap.getIcon("StatusBar.idleIcon");
     }
 
     @Action
@@ -58,8 +86,7 @@ public class SwimRaceOrganizerView extends FrameView {
             settingsWindow.setLocationRelativeTo(mainFrame);
         }
         SwimRaceOrganizerApp.getApplication().show(settingsWindow);
-        settingsWindow.setSize(200, 120);
-        System.out.println(settingsWindow.getPoolType());
+        settingsWindow.setSize(300, 180);
     }
 
     /** This method is called from within the constructor to
@@ -321,12 +348,10 @@ public class SwimRaceOrganizerView extends FrameView {
     }//GEN-LAST:event_jBAddSwimmerActionPerformed
 
     private void jBAddSwimmingEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddSwimmingEventActionPerformed
-        // TODO add your handling code here:
-        if (addSwimmingEvent == null) {
-            JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            addSwimmingEvent = new AddSwimmingEvent(mainFrame);
-            addSwimmingEvent.setLocationRelativeTo(mainFrame);
-        }
+    	JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+        setPoolType(settingsWindow.getPoolType());
+        addSwimmingEvent = new AddSwimmingEvent(poolType);
+        addSwimmingEvent.setLocationRelativeTo(mainFrame);
         SwimRaceOrganizerApp.getApplication().show(addSwimmingEvent);
     }//GEN-LAST:event_jBAddSwimmingEventActionPerformed
 
@@ -358,11 +383,10 @@ public class SwimRaceOrganizerView extends FrameView {
     }//GEN-LAST:event_jBRegisterSwimmerActionPerformed
 
     private void jBgenerateHeatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBgenerateHeatsActionPerformed
-        if (generateHeats == null) {
-            JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            generateHeats = new GenerateHeats();
-            generateHeats.setLocationRelativeTo(mainFrame);
-        }
+        JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+        setPoolType(settingsWindow.getPoolType());
+        generateHeats = new GenerateHeats(poolType);
+        generateHeats.setLocationRelativeTo(mainFrame);
         SwimRaceOrganizerApp.getApplication().show(generateHeats);
     }//GEN-LAST:event_jBgenerateHeatsActionPerformed
 
@@ -378,7 +402,8 @@ public class SwimRaceOrganizerView extends FrameView {
     private void jBStoreResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBStoreResultsActionPerformed
         if (generateHeatOutputs == null) {
             JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            generateHeatOutputs = new GenerateHeatOutputs();
+            setPoolType(settingsWindow.getPoolType());
+            generateHeatOutputs = new GenerateHeatOutputs(poolType);
             generateHeatOutputs.setLocationRelativeTo(mainFrame);
         }
         SwimRaceOrganizerApp.getApplication().show(generateHeatOutputs);
@@ -387,45 +412,19 @@ public class SwimRaceOrganizerView extends FrameView {
     private void jBGenerateResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerateResultsActionPerformed
         if (generateHeatResults == null) {
             JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            generateHeatResults = new GenerateHeatResults();
+            setPoolType(settingsWindow.getPoolType());
+            generateHeatResults = new GenerateHeatResults(poolType);
             generateHeatResults.setLocationRelativeTo(mainFrame);
         }
         SwimRaceOrganizerApp.getApplication().show(generateHeatResults);
     }//GEN-LAST:event_jBGenerateResultsActionPerformed
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAddSwimmer;
-    private javax.swing.JButton jBAddSwimmingEvent;
-    private javax.swing.JButton jBAllEvents;
-    private javax.swing.JButton jBAllRegistrations;
-    private javax.swing.JButton jBAllSwimmers;
-    private javax.swing.JButton jBGenerateResults;
-    private javax.swing.JButton jBRegisterSwimmer;
-    private javax.swing.JButton jBStoreResults;
-    private javax.swing.JButton jBgenerateHeats;
-    private javax.swing.JLabel jLEventActions;
-    private javax.swing.JLabel jLGenerateActions;
-    private javax.swing.JLabel jLSwimmerActions;
-    private javax.swing.JLabel jRegistrationActions;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JPanel mainPanel;
-    private javax.swing.JMenuBar menuBar;
-    // End of variables declaration//GEN-END:variables
+	public String getPoolType() {
+		return poolType;
+	}
 
-    private final Icon idleIcon;
-    private final Icon[] busyIcons = new Icon[15];
-    private int busyIconIndex = 0;
+	public void setPoolType(String poolType) {
+		this.poolType = poolType;
+	}
 
-    private JDialog aboutBox;
-    private JDialog addSwimmer;
-    private JDialog addSwimmingEvent;
-    private JDialog allSwimmers;
-    private JDialog allEvents;
-    private JDialog registerSwimmer;
-    private JDialog generateHeats;
-    private JDialog allRegistrations;
-    private GenerateHeatOutputs generateHeatOutputs;
-    private GenerateHeatResults generateHeatResults;
-    private SettingsWindow settingsWindow;
 }
