@@ -10,8 +10,8 @@ public class GenerateHeatOutputs extends GenerateHeats {
 	private AllHeats allHeats;
 	private String poolType;
 	
-	public GenerateHeatOutputs(String poolType) {
-        super(poolType);
+	public GenerateHeatOutputs(String poolType, String title) {
+        super(poolType, title);
         setPoolType(poolType);
         fillEventNames();
     }
@@ -19,6 +19,7 @@ public class GenerateHeatOutputs extends GenerateHeats {
 	protected void generateHeats(java.awt.event.ActionEvent evt) {
         allHeats = new AllHeats(this.getSelectedEvent(), getPoolType());
         SwimRaceOrganizerApp.getApplication().show(allHeats);
+        allHeats.setSize(700, 300);
         dispose();
 	}
 
