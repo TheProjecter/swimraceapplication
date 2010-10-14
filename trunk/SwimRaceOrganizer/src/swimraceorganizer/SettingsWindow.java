@@ -3,6 +3,7 @@ package swimraceorganizer;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,31 +40,21 @@ public class SettingsWindow  extends JDialog {
 		pane.setLayout(controlLayout);
 		GridBagConstraints c = new GridBagConstraints();
 
-		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 0;
+		c.insets = new Insets(10, 10, 10, 10);
 		pane.add(new JLabel("Select Pool type"), c);
 
-		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx = 0.0;
 		c.gridwidth = 2;
-		c.ipadx = 20;
-		c.ipady = 12;
 		c.gridx = 2;
 		c.gridy = 0;
 		pane.add(jCBPoolType, c);
 
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.ipadx = 20;
-		c.ipady = 12;
 		c.gridx = 0;
 		c.gridy = 1;
-		jBSaveSettings.setSize(50, 30);
 		pane.add(jBSaveSettings, c);
 
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.ipadx = 20;
-		c.ipady = 12;
 		c.gridx = 2;
 		c.gridy = 1;
 		jBCancel.setSize(50, 30);
