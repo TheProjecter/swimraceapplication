@@ -3,7 +3,6 @@ package displays;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
@@ -50,6 +49,7 @@ public class AllHeats extends JDialog {
 		setTitle("All heats for " + event.getName());
 		addComponentsToPane(getContentPane());
 		setAlwaysOnTop(true);
+		setResizable(false);
 	}
 
 	/**

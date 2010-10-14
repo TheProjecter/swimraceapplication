@@ -339,11 +339,9 @@ public class SwimRaceOrganizerView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAddSwimmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddSwimmerActionPerformed
-        if (addSwimmer == null) {
-            JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            addSwimmer = new AddSwimmer(mainFrame);
-            addSwimmer.setLocationRelativeTo(mainFrame);
-        }
+        JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+        addSwimmer = new AddSwimmer(mainFrame);
+        addSwimmer.setLocationRelativeTo(mainFrame);
         SwimRaceOrganizerApp.getApplication().show(addSwimmer);
     }//GEN-LAST:event_jBAddSwimmerActionPerformed
 
@@ -356,66 +354,54 @@ public class SwimRaceOrganizerView extends FrameView {
     }//GEN-LAST:event_jBAddSwimmingEventActionPerformed
 
     private void jBAllSwimmersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAllSwimmersActionPerformed
-        if (allSwimmers == null) {
-            JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            allSwimmers = new AllSwimmers(mainFrame, true);
-            allSwimmers.setLocationRelativeTo(mainFrame);
-        }
+        JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+        allSwimmers = new AllSwimmers(mainFrame, true);
+        allSwimmers.setLocationRelativeTo(mainFrame);
         SwimRaceOrganizerApp.getApplication().show(allSwimmers);
     }//GEN-LAST:event_jBAllSwimmersActionPerformed
 
     private void jBAllEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAllEventsActionPerformed
-        if (allEvents == null) {
-            JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            allEvents = new AllEvents(mainFrame, true);
-            allEvents.setLocationRelativeTo(mainFrame);
-        }
+        JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+        allEvents = new AllEvents(mainFrame, true);
+        allEvents.setLocationRelativeTo(mainFrame);
         SwimRaceOrganizerApp.getApplication().show(allEvents);
     }//GEN-LAST:event_jBAllEventsActionPerformed
 
     private void jBRegisterSwimmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegisterSwimmerActionPerformed
-        if (registerSwimmer == null) {
-            JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            registerSwimmer = new RegisterSwimmerForEvent(mainFrame, true);
-            registerSwimmer.setLocationRelativeTo(mainFrame);
-        }
+        JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+        registerSwimmer = new RegisterSwimmerForEvent(mainFrame, true);
+        registerSwimmer.setLocationRelativeTo(mainFrame);
         SwimRaceOrganizerApp.getApplication().show(registerSwimmer);
     }//GEN-LAST:event_jBRegisterSwimmerActionPerformed
 
     private void jBgenerateHeatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBgenerateHeatsActionPerformed
         JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
         setPoolType(settingsWindow.getPoolType());
-        generateHeats = new GenerateHeats(poolType);
+        generateHeats = new GenerateHeats(poolType, "Generate Heats");
         generateHeats.setLocationRelativeTo(mainFrame);
         SwimRaceOrganizerApp.getApplication().show(generateHeats);
     }//GEN-LAST:event_jBgenerateHeatsActionPerformed
 
     private void jBAllRegistrationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAllRegistrationsActionPerformed
-        if (allRegistrations == null) {
-            JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            allRegistrations = new AllRegistrations(mainFrame, true);
-            allRegistrations.setLocationRelativeTo(mainFrame);
-        }
+        JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+        allRegistrations = new AllRegistrations(mainFrame, true);
+        allRegistrations.setLocationRelativeTo(mainFrame);
         SwimRaceOrganizerApp.getApplication().show(allRegistrations);
     }//GEN-LAST:event_jBAllRegistrationsActionPerformed
 
     private void jBStoreResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBStoreResultsActionPerformed
-        if (generateHeatOutputs == null) {
-            JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            setPoolType(settingsWindow.getPoolType());
-            generateHeatOutputs = new GenerateHeatOutputs(poolType);
-            generateHeatOutputs.setLocationRelativeTo(mainFrame);
-        }
+        setPoolType(settingsWindow.getPoolType());
+        JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+        generateHeatOutputs = new GenerateHeatOutputs(poolType, "Store Results");
+        generateHeatOutputs.setLocationRelativeTo(mainFrame);
         SwimRaceOrganizerApp.getApplication().show(generateHeatOutputs);
     }//GEN-LAST:event_jBStoreResultsActionPerformed
 
     private void jBGenerateResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerateResultsActionPerformed
-        if (generateHeatResults == null) {
-            JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-            setPoolType(settingsWindow.getPoolType());
-            generateHeatResults = new GenerateHeatResults(poolType);
-            generateHeatResults.setLocationRelativeTo(mainFrame);
-        }
+        JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+        setPoolType(settingsWindow.getPoolType());
+        generateHeatResults = new GenerateHeatResults(poolType, "Generate Results");
+        generateHeatResults.setLocationRelativeTo(mainFrame);
         SwimRaceOrganizerApp.getApplication().show(generateHeatResults);
     }//GEN-LAST:event_jBGenerateResultsActionPerformed
 

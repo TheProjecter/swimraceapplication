@@ -40,11 +40,12 @@ public class GenerateHeats extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
 	/** Creates new form GenerateHeats */
-	public GenerateHeats(String poolType) {
+	public GenerateHeats(String poolType, String title) {
 		super();
 		setPoolType(poolType);
 		initComponents();
 		fillEventNames();
+		setTitle(title);
 	}
 
 	/**
@@ -164,7 +165,7 @@ public class GenerateHeats extends javax.swing.JDialog {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				GenerateHeats dialog = new GenerateHeats(new String());
+				GenerateHeats dialog = new GenerateHeats(new String(), new String());
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
 						System.exit(0);
