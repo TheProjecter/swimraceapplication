@@ -13,6 +13,8 @@ package generators;
 
 import java.util.List;
 
+import pdfWriter.HeatListWriter;
+
 import entities.Event;
 import entities.Heat;
 
@@ -29,15 +31,16 @@ public class GenerateHeats extends javax.swing.JDialog {
 	private EventOperations evOperations = new EventOperations();
 	private Operations operations = new Operations();
 	private String poolType;
-	
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBCancel;
-    private javax.swing.JButton jBGenerate;
-    private javax.swing.JComboBox jCBEvent;
-    private javax.swing.JLabel jLEvent;
-    private javax.swing.JLabel jLStatus;
-    private javax.swing.JSeparator jSeparatorStatus;
-    // End of variables declaration//GEN-END:variables
+
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JButton jBCancel;
+	private javax.swing.JButton jBGenerate;
+	private javax.swing.JComboBox jCBEvent;
+	private javax.swing.JLabel jLEvent;
+	private javax.swing.JLabel jLStatus;
+	private javax.swing.JSeparator jSeparatorStatus;
+
+	// End of variables declaration//GEN-END:variables
 
 	/** Creates new form GenerateHeats */
 	public GenerateHeats(String poolType, String title) {
@@ -55,95 +58,134 @@ public class GenerateHeats extends javax.swing.JDialog {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed"
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+	// <editor-fold defaultstate="collapsed"
+	// desc="Generated Code">//GEN-BEGIN:initComponents
+	private void initComponents() {
 
-        jCBEvent = new javax.swing.JComboBox();
-        jBGenerate = new javax.swing.JButton();
-        jBCancel = new javax.swing.JButton();
-        jLEvent = new javax.swing.JLabel();
-        jSeparatorStatus = new javax.swing.JSeparator();
-        jLStatus = new javax.swing.JLabel();
+		jCBEvent = new javax.swing.JComboBox();
+		jBGenerate = new javax.swing.JButton();
+		jBCancel = new javax.swing.JButton();
+		jLEvent = new javax.swing.JLabel();
+		jSeparatorStatus = new javax.swing.JSeparator();
+		jLStatus = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setName("Form"); // NOI18N
-        setResizable(false);
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+		setName("Form"); // NOI18N
+		setResizable(false);
 
-        jCBEvent.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jCBEvent.setName("jCBEvent"); // NOI18N
+		jCBEvent.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
+				"Item 1", "Item 2", "Item 3", "Item 4" }));
+		jCBEvent.setName("jCBEvent"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class).getContext().getResourceMap(GenerateHeats.class);
-        jBGenerate.setText(resourceMap.getString("jBGenerate.text")); // NOI18N
-        jBGenerate.setName("jBGenerate"); // NOI18N
-        jBGenerate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generateHeats(evt);
-            }
-        });
+		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
+				.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class)
+				.getContext().getResourceMap(GenerateHeats.class);
+		jBGenerate.setText(resourceMap.getString("jBGenerate.text")); // NOI18N
+		jBGenerate.setName("jBGenerate"); // NOI18N
+		jBGenerate.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				generateHeats(evt);
+			}
+		});
 
-        jBCancel.setText(resourceMap.getString("jBCancel.text")); // NOI18N
-        jBCancel.setName("jBCancel"); // NOI18N
-        jBCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancel(evt);
-            }
-        });
+		jBCancel.setText(resourceMap.getString("jBCancel.text")); // NOI18N
+		jBCancel.setName("jBCancel"); // NOI18N
+		jBCancel.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				cancel(evt);
+			}
+		});
 
-        jLEvent.setName("jLEvent"); // NOI18N
+		jLEvent.setName("jLEvent"); // NOI18N
 
-        jSeparatorStatus.setName("jSeparatorStatus"); // NOI18N
+		jSeparatorStatus.setName("jSeparatorStatus"); // NOI18N
 
-        jLStatus.setName("jLStatus"); // NOI18N
+		jLStatus.setName("jLStatus"); // NOI18N
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jCBEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jBGenerate)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBCancel)))
-                    .addComponent(jLEvent)
-                    .addComponent(jSeparatorStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                    .addComponent(jLStatus))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLEvent)
-                .addGap(6, 6, 6)
-                .addComponent(jCBEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBGenerate)
-                    .addComponent(jBCancel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparatorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLStatus)
-                .addContainerGap())
-        );
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
+				getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.LEADING)
+												.addGroup(
+														layout.createParallelGroup(
+																javax.swing.GroupLayout.Alignment.LEADING,
+																false)
+																.addComponent(
+																		jCBEvent,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		206,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addGroup(
+																		layout.createSequentialGroup()
+																				.addComponent(
+																						jBGenerate)
+																				.addPreferredGap(
+																						javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+																						javax.swing.GroupLayout.DEFAULT_SIZE,
+																						Short.MAX_VALUE)
+																				.addComponent(
+																						jBCancel)))
+												.addComponent(jLEvent)
+												.addComponent(
+														jSeparatorStatus,
+														javax.swing.GroupLayout.Alignment.TRAILING,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														206, Short.MAX_VALUE)
+												.addComponent(jLStatus))
+								.addContainerGap()));
+		layout.setVerticalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addComponent(jLEvent)
+								.addGap(6, 6, 6)
+								.addComponent(jCBEvent,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(18, 18, 18)
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.BASELINE)
+												.addComponent(jBGenerate)
+												.addComponent(jBCancel))
+								.addPreferredGap(
+										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(jSeparatorStatus,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										10,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(
+										javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+										javax.swing.GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE).addComponent(jLStatus)
+								.addContainerGap()));
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+		pack();
+	}// </editor-fold>//GEN-END:initComponents
 
 	protected Event getSelectedEvent() {
 		return operations.returnEvent(jCBEvent.getSelectedItem().toString());
 	}
 
 	protected void generateHeats(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_generateHeats
-		List<Heat> heatList = operations.generateHeats(operations
-				.returnEvent(jCBEvent.getSelectedItem().toString()), getPoolType());
-		operations.registerHeats(getPoolType(), heatList, heatList.get(0).getEventName()
-				+ ".csv");
+		List<Heat> heatList = operations.generateHeats(
+				operations.returnEvent(jCBEvent.getSelectedItem().toString()),
+				getPoolType());
+		operations.registerHeats(getPoolType(), heatList, heatList.get(0)
+				.getEventName() + ".csv");
 		jLStatus.setText("Heat " + heatList.get(0).getEventName()
 				+ " registered");
+		HeatListWriter hWriter = new HeatListWriter(
+				operations.returnEvent(jCBEvent.getSelectedItem().toString()));
+		hWriter.run();
 	}// GEN-LAST:event_generateHeats
 
 	private void cancel(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cancel
@@ -165,7 +207,8 @@ public class GenerateHeats extends javax.swing.JDialog {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				GenerateHeats dialog = new GenerateHeats(new String(), new String());
+				GenerateHeats dialog = new GenerateHeats(new String(),
+						new String());
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
 						System.exit(0);

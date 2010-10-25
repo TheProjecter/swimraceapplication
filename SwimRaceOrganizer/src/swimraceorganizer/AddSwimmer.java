@@ -34,7 +34,7 @@ import utils.SwimmerOperations;
  */
 public class AddSwimmer extends javax.swing.JDialog {
 
-	SwimmerOperations swOp = new SwimmerOperations();
+	private SwimmerOperations swOp = new SwimmerOperations();
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton jBCancel;
@@ -57,8 +57,7 @@ public class AddSwimmer extends javax.swing.JDialog {
 	private WarrningDialog warrningBox;
 
 	/** Creates new form AddSwimmer */
-	public AddSwimmer(java.awt.Frame parent) {
-		super(parent);
+	public AddSwimmer() {
 		initComponents();
 		fillBirthYearCB();
 		fillGenderCB();
@@ -388,7 +387,7 @@ public class AddSwimmer extends javax.swing.JDialog {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				AddSwimmer dialog = new AddSwimmer(new javax.swing.JFrame());
+				AddSwimmer dialog = new AddSwimmer();
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
 						System.exit(0);

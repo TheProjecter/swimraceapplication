@@ -339,8 +339,8 @@ public class SwimRaceOrganizerView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAddSwimmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddSwimmerActionPerformed
-        JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-        addSwimmer = new AddSwimmer(mainFrame);
+    	JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+        addSwimmer = new AddSwimmer();
         addSwimmer.setLocationRelativeTo(mainFrame);
         SwimRaceOrganizerApp.getApplication().show(addSwimmer);
     }//GEN-LAST:event_jBAddSwimmerActionPerformed
