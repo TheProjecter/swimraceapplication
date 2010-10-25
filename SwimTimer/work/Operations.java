@@ -347,7 +347,7 @@ public class Operations {
 
 	public List<Lane> setLanesInOrder(List<Lane> laneList, int laneNumbers) {
 		List<Lane> arrangedList = new ArrayList<Lane>();
-		
+
 		if (laneNumbers == 8) {
 			arrangedList.add(evaluateLane(laneList, 6));
 			arrangedList.add(evaluateLane(laneList, 4));
@@ -374,27 +374,29 @@ public class Operations {
 		List<Lane> lanesOnHeat = new ArrayList<Lane>();
 		List<Heat> heatList = new ArrayList<Heat>();
 		int laneNumbers = (poolType.contains("25") ? 6 : 8);
-		
+
 		// create and sort lanes
 		laneList = createLanes(event);
 		Collections.sort(laneList, new LaneComparator());
 
 		int heatCount = (laneList.size()) / laneNumbers + 1;
 		int startPos = 0;
-		int endPos = (laneNumbers > laneList.size()) ? laneList.size() : laneNumbers;
+		int endPos = (laneNumbers > laneList.size()) ? laneList.size()
+				: laneNumbers;
 		for (int i = heatCount; i > 0; i--) {
 			lanesOnHeat = laneList.subList(startPos, endPos);
 			lanesOnHeat = setLanesInOrder(lanesOnHeat, laneNumbers);
 			heatList.add(new Heat(event.getName(), i, lanesOnHeat));
 			startPos = startPos + laneNumbers;
-			endPos = ((endPos + laneNumbers) < laneList.size()) ? (endPos + laneNumbers) : laneList
-					.size();
+			endPos = ((endPos + laneNumbers) < laneList.size()) ? (endPos + laneNumbers)
+					: laneList.size();
 		}
 
 		return heatList;
 	}
 
-	public void registerHeats(String poolType, List<Heat> heatList, String fileName) {
+	public void registerHeats(String poolType, List<Heat> heatList,
+			String fileName) {
 		Collections.sort(heatList);
 		try {
 			FileWriter fstream = new FileWriter(fileName, true);
@@ -599,9 +601,11 @@ public class Operations {
 
 		return results;
 	}
-	
+
 	/**
-	 * Write the results into a ordered manner (order per age group and result) in a new file
+	 * Write the results into a ordered manner (order per age group and result)
+	 * in a new file
+	 * 
 	 * @param results
 	 * @param event
 	 */
@@ -610,19 +614,22 @@ public class Operations {
 		List<String> ageGroups = ageGroup.getAgeGroups();
 
 		try {
-			FileWriter fstream = new FileWriter("Rezultate Ordonate " + event.getName() + ".csv", true);
+			FileWriter fstream = new FileWriter("Rezultate Ordonate "
+					+ event.getName() + ".csv", true);
 			BufferedWriter out = new BufferedWriter(fstream);
 
-			for(String age : ageGroups) {
+			for (String age : ageGroups) {
 				if (searchAgeGroupInResult(results, age)) {
 					out.write(age);
 					out.newLine();
-					for(Result res : results) {
+					for (Result res : results) {
 						if (res.getSwimmer().getAgeGroup().equals(age)) {
-							out.write(res.getSwimmer().getName() + ";" + res.getSwimmer().getClub()
-									+ ";" + res.getSwimmer().getBirthYear() + ";" +
-									res.getResultMinutes() + ";" + res.getResultSecondes()
-									+ ";" + res.getResultMSeconds());
+							out.write(res.getSwimmer().getName() + ";"
+									+ res.getSwimmer().getClub() + ";"
+									+ res.getSwimmer().getBirthYear() + ";"
+									+ res.getResultMinutes() + ";"
+									+ res.getResultSecondes() + ";"
+									+ res.getResultMSeconds());
 							out.newLine();
 						}
 					}
@@ -644,7 +651,7 @@ public class Operations {
 		}
 		return false;
 	}
-	
+
 	public void removeLineFromFile(String file, String lineToRemove) {
 		try {
 			File inFile = new File(file);
