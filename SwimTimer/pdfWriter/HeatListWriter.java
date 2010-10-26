@@ -34,18 +34,20 @@ public class HeatListWriter {
 			Font.BOLD);
 	private static Font headerFont2 = new Font(Font.FontFamily.COURIER, 14,
 			Font.BOLD);
-	private static Font normalHeaderFont = new Font(Font.FontFamily.COURIER, 12,
+	private static Font normalHeaderFont = new Font(Font.FontFamily.COURIER, 10,
 			Font.BOLD);
 	private static Font normalFont = new Font(Font.FontFamily.COURIER, 10,
 			Font.NORMAL);
 	private static String file;
+	private String competitionTitle;
 
 	private Event event;
 	private Operations operations = new Operations();
 
-	public HeatListWriter(Event event) {
+	public HeatListWriter(Event event, String competitionTitle) {
 		setEvent(event);
-		setFile(event.getName()+".pdf");
+		setFile("Serii " + event.getName()+".pdf");
+		setCompetitionTitle(competitionTitle);
 	}
 
 	public void run() {
@@ -62,8 +64,10 @@ public class HeatListWriter {
 
 	private void addContent(Document document) throws DocumentException {
 
-		Paragraph content = new Paragraph();
-		addEmptyLine(content, 2);
+		Paragraph twoEmptyLine = new Paragraph();
+		addEmptyLine(twoEmptyLine, 2);
+		Paragraph oneEmptyLine = new Paragraph();
+		addEmptyLine(oneEmptyLine, 1);
 		/**
 		 * Add the logo
 		 */
@@ -80,10 +84,10 @@ public class HeatListWriter {
 		/**
 		 * Add the Title paragraph
 		 */
-		Paragraph titleParagraph = new Paragraph("Concurs", titleFont);
+		Paragraph titleParagraph = new Paragraph(competitionTitle, titleFont);
 		titleParagraph.setAlignment(Element.ALIGN_CENTER);
 		document.add(titleParagraph);
-		document.add(content);
+		document.add(twoEmptyLine);
 
 		/**
 		 * Add the date
@@ -92,14 +96,15 @@ public class HeatListWriter {
 		Paragraph dateParagraph = new Paragraph(format.format((new Date())),
 				headerFont1);
 		document.add(dateParagraph);
+		document.add(twoEmptyLine);
 
 		/**
 		 * Add the event name
 		 */
-		document.add(content);
 		Paragraph eventNameParagraph = new Paragraph(event.getName()
 				.toUpperCase(), headerFont2);
 		document.add(eventNameParagraph);
+		document.add(oneEmptyLine);
 
 		// table
 		PdfPTable table = getHeatTable();
@@ -504,5 +509,13 @@ public class HeatListWriter {
 
 	public void setEvent(Event event) {
 		this.event = event;
+	}
+
+	public String getCompetitionTitle() {
+		return competitionTitle;
+	}
+
+	public void setCompetitionTitle(String competitionTitle) {
+		this.competitionTitle = competitionTitle;
 	}
 }

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import pdfWriter.HeatListWriter;
+import pdfWriter.ResultWriter;
 
 import utils.Constants;
 
@@ -114,7 +115,9 @@ public class Sandbox {
 //			System.out.println(ev.getName());
 //		}
 
-		HeatListWriter hWriter = new HeatListWriter(sOps.returnEvent("100 liber barbati"));
+//		HeatListWriter hWriter = new HeatListWriter(sOps.returnEvent("100 liber barbati"), "something good");
+//		hWriter.run();
+		ResultWriter hWriter = new ResultWriter(sOps.returnEvent("50 liber"), "something good");
 		hWriter.run();
 //		Event event = sOps.returnEvent("100 liber barbati");
 //		List<Heat> heatList = sOps.generateHeats(event);
