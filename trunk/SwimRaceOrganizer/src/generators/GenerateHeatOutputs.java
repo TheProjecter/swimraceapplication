@@ -10,8 +10,8 @@ public class GenerateHeatOutputs extends GenerateHeats {
 	private AllHeats allHeats;
 	private String poolType;
 	
-	public GenerateHeatOutputs(String poolType, String title) {
-        super(poolType, title);
+	public GenerateHeatOutputs(String poolType, String competitionTitle, String title) {
+        super(poolType, competitionTitle, title);
         setPoolType(poolType);
         fillEventNames();
     }

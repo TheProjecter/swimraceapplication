@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class SettingsWindow  extends JDialog {
 
@@ -20,8 +22,10 @@ public class SettingsWindow  extends JDialog {
 	private JButton jBCancel = new JButton("Cancel");
 	private JButton jBSaveSettings = new JButton("Save");
 	private JComboBox jCBPoolType = new JComboBox();
+	private JTextField jTEventName = new JTextField(10);
 	
 	private String poolType;
+	private String competitionName;
 	
 	public SettingsWindow() {
 		super();
@@ -29,7 +33,7 @@ public class SettingsWindow  extends JDialog {
 		fillPoolTypeCB();
 		setAlwaysOnTop(true);
 		setResizable(false);
-		setTitle("Settings");
+		setTitle("Setari");
 	}
 
 	/**
@@ -43,7 +47,7 @@ public class SettingsWindow  extends JDialog {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.insets = new Insets(10, 10, 10, 10);
-		pane.add(new JLabel("Select Pool type"), c);
+		pane.add(new JLabel("Tipul bazinului"), c);
 
 		c.weightx = 0.0;
 		c.gridwidth = 2;
@@ -53,10 +57,21 @@ public class SettingsWindow  extends JDialog {
 
 		c.gridx = 0;
 		c.gridy = 1;
+		c.insets = new Insets(10, 10, 10, 10);
+		pane.add(new JLabel("Nume concurs"), c);
+
+		c.weightx = 0.0;
+		c.gridwidth = 2;
+		c.gridx = 2;
+		c.gridy = 1;
+		pane.add(jTEventName, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
 		pane.add(jBSaveSettings, c);
 
 		c.gridx = 2;
-		c.gridy = 1;
+		c.gridy = 2;
 		jBCancel.setSize(50, 30);
 		pane.add(jBCancel, c);
 
@@ -68,6 +83,7 @@ public class SettingsWindow  extends JDialog {
 		jBSaveSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setPoolType(jCBPoolType.getSelectedItem().toString());
+				setCompetitionName(jTEventName.getText());
 				dispose();
 			}
 		});
@@ -77,12 +93,12 @@ public class SettingsWindow  extends JDialog {
 		
 	}
 
-	public void fillPoolTypeCB() {
+	private void fillPoolTypeCB() {
 		jCBPoolType.removeAllItems();
 		jCBPoolType.addItem("25 Meters".toString());
 		jCBPoolType.addItem("50 Meters".toString());
 	}
-
+	
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -103,5 +119,13 @@ public class SettingsWindow  extends JDialog {
 
 	public void setPoolType(String poolType) {
 		this.poolType = poolType;
+	}
+
+	public String getCompetitionName() {
+		return competitionName;
+	}
+
+	public void setCompetitionName(String eventName) {
+		this.competitionName = eventName;
 	}
 }

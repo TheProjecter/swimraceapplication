@@ -31,6 +31,7 @@ public class GenerateHeats extends javax.swing.JDialog {
 	private EventOperations evOperations = new EventOperations();
 	private Operations operations = new Operations();
 	private String poolType;
+	private String competitionTitle;
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton jBCancel;
@@ -43,9 +44,10 @@ public class GenerateHeats extends javax.swing.JDialog {
 	// End of variables declaration//GEN-END:variables
 
 	/** Creates new form GenerateHeats */
-	public GenerateHeats(String poolType, String title) {
+	public GenerateHeats(String poolType, String competitionTitle, String title) {
 		super();
 		setPoolType(poolType);
+		setCompetitionTitle(competitionTitle);
 		initComponents();
 		fillEventNames();
 		setTitle(title);
@@ -176,16 +178,21 @@ public class GenerateHeats extends javax.swing.JDialog {
 	}
 
 	protected void generateHeats(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_generateHeats
+		// get the list with the heats
 		List<Heat> heatList = operations.generateHeats(
 				operations.returnEvent(jCBEvent.getSelectedItem().toString()),
 				getPoolType());
+		// register the heats in csv files
 		operations.registerHeats(getPoolType(), heatList, heatList.get(0)
 				.getEventName() + ".csv");
 		jLStatus.setText("Heat " + heatList.get(0).getEventName()
 				+ " registered");
+		// write the heats in pdf files
 		HeatListWriter hWriter = new HeatListWriter(
-				operations.returnEvent(jCBEvent.getSelectedItem().toString()));
+				operations.returnEvent(jCBEvent.getSelectedItem().toString()), competitionTitle);
 		hWriter.run();
+		// close the window after generation
+		dispose();
 	}// GEN-LAST:event_generateHeats
 
 	private void cancel(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cancel
@@ -207,7 +214,7 @@ public class GenerateHeats extends javax.swing.JDialog {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				GenerateHeats dialog = new GenerateHeats(new String(),
+				GenerateHeats dialog = new GenerateHeats(new String(), new String(),
 						new String());
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
@@ -225,6 +232,14 @@ public class GenerateHeats extends javax.swing.JDialog {
 
 	public void setPoolType(String poolType) {
 		this.poolType = poolType;
+	}
+
+	public String getCompetitionTitle() {
+		return competitionTitle;
+	}
+
+	public void setCompetitionTitle(String competitionTitle) {
+		this.competitionTitle = competitionTitle;
 	}
 
 }

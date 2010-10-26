@@ -20,6 +20,7 @@ import generators.GenerateHeats;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * The application's main frame.
@@ -61,6 +62,7 @@ public class SwimRaceOrganizerView extends FrameView {
     private SettingsWindow settingsWindow;
 
     private String poolType;
+    private String competitionName;
     
     public SwimRaceOrganizerView(SingleFrameApplication app) {
         super(app);
@@ -182,7 +184,7 @@ public class SwimRaceOrganizerView extends FrameView {
         jBgenerateHeats.setPreferredSize(new java.awt.Dimension(100, 25));
         jBgenerateHeats.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBgenerateHeatsActionPerformed(evt);
+                jBGenerateHeatsActionPerformed(evt);
             }
         });
 
@@ -374,13 +376,20 @@ public class SwimRaceOrganizerView extends FrameView {
         SwimRaceOrganizerApp.getApplication().show(registerSwimmer);
     }//GEN-LAST:event_jBRegisterSwimmerActionPerformed
 
-    private void jBgenerateHeatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBgenerateHeatsActionPerformed
+    private void jBGenerateHeatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBgenerateHeatsActionPerformed
         JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-        setPoolType(settingsWindow.getPoolType());
-        generateHeats = new GenerateHeats(poolType, "Generate Heats");
-        generateHeats.setLocationRelativeTo(mainFrame);
-        SwimRaceOrganizerApp.getApplication().show(generateHeats);
-    }//GEN-LAST:event_jBgenerateHeatsActionPerformed
+        try {
+			setPoolType(settingsWindow.getPoolType());
+			setCompetitionName(settingsWindow.getCompetitionName());
+	        generateHeats = new GenerateHeats(poolType, competitionName, "Generare Serii");
+	        generateHeats.setLocationRelativeTo(mainFrame);
+	        SwimRaceOrganizerApp.getApplication().show(generateHeats);
+		} catch (NullPointerException e) {
+			JOptionPane.showMessageDialog(null,
+					"Trebuie completate setarile pt a purcede!",
+					"Atentie!!!", 1);
+		}
+    }//GEN-LAST:event_jBGenerateHeatsActionPerformed
 
     private void jBAllRegistrationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAllRegistrationsActionPerformed
         JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
@@ -390,19 +399,33 @@ public class SwimRaceOrganizerView extends FrameView {
     }//GEN-LAST:event_jBAllRegistrationsActionPerformed
 
     private void jBStoreResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBStoreResultsActionPerformed
-        setPoolType(settingsWindow.getPoolType());
-        JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-        generateHeatOutputs = new GenerateHeatOutputs(poolType, "Store Results");
-        generateHeatOutputs.setLocationRelativeTo(mainFrame);
-        SwimRaceOrganizerApp.getApplication().show(generateHeatOutputs);
+        try {
+			JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+			setPoolType(settingsWindow.getPoolType());
+			setCompetitionName(settingsWindow.getCompetitionName());
+			generateHeatOutputs = new GenerateHeatOutputs(poolType, competitionName, "Store Results");
+			generateHeatOutputs.setLocationRelativeTo(mainFrame);
+			SwimRaceOrganizerApp.getApplication().show(generateHeatOutputs);
+		} catch (NullPointerException e) {
+			JOptionPane.showMessageDialog(null,
+					"Trebuie completate setarile pt a purcede!",
+					"Atentie!!!", 1);
+		}
     }//GEN-LAST:event_jBStoreResultsActionPerformed
 
     private void jBGenerateResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerateResultsActionPerformed
-        JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-        setPoolType(settingsWindow.getPoolType());
-        generateHeatResults = new GenerateHeatResults(poolType, "Generate Results");
-        generateHeatResults.setLocationRelativeTo(mainFrame);
-        SwimRaceOrganizerApp.getApplication().show(generateHeatResults);
+        try {
+			JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
+			setPoolType(settingsWindow.getPoolType());
+			setCompetitionName(settingsWindow.getCompetitionName());
+			generateHeatResults = new GenerateHeatResults(poolType, competitionName, "Generate Results");
+			generateHeatResults.setLocationRelativeTo(mainFrame);
+			SwimRaceOrganizerApp.getApplication().show(generateHeatResults);
+		} catch (NullPointerException e) {
+			JOptionPane.showMessageDialog(null,
+					"Trebuie completate setarile pt a purcede!",
+					"Atentie!!!", 1);
+		}
     }//GEN-LAST:event_jBGenerateResultsActionPerformed
 
 	public String getPoolType() {
@@ -411,6 +434,14 @@ public class SwimRaceOrganizerView extends FrameView {
 
 	public void setPoolType(String poolType) {
 		this.poolType = poolType;
+	}
+
+	public String getCompetitionName() {
+		return competitionName;
+	}
+
+	public void setCompetitionName(String competitionName) {
+		this.competitionName = competitionName;
 	}
 
 }

@@ -14,8 +14,8 @@ public class GenerateHeatResults extends GenerateHeats {
 	private Operations operations = new Operations();
 	private List<Result> results;
 	
-	public GenerateHeatResults(String poolType, String title) {
-        super(poolType, title);
+	public GenerateHeatResults(String poolType, String competitionTitle, String title) {
+        super(poolType, competitionTitle, title);
         fillEventNames();
     }
 
