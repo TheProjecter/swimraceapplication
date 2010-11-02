@@ -68,6 +68,7 @@ public class ResultWriter {
 		addEmptyLine(twoEmptyLine, 2);
 		Paragraph oneEmptyLine = new Paragraph();
 		addEmptyLine(oneEmptyLine, 1);
+
 		/**
 		 * Add the logo
 		 */
@@ -119,7 +120,7 @@ public class ResultWriter {
 	}
 
 	private PdfPTable getResultsTable() {
-		float[] tableWidth = {0.02f, 0.3f, 0.3f, 0.08f, 0.14f, 0.12f, 0.04f};
+		float[] tableWidth = {0.02f, 0.35f, 0.25f, 0.08f, 0.14f, 0.12f, 0.04f};
 		PdfPTable table = new PdfPTable(tableWidth);
 		
 		// get the results and order them after the time
@@ -173,7 +174,16 @@ public class ResultWriter {
 						classification++;						
 					}
 				}
+				
 				classification = 1;
+
+				// add empty line
+				PdfPCell c31 = new PdfPCell(new Phrase(" ", normalHeaderFont));
+				c31.setHorizontalAlignment(Element.ALIGN_LEFT);
+				disableBorders(c31);
+				c31.setColspan(7);
+				table.addCell(c31);
+
 			}
 		}
 		
