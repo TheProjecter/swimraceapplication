@@ -16,6 +16,7 @@ import java.util.Scanner;
 import pdfWriter.HeatListWriter;
 import pdfWriter.ResultWriter;
 
+import utils.Calculations;
 import utils.Constants;
 
 import entities.Event;
@@ -115,14 +116,16 @@ public class Sandbox {
 //			System.out.println(ev.getName());
 //		}
 
-//		HeatListWriter hWriter = new HeatListWriter(sOps.returnEvent("100 liber barbati"), "something good");
-//		hWriter.run();
-		ResultWriter hWriter = new ResultWriter(sOps.returnEvent("50 liber"), "something good");
+		HeatListWriter hWriter = new HeatListWriter(sOps.returnEvent("100 liber barbati"), "something good");
 		hWriter.run();
+//		ResultWriter hWriter = new ResultWriter(sOps.returnEvent("50 liber"), "something good");
+//		hWriter.run();
 //		Event event = sOps.returnEvent("100 liber barbati");
 //		List<Heat> heatList = sOps.generateHeats(event);
 //		sOps.registerHeats(heatList, event.getName() + ".csv");
-
+//		Calculations calc = Calculations.getInstance();
+//		System.out.println(calc.calculateLocalPoints(8));
+		
 		//sOps.removeLineFromFile("textfile.txt", "b");
 		// for (Heat heats : heatList) {
 		// System.out.println("Heat " + heats.getHeatNumber());
