@@ -120,8 +120,8 @@ public class Sandbox {
 //		HeatListWriter hWriter = new HeatListWriter(sOps.returnEvent("100 liber barbati"), "something good");
 //		hWriter.run();
 
-//		ResultWriter hWriter = new ResultWriter(sOps.returnEvent("50 liber"), "something good");
-//		hWriter.run();
+		ResultWriter hWriter = new ResultWriter(sOps.returnEvent("50 liber"), "something good");
+		hWriter.run();
 //		Event event = sOps.returnEvent("100 liber barbati");
 //		List<Heat> heatList = sOps.generateHeats(event);
 //		sOps.registerHeats(heatList, event.getName() + ".csv");
@@ -134,8 +134,8 @@ public class Sandbox {
 //		for (FinaBaseTimes times : fina) {
 //			System.out.println(times.getLength() + "	" + times.getStyle() + "	" + times.getBaseTimesSeconds());
 //		}
-		FinaBaseTimes fina = calc.getBaseTimeForEvent(sOps.returnEvent("100 freestyle barbati"));
-		System.out.println(fina.getBaseTimesSeconds());
+//		double fina = calc.getBaseTimeForEvent(sOps.returnEvent("100 freestyle barbati"));
+//		System.out.println(fina);
 //		System.out.println(calc.calculateLocalPoints(8));
 		
 		//sOps.removeLineFromFile("textfile.txt", "b");

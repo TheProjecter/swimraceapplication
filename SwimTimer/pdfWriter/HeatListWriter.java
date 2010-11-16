@@ -118,11 +118,34 @@ public class HeatListWriter {
 	}
 
 	private PdfPTable getHeatTable() {
-		PdfPTable table = new PdfPTable(7);
+		float[] tableWidth = { 0.04f, 0.36f, 0.30f, 0.14f, 0.16f};
+		PdfPTable table = new PdfPTable(tableWidth);
 
 		List<Heat> heatList = operations.generateHeats(event,
 				event.getPoolType());
 		Collections.sort(heatList, new HeatComparator());
+
+		// add Column titles
+		PdfPCell c21 = new PdfPCell(new Phrase("Nr", normalHeaderFont));
+		c21.setHorizontalAlignment(Element.ALIGN_CENTER);
+		disableBorders(c21);
+		table.addCell(c21);
+		PdfPCell c22 = new PdfPCell(new Phrase("Nume", normalHeaderFont));
+		c21.setHorizontalAlignment(Element.ALIGN_CENTER);
+		disableBorders(c22);
+		table.addCell(c22);
+		PdfPCell c23 = new PdfPCell(new Phrase("Club", normalHeaderFont));
+		c21.setHorizontalAlignment(Element.ALIGN_CENTER);
+		disableBorders(c23);
+		table.addCell(c23);
+		PdfPCell c24 = new PdfPCell(new Phrase("Categorie", normalHeaderFont));
+		c21.setHorizontalAlignment(Element.ALIGN_CENTER);
+		disableBorders(c24);
+		table.addCell(c24);
+		PdfPCell c25 = new PdfPCell(new Phrase("Timp", normalHeaderFont));
+		c21.setHorizontalAlignment(Element.ALIGN_RIGHT);
+		disableBorders(c25);
+		table.addCell(c25);
 
 		for (Heat heats : heatList) {
 			// heat number cell
@@ -130,45 +153,8 @@ public class HeatListWriter {
 					+ heats.getHeatNumber(), normalHeaderFont));
 			c11.setHorizontalAlignment(Element.ALIGN_CENTER);
 			disableBorders(c11);
+			c11.setColspan(5);
 			table.addCell(c11);
-			PdfPCell c12 = new PdfPCell(new Phrase(""));
-			disableBorders(c12);
-			c12.setColspan(2);
-			table.addCell(c12);
-			PdfPCell c13 = new PdfPCell(new Phrase(""));
-			disableBorders(c13);
-			c13.setColspan(2);
-			table.addCell(c13);
-			PdfPCell c14 = new PdfPCell(new Phrase(""));
-			disableBorders(c14);
-			table.addCell(c14);
-			PdfPCell c15 = new PdfPCell(new Phrase(""));
-			disableBorders(c15);
-			table.addCell(c15);
-			
-			// add Column titles
-			PdfPCell c21 = new PdfPCell(new Phrase("Culoarul", normalHeaderFont));
-			c21.setHorizontalAlignment(Element.ALIGN_CENTER);
-			disableBorders(c21);
-			table.addCell(c21);
-			PdfPCell c22 = new PdfPCell(new Phrase("Nume", normalHeaderFont));
-			c21.setHorizontalAlignment(Element.ALIGN_CENTER);
-			disableBorders(c22);
-			c22.setColspan(2);
-			table.addCell(c22);
-			PdfPCell c23 = new PdfPCell(new Phrase("Club", normalHeaderFont));
-			c21.setHorizontalAlignment(Element.ALIGN_CENTER);
-			disableBorders(c23);
-			c23.setColspan(2);
-			table.addCell(c23);
-			PdfPCell c24 = new PdfPCell(new Phrase("Categorie", normalHeaderFont));
-			c21.setHorizontalAlignment(Element.ALIGN_CENTER);
-			disableBorders(c24);
-			table.addCell(c24);
-			PdfPCell c25 = new PdfPCell(new Phrase("Timp Inscriere", normalHeaderFont));
-			c21.setHorizontalAlignment(Element.ALIGN_CENTER);
-			disableBorders(c25);
-			table.addCell(c25);
 			
 			// lane 1 cells
 			PdfPCell c31 = new PdfPCell(new Phrase(Integer.toString(heats
@@ -180,13 +166,11 @@ public class HeatListWriter {
 					.getSwimmer().getName(), normalFont));
 			c32.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c32);
-			c32.setColspan(2);
 			table.addCell(c32);
 			PdfPCell c33 = new PdfPCell(new Phrase(heats.getLane1()
 					.getSwimmer().getClub(), normalFont));
 			c33.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c33);
-			c33.setColspan(2);
 			table.addCell(c33);
 			PdfPCell c34 = new PdfPCell(new Phrase(heats.getLane1()
 					.getSwimmer().getAgeGroup(), normalFont));
@@ -215,13 +199,11 @@ public class HeatListWriter {
 					.getSwimmer().getName(), normalFont));
 			c42.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c42);
-			c42.setColspan(2);
 			table.addCell(c42);
 			PdfPCell c43 = new PdfPCell(new Phrase(heats.getLane2()
 					.getSwimmer().getClub(), normalFont));
 			c43.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c43);
-			c43.setColspan(2);
 			table.addCell(c43);
 			PdfPCell c44 = new PdfPCell(new Phrase(heats.getLane2()
 					.getSwimmer().getAgeGroup(), normalFont));
@@ -250,13 +232,11 @@ public class HeatListWriter {
 					.getSwimmer().getName(), normalFont));
 			c52.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c52);
-			c52.setColspan(2);
 			table.addCell(c52);
 			PdfPCell c53 = new PdfPCell(new Phrase(heats.getLane3()
 					.getSwimmer().getClub(), normalFont));
 			c53.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c53);
-			c53.setColspan(2);
 			table.addCell(c53);
 			PdfPCell c54 = new PdfPCell(new Phrase(heats.getLane3()
 					.getSwimmer().getAgeGroup(), normalFont));
@@ -285,13 +265,11 @@ public class HeatListWriter {
 					.getSwimmer().getName(), normalFont));
 			c62.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c62);
-			c62.setColspan(2);
 			table.addCell(c62);
 			PdfPCell c63 = new PdfPCell(new Phrase(heats.getLane4()
 					.getSwimmer().getClub(), normalFont));
 			c63.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c63);
-			c63.setColspan(2);
 			table.addCell(c63);
 			PdfPCell c64 = new PdfPCell(new Phrase(heats.getLane4()
 					.getSwimmer().getAgeGroup(), normalFont));
@@ -320,13 +298,11 @@ public class HeatListWriter {
 					.getSwimmer().getName(), normalFont));
 			c72.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c72);
-			c72.setColspan(2);
 			table.addCell(c72);
 			PdfPCell c73 = new PdfPCell(new Phrase(heats.getLane5()
 					.getSwimmer().getClub(), normalFont));
 			c73.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c73);
-			c73.setColspan(2);
 			table.addCell(c73);
 			PdfPCell c74 = new PdfPCell(new Phrase(heats.getLane5()
 					.getSwimmer().getAgeGroup(), normalFont));
@@ -355,13 +331,11 @@ public class HeatListWriter {
 					.getSwimmer().getName(), normalFont));
 			c82.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c82);
-			c82.setColspan(2);
 			table.addCell(c82);
 			PdfPCell c83 = new PdfPCell(new Phrase(heats.getLane6()
 					.getSwimmer().getClub(), normalFont));
 			c83.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c83);
-			c83.setColspan(2);
 			table.addCell(c83);
 			PdfPCell c84 = new PdfPCell(new Phrase(heats.getLane6()
 					.getSwimmer().getAgeGroup(), normalFont));
@@ -392,13 +366,11 @@ public class HeatListWriter {
 						.getSwimmer().getName(), normalFont));
 				c92.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c92);
-				c92.setColspan(2);
 				table.addCell(c92);
 				PdfPCell c93 = new PdfPCell(new Phrase(heats.getLane7()
 						.getSwimmer().getClub(), normalFont));
 				c93.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c93);
-				c93.setColspan(2);
 				table.addCell(c93);
 				PdfPCell c94 = new PdfPCell(new Phrase(heats.getLane7()
 						.getSwimmer().getAgeGroup(), normalFont));
@@ -427,13 +399,11 @@ public class HeatListWriter {
 						.getSwimmer().getName(), normalFont));
 				c10_2.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c10_2);
-				c10_2.setColspan(2);
 				table.addCell(c10_2);
 				PdfPCell c10_3 = new PdfPCell(new Phrase(heats.getLane8()
 						.getSwimmer().getClub(), normalFont));
 				c10_3.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c10_3);
-				c10_3.setColspan(2);
 				table.addCell(c10_3);
 				PdfPCell c10_4 = new PdfPCell(new Phrase(heats.getLane8()
 						.getSwimmer().getAgeGroup(), normalFont));
@@ -460,11 +430,9 @@ public class HeatListWriter {
 			table.addCell(c11_1);
 			PdfPCell c11_2 = new PdfPCell(new Phrase(" "));
 			disableBorders(c11_2);
-			c11_2.setColspan(2);
 			table.addCell(c11_2);
 			PdfPCell c11_3 = new PdfPCell(new Phrase(" "));
 			disableBorders(c11_3);
-			c11_3.setColspan(2);
 			table.addCell(c11_3);
 			PdfPCell c11_4 = new PdfPCell(new Phrase(" "));
 			disableBorders(c11_4);

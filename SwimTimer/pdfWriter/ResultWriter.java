@@ -173,8 +173,14 @@ public class ResultWriter {
 										.getResultMSeconds()), 2), normalFont));
 						disableBorders(c25);
 						table.addCell(c25);
-						PdfPCell c26 = new PdfPCell(new Phrase("FINA",
-								normalFont));
+						PdfPCell c26 = new PdfPCell(
+								new Phrase(
+										calculations
+												.calculateFinaPoints(
+														res.getSwimTimeSeconds(),
+														calculations
+																.getBaseTimeForEvent(event)),
+										normalFont));
 						disableBorders(c26);
 						table.addCell(c26);
 						PdfPCell c27 = new PdfPCell(new Phrase(
