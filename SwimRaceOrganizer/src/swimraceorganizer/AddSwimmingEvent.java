@@ -12,9 +12,12 @@
 package swimraceorganizer;
 
 import java.awt.event.ActionEvent;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import utils.Constants;
 
 import customComponents.WarrningDialog;
 
@@ -45,6 +48,7 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 	// End of variables declaration//GEN-END:variables
 
 	private String poolType;
+	private Map<String, String> styleType = new Constants().getStyleNames();
 
 	/** Creates new form AddSwimmingEvent */
 	public AddSwimmingEvent(String poolType) {
@@ -379,11 +383,11 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 
 	public void fillStyleCB() {
 		jCBStyle.removeAllItems();
-		jCBStyle.addItem("Freestyle".toString());
-		jCBStyle.addItem("Backstroke".toString());
-		jCBStyle.addItem("Breaststroke".toString());
-		jCBStyle.addItem("Butterfly".toString());
-		jCBStyle.addItem("Individual Medley".toString());
+		jCBStyle.addItem(styleType.get("FREE").toString());
+		jCBStyle.addItem(styleType.get("BACK").toString());
+		jCBStyle.addItem(styleType.get("BREAST").toString());
+		jCBStyle.addItem(styleType.get("FLY").toString());
+		jCBStyle.addItem(styleType.get("MEDLEY").toString());
 	}
 
 	public void fillPoolTypeCB() {
