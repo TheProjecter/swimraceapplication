@@ -20,6 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 
+import pdfWriter.HeatListWriter;
+import pdfWriter.ResultWriter;
+
 import customComponents.HeaderText;
 import customComponents.TimesComboBox;
 
@@ -36,16 +39,18 @@ public class AllHeats extends JDialog {
 	private List<Lane> resultLanes = new ArrayList<Lane>();
 	private Event event;
 	private String poolType;
+	private String competitionTitle;
 	
 	private JButton jBCancel = new JButton("Cancel");
 	private JButton jBGenerateRezults = new JButton("Generate Results");;
 
 	private static final long serialVersionUID = 1L;
 
-	public AllHeats(Event event, String poolType) {
+	public AllHeats(Event event, String poolType, String competitionTitle) {
 		super();
 		setEvent(event);
 		setPoolType(poolType);
+		setCompetitionTitle(competitionTitle);
 		setTitle("All heats for " + event.getName());
 		addComponentsToPane(getContentPane());
 		setAlwaysOnTop(true);
@@ -125,12 +130,6 @@ public class AllHeats extends JDialog {
 					tMCBL1.setEnabled(false);
 					tSCBL1.setEnabled(false);
 					tMSCBL1.setEnabled(false);
-					System.out.println(lane1.getSwimmer().getName() + ";"
-							+ lane1.getSwimmer().getAgeGroup() + ";"
-							+ lane1.getResultMinutes() + ";"
-							+ lane1.getResultSecondes() + ";"
-							+ lane1.getResultMSeconds() + ";"
-							+ lane1.getResultTime());
 				}
 			});
 
@@ -168,12 +167,6 @@ public class AllHeats extends JDialog {
 					tMCBL2.setEnabled(false);
 					tSCBL2.setEnabled(false);
 					tMSCBL2.setEnabled(false);
-					System.out.println(lane2.getSwimmer().getName() + ";"
-							+ lane2.getSwimmer().getAgeGroup() + ";"
-							+ lane2.getResultMinutes() + ";"
-							+ lane2.getResultSecondes() + ";"
-							+ lane2.getResultMSeconds() + ";"
-							+ lane2.getResultTime());
 				}
 			});
 
@@ -211,12 +204,6 @@ public class AllHeats extends JDialog {
 					tMCBL3.setEnabled(false);
 					tSCBL3.setEnabled(false);
 					tMSCBL3.setEnabled(false);
-					System.out.println(lane3.getSwimmer().getName() + ";"
-							+ lane3.getSwimmer().getAgeGroup() + ";"
-							+ lane3.getResultMinutes() + ";"
-							+ lane3.getResultSecondes() + ";"
-							+ lane3.getResultMSeconds() + ";"
-							+ lane3.getResultTime());
 				}
 			});
 
@@ -254,12 +241,6 @@ public class AllHeats extends JDialog {
 					tMCBL4.setEnabled(false);
 					tSCBL4.setEnabled(false);
 					tMSCBL4.setEnabled(false);
-					System.out.println(lane4.getSwimmer().getName() + ";"
-							+ lane4.getSwimmer().getAgeGroup() + ";"
-							+ lane4.getResultMinutes() + ";"
-							+ lane4.getResultSecondes() + ";"
-							+ lane4.getResultMSeconds() + ";"
-							+ lane4.getResultTime());
 				}
 			});
 
@@ -297,12 +278,6 @@ public class AllHeats extends JDialog {
 					tMCBL5.setEnabled(false);
 					tSCBL5.setEnabled(false);
 					tMSCBL5.setEnabled(false);
-					System.out.println(lane5.getSwimmer().getName() + ";"
-							+ lane5.getSwimmer().getAgeGroup() + ";"
-							+ lane5.getResultMinutes() + ";"
-							+ lane5.getResultSecondes() + ";"
-							+ lane5.getResultMSeconds() + ";"
-							+ lane5.getResultTime());
 				}
 			});
 
@@ -340,12 +315,6 @@ public class AllHeats extends JDialog {
 					tMCBL6.setEnabled(false);
 					tSCBL6.setEnabled(false);
 					tMSCBL6.setEnabled(false);
-					System.out.println(lane6.getSwimmer().getName() + ";"
-							+ lane6.getSwimmer().getAgeGroup() + ";"
-							+ lane6.getResultMinutes() + ";"
-							+ lane6.getResultSecondes() + ";"
-							+ lane6.getResultMSeconds() + ";"
-							+ lane6.getResultTime());
 				}
 			});
 			
@@ -384,12 +353,6 @@ public class AllHeats extends JDialog {
 						tMCBL7.setEnabled(false);
 						tSCBL7.setEnabled(false);
 						tMSCBL7.setEnabled(false);
-						System.out.println(lane7.getSwimmer().getName() + ";"
-								+ lane7.getSwimmer().getAgeGroup() + ";"
-								+ lane7.getResultMinutes() + ";"
-								+ lane7.getResultSecondes() + ";"
-								+ lane7.getResultMSeconds() + ";"
-								+ lane7.getResultTime());
 					}
 				});
 	
@@ -427,12 +390,6 @@ public class AllHeats extends JDialog {
 						tMCBL8.setEnabled(false);
 						tSCBL8.setEnabled(false);
 						tMSCBL8.setEnabled(false);
-						System.out.println(lane8.getSwimmer().getName() + ";"
-								+ lane8.getSwimmer().getAgeGroup() + ";"
-								+ lane8.getResultMinutes() + ";"
-								+ lane8.getResultSecondes() + ";"
-								+ lane8.getResultMSeconds() + ";"
-								+ lane8.getResultTime());
 					}
 				});
 			}
@@ -492,12 +449,16 @@ public class AllHeats extends JDialog {
 		} catch (Exception e) {
 			e.getMessage();
 		}
+		// write the heats in pdf files
+		ResultWriter rWriter = new ResultWriter(event, competitionTitle);
+		rWriter.run();
+		
 	}
 
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				AllHeats dialog = new AllHeats(new Event(), new String());
+				AllHeats dialog = new AllHeats(new Event(), new String(), new String());
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
 						System.exit(0);
@@ -522,6 +483,14 @@ public class AllHeats extends JDialog {
 
 	public void setPoolType(String poolType) {
 		this.poolType = poolType;
+	}
+
+	public String getCompetitionTitle() {
+		return competitionTitle;
+	}
+
+	public void setCompetitionTitle(String competitionTitle) {
+		this.competitionTitle = competitionTitle;
 	}
 
 }
