@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
@@ -15,6 +16,7 @@ import entities.Swimmer;
 public class Calculations {
 
 	private static Calculations instance;
+	private Map<String, String> styleType = new Constants().getStyleNames();
 
 	private Calculations() {
 	}
@@ -92,16 +94,16 @@ public class Calculations {
 					.contains("50") ? true : false) : false;
 			// establish the style
 			matchFoundStyle = (times.getStyle().equals("FREE")) ? (event
-					.getStyle().toLowerCase().equals("freestyle") ? true
+					.getStyle().equals(styleType.get("FREE").toString()) ? true
 					: false) : (times.getStyle().equals("BACK")) ? (event
-					.getStyle().toLowerCase().equals("backstroke") ? true
+					.getStyle().equals(styleType.get("BACK").toString()) ? true
 					: false) : (times.getStyle().equals("BREAST")) ? (event
-					.getStyle().toLowerCase().equals("breaststroke") ? true
+					.getStyle().equals(styleType.get("BREAST").toString()) ? true
 					: false) : (times.getStyle().equals("FLY")) ? (event
-					.getStyle().toLowerCase().equals("butterfly") ? true
+					.getStyle().equals(styleType.get("FLY").toString()) ? true
 					: false)
 					: (times.getStyle().equals("MEDLEY")) ? (event.getStyle()
-							.toLowerCase().equals("individual medley") ? true
+							.equals(styleType.get("MEDLEY").toString()) ? true
 							: false) : false;
 			// establish the length
 			matchFoundDistance = (times.getLength().equals(event.getLength())) ? true
