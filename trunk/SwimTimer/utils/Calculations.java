@@ -2,6 +2,7 @@ package utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +81,7 @@ public class Calculations {
 		return fina;
 	}
 
-	public FinaBaseTimes getBaseTimeForEvent(Event event) {
+	public double getBaseTimeForEvent(Event event) {
 		FinaBaseTimes finaBase = null;
 		Boolean matchFoundPoolType = false;
 		Boolean matchFoundStyle = false;
@@ -95,23 +96,35 @@ public class Calculations {
 			// establish the style
 			matchFoundStyle = (times.getStyle().equals("FREE")) ? (event
 					.getStyle().equals(styleType.get("FREE").toString()) ? true
-					: false) : (times.getStyle().equals("BACK")) ? (event
-					.getStyle().equals(styleType.get("BACK").toString()) ? true
-					: false) : (times.getStyle().equals("BREAST")) ? (event
-					.getStyle().equals(styleType.get("BREAST").toString()) ? true
-					: false) : (times.getStyle().equals("FLY")) ? (event
-					.getStyle().equals(styleType.get("FLY").toString()) ? true
 					: false)
-					: (times.getStyle().equals("MEDLEY")) ? (event.getStyle()
-							.equals(styleType.get("MEDLEY").toString()) ? true
-							: false) : false;
+					: (times.getStyle().equals("BACK")) ? (event.getStyle()
+							.equals(styleType.get("BACK").toString()) ? true
+							: false)
+							: (times.getStyle().equals("BREAST")) ? (event
+									.getStyle().equals(
+											styleType.get("BREAST").toString()) ? true
+									: false)
+									: (times.getStyle().equals("FLY")) ? (event
+											.getStyle().equals(
+													styleType.get("FLY")
+															.toString()) ? true
+											: false) : (times.getStyle()
+											.equals("MEDLEY")) ? (event
+											.getStyle().equals(
+													styleType.get("MEDLEY")
+															.toString()) ? true
+											: false) : false;
 			// establish the length
 			matchFoundDistance = (times.getLength().equals(event.getLength())) ? true
 					: false;
 			if (matchFoundPoolType && matchFoundStyle && matchFoundDistance) {
-				return times;
+				return times.getBaseTimesSeconds();
 			}
 		}
-		return finaBase;
+		return 0;
+	}
+
+	public String calculateFinaPoints(double swimTime, double baseTime) {
+		return String.format("%.5g%n", 1000 * Math.pow(baseTime / swimTime, 3));
 	}
 }

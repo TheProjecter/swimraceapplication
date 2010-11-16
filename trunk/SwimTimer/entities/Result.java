@@ -7,6 +7,7 @@ public class Result {
 	private Integer resultSecondes;
 	private Integer resultMSeconds;
 	private long resultTime;
+	private double swimTimeSeconds;
 
 	public Result(Swimmer swimmer, Integer resultMinutes,
 			Integer resultSecondes, Integer resultMSeconds, long resultTime) {
@@ -15,6 +16,7 @@ public class Result {
 		setResultSecondes(resultSecondes);
 		setResultMSeconds(resultMSeconds);
 		setResultTime(resultTime);
+		setSwimTimeSeconds();
 	}
 
 	public Swimmer getSwimmer() {
@@ -55,6 +57,15 @@ public class Result {
 
 	public void setResultTime(long resultTime) {
 		this.resultTime = resultTime;
+	}
+
+	public double getSwimTimeSeconds() {
+		return swimTimeSeconds;
+	}
+
+	private void setSwimTimeSeconds() {
+		this.swimTimeSeconds = (this.resultMinutes * 60) + this.resultSecondes
+				+ (double) this.resultMSeconds / 100;
 	}
 
 }
