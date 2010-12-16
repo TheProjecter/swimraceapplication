@@ -8,10 +8,12 @@ import java.util.Map;
 public class Constants {
 	
 	private Map<String, String> dataFiles = new HashMap<String, String>();
+	private Map<String, String> dataPaths = new HashMap<String, String>();
 	private Map<String, String> styleNames = new HashMap<String, String>();
 	
 	public Constants() {
 		declareDataFiles();
+		declarePaths();
 		declareStyleNames();
 	}
 	
@@ -22,6 +24,13 @@ public class Constants {
 		this.dataFiles.put("heats", "heats.csv");
 	}
 	
+	private void declarePaths() {
+		this.dataFiles.put("core", System.getProperty("user.dir") + "\\Data\\core");
+		this.dataFiles.put("rezultate", System.getProperty("user.dir") + "\\Data\\rezultate");
+		this.dataFiles.put("serii", System.getProperty("user.dir") + "\\Data\\serii");
+		this.dataFiles.put("util", System.getProperty("user.dir") + "\\Data\\util");
+	}
+
 	private void declareStyleNames() {
 		this.styleNames.put("FREE", "freestyle");
 		this.styleNames.put("BACK", "backstroke");
@@ -44,6 +53,14 @@ public class Constants {
 
 	public void setStyleNames(Map<String, String> styleNames) {
 		this.styleNames = styleNames;
+	}
+
+	public Map<String, String> getDataPaths() {
+		return dataPaths;
+	}
+
+	public void setDataPaths(Map<String, String> dataPaths) {
+		this.dataPaths = dataPaths;
 	}
 
 }

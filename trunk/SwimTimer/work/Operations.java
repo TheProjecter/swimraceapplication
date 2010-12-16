@@ -28,6 +28,7 @@ import entities.Swimmer;
 public class Operations {
 
 	private Map<String, String> dataFile = new Constants().getDataFiles();
+	private Map<String, String> pathFile = new Constants().getDataFiles();
 
 	public Operations() {
 	}
@@ -47,6 +48,7 @@ public class Operations {
 		Scanner scanner;
 		List<Swimmer> swimmers = new ArrayList<Swimmer>();
 		try {
+			handleFile("core", "swimmers");
 			scanner = new Scanner(new File(dataFile.get("swimmers")));
 			try {
 				while (scanner.hasNextLine()) {
@@ -57,8 +59,7 @@ public class Operations {
 			} finally {
 				scanner.close();
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		} catch (IOException e) {
 		}
 
 		return swimmers;
@@ -696,4 +697,18 @@ public class Operations {
 		return (value.length() < 2) ? "0" + value : value;
 	}
 
+	private void handleFile(String dirType, String fileType) throws IOException {
+		File dir = new File(pathFile.get(dirType));
+		if (!dir.exists()) {
+			dir.mkdir();
+			File file = new File(pathFile.get(dirType) + "\\" + dataFile.get(fileType));
+			file.createNewFile();
+		}
+		else {
+			File file = new File(pathFile.get(dirType) + "\\" + dataFile.get(fileType));
+			if (!file.exists()) 
+				file.createNewFile();
+		}
+	}
+	
 }
