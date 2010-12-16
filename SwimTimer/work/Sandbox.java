@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import pdfWriter.HeatListWriter;
@@ -28,10 +29,24 @@ import entities.Registration;
 import entities.Swimmer;
 
 public class Sandbox {
-	public static void main(String[] args) {
+	private static Map<String, String> dataFile = new Constants().getDataFiles();
+	private static Map<String, String> pathFile = new Constants().getDataFiles();
+
+	public static void main(String[] args) throws IOException {
 		String result;
 		Constants con = new Constants();
 		
+		File dir = new File(pathFile.get("core"));
+		if (!dir.exists()) {
+			dir.mkdir();
+			File file = new File(pathFile.get("core") + "\\" + dataFile.get("swimmers"));
+			file.createNewFile();
+		}
+		else {
+			File file = new File(pathFile.get("core") + "\\" + dataFile.get("swimmers"));
+			if (!file.exists()) 
+				file.createNewFile();
+		}			
 //		Swimmer swimmer = new Swimmer("Cezar", "1981", "25-29", "M",
 //		"Masters Timisoara").getInstance();
 //		result = swimmer.registerSwimmer();
@@ -43,7 +58,8 @@ public class Sandbox {
 		// System.out.println(result);
 
 		// operations
-		Operations sOps = new Operations();
+//		Operations sOps = new Operations();
+
 		// // sOps.clearDB("swimmers");
 		// List<Swimmer> swList = new ArrayList<Swimmer>();
 		// List<Event> eventList = new ArrayList<Event>();
@@ -120,12 +136,12 @@ public class Sandbox {
 //		HeatListWriter hWriter = new HeatListWriter(sOps.returnEvent("100 liber barbati"), "something good");
 //		hWriter.run();
 
-		ResultWriter hWriter = new ResultWriter(sOps.returnEvent("50 liber"), "something good");
-		hWriter.run();
+//		ResultWriter hWriter = new ResultWriter(sOps.returnEvent("50 liber"), "something good");
+//		hWriter.run();
 //		Event event = sOps.returnEvent("100 liber barbati");
 //		List<Heat> heatList = sOps.generateHeats(event);
 //		sOps.registerHeats(heatList, event.getName() + ".csv");
-		Calculations calc = Calculations.getInstance();
+//		Calculations calc = Calculations.getInstance();
 //		System.out.println(calc.getMinuteFromString("2:04.19"));
 //		System.out.println(calc.getSecondsFromString("2:04.19"));
 //		System.out.println(calc.getMSecondsFromString("2:04.19"));

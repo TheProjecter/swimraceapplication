@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Map;
 
@@ -46,14 +47,19 @@ public class Swimmer {
 	public String registerSwimmer() {
 		String result = "OK";
 		try {
-			FileWriter fstream = new FileWriter(dataFile.get("swimmers")
-					.toString(), true);
-			BufferedWriter out = new BufferedWriter(fstream);
-			out.write(getName() + ";" + getBirthYear() + ";"
-					+ getAgeGroup() + ";" + getGender() + ";" + getClub());
-			out.newLine();
-			out.close();
-			result = "Swimmer Added";
+			FileWriter fstream;
+			try {
+				fstream = new FileWriter(dataFile.get("swimmers")
+						.toString(), true);
+				BufferedWriter out = new BufferedWriter(fstream);
+				out.write(getName() + ";" + getBirthYear() + ";"
+						+ getAgeGroup() + ";" + getGender() + ";" + getClub());
+				out.newLine();
+				out.close();
+				result = "Swimmer Added";
+			} catch (FileNotFoundException e) {
+				System.out.println("no file!");	
+			}
 		} catch (Exception e) {
 			result = e.getMessage();
 		}
