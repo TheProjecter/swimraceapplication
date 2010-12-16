@@ -46,6 +46,7 @@ public class AllEvents extends javax.swing.JDialog {
 	public AllEvents(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
+		setTitle("All Events");
 		setEvents(sOps.returnAllEvents());
 		fillAllEvents();
 		fillEventComboBox();
