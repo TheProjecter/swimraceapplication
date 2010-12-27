@@ -12,6 +12,7 @@
 package swimraceorganizer;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -368,7 +369,12 @@ public class AddSwimmer extends javax.swing.JDialog {
 			Swimmer swimmer = new Swimmer(jTSwimmerName.getText(), jCBBirthYear
 					.getSelectedItem().toString(), jTAgeGroup.getText(), jCBGender
 					.getSelectedItem().toString(), jTClub.getText());
-			jLStatus.setText(swimmer.registerSwimmer() + ", " + swimmer.getName());
+			try {
+				swOp.registerSwimmer(swimmer);
+				jLStatus.setText("Adaugat inotatorul, " + swimmer.getName());
+			} catch (IOException e) {
+				jLStatus.setText("Eroare la adaugarea inotatorului, " + swimmer.getName());
+			}	
 		}
 	}
 

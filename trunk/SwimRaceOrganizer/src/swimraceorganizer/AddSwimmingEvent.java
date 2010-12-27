@@ -12,12 +12,15 @@
 package swimraceorganizer;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import utils.Constants;
+import utils.EventOperations;
+import utils.SwimmerOperations;
 
 import customComponents.WarrningDialog;
 
@@ -49,6 +52,7 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 
 	private String poolType;
 	private Map<String, String> styleType = new Constants().getStyleNames();
+	private EventOperations evOp = new EventOperations();
 
 	/** Creates new form AddSwimmingEvent */
 	public AddSwimmingEvent(String poolType) {
@@ -342,7 +346,12 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 					.getSelectedItem().toString(), jCBStyle.getSelectedItem()
 					.toString(), jCBGender.getSelectedItem().toString(),
 					jCBPoolType.getSelectedItem().toString());
-			jLStatus.setText(event.registerEvent() + ", " + event.getName());
+			try {
+				evOp.registerEvent(event);
+				jLStatus.setText("S-a inregistrat proba, " + event.getName());
+			} catch (IOException e) {
+				jLStatus.setText("Nu s-a putut inregistra proba, " + event.getName());
+			}
 		}
 	}
 

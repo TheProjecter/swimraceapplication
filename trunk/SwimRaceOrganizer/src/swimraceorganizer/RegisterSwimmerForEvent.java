@@ -11,6 +11,7 @@
 
 package swimraceorganizer;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JDialog;
@@ -522,9 +523,16 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 							.parseInt(jCBMinutes.getSelectedItem().toString()),
 					Integer.parseInt(jCBSeconds.getSelectedItem().toString()),
 					Integer.parseInt(jCBMSeconds.getSelectedItem().toString()));
-			jLStatus.setText(registration.registerRegistration() + ", "
-					+ registration.getSwimmer().getName() + " : "
-					+ registration.getEvent().getName());
+			try {
+				operations.registerRegistration(registration);
+				jLStatus.setText("Inregistrat, "
+						+ registration.getSwimmer().getName() + " : "
+						+ registration.getEvent().getName());
+			} catch (IOException e) {
+				jLStatus.setText("Probleme cu inregistrarea, "
+						+ registration.getSwimmer().getName() + " : "
+						+ registration.getEvent().getName());
+			}
 		}
 	}// GEN-LAST:event_registerSwimmerToEvent
 
