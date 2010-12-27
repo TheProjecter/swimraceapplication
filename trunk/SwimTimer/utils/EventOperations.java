@@ -1,7 +1,12 @@
 package utils;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import work.Operations;
 import entities.Event;
@@ -14,6 +19,8 @@ public class EventOperations {
     private List<String> minutes = new ArrayList<String>();
     private List<String> seconds = new ArrayList<String>();
     private List<String> mSecondes = new ArrayList<String>();
+	private Map<String, String> dataFile = new Constants().getDataFiles();
+	private Map<String, String> pathFile = new Constants().getDataFiles();
 	
     public EventOperations() {
     	fillEventNames();
@@ -39,6 +46,30 @@ public class EventOperations {
 
 	private static String padLeft(String s, int n) {
 	    return String.format("%1$#" + n + "s", s).replace(' ', '0');  
+	}
+
+	public void registerEvent(Event event)  throws IOException {
+		handleFile("core", "events");
+		FileWriter fstream = new FileWriter(pathFile.get("core") + "\\" + dataFile.get("events"), true);
+		BufferedWriter out = new BufferedWriter(fstream);
+		out.write(event.getName() + ";" + event.getLength() + ";" + event.getStyle()
+				+ ";" + event.getGender() + ";" + event.getPoolType());
+		out.newLine();
+		out.close();
+	}
+
+	private void handleFile(String dirType, String fileType) throws IOException {
+		File dir = new File(pathFile.get(dirType));
+		if (!dir.exists()) {
+			dir.mkdir();
+			File file = new File(pathFile.get(dirType) + "\\" + dataFile.get(fileType));
+			file.createNewFile();
+		}
+		else {
+			File file = new File(pathFile.get(dirType) + "\\" + dataFile.get(fileType));
+			if (!file.exists()) 
+				file.createNewFile();
+		}
 	}
 
 	public List<String> getEventNames() {

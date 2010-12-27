@@ -49,7 +49,8 @@ public class Operations {
 		List<Swimmer> swimmers = new ArrayList<Swimmer>();
 		try {
 			handleFile("core", "swimmers");
-			scanner = new Scanner(new File(dataFile.get("swimmers")));
+			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+					+ dataFile.get("swimmers")));
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
@@ -108,7 +109,9 @@ public class Operations {
 		List<Event> events = new ArrayList<Event>();
 		String[] entry = new String[5];
 		try {
-			scanner = new Scanner(new File(dataFile.get("events")));
+			handleFile("core", "events");
+			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+					+ dataFile.get("events")));
 			try {
 				while (scanner.hasNextLine()) {
 					entry = scanner.nextLine().split(";");
@@ -119,7 +122,7 @@ public class Operations {
 			} finally {
 				scanner.close();
 			}
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
@@ -162,6 +165,25 @@ public class Operations {
 		}
 
 		return newEventsList;
+	}
+
+	public void registerRegistration(Registration registration)
+			throws IOException {
+		handleFile("core", "registrations");
+		FileWriter fstream = new FileWriter(pathFile.get("core") + "\\"
+				+ dataFile.get("registrations"), true);
+		BufferedWriter out = new BufferedWriter(fstream);
+		out.write(registration.getSwimmer().getName() + ";"
+				+ registration.getSwimmer().getBirthYear() + ";"
+				+ registration.getSwimmer().getAgeGroup() + ";"
+				+ registration.getSwimmer().getGender() + ";"
+				+ registration.getSwimmer().getClub() + ";"
+				+ registration.getEvent().getName() + ";"
+				+ padLeft(Integer.toString(registration.getMinutes()), 2) + ";"
+				+ padLeft(Integer.toString(registration.getSeconds()), 2) + ";"
+				+ padLeft(Integer.toString(registration.getmSeconds()), 2));
+		out.newLine();
+		out.close();
 	}
 
 	public List<Registration> getAllRegistrations() {
@@ -701,14 +723,15 @@ public class Operations {
 		File dir = new File(pathFile.get(dirType));
 		if (!dir.exists()) {
 			dir.mkdir();
-			File file = new File(pathFile.get(dirType) + "\\" + dataFile.get(fileType));
+			File file = new File(pathFile.get(dirType) + "\\"
+					+ dataFile.get(fileType));
 			file.createNewFile();
-		}
-		else {
-			File file = new File(pathFile.get(dirType) + "\\" + dataFile.get(fileType));
-			if (!file.exists()) 
+		} else {
+			File file = new File(pathFile.get(dirType) + "\\"
+					+ dataFile.get(fileType));
+			if (!file.exists())
 				file.createNewFile();
 		}
 	}
-	
+
 }
