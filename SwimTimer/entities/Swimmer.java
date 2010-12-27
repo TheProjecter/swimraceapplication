@@ -44,28 +44,6 @@ public class Swimmer {
 		return instance;
 	}
 
-	public String registerSwimmer() {
-		String result = "OK";
-		try {
-			FileWriter fstream;
-			try {
-				fstream = new FileWriter(dataFile.get("swimmers")
-						.toString(), true);
-				BufferedWriter out = new BufferedWriter(fstream);
-				out.write(getName() + ";" + getBirthYear() + ";"
-						+ getAgeGroup() + ";" + getGender() + ";" + getClub());
-				out.newLine();
-				out.close();
-				result = "Swimmer Added";
-			} catch (FileNotFoundException e) {
-				System.out.println("no file!");	
-			}
-		} catch (Exception e) {
-			result = e.getMessage();
-		}
-		return result;
-	}
-
 	public String getName() {
 		return name;
 	}
