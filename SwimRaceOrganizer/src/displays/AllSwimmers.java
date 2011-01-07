@@ -54,6 +54,7 @@ public class AllSwimmers extends javax.swing.JDialog {
 	public AllSwimmers(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
+		setTitle("All Swimmers");
 		setSwimmers(sOps.returnAllSwimmers());
 		fillAllSwimmers();
 		fillSwimmersComboBox();

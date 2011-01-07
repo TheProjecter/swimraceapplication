@@ -45,6 +45,7 @@ public class AllRegistrations extends javax.swing.JDialog {
 	public AllRegistrations(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
+		setTitle("All Registrations");
 		setRegistrations(sOps.getAllRegistrations());
 		fillAllRegistrations();
 		fillRegistrationComboBox();
