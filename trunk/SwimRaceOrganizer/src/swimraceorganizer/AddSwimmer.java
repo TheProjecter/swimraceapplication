@@ -59,13 +59,9 @@ public class AddSwimmer extends javax.swing.JDialog {
 
 	/** Creates new form AddSwimmer */
 	public AddSwimmer() {
-		System.out.println("1");
 		initComponents();
-		System.out.println("2");
 		fillBirthYearCB();
-		System.out.println("3");
 		fillGenderCB();
-		System.out.println("4");
 	}
 
 	@SuppressWarnings("unchecked")

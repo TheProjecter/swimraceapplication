@@ -41,6 +41,7 @@ public class AllEvents extends javax.swing.JDialog {
 	private Operations sOps = new Operations();
 	private List<Event> events = new ArrayList<Event>();
 	private Map<String, String> dataFile = new Constants().getDataFiles();
+	private Map<String, String> pathFile = new Constants().getDataFiles();
 
 	/** Creates new form AllEvents */
 	public AllEvents(java.awt.Frame parent, boolean modal) {
@@ -171,7 +172,7 @@ public class AllEvents extends javax.swing.JDialog {
 		String lineToRemove = event.getName() + ";" + event.getLength() + ";"
 				+ event.getStyle() + ";" + event.getGender() + ";"
 				+ event.getPoolType();
-		sOps.removeLineFromFile(dataFile.get("events"), lineToRemove);
+		sOps.removeLineFromFile(pathFile.get("core") + "\\" + dataFile.get("events"), lineToRemove);
 	}// GEN-LAST:event_deleteEvent
 
 	public void fillAllEvents() {

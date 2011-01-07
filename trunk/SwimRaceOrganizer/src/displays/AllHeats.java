@@ -8,9 +8,12 @@ import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -20,13 +23,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 
-import pdfWriter.HeatListWriter;
 import pdfWriter.ResultWriter;
-
+import utils.Constants;
+import work.Operations;
 import customComponents.HeaderText;
 import customComponents.TimesComboBox;
-
-import work.Operations;
 import entities.Event;
 import entities.Heat;
 import entities.Lane;
@@ -40,9 +41,10 @@ public class AllHeats extends JDialog {
 	private Event event;
 	private String poolType;
 	private String competitionTitle;
-	
+
 	private JButton jBCancel = new JButton("Cancel");
 	private JButton jBGenerateRezults = new JButton("Generate Results");;
+	private Map<String, String> pathFile = new Constants().getDataFiles();
 
 	private static final long serialVersionUID = 1L;
 
@@ -83,7 +85,8 @@ public class AllHeats extends JDialog {
 		/**
 		 * The lines are 8 or 10 based on the pooltype
 		 */
-		heatsPanel.setLayout(new GridLayout((heatList.size() * (poolType.contains("50") ? 10 : 8)), 8));
+		heatsPanel.setLayout(new GridLayout((heatList.size() * (poolType
+				.contains("50") ? 10 : 8)), 8));
 
 		for (Heat heats : heatList) {
 			// header
@@ -317,7 +320,7 @@ public class AllHeats extends JDialog {
 					tMSCBL6.setEnabled(false);
 				}
 			});
-			
+
 			if (poolType.contains("50")) {
 				// Lane 7
 				final TimesComboBox tMCBL7 = new TimesComboBox("minutes");
@@ -326,11 +329,12 @@ public class AllHeats extends JDialog {
 				JButton saveL7 = new JButton("Save");
 				heatsPanel.add(new JLabel("Lane "
 						+ heats.getLane7().getLaneNumber()));
-				heatsPanel.add(new JLabel(heats.getLane7().getSwimmer().getName()));
+				heatsPanel.add(new JLabel(heats.getLane7().getSwimmer()
+						.getName()));
 				heatsPanel.add(new JLabel(heats.getLane7().getSwimmer()
 						.getAgeGroup()));
-				heatsPanel.add(new JLabel(heats.getLane7().getEntryMinutes() + ":"
-						+ heats.getLane7().getEntrySecondes() + ":"
+				heatsPanel.add(new JLabel(heats.getLane7().getEntryMinutes()
+						+ ":" + heats.getLane7().getEntrySecondes() + ":"
 						+ heats.getLane7().getEntryMSeconds()));
 				heatsPanel.add(tMCBL7);
 				heatsPanel.add(tSCBL7);
@@ -355,7 +359,7 @@ public class AllHeats extends JDialog {
 						tMSCBL7.setEnabled(false);
 					}
 				});
-	
+
 				// Lane 8
 				final TimesComboBox tMCBL8 = new TimesComboBox("minutes");
 				final TimesComboBox tSCBL8 = new TimesComboBox("seconds");
@@ -363,11 +367,12 @@ public class AllHeats extends JDialog {
 				JButton saveL8 = new JButton("Save");
 				heatsPanel.add(new JLabel("Lane "
 						+ heats.getLane8().getLaneNumber()));
-				heatsPanel.add(new JLabel(heats.getLane8().getSwimmer().getName()));
+				heatsPanel.add(new JLabel(heats.getLane8().getSwimmer()
+						.getName()));
 				heatsPanel.add(new JLabel(heats.getLane8().getSwimmer()
 						.getAgeGroup()));
-				heatsPanel.add(new JLabel(heats.getLane8().getEntryMinutes() + ":"
-						+ heats.getLane8().getEntrySecondes() + ":"
+				heatsPanel.add(new JLabel(heats.getLane8().getEntryMinutes()
+						+ ":" + heats.getLane8().getEntrySecondes() + ":"
 						+ heats.getLane8().getEntryMSeconds()));
 				heatsPanel.add(tMCBL8);
 				heatsPanel.add(tSCBL8);
@@ -413,7 +418,7 @@ public class AllHeats extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				printResults(event.getName());
 			}
-		}); 
+		});
 
 		heatsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		JScrollPane editorScroll = new JScrollPane(heatsPanel);
@@ -431,9 +436,21 @@ public class AllHeats extends JDialog {
 		setVisible(true);
 	}
 
+	private void handleFile(String dirType, String fileType) throws IOException {
+		// in this case only the dir is required
+		if (fileType.equals("-1")) {
+			File dir = new File(pathFile.get(dirType));
+			if (!dir.exists()) {
+				dir.mkdir();
+			}
+		} 
+	}
+
 	private void printResults(String eventName) {
 		try {
-			FileWriter fstream = new FileWriter("Rezultate " + eventName + ".csv", true);
+			handleFile("rezultate", "-1");
+			FileWriter fstream = new FileWriter(pathFile.get("rezultate")
+					+ "\\" + "Rezultate " + eventName + ".csv", true);
 			BufferedWriter out = new BufferedWriter(fstream);
 			for (Lane lanes : resultLanes) {
 				out.write(lanes.getSwimmer().getName() + ";"
@@ -452,13 +469,14 @@ public class AllHeats extends JDialog {
 		// write the heats in pdf files
 		ResultWriter rWriter = new ResultWriter(event, competitionTitle);
 		rWriter.run();
-		
+
 	}
 
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				AllHeats dialog = new AllHeats(new Event(), new String(), new String());
+				AllHeats dialog = new AllHeats(new Event(), new String(),
+						new String());
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
 						System.exit(0);
