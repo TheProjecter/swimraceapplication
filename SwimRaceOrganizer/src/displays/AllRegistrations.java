@@ -27,18 +27,19 @@ import entities.Swimmer;
  */
 public class AllRegistrations extends javax.swing.JDialog {
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBCancel;
-    private javax.swing.JButton jBDelete;
-    private javax.swing.JComboBox jCBRegistrationSelection;
-    private javax.swing.JLabel jLRegToDelete;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTAllRegistrations;
-    // End of variables declaration//GEN-END:variables
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JButton jBCancel;
+	private javax.swing.JButton jBDelete;
+	private javax.swing.JComboBox jCBRegistrationSelection;
+	private javax.swing.JLabel jLRegToDelete;
+	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JTable jTAllRegistrations;
+	// End of variables declaration//GEN-END:variables
 
 	private Operations sOps = new Operations();
 	private List<Registration> registrations = new ArrayList<Registration>();
 	private Map<String, String> dataFile = new Constants().getDataFiles();
+	private Map<String, String> pathFile = new Constants().getDataFiles();
 
 	/** Creates new form AllRegistrations */
 	public AllRegistrations(java.awt.Frame parent, boolean modal) {
@@ -58,96 +59,141 @@ public class AllRegistrations extends javax.swing.JDialog {
 	// <editor-fold defaultstate="collapsed"
 	// <editor-fold defaultstate="collapsed"
 	// <editor-fold defaultstate="collapsed"
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+	// <editor-fold defaultstate="collapsed"
+	// desc="Generated Code">//GEN-BEGIN:initComponents
+	private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTAllRegistrations = new javax.swing.JTable();
-        jCBRegistrationSelection = new javax.swing.JComboBox();
-        jBDelete = new javax.swing.JButton();
-        jBCancel = new javax.swing.JButton();
-        jLRegToDelete = new javax.swing.JLabel();
+		jScrollPane1 = new javax.swing.JScrollPane();
+		jTAllRegistrations = new javax.swing.JTable();
+		jCBRegistrationSelection = new javax.swing.JComboBox();
+		jBDelete = new javax.swing.JButton();
+		jBCancel = new javax.swing.JButton();
+		jLRegToDelete = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setName("AllRegistrations"); // NOI18N
-        setResizable(false);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+		setName("AllRegistrations"); // NOI18N
+		setResizable(false);
+		addComponentListener(new java.awt.event.ComponentAdapter() {
+			public void componentShown(java.awt.event.ComponentEvent evt) {
+				formComponentShown(evt);
+			}
+		});
 
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
+		jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jTAllRegistrations.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+		jTAllRegistrations.setModel(new javax.swing.table.DefaultTableModel(
+				new Object[][] {
 
-            },
-            new String [] {
-                "Swimmer Name", "BirthYear", "Age Group", "Gender", "Club", "Event Name", "Entry Time"
-            }
-        ));
-        jTAllRegistrations.setName("jTAllRegistrations"); // NOI18N
-        jScrollPane1.setViewportView(jTAllRegistrations);
+				}, new String[] { "Swimmer Name", "BirthYear", "Age Group",
+						"Gender", "Club", "Event Name", "Entry Time" }));
+		jTAllRegistrations.setName("jTAllRegistrations"); // NOI18N
+		jScrollPane1.setViewportView(jTAllRegistrations);
 
-        jCBRegistrationSelection.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jCBRegistrationSelection.setName("jCBRegistrationSelection"); // NOI18N
+		jCBRegistrationSelection.setModel(new javax.swing.DefaultComboBoxModel(
+				new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+		jCBRegistrationSelection.setName("jCBRegistrationSelection"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class).getContext().getResourceMap(AllRegistrations.class);
-        jBDelete.setText(resourceMap.getString("jBDelete.text")); // NOI18N
-        jBDelete.setName("jBDelete"); // NOI18N
-        jBDelete.setPreferredSize(new java.awt.Dimension(100, 25));
-        jBDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteRegistration(evt);
-            }
-        });
+		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
+				.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class)
+				.getContext().getResourceMap(AllRegistrations.class);
+		jBDelete.setText(resourceMap.getString("jBDelete.text")); // NOI18N
+		jBDelete.setName("jBDelete"); // NOI18N
+		jBDelete.setPreferredSize(new java.awt.Dimension(100, 25));
+		jBDelete.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				deleteRegistration(evt);
+			}
+		});
 
-        jBCancel.setText(resourceMap.getString("jBCancel.text")); // NOI18N
-        jBCancel.setName("jBCancel"); // NOI18N
-        jBCancel.setPreferredSize(new java.awt.Dimension(100, 25));
-        jBCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancel(evt);
-            }
-        });
+		jBCancel.setText(resourceMap.getString("jBCancel.text")); // NOI18N
+		jBCancel.setName("jBCancel"); // NOI18N
+		jBCancel.setPreferredSize(new java.awt.Dimension(100, 25));
+		jBCancel.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				cancel(evt);
+			}
+		});
 
-        jLRegToDelete.setName("jLRegToDelete"); // NOI18N
+		jLRegToDelete.setName("jLRegToDelete"); // NOI18N
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCBRegistrationSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLRegToDelete))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLRegToDelete)
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCBRegistrationSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
+				getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.LEADING)
+												.addComponent(
+														jScrollPane1,
+														javax.swing.GroupLayout.PREFERRED_SIZE,
+														665,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGroup(
+														layout.createSequentialGroup()
+																.addComponent(
+																		jCBRegistrationSelection,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		441,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addGap(18, 18,
+																		18)
+																.addComponent(
+																		jBDelete,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		javax.swing.GroupLayout.DEFAULT_SIZE,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(
+																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+																.addComponent(
+																		jBCancel,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		javax.swing.GroupLayout.DEFAULT_SIZE,
+																		javax.swing.GroupLayout.PREFERRED_SIZE))
+												.addComponent(jLRegToDelete))
+								.addContainerGap(
+										javax.swing.GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)));
+		layout.setVerticalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(jScrollPane1,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										194,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(
+										javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(jLRegToDelete)
+								.addGap(3, 3, 3)
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.BASELINE)
+												.addComponent(
+														jCBRegistrationSelection,
+														javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addComponent(
+														jBDelete,
+														javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addComponent(
+														jBCancel,
+														javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addContainerGap(
+										javax.swing.GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)));
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+		pack();
+	}// </editor-fold>//GEN-END:initComponents
 
 	private void formComponentShown(java.awt.event.ComponentEvent evt) {// GEN-FIRST:event_formComponentShown
 		setRegistrations(sOps.getAllRegistrations());
@@ -164,9 +210,9 @@ public class AllRegistrations extends javax.swing.JDialog {
 				.split(",");
 		String[] times = entry[2].split(":");
 		Registration registration = sOps.getRegistration(entry[0].trim(),
-				entry[1].trim(), Integer.parseInt(times[0].trim()), Integer
-						.parseInt(times[1].trim()), Integer.parseInt(times[2]
-						.trim()));
+				entry[1].trim(), Integer.parseInt(times[0].trim()),
+				Integer.parseInt(times[1].trim()),
+				Integer.parseInt(times[2].trim()));
 		setRegistrations(sOps.deleteRegistration(registrations, registration));
 		fillAllRegistrations();
 		fillRegistrationComboBox();
@@ -179,7 +225,9 @@ public class AllRegistrations extends javax.swing.JDialog {
 				+ setZero(registration.getMinutes().toString()) + ";"
 				+ setZero(registration.getSeconds().toString()) + ";"
 				+ setZero(registration.getmSeconds().toString());
-		sOps.removeLineFromFile(dataFile.get("registrations"), lineToRemove);
+		sOps.removeLineFromFile(
+				pathFile.get("core") + "\\" + dataFile.get("registrations"),
+				lineToRemove);
 	}// GEN-LAST:event_deleteRegistration
 
 	public String setZero(String value) {

@@ -47,6 +47,8 @@ public class AllSwimmers extends javax.swing.JDialog {
 	private Operations sOps = new Operations();
 	private List<Swimmer> swimmers = sOps.returnAllSwimmers();
 	private Map<String, String> dataFile = new Constants().getDataFiles();
+	private Map<String, String> pathFile = new Constants().getDataFiles();
+
 
 	/** Creates new form AllSwimmers */
 	public AllSwimmers(java.awt.Frame parent, boolean modal) {
@@ -170,6 +172,7 @@ public class AllSwimmers extends javax.swing.JDialog {
 	private void deleteSwimmer(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBDeletedeleteSwimmer
 		Swimmer swimmer = sOps.returnSwimmer(jCBSwimmerSelection
 				.getSelectedItem().toString());
+		System.out.println("Name: " + swimmer.getName());
 		sOps.deleteRegistrationForSwimmer(swimmer);
 		setSwimmers(sOps.deleteSwimmers(swimmers, swimmer));
 		fillAllSwimmers();
@@ -177,7 +180,7 @@ public class AllSwimmers extends javax.swing.JDialog {
 		String lineToRemove = swimmer.getName() + ";" + swimmer.getBirthYear()
 				+ ";" + swimmer.getAgeGroup() + ";" + swimmer.getGender() + ";"
 				+ swimmer.getClub();
-		sOps.removeLineFromFile(dataFile.get("swimmers"), lineToRemove);
+		sOps.removeLineFromFile(pathFile.get("core") + "\\" + dataFile.get("swimmers"), lineToRemove);
 	}// GEN-LAST:event_jBDeletedeleteSwimmer
 
 	private void cancel(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBCancelcancel
