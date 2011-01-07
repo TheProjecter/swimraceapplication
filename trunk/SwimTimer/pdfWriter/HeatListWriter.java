@@ -8,7 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import utils.Constants;
 import work.Operations;
 
 import com.itextpdf.text.Document;
@@ -43,10 +45,11 @@ public class HeatListWriter {
 
 	private Event event;
 	private Operations operations = new Operations();
+	private Map<String, String> pathFile = new Constants().getDataFiles();
 
 	public HeatListWriter(Event event, String competitionTitle) {
 		setEvent(event);
-		setFile("Serii " + event.getName()+".pdf");
+		setFile(pathFile.get("serii") + "\\" + "Serii " + event.getName()+".pdf");
 		setCompetitionTitle(competitionTitle);
 	}
 

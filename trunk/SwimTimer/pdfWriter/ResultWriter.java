@@ -8,9 +8,11 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import utils.AgeGroup;
 import utils.Calculations;
+import utils.Constants;
 import work.Operations;
 
 import com.itextpdf.text.Document;
@@ -46,10 +48,11 @@ public class ResultWriter {
 	private Event event;
 	private Operations operations = new Operations();
 	private Calculations calculations = Calculations.getInstance();
+	private Map<String, String> pathFile = new Constants().getDataFiles();
 
 	public ResultWriter(Event event, String competitionTitle) {
 		setEvent(event);
-		setFile("Rezultate " + event.getName() + ".pdf");
+		setFile(pathFile.get("rezultate") + "\\" + "Rezultate " + event.getName() + ".pdf");
 		setCompetitionTitle(competitionTitle);
 	}
 

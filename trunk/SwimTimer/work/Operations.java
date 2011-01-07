@@ -70,7 +70,8 @@ public class Operations {
 		Scanner scanner;
 		Swimmer swimmer = new Swimmer(null, null, null, null, null);
 		try {
-			scanner = new Scanner(new File(dataFile.get("swimmers")));
+			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+					+ dataFile.get("swimmers")));
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
@@ -133,7 +134,8 @@ public class Operations {
 		Scanner scanner;
 		Event event = new Event(null, null, null, null, null);
 		try {
-			scanner = new Scanner(new File(dataFile.get("events")));
+			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+					+ dataFile.get("events")));
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
@@ -190,7 +192,8 @@ public class Operations {
 		Scanner scanner;
 		List<Registration> registrationsList = new ArrayList<Registration>();
 		try {
-			scanner = new Scanner(new File(dataFile.get("registrations")));
+			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+					+ dataFile.get("registrations")));
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
@@ -214,7 +217,8 @@ public class Operations {
 			Integer minutes, Integer seconds, Integer mSeconds) {
 		Scanner scanner;
 		try {
-			scanner = new Scanner(new File(dataFile.get("registrations")));
+			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+					+ dataFile.get("registrations")));
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
@@ -245,7 +249,8 @@ public class Operations {
 		Scanner scanner;
 		List<Registration> registrationsList = new ArrayList<Registration>();
 		try {
-			scanner = new Scanner(new File(dataFile.get("registrations")));
+			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+					+ dataFile.get("registrations")));
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
@@ -273,7 +278,9 @@ public class Operations {
 		Scanner scanner;
 		List<Registration> registrationsList = new ArrayList<Registration>();
 		try {
-			scanner = new Scanner(new File(dataFile.get("registrations")));
+			handleFile("core", "registrations");
+			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+					+ dataFile.get("registrations")));
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
@@ -292,6 +299,8 @@ public class Operations {
 				scanner.close();
 			}
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return registrationsList;
@@ -327,7 +336,9 @@ public class Operations {
 					+ setZero(reg.getMinutes().toString()) + ";"
 					+ setZero(reg.getSeconds().toString()) + ";"
 					+ setZero(reg.getmSeconds().toString());
-			removeLineFromFile(dataFile.get("registrations"), lineToRemove);
+			removeLineFromFile(
+					pathFile.get("core") + "\\" + dataFile.get("registrations"),
+					lineToRemove);
 		}
 	}
 
@@ -343,7 +354,9 @@ public class Operations {
 					+ setZero(reg.getMinutes().toString()) + ";"
 					+ setZero(reg.getSeconds().toString()) + ";"
 					+ setZero(reg.getmSeconds().toString());
-			removeLineFromFile(dataFile.get("registrations"), lineToRemove);
+			removeLineFromFile(
+					pathFile.get("core") + "\\" + dataFile.get("registrations"),
+					lineToRemove);
 		}
 	}
 
@@ -422,7 +435,8 @@ public class Operations {
 			String fileName) {
 		Collections.sort(heatList);
 		try {
-			FileWriter fstream = new FileWriter(fileName, true);
+			handleFile("serii", "-1");
+			FileWriter fstream = new FileWriter(pathFile.get("serii") + "\\" + fileName, true);
 			BufferedWriter out = new BufferedWriter(fstream);
 			out.newLine();
 			out.write("Proba " + heatList.get(0).getEventName());
@@ -720,17 +734,25 @@ public class Operations {
 	}
 
 	private void handleFile(String dirType, String fileType) throws IOException {
-		File dir = new File(pathFile.get(dirType));
-		if (!dir.exists()) {
-			dir.mkdir();
-			File file = new File(pathFile.get(dirType) + "\\"
-					+ dataFile.get(fileType));
-			file.createNewFile();
+		// in this case only the dir is required
+		if (fileType.equals("-1")) {
+			File dir = new File(pathFile.get(dirType));
+			if (!dir.exists()) {
+				dir.mkdir();
+			}
 		} else {
-			File file = new File(pathFile.get(dirType) + "\\"
-					+ dataFile.get(fileType));
-			if (!file.exists())
+			File dir = new File(pathFile.get(fileType));
+			if (!dir.exists()) {
+				dir.mkdir();
+				File file = new File(pathFile.get(dirType) + "\\"
+						+ dataFile.get(fileType));
 				file.createNewFile();
+			} else {
+				File file = new File(pathFile.get(dirType) + "\\"
+						+ dataFile.get(fileType));
+				if (!file.exists())
+					file.createNewFile();
+			}
 		}
 	}
 
