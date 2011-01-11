@@ -467,8 +467,8 @@ public class AllHeats extends JDialog {
 			e.getMessage();
 		}
 		// write the heats in pdf files
-		ResultWriter rWriter = new ResultWriter(event, competitionTitle);
-		rWriter.run();
+//		ResultWriter rWriter = new ResultWriter(event, competitionTitle);
+//		rWriter.run();
 
 	}
 
