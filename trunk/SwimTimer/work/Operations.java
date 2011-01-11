@@ -436,7 +436,8 @@ public class Operations {
 		Collections.sort(heatList);
 		try {
 			handleFile("serii", "-1");
-			FileWriter fstream = new FileWriter(pathFile.get("serii") + "\\" + fileName, true);
+			FileWriter fstream = new FileWriter(pathFile.get("serii") + "\\"
+					+ fileName, true);
 			BufferedWriter out = new BufferedWriter(fstream);
 			out.newLine();
 			out.write("Proba " + heatList.get(0).getEventName());
@@ -619,8 +620,9 @@ public class Operations {
 
 		List<Result> results = new ArrayList<Result>();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("Rezultate "
-					+ event.getName() + ".csv"));
+			BufferedReader br = new BufferedReader(new FileReader(
+					pathFile.get("rezultate") + "\\" + "Rezultate "
+							+ event.getName() + ".csv"));
 			try {
 				String line = null;
 				while ((line = br.readLine()) != null) {
@@ -651,8 +653,9 @@ public class Operations {
 		List<String> ageGroups = ageGroup.getAgeGroups();
 
 		try {
-			FileWriter fstream = new FileWriter("Rezultate Ordonate "
-					+ event.getName() + ".csv", true);
+			FileWriter fstream = new FileWriter(pathFile.get("rezultate")
+					+ "\\" + "Rezultate Ordonate " + event.getName() + ".csv",
+					true);
 			BufferedWriter out = new BufferedWriter(fstream);
 
 			for (String age : ageGroups) {
@@ -741,7 +744,7 @@ public class Operations {
 				dir.mkdir();
 			}
 		} else {
-			File dir = new File(pathFile.get(fileType));
+			File dir = new File(pathFile.get(dirType));
 			if (!dir.exists()) {
 				dir.mkdir();
 				File file = new File(pathFile.get(dirType) + "\\"

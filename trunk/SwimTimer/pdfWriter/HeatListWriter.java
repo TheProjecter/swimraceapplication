@@ -75,7 +75,7 @@ public class HeatListWriter {
 		 * Add the logo
 		 */
 		try {
-			Image image = Image.getInstance("wyvern-predatux.png");
+			Image image = Image.getInstance(pathFile.get("util") + "\\wyvern-predatux.png");
 			image.setAlignment(Element.ALIGN_CENTER);
 			document.add(image);
 		} catch (MalformedURLException e) {
