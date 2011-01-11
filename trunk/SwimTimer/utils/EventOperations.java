@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import work.Operations;
 import entities.Event;
@@ -57,7 +58,27 @@ public class EventOperations {
 		out.newLine();
 		out.close();
 	}
+	
+	public int getNumberOfEvent() {
+		Scanner scanner;
+		int eventNumber = 0;
+		try {
+			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+					+ dataFile.get("events")));
+			try {
+				while (scanner.hasNextLine()) {
+					eventNumber++;
+					scanner.nextLine();
+				}
+			} finally {
+				scanner.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
+		return eventNumber;
+	}
 	private void handleFile(String dirType, String fileType) throws IOException {
 		File dir = new File(pathFile.get(dirType));
 		if (!dir.exists()) {
