@@ -2,22 +2,19 @@ package utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
-
 import entities.Event;
 import entities.FinaBaseTimes;
-import entities.Swimmer;
 
 public class Calculations {
 
 	private static Calculations instance;
 	private Map<String, String> styleType = new Constants().getStyleNames();
+	private Map<String, String> pathFile = new Constants().getDataFiles();
 
 	private Calculations() {
 	}
@@ -58,8 +55,7 @@ public class Calculations {
 		List<FinaBaseTimes> fina = new ArrayList<FinaBaseTimes>();
 		Scanner scanner;
 		try {
-			scanner = new Scanner(new File(System.getProperty("user.dir")
-					+ "/Data/utils/FINA Base Times.csv"));
+			scanner = new Scanner(new File(pathFile.get("util") + "\\FINA Base Times.csv"));
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
@@ -82,7 +78,6 @@ public class Calculations {
 	}
 
 	public double getBaseTimeForEvent(Event event) {
-		FinaBaseTimes finaBase = null;
 		Boolean matchFoundPoolType = false;
 		Boolean matchFoundStyle = false;
 		Boolean matchFoundDistance = false;

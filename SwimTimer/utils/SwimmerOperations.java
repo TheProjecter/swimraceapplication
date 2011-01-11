@@ -62,16 +62,25 @@ public class SwimmerOperations {
 	}
 	
 	private void handleFile(String dirType, String fileType) throws IOException {
-		File dir = new File(pathFile.get(dirType));
-		if (!dir.exists()) {
-			dir.mkdir();
-			File file = new File(pathFile.get(dirType) + "\\" + dataFile.get(fileType));
-			file.createNewFile();
-		}
-		else {
-			File file = new File(pathFile.get(dirType) + "\\" + dataFile.get(fileType));
-			if (!file.exists()) 
+		// in this case only the dir is required
+		if (fileType.equals("-1")) {
+			File dir = new File(pathFile.get(dirType));
+			if (!dir.exists()) {
+				dir.mkdir();
+			}
+		} else {
+			File dir = new File(pathFile.get(dirType));
+			if (!dir.exists()) {
+				dir.mkdir();
+				File file = new File(pathFile.get(dirType) + "\\"
+						+ dataFile.get(fileType));
 				file.createNewFile();
+			} else {
+				File file = new File(pathFile.get(dirType) + "\\"
+						+ dataFile.get(fileType));
+				if (!file.exists())
+					file.createNewFile();
+			}
 		}
 	}
 
