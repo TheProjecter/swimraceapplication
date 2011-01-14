@@ -13,6 +13,7 @@ public class Lane {
 	private Integer entrySecondes;
 	private Integer entryMSeconds;
 	private int laneNumber;
+	private String performanceStatus;
 
 	public Lane() {
 		this.swimmer = new Swimmer();
@@ -120,5 +121,13 @@ public class Lane {
 
 	public long getResultTime() {
 		return resultTime;
+	}
+
+	public String getPerformanceStatus() {
+		return performanceStatus;
+	}
+
+	public void setPerformanceStatus(String performanceStatus) {
+		this.performanceStatus = performanceStatus;
 	}
 }
