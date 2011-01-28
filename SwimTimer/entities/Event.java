@@ -23,7 +23,7 @@ public class Event {
 		setLength("");
 		setStyle("");
 		setGender("");
-		setPoolType("");
+		setPoolType(""); 
 	}
 
 	public Event(String name, String length, String style, String gender,
