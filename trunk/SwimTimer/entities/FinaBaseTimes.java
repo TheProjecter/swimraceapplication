@@ -12,7 +12,7 @@ public class FinaBaseTimes {
 	private Integer seconds;
 	private Integer mSeconds;
 	private long swimTime;
-	private double baseTimesSeconds;
+	private double baseTimesSeconds; 
 
 	public FinaBaseTimes(String year, String poolType, String gender,
 			int relayCount, String length, String style, Integer minutes,
