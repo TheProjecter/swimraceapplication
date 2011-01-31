@@ -20,7 +20,8 @@ public class GenerateHeatResults extends GenerateHeats {
         super(poolType, competitionTitle, title);
         setCompetitionTitle(competitionTitle);
         fillEventNames();
-    }
+        System.out.println("result...");
+	}
 
 	protected void generateHeats(java.awt.event.ActionEvent evt) {
 		setResults(operations.returnResults(this.getSelectedEvent()));

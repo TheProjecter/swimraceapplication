@@ -16,7 +16,8 @@ public class GenerateHeatOutputs extends GenerateHeats {
         setPoolType(poolType);
         setCompetitionTitle(competitionTitle);
         fillEventNames();
-    }
+        System.out.println("output...");
+	}
 
 	protected void generateHeats(java.awt.event.ActionEvent evt) {
         allHeats = new AllHeats(this.getSelectedEvent(), getPoolType(), getCompetitionTitle());
