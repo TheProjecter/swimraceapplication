@@ -16,6 +16,7 @@ import displays.AllSwimmers;
 import generators.GenerateHeatOutputs;
 import generators.GenerateHeatResults;
 import generators.GenerateHeats;
+import generators.HeatCreatorGenerator;
 
 import javax.swing.Icon;
 import javax.swing.JDialog;
@@ -381,7 +382,7 @@ public class SwimRaceOrganizerView extends FrameView {
         try {
 			setPoolType(settingsWindow.getPoolType());
 			setCompetitionName(settingsWindow.getCompetitionName());
-	        generateHeats = new GenerateHeats(poolType, competitionName, "Generare Serii");
+			generateHeats = new HeatCreatorGenerator(poolType, competitionName, "Generare Serii");
 	        generateHeats.setLocationRelativeTo(mainFrame);
 	        SwimRaceOrganizerApp.getApplication().show(generateHeats);
 		} catch (NullPointerException e) {
