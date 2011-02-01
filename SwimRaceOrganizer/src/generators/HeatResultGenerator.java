@@ -1,6 +1,6 @@
 package generators;
 
-import generators.behaviors.CreateHeatsBehavior;
+import generators.behaviors.ResultHeatBehavior;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -14,27 +14,23 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import utils.EventOperations;
 
-public class HeatCreatorGenerator extends HeatGenerator {
+public class HeatResultGenerator extends HeatGenerator {
 
 	private GridBagLayout controlLayout = new GridBagLayout();
 	private JButton jBCancel = new JButton("Cancel");
 	private JButton jBGenerate = new JButton("Generate");
 	private JComboBox jCBHeatName = new JComboBox();
-	private JTextField jTSwimmersPerHeat = new JTextField(5);
 	private EventOperations evOperations = new EventOperations();
 	private String poolType;
 	private String competitionTitle;
 
-	public HeatCreatorGenerator(String poolType, String competitionTitle,
+	public HeatResultGenerator(String poolType, String competitionTitle,
 			String title) {
 		super(poolType, competitionTitle, title);
-		generateHeatBehavior = new CreateHeatsBehavior();
+		generateHeatBehavior = new ResultHeatBehavior();
 		setPoolType(poolType);
 		setCompetitionTitle(competitionTitle);
 		fillEventNames();
@@ -62,19 +58,10 @@ public class HeatCreatorGenerator extends HeatGenerator {
 
 		c.gridx = 0;
 		c.gridy = 1;
-		c.insets = new Insets(10, 10, 10, 10);
-		pane.add(new JLabel("Concurenti pe serie"), c);
-
-		c.gridx = 2;
-		c.gridy = 1;
-		pane.add(jTSwimmersPerHeat, c);
-
-		c.gridx = 0;
-		c.gridy = 2;
 		pane.add(jBGenerate, c);
 
 		c.gridx = 2;
-		c.gridy = 2;
+		c.gridy = 1;
 		pane.add(jBCancel, c);
 
 		jBCancel.addActionListener(new ActionListener() {
@@ -106,7 +93,7 @@ public class HeatCreatorGenerator extends HeatGenerator {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				HeatCreatorGenerator dialog = new HeatCreatorGenerator(
+				HeatResultGenerator dialog = new HeatResultGenerator(
 						new String(), new String(), new String());
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
