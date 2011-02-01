@@ -7,24 +7,26 @@ import javax.swing.JDialog;
 public abstract class HeatGenerator extends JDialog {
 
 	protected GenerateHeatBehavior generateHeatBehavior;
-	protected String windowTitle; 
+	protected String windowTitle;
 	protected String poolType;
 	protected String competitionTitle;
-	
+
 	public HeatGenerator(String poolType, String competitionTitle, String title) {
 		super();
-		setWindowTitle(title);	
+		setWindowTitle(title);
 		setPoolType(poolType);
 		setCompetitionTitle(competitionTitle);
 		setAlwaysOnTop(true);
 		setResizable(false);
 		setTitle(title);
 	}
-	
-	public void generateHeat(String eventName, String poolType, String competitionTitle) {
-		generateHeatBehavior.generateHeats(eventName, poolType, competitionTitle);
+
+	public void generateHeat(String eventName, String poolType,
+			String competitionTitle) {
+		generateHeatBehavior.generateHeats(eventName, poolType,
+				competitionTitle);
 	}
-	
+
 	public String getWindowTitle() {
 		return windowTitle;
 	}
@@ -37,7 +39,8 @@ public abstract class HeatGenerator extends JDialog {
 		return generateHeatBehavior;
 	}
 
-	public void setGenerateHeatBehavior(GenerateHeatBehavior generateHeatBehavior) {
+	public void setGenerateHeatBehavior(
+			GenerateHeatBehavior generateHeatBehavior) {
 		this.generateHeatBehavior = generateHeatBehavior;
 	}
 
