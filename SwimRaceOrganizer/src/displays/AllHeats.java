@@ -78,7 +78,7 @@ public class AllHeats extends JDialog {
 		controlsPanel.add(jBCancel);
 
 		// Adding to the heats panel
-		List<Heat> heatList = operations.generateHeats(event, poolType);
+		List<Heat> heatList = operations.generateHeats(event, poolType, 1);
 
 		final JPanel heatsPanel = new JPanel();
 		/**
