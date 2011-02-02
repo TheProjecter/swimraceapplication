@@ -1,12 +1,14 @@
 package generators;
 
 import generators.behaviors.GenerateHeatBehavior;
+import generators.behaviors.SwimmerRelated;
 
 import javax.swing.JDialog;
 
 public abstract class HeatGenerator extends JDialog {
 
 	protected GenerateHeatBehavior generateHeatBehavior;
+	protected SwimmerRelated swimmerRelated;
 	protected String windowTitle;
 	protected String poolType;
 	protected String competitionTitle;

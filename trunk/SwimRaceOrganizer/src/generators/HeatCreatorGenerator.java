@@ -1,6 +1,7 @@
 package generators;
 
 import generators.behaviors.CreateHeatsBehavior;
+import generators.behaviors.SwimmerRelated;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -35,6 +36,7 @@ public class HeatCreatorGenerator extends HeatGenerator {
 			String title) {
 		super(poolType, competitionTitle, title);
 		generateHeatBehavior = new CreateHeatsBehavior();
+		swimmerRelated = (SwimmerRelated) generateHeatBehavior;
 		setPoolType(poolType);
 		setCompetitionTitle(competitionTitle);
 		fillEventNames();
@@ -84,6 +86,7 @@ public class HeatCreatorGenerator extends HeatGenerator {
 		});
 		jBGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				swimmerRelated.setSwimmersPerHeat(Integer.parseInt(jTSwimmersPerHeat.getText()));
 				generateHeatBehavior.generateHeats(jCBHeatName
 						.getSelectedItem().toString(), getPoolType(),
 						getCompetitionTitle());

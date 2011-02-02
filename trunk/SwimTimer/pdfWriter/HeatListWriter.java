@@ -46,9 +46,11 @@ public class HeatListWriter {
 	private Event event;
 	private Operations operations = new Operations();
 	private Map<String, String> pathFile = new Constants().getDataFiles();
-
-	public HeatListWriter(Event event, String competitionTitle) {
+	private List<Heat> heatList;
+	
+	public HeatListWriter(Event event, String competitionTitle, List<Heat> heatList) {
 		setEvent(event);
+		setHeatList(heatList);
 		setFile(pathFile.get("serii") + "\\" + "Serii " + event.getName()+".pdf");
 		setCompetitionTitle(competitionTitle);
 	}
@@ -123,10 +125,6 @@ public class HeatListWriter {
 	private PdfPTable getHeatTable() {
 		float[] tableWidth = { 0.04f, 0.36f, 0.30f, 0.14f, 0.16f};
 		PdfPTable table = new PdfPTable(tableWidth);
-
-		List<Heat> heatList = operations.generateHeats(event,
-				event.getPoolType());
-		Collections.sort(heatList, new HeatComparator());
 
 		// add Column titles
 		PdfPCell c21 = new PdfPCell(new Phrase("Nr", normalHeaderFont));
@@ -488,5 +486,13 @@ public class HeatListWriter {
 
 	public void setCompetitionTitle(String competitionTitle) {
 		this.competitionTitle = competitionTitle;
+	}
+
+	public List<Heat> getHeatList() {
+		return heatList;
+	}
+
+	public void setHeatList(List<Heat> heatList) {
+		this.heatList = heatList;
 	}
 }

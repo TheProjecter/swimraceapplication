@@ -405,26 +405,26 @@ public class Operations {
 
 	}
 
-	public List<Heat> generateHeats(Event event, String poolType) {
+	public List<Heat> generateHeats(Event event, String poolType, int swimmersPerHeat) {
 		List<Lane> laneList = new ArrayList<Lane>();
 		List<Lane> lanesOnHeat = new ArrayList<Lane>();
 		List<Heat> heatList = new ArrayList<Heat>();
 		int laneNumbers = (poolType.contains("25") ? 6 : 8);
-
+		
 		// create and sort lanes
 		laneList = createLanes(event);
 		Collections.sort(laneList, new LaneComparator());
 
-		int heatCount = (laneList.size()) / laneNumbers + 1;
+		int heatCount = (laneList.size()) / swimmersPerHeat + 1;
 		int startPos = 0;
-		int endPos = (laneNumbers > laneList.size()) ? laneList.size()
-				: laneNumbers;
+		int endPos = (swimmersPerHeat > laneList.size()) ? laneList.size()
+				: swimmersPerHeat;
 		for (int i = heatCount; i > 0; i--) {
 			lanesOnHeat = laneList.subList(startPos, endPos);
 			lanesOnHeat = setLanesInOrder(lanesOnHeat, laneNumbers);
 			heatList.add(new Heat(event.getName(), i, lanesOnHeat));
-			startPos = startPos + laneNumbers;
-			endPos = ((endPos + laneNumbers) < laneList.size()) ? (endPos + laneNumbers)
+			startPos = startPos + swimmersPerHeat;
+			endPos = ((endPos + swimmersPerHeat) < laneList.size()) ? (endPos + swimmersPerHeat)
 					: laneList.size();
 		}
 
