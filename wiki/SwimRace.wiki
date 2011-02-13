@@ -1,4 +1,3 @@
-#summary One-sentence summary of this page.
 #labels Featured
 An application that manages the swimming races of a master swimming competition.
 = Introduction =
