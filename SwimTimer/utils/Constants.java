@@ -28,6 +28,7 @@ public class Constants {
 		this.dataFiles.put("core", System.getProperty("user.dir") + "\\Data\\core");
 		this.dataFiles.put("rezultate", System.getProperty("user.dir") + "\\Data\\rezultate");
 		this.dataFiles.put("serii", System.getProperty("user.dir") + "\\Data\\serii");
+		this.dataFiles.put("arbitrii", System.getProperty("user.dir") + "\\Data\\serii\\arbitrii");
 		this.dataFiles.put("util", System.getProperty("user.dir") + "\\Data\\utils");
 	}
 
