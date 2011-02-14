@@ -18,7 +18,7 @@ public abstract class HeatGenerator extends JDialog {
 		setWindowTitle(title);
 		setPoolType(poolType);
 		setCompetitionTitle(competitionTitle);
-		setAlwaysOnTop(true);
+		//setAlwaysOnTop(true);
 		setResizable(false);
 		setTitle(title);
 	}
