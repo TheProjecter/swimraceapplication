@@ -31,22 +31,37 @@ import entities.Swimmer;
 public class Sandbox {
 	private static Map<String, String> dataFile = new Constants().getDataFiles();
 	private static Map<String, String> pathFile = new Constants().getDataFiles();
+	private final List<String> list = new ArrayList<String>();
 
-	public static void main(String[] args) throws IOException {
-		String result;
-		Constants con = new Constants();
-		
-		File dir = new File(pathFile.get("core"));
-		if (!dir.exists()) {
-			dir.mkdir();
-			File file = new File(pathFile.get("core") + "\\" + dataFile.get("swimmers"));
-			file.createNewFile();
+	public void push() {
+		list.add("value");
+	}
+	public void display() {
+		for (String i : list) {
+			System.out.println(i);
 		}
-		else {
-			File file = new File(pathFile.get("core") + "\\" + dataFile.get("swimmers"));
-			if (!file.exists()) 
-				file.createNewFile();
-		}			
+	}
+	public static void main(String[] args) throws IOException {
+		Sandbox s = new Sandbox();
+		s.push();
+		s.display();
+		System.out.println("------");
+		s.push();
+		s.display();
+//		String result;
+//		Constants con = new Constants();
+//		
+//		File dir = new File(pathFile.get("core"));
+//		if (!dir.exists()) {
+//			dir.mkdir();
+//			File file = new File(pathFile.get("core") + "\\" + dataFile.get("swimmers"));
+//			file.createNewFile();
+//		}
+//		else {
+//			File file = new File(pathFile.get("core") + "\\" + dataFile.get("swimmers"));
+//			if (!file.exists()) 
+//				file.createNewFile();
+//		}			
 //		Swimmer swimmer = new Swimmer("Cezar", "1981", "25-29", "M",
 //		"Masters Timisoara").getInstance();
 //		result = swimmer.registerSwimmer();
@@ -208,5 +223,6 @@ public class Sandbox {
 		// + heats.getLane8().getEntryMSeconds());
 		//
 		// }
+		
 	}
 }
