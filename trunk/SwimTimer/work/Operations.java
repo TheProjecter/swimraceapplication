@@ -640,6 +640,18 @@ public class Operations {
 
 		return results;
 	}
+	
+	/**
+	 * Returns the results for one swimmer, from the results list
+	 */
+	public Result getResultForSwimmer(List<Result> results, Swimmer swimmer) {
+		for (Result res : results) {
+			if (swimmer.getName().equals(res.getSwimmer().getName())) {
+				return res;
+			}
+		}
+		return new Result(new Swimmer(), 0, 0, 0, 0, new String());
+	}
 
 	/**
 	 * Write the results into a ordered manner (order per age group and result)
