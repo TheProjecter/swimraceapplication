@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import utils.EventOperations;
+import utils.SwimmersPerHeatSingleton;
 
 public class HeatCreatorGenerator extends HeatGenerator {
 
@@ -32,6 +33,7 @@ public class HeatCreatorGenerator extends HeatGenerator {
 	private EventOperations evOperations = new EventOperations();
 	private String poolType;
 	private String competitionTitle;
+	private SwimmersPerHeatSingleton swimmerPerHeat = SwimmersPerHeatSingleton.getInstance();
 
 	public HeatCreatorGenerator(String poolType, String competitionTitle,
 			String title) {
@@ -92,6 +94,10 @@ public class HeatCreatorGenerator extends HeatGenerator {
 							"Specificati numarul de concurenti pe serie!",
 							"Warrning...", 1);
 				} else {
+					// adding the number of swimmers / heat / event. It needs to be used later
+					swimmerPerHeat.push(jCBHeatName
+							.getSelectedItem().toString(), Integer
+							.parseInt(jTSwimmersPerHeat.getText()));
 					swimmerRelated.setSwimmersPerHeat(Integer
 							.parseInt(jTSwimmersPerHeat.getText()));
 					generateHeatBehavior.generateHeats(jCBHeatName

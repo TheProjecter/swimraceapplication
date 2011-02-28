@@ -15,8 +15,10 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import utils.EventOperations;
+import utils.SwimmersPerHeatSingleton;
 
 public class HeatOutputGenerator extends HeatGenerator {
 
@@ -27,6 +29,8 @@ public class HeatOutputGenerator extends HeatGenerator {
 	private EventOperations evOperations = new EventOperations();
 	private String poolType;
 	private String competitionTitle;
+	private SwimmersPerHeatSingleton swimmerPerHeat = SwimmersPerHeatSingleton
+			.getInstance();
 
 	public HeatOutputGenerator(String poolType, String competitionTitle,
 			String title) {
@@ -72,9 +76,16 @@ public class HeatOutputGenerator extends HeatGenerator {
 		});
 		jBGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				generateHeatBehavior.generateHeats(jCBHeatName
-						.getSelectedItem().toString(), getPoolType(),
-						getCompetitionTitle());
+				if (swimmerPerHeat.getValue(jCBHeatName.getSelectedItem()
+						.toString()) == null) {
+					JOptionPane.showMessageDialog(null,
+							"Trebuie generata seria!", "Warrning...", 1);
+				} else {
+					generateHeatBehavior.generateHeats(jCBHeatName
+							.getSelectedItem().toString(), getPoolType(),
+							getCompetitionTitle());
+				}
+				dispose();
 			}
 		});
 

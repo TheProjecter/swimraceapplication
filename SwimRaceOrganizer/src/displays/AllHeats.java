@@ -24,6 +24,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 
 import utils.Constants;
+import utils.SwimmersPerHeatSingleton;
 import work.Operations;
 import customComponents.HeaderText;
 import customComponents.TimesComboBox;
@@ -42,13 +43,16 @@ public class AllHeats extends JDialog {
 	private String competitionTitle;
 
 	private JButton jBCancel = new JButton("Cancel");
-	private JButton jBGenerateRezults = new JButton("Generate Results");;
+	private JButton jBGenerateRezults = new JButton("Generate Results");
 	private Map<String, String> pathFile = new Constants().getDataFiles();
+	private SwimmersPerHeatSingleton swimmerPerHeat = SwimmersPerHeatSingleton
+			.getInstance();
 
 	private static final long serialVersionUID = 1L;
 
 	public AllHeats(Event event, String poolType, String competitionTitle) {
 		super();
+		System.out.println("create HEAT");
 		setEvent(event);
 		setPoolType(poolType);
 		setCompetitionTitle(competitionTitle);
@@ -78,7 +82,13 @@ public class AllHeats extends JDialog {
 		controlsPanel.add(jBCancel);
 
 		// Adding to the heats panel
-		List<Heat> heatList = operations.generateHeats(event, poolType, 1);
+		List<Heat> heatList;
+		try {
+			heatList = operations.generateHeats(event, poolType,
+					swimmerPerHeat.getValue(event.getName()));
+		} catch (NullPointerException e) {
+			heatList = operations.generateHeats(event, poolType, 6);
+		}
 
 		final JPanel heatsPanel = new JPanel();
 		/**
@@ -89,7 +99,8 @@ public class AllHeats extends JDialog {
 
 		for (Heat heats : heatList) {
 			// header
-			heatsPanel.add(new HeaderText("Heat " + heats.getHeatNumber(), JLabel.CENTER));
+			heatsPanel.add(new HeaderText("Heat " + heats.getHeatNumber(),
+					JLabel.CENTER));
 			heatsPanel.add(new HeaderText("Name", JLabel.CENTER));
 			heatsPanel.add(new HeaderText("Age Gr.", JLabel.CENTER));
 			heatsPanel.add(new HeaderText("Entry", JLabel.CENTER));
@@ -126,8 +137,8 @@ public class AllHeats extends JDialog {
 			heatsPanel.add(statusLableL1);
 			final Swimmer swimmerL1 = heats.getLane1().getSwimmer();
 			final Event eventL1 = heats.getLane1().getEvent();
-			final Lane lane1 = new Lane(swimmerL1, eventL1, 0,
-					new Integer(0), new Integer(0), new Integer(0));
+			final Lane lane1 = new Lane(swimmerL1, eventL1, 0, new Integer(0),
+					new Integer(0), new Integer(0));
 			saveL1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tMCBL1.isEnabled()) {
@@ -147,7 +158,7 @@ public class AllHeats extends JDialog {
 						dnsL1.setEnabled(false);
 						saveL1.setText("Edit");
 						statusLableL1.setText("OK");
-						statusLableL1.setForeground(new Color(0,153,0));
+						statusLableL1.setForeground(new Color(0, 153, 0));
 					} else {
 						tMCBL1.setEnabled(true);
 						tSCBL1.setEnabled(true);
@@ -165,7 +176,7 @@ public class AllHeats extends JDialog {
 					if (tMCBL1.isEnabled()) {
 						tMCBL1.setSelectedItem("00");
 						tSCBL1.setSelectedItem("00");
-						tMSCBL1.setSelectedItem("00");						
+						tMSCBL1.setSelectedItem("00");
 						lane1.setResultMinutes(Integer.parseInt(tMCBL1
 								.getSelectedItem().toString()));
 						lane1.setResultSecondes(Integer.parseInt(tSCBL1
@@ -200,7 +211,7 @@ public class AllHeats extends JDialog {
 					if (tMCBL1.isEnabled()) {
 						tMCBL1.setSelectedItem("00");
 						tSCBL1.setSelectedItem("00");
-						tMSCBL1.setSelectedItem("00");						
+						tMSCBL1.setSelectedItem("00");
 						lane1.setResultMinutes(Integer.parseInt(tMCBL1
 								.getSelectedItem().toString()));
 						lane1.setResultSecondes(Integer.parseInt(tSCBL1
@@ -256,11 +267,11 @@ public class AllHeats extends JDialog {
 			heatsPanel.add(statusLableL2);
 			final Swimmer swimmerL2 = heats.getLane2().getSwimmer();
 			final Event eventL2 = heats.getLane2().getEvent();
-			final Lane lane2 = new Lane(swimmerL2, eventL2, 0,
-					new Integer(0), new Integer(0), new Integer(0));
+			final Lane lane2 = new Lane(swimmerL2, eventL2, 0, new Integer(0),
+					new Integer(0), new Integer(0));
 			saveL2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (tMCBL2.isEnabled()) {	
+					if (tMCBL2.isEnabled()) {
 						lane2.setResultMinutes(Integer.parseInt(tMCBL2
 								.getSelectedItem().toString()));
 						lane2.setResultSecondes(Integer.parseInt(tSCBL2
@@ -268,6 +279,7 @@ public class AllHeats extends JDialog {
 						lane2.setResultMSeconds(Integer.parseInt(tMSCBL2
 								.getSelectedItem().toString()));
 						lane2.setResultTime();
+						lane2.setPerformanceStatus("OK");
 						resultLanes.add(lane2);
 						tMCBL2.setEnabled(false);
 						tSCBL2.setEnabled(false);
@@ -276,7 +288,7 @@ public class AllHeats extends JDialog {
 						dnsL2.setEnabled(false);
 						saveL2.setText("Edit");
 						statusLableL2.setText("OK");
-						statusLableL2.setForeground(new Color(0,153,0));
+						statusLableL2.setForeground(new Color(0, 153, 0));
 					} else {
 						tMCBL2.setEnabled(true);
 						tSCBL2.setEnabled(true);
@@ -294,7 +306,7 @@ public class AllHeats extends JDialog {
 					if (tMCBL2.isEnabled()) {
 						tMCBL2.setSelectedItem("00");
 						tSCBL2.setSelectedItem("00");
-						tMSCBL2.setSelectedItem("00");						
+						tMSCBL2.setSelectedItem("00");
 						lane2.setResultMinutes(Integer.parseInt(tMCBL2
 								.getSelectedItem().toString()));
 						lane2.setResultSecondes(Integer.parseInt(tSCBL2
@@ -329,7 +341,7 @@ public class AllHeats extends JDialog {
 					if (tMCBL2.isEnabled()) {
 						tMCBL2.setSelectedItem("00");
 						tSCBL2.setSelectedItem("00");
-						tMSCBL2.setSelectedItem("00");						
+						tMSCBL2.setSelectedItem("00");
 						lane2.setResultMinutes(Integer.parseInt(tMCBL2
 								.getSelectedItem().toString()));
 						lane2.setResultSecondes(Integer.parseInt(tSCBL2
@@ -385,8 +397,8 @@ public class AllHeats extends JDialog {
 			heatsPanel.add(statusLableL3);
 			final Swimmer swimmerL3 = heats.getLane3().getSwimmer();
 			final Event eventL3 = heats.getLane3().getEvent();
-			final Lane lane3 = new Lane(swimmerL3, eventL3, 0,
-					new Integer(0), new Integer(0), new Integer(0));
+			final Lane lane3 = new Lane(swimmerL3, eventL3, 0, new Integer(0),
+					new Integer(0), new Integer(0));
 			saveL3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tMCBL3.isEnabled()) {
@@ -397,6 +409,7 @@ public class AllHeats extends JDialog {
 						lane3.setResultMSeconds(Integer.parseInt(tMSCBL3
 								.getSelectedItem().toString()));
 						lane3.setResultTime();
+						lane3.setPerformanceStatus("OK");
 						resultLanes.add(lane3);
 						tMCBL3.setEnabled(false);
 						tSCBL3.setEnabled(false);
@@ -405,7 +418,7 @@ public class AllHeats extends JDialog {
 						dnsL3.setEnabled(false);
 						saveL3.setText("Edit");
 						statusLableL3.setText("OK");
-						statusLableL3.setForeground(new Color(0,153,0));
+						statusLableL3.setForeground(new Color(0, 153, 0));
 					} else {
 						tMCBL3.setEnabled(true);
 						tSCBL3.setEnabled(true);
@@ -423,7 +436,7 @@ public class AllHeats extends JDialog {
 					if (tMCBL3.isEnabled()) {
 						tMCBL3.setSelectedItem("00");
 						tSCBL3.setSelectedItem("00");
-						tMSCBL3.setSelectedItem("00");						
+						tMSCBL3.setSelectedItem("00");
 						lane3.setResultMinutes(Integer.parseInt(tMCBL3
 								.getSelectedItem().toString()));
 						lane3.setResultSecondes(Integer.parseInt(tSCBL3
@@ -458,7 +471,7 @@ public class AllHeats extends JDialog {
 					if (tMCBL3.isEnabled()) {
 						tMCBL3.setSelectedItem("00");
 						tSCBL3.setSelectedItem("00");
-						tMSCBL3.setSelectedItem("00");						
+						tMSCBL3.setSelectedItem("00");
 						lane3.setResultMinutes(Integer.parseInt(tMCBL3
 								.getSelectedItem().toString()));
 						lane3.setResultSecondes(Integer.parseInt(tSCBL3
@@ -514,8 +527,8 @@ public class AllHeats extends JDialog {
 			heatsPanel.add(statusLableL4);
 			final Swimmer swimmerL4 = heats.getLane4().getSwimmer();
 			final Event eventL4 = heats.getLane4().getEvent();
-			final Lane lane4 = new Lane(swimmerL4, eventL4, 0,
-					new Integer(0), new Integer(0), new Integer(0));
+			final Lane lane4 = new Lane(swimmerL4, eventL4, 0, new Integer(0),
+					new Integer(0), new Integer(0));
 			saveL4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tMCBL4.isEnabled()) {
@@ -528,6 +541,7 @@ public class AllHeats extends JDialog {
 						lane4.setResultMSeconds(Integer.parseInt(tMSCBL4
 								.getSelectedItem().toString()));
 						lane4.setResultTime();
+						lane4.setPerformanceStatus("OK");
 						resultLanes.add(lane4);
 						tMCBL4.setEnabled(false);
 						tSCBL4.setEnabled(false);
@@ -536,7 +550,7 @@ public class AllHeats extends JDialog {
 						dnsL4.setEnabled(false);
 						saveL4.setText("Edit");
 						statusLableL4.setText("OK");
-						statusLableL4.setForeground(new Color(0,153,0));
+						statusLableL4.setForeground(new Color(0, 153, 0));
 					} else {
 						tMCBL4.setEnabled(true);
 						tSCBL4.setEnabled(true);
@@ -554,7 +568,7 @@ public class AllHeats extends JDialog {
 					if (tMCBL4.isEnabled()) {
 						tMCBL4.setSelectedItem("00");
 						tSCBL4.setSelectedItem("00");
-						tMSCBL4.setSelectedItem("00");						
+						tMSCBL4.setSelectedItem("00");
 						lane4.setResultMinutes(Integer.parseInt(tMCBL4
 								.getSelectedItem().toString()));
 						lane4.setResultSecondes(Integer.parseInt(tSCBL4
@@ -589,7 +603,7 @@ public class AllHeats extends JDialog {
 					if (tMCBL4.isEnabled()) {
 						tMCBL4.setSelectedItem("00");
 						tSCBL4.setSelectedItem("00");
-						tMSCBL4.setSelectedItem("00");						
+						tMSCBL4.setSelectedItem("00");
 						lane4.setResultMinutes(Integer.parseInt(tMCBL4
 								.getSelectedItem().toString()));
 						lane4.setResultSecondes(Integer.parseInt(tSCBL4
@@ -645,8 +659,8 @@ public class AllHeats extends JDialog {
 			heatsPanel.add(statusLableL5);
 			final Swimmer swimmerL5 = heats.getLane5().getSwimmer();
 			final Event eventL5 = heats.getLane5().getEvent();
-			final Lane lane5 = new Lane(swimmerL5, eventL5, 0,
-					new Integer(0), new Integer(0), new Integer(0));
+			final Lane lane5 = new Lane(swimmerL5, eventL5, 0, new Integer(0),
+					new Integer(0), new Integer(0));
 			saveL5.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tMCBL5.isEnabled()) {
@@ -657,6 +671,7 @@ public class AllHeats extends JDialog {
 						lane5.setResultMSeconds(Integer.parseInt(tMSCBL5
 								.getSelectedItem().toString()));
 						lane5.setResultTime();
+						lane5.setPerformanceStatus("OK");
 						resultLanes.add(lane5);
 						tMCBL5.setEnabled(false);
 						tSCBL5.setEnabled(false);
@@ -665,7 +680,7 @@ public class AllHeats extends JDialog {
 						dnsL5.setEnabled(false);
 						saveL5.setText("Edit");
 						statusLableL5.setText("OK");
-						statusLableL5.setForeground(new Color(0,153,0));
+						statusLableL5.setForeground(new Color(0, 153, 0));
 					} else {
 						tMCBL5.setEnabled(true);
 						tSCBL5.setEnabled(true);
@@ -683,7 +698,7 @@ public class AllHeats extends JDialog {
 					if (tMCBL5.isEnabled()) {
 						tMCBL5.setSelectedItem("00");
 						tSCBL5.setSelectedItem("00");
-						tMSCBL5.setSelectedItem("00");						
+						tMSCBL5.setSelectedItem("00");
 						lane5.setResultMinutes(Integer.parseInt(tMCBL5
 								.getSelectedItem().toString()));
 						lane5.setResultSecondes(Integer.parseInt(tSCBL5
@@ -718,7 +733,7 @@ public class AllHeats extends JDialog {
 					if (tMCBL5.isEnabled()) {
 						tMCBL5.setSelectedItem("00");
 						tSCBL5.setSelectedItem("00");
-						tMSCBL5.setSelectedItem("00");						
+						tMSCBL5.setSelectedItem("00");
 						lane5.setResultMinutes(Integer.parseInt(tMCBL5
 								.getSelectedItem().toString()));
 						lane5.setResultSecondes(Integer.parseInt(tSCBL5
@@ -774,8 +789,8 @@ public class AllHeats extends JDialog {
 			heatsPanel.add(statusLableL6);
 			final Swimmer swimmerL6 = heats.getLane6().getSwimmer();
 			final Event eventL6 = heats.getLane6().getEvent();
-			final Lane lane6 = new Lane(swimmerL6, eventL6, 0,
-					new Integer(0), new Integer(0), new Integer(0));
+			final Lane lane6 = new Lane(swimmerL6, eventL6, 0, new Integer(0),
+					new Integer(0), new Integer(0));
 			saveL6.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tMCBL6.isEnabled()) {
@@ -786,6 +801,7 @@ public class AllHeats extends JDialog {
 						lane6.setResultMSeconds(Integer.parseInt(tMSCBL6
 								.getSelectedItem().toString()));
 						lane6.setResultTime();
+						lane6.setPerformanceStatus("OK");
 						resultLanes.add(lane6);
 						tMCBL6.setEnabled(false);
 						tSCBL6.setEnabled(false);
@@ -794,7 +810,7 @@ public class AllHeats extends JDialog {
 						dnsL6.setEnabled(false);
 						saveL6.setText("Edit");
 						statusLableL6.setText("OK");
-						statusLableL6.setForeground(new Color(0,153,0));
+						statusLableL6.setForeground(new Color(0, 153, 0));
 					} else {
 						tMCBL6.setEnabled(true);
 						tSCBL6.setEnabled(true);
@@ -812,7 +828,7 @@ public class AllHeats extends JDialog {
 					if (tMCBL6.isEnabled()) {
 						tMCBL6.setSelectedItem("00");
 						tSCBL6.setSelectedItem("00");
-						tMSCBL6.setSelectedItem("00");						
+						tMSCBL6.setSelectedItem("00");
 						lane6.setResultMinutes(Integer.parseInt(tMCBL6
 								.getSelectedItem().toString()));
 						lane6.setResultSecondes(Integer.parseInt(tSCBL6
@@ -847,7 +863,7 @@ public class AllHeats extends JDialog {
 					if (tMCBL6.isEnabled()) {
 						tMCBL6.setSelectedItem("00");
 						tSCBL6.setSelectedItem("00");
-						tMSCBL6.setSelectedItem("00");						
+						tMSCBL6.setSelectedItem("00");
 						lane6.setResultMinutes(Integer.parseInt(tMCBL6
 								.getSelectedItem().toString()));
 						lane6.setResultSecondes(Integer.parseInt(tSCBL6
@@ -901,12 +917,13 @@ public class AllHeats extends JDialog {
 				heatsPanel.add(saveL7);
 				heatsPanel.add(dsqL7);
 				heatsPanel.add(dnsL7);
-				final JLabel statusLableL7 = new JLabel("waiting", JLabel.CENTER);
+				final JLabel statusLableL7 = new JLabel("waiting",
+						JLabel.CENTER);
 				heatsPanel.add(statusLableL7);
 				final Swimmer swimmerL7 = heats.getLane7().getSwimmer();
 				final Event eventL7 = heats.getLane7().getEvent();
-				final Lane lane7 = new Lane(swimmerL7, eventL7, 0,
-						new Integer(0), new Integer(0), new Integer(0));
+				final Lane lane7 = new Lane(swimmerL7, eventL7, 0, new Integer(
+						0), new Integer(0), new Integer(0));
 				saveL7.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (tMCBL7.isEnabled()) {
@@ -917,6 +934,7 @@ public class AllHeats extends JDialog {
 							lane7.setResultMSeconds(Integer.parseInt(tMSCBL7
 									.getSelectedItem().toString()));
 							lane7.setResultTime();
+							lane7.setPerformanceStatus("OK");
 							resultLanes.add(lane7);
 							tMCBL7.setEnabled(false);
 							tSCBL7.setEnabled(false);
@@ -925,7 +943,7 @@ public class AllHeats extends JDialog {
 							dnsL7.setEnabled(false);
 							saveL7.setText("Edit");
 							statusLableL7.setText("OK");
-							statusLableL7.setForeground(new Color(0,153,0));
+							statusLableL7.setForeground(new Color(0, 153, 0));
 						} else {
 							tMCBL7.setEnabled(true);
 							tSCBL7.setEnabled(true);
@@ -943,7 +961,7 @@ public class AllHeats extends JDialog {
 						if (tMCBL7.isEnabled()) {
 							tMCBL7.setSelectedItem("00");
 							tSCBL7.setSelectedItem("00");
-							tMSCBL7.setSelectedItem("00");						
+							tMSCBL7.setSelectedItem("00");
 							lane7.setResultMinutes(Integer.parseInt(tMCBL7
 									.getSelectedItem().toString()));
 							lane7.setResultSecondes(Integer.parseInt(tSCBL7
@@ -978,7 +996,7 @@ public class AllHeats extends JDialog {
 						if (tMCBL7.isEnabled()) {
 							tMCBL7.setSelectedItem("00");
 							tSCBL7.setSelectedItem("00");
-							tMSCBL7.setSelectedItem("00");						
+							tMSCBL7.setSelectedItem("00");
 							lane7.setResultMinutes(Integer.parseInt(tMCBL7
 									.getSelectedItem().toString()));
 							lane7.setResultSecondes(Integer.parseInt(tSCBL7
@@ -1031,17 +1049,19 @@ public class AllHeats extends JDialog {
 				heatsPanel.add(saveL8);
 				heatsPanel.add(dsqL8);
 				heatsPanel.add(dnsL8);
-				final JLabel statusLableL8 = new JLabel("waiting", JLabel.CENTER);
+				final JLabel statusLableL8 = new JLabel("waiting",
+						JLabel.CENTER);
 				heatsPanel.add(statusLableL8);
 				final Swimmer swimmerL8 = heats.getLane8().getSwimmer();
 				final Event eventL8 = heats.getLane8().getEvent();
-				final Lane lane8 = new Lane(swimmerL8, eventL8, 0,
-						new Integer(0), new Integer(0), new Integer(0));
+				final Lane lane8 = new Lane(swimmerL8, eventL8, 0, new Integer(
+						0), new Integer(0), new Integer(0));
 				saveL8.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (tMCBL8.isEnabled()) {
 							Lane lane8 = new Lane(swimmerL8, eventL8, 0,
-									new Integer(0), new Integer(0), new Integer(0));
+									new Integer(0), new Integer(0),
+									new Integer(0));
 							lane8.setResultMinutes(Integer.parseInt(tMCBL8
 									.getSelectedItem().toString()));
 							lane8.setResultSecondes(Integer.parseInt(tSCBL8
@@ -1049,6 +1069,7 @@ public class AllHeats extends JDialog {
 							lane8.setResultMSeconds(Integer.parseInt(tMSCBL8
 									.getSelectedItem().toString()));
 							lane8.setResultTime();
+							lane8.setPerformanceStatus("OK");
 							resultLanes.add(lane8);
 							tMCBL8.setEnabled(false);
 							tSCBL8.setEnabled(false);
@@ -1057,7 +1078,7 @@ public class AllHeats extends JDialog {
 							dnsL8.setEnabled(false);
 							saveL8.setText("Edit");
 							statusLableL8.setText("OK");
-							statusLableL8.setForeground(new Color(0,153,0));
+							statusLableL8.setForeground(new Color(0, 153, 0));
 						} else {
 							tMCBL8.setEnabled(true);
 							tSCBL8.setEnabled(true);
@@ -1075,7 +1096,7 @@ public class AllHeats extends JDialog {
 						if (tMCBL8.isEnabled()) {
 							tMCBL8.setSelectedItem("00");
 							tSCBL8.setSelectedItem("00");
-							tMSCBL8.setSelectedItem("00");						
+							tMSCBL8.setSelectedItem("00");
 							lane8.setResultMinutes(Integer.parseInt(tMCBL8
 									.getSelectedItem().toString()));
 							lane8.setResultSecondes(Integer.parseInt(tSCBL8
@@ -1110,7 +1131,7 @@ public class AllHeats extends JDialog {
 						if (tMCBL8.isEnabled()) {
 							tMCBL8.setSelectedItem("00");
 							tSCBL8.setSelectedItem("00");
-							tMSCBL8.setSelectedItem("00");						
+							tMSCBL8.setSelectedItem("00");
 							lane8.setResultMinutes(Integer.parseInt(tMCBL8
 									.getSelectedItem().toString()));
 							lane8.setResultSecondes(Integer.parseInt(tSCBL8
@@ -1189,14 +1210,14 @@ public class AllHeats extends JDialog {
 			if (!dir.exists()) {
 				dir.mkdir();
 			}
-		} 
+		}
 	}
 
 	private void printResults(String eventName) {
 		try {
 			handleFile("rezultate", "-1");
 			FileWriter fstream = new FileWriter(pathFile.get("rezultate")
-					+ "\\" + "Rezultate " + eventName + ".csv", true);
+					+ "\\" + "Rezultate " + eventName + ".csv", false);
 			BufferedWriter out = new BufferedWriter(fstream);
 			for (Lane lanes : resultLanes) {
 				out.write(lanes.getSwimmer().getName() + ";"
@@ -1205,7 +1226,8 @@ public class AllHeats extends JDialog {
 						+ lanes.getResultMinutes() + ";"
 						+ lanes.getResultSecondes() + ";"
 						+ lanes.getResultMSeconds() + ";"
-						+ lanes.getResultTime());
+						+ lanes.getResultTime()  + ";"
+						+ lanes.getPerformanceStatus());
 				out.newLine();
 			}
 			out.close();
@@ -1213,8 +1235,8 @@ public class AllHeats extends JDialog {
 			e.getMessage();
 		}
 		// write the heats in pdf files
-//		ResultWriter rWriter = new ResultWriter(event, competitionTitle);
-//		rWriter.run();
+		// ResultWriter rWriter = new ResultWriter(event, competitionTitle);
+		// rWriter.run();
 
 	}
 
@@ -1223,6 +1245,10 @@ public class AllHeats extends JDialog {
 			public void run() {
 				AllHeats dialog = new AllHeats(new Event(), new String(),
 						new String());
+				// Operations operations = new Operations();
+				// AllHeats dialog = new
+				// AllHeats(operations.returnEvent("sprint"), "25 Meters",
+				// "www");
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
 						System.exit(0);
@@ -1231,6 +1257,14 @@ public class AllHeats extends JDialog {
 				dialog.setVisible(true);
 			}
 		});
+	}
+
+	public Operations getOperations() {
+		return operations;
+	}
+
+	public void setOperations(Operations operations) {
+		this.operations = operations;
 	}
 
 	public Event getEvent() {
