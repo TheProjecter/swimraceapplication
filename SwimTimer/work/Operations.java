@@ -437,7 +437,7 @@ public class Operations {
 		try {
 			handleFile("serii", "-1");
 			FileWriter fstream = new FileWriter(pathFile.get("serii") + "\\"
-					+ fileName, true);
+					+ fileName, false);
 			BufferedWriter out = new BufferedWriter(fstream);
 			out.newLine();
 			out.write("Proba " + heatList.get(0).getEventName());
@@ -629,7 +629,7 @@ public class Operations {
 					String[] entry = line.split(";");
 					results.add(new Result(returnSwimmer(entry[0]), Integer
 							.valueOf(entry[3]), Integer.valueOf(entry[4]),
-							Integer.valueOf(entry[5]), Long.valueOf(entry[6])));
+							Integer.valueOf(entry[5]), Long.valueOf(entry[6]), String.valueOf(entry[7])));
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -655,7 +655,7 @@ public class Operations {
 		try {
 			FileWriter fstream = new FileWriter(pathFile.get("rezultate")
 					+ "\\" + "Rezultate Ordonate " + event.getName() + ".csv",
-					true);
+					false);
 			BufferedWriter out = new BufferedWriter(fstream);
 
 			for (String age : ageGroups) {

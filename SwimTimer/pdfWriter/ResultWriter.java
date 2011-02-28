@@ -125,7 +125,7 @@ public class ResultWriter {
 	}
 
 	private PdfPTable getResultsTable() {
-		float[] tableWidth = { 0.02f, 0.31f, 0.25f, 0.12f, 0.14f, 0.12f, 0.04f };
+		float[] tableWidth = { 0.02f, 0.27f, 0.23f, 0.12f, 0.14f, 0.12f, 0.04f, 0.06f };
 		PdfPTable table = new PdfPTable(tableWidth);
 
 		// get the results and order them after the time
@@ -143,7 +143,7 @@ public class ResultWriter {
 				PdfPCell c11 = new PdfPCell(new Phrase(age, normalHeaderFont));
 				c11.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c11);
-				c11.setColspan(7);
+				c11.setColspan(8);
 				table.addCell(c11);
 
 				for (Result res : results) {
@@ -192,6 +192,9 @@ public class ResultWriter {
 								normalFont));
 						disableBorders(c27);
 						table.addCell(c27);
+						PdfPCell c28 = new PdfPCell(new Phrase(res.getPerformanceStatus(), normalFont));
+						disableBorders(c28);
+						table.addCell(c28);
 						classification++;
 					}
 				}
@@ -202,7 +205,7 @@ public class ResultWriter {
 				PdfPCell c31 = new PdfPCell(new Phrase(" ", normalHeaderFont));
 				c31.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c31);
-				c31.setColspan(7);
+				c31.setColspan(8);
 				table.addCell(c31);
 
 			}

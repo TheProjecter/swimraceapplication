@@ -55,7 +55,8 @@ public class Calculations {
 		List<FinaBaseTimes> fina = new ArrayList<FinaBaseTimes>();
 		Scanner scanner;
 		try {
-			scanner = new Scanner(new File(pathFile.get("util") + "\\FINA Base Times.csv"));
+			scanner = new Scanner(new File(pathFile.get("util")
+					+ "\\FINA Base Times.csv"));
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
@@ -85,9 +86,8 @@ public class Calculations {
 		List<FinaBaseTimes> fina = getAllBaseTimes();
 		for (FinaBaseTimes times : fina) {
 			// establish the pooltype
-			System.out.println(times.getPoolType() + " - " + 
-							   times.getStyle() + " - " + 
-							   times.getLength());
+			System.out.println(times.getPoolType() + " - " + times.getStyle()
+					+ " - " + times.getLength());
 			matchFoundPoolType = (times.getPoolType().equals("SCM")) ? (event
 					.getPoolType().contains("25") ? true : false) : (times
 					.getPoolType().equals("LCM")) ? (event.getPoolType()
@@ -114,22 +114,30 @@ public class Calculations {
 															.toString()) ? true
 											: false) : false;
 			// establish the length
-			matchFoundDistance = ((times.getLength()+" Meters").equals(event.getLength())) ? true
-					: false;
+			matchFoundDistance = ((times.getLength() + " Meters").equals(event
+					.getLength())) ? true : false;
 			// match the gender
 			matchFoundGender = times.getGender().equals(event.getGender()) ? true
 					: false;
-			System.out.println(times.getGender() + " - " + event.getGender() + " - " + matchFoundPoolType + " - " + matchFoundStyle + " - " + matchFoundDistance + " - " + matchFoundGender);								
-			if (matchFoundPoolType && matchFoundStyle && matchFoundDistance && matchFoundGender) {
-				System.out.println("time " + times.getBaseTimesSeconds());	
+			System.out.println(times.getGender() + " - " + event.getGender()
+					+ " - " + matchFoundPoolType + " - " + matchFoundStyle
+					+ " - " + matchFoundDistance + " - " + matchFoundGender);
+			if (matchFoundPoolType && matchFoundStyle && matchFoundDistance
+					&& matchFoundGender) {
+				System.out.println("time " + times.getBaseTimesSeconds());
 				return times.getBaseTimesSeconds();
 			}
 		}
-		System.out.println(matchFoundPoolType + " - " + matchFoundStyle + " - " + matchFoundDistance);
+		System.out.println(matchFoundPoolType + " - " + matchFoundStyle + " - "
+				+ matchFoundDistance);
 		return 0;
 	}
 
 	public String calculateFinaPoints(double swimTime, double baseTime) {
-		return String.format("%.5g%n", 1000 * Math.pow(baseTime / swimTime, 3));
+		if (swimTime == 0.0)
+			return "0";
+		else
+			return String.format("%.5g%n",
+					1000 * Math.pow(baseTime / swimTime, 3));
 	}
 }

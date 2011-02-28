@@ -19,6 +19,7 @@ import pdfWriter.ResultWriter;
 
 import utils.Calculations;
 import utils.Constants;
+import utils.SwimmersPerHeatSingleton;
 
 import entities.Event;
 import entities.FinaBaseTimes;
@@ -32,7 +33,8 @@ public class Sandbox {
 	private static Map<String, String> dataFile = new Constants().getDataFiles();
 	private static Map<String, String> pathFile = new Constants().getDataFiles();
 	private final List<String> list = new ArrayList<String>();
-
+	Operations operations = new Operations();
+	
 	public void push() {
 		list.add("value");
 	}
@@ -42,12 +44,24 @@ public class Sandbox {
 		}
 	}
 	public static void main(String[] args) throws IOException {
-		Sandbox s = new Sandbox();
-		s.push();
-		s.display();
-		System.out.println("------");
-		s.push();
-		s.display();
+		SwimmersPerHeatSingleton swimPerHeat = SwimmersPerHeatSingleton.getInstance();
+		swimPerHeat.push("sprint", 4);
+		swimPerHeat.push("testNR", 6);
+
+		swimPerHeat.push("sprint", 3);
+		swimPerHeat.push("testNR", 7);
+		
+		System.out.println(swimPerHeat.getValue("sprint"));	
+
+		for (Map.Entry<String, Integer> entry: swimPerHeat.getSwimmerPerHeatMapping().entrySet()) {
+			System.out.println(entry.getKey() + " - " + entry.getValue());	
+		}
+
+//		s.push();
+//		s.display();
+//		System.out.println("------");
+//		s.push();
+//		s.display();
 //		String result;
 //		Constants con = new Constants();
 //		
