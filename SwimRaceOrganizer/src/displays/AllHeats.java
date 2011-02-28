@@ -31,6 +31,7 @@ import customComponents.TimesComboBox;
 import entities.Event;
 import entities.Heat;
 import entities.Lane;
+import entities.Result;
 import entities.Swimmer;
 
 public class AllHeats extends JDialog {
@@ -47,13 +48,15 @@ public class AllHeats extends JDialog {
 	private Map<String, String> pathFile = new Constants().getDataFiles();
 	private SwimmersPerHeatSingleton swimmerPerHeat = SwimmersPerHeatSingleton
 			.getInstance();
-
+	private List<Result> results = new ArrayList<Result>();
+	
 	private static final long serialVersionUID = 1L;
 
 	public AllHeats(Event event, String poolType, String competitionTitle) {
 		super();
 		System.out.println("create HEAT");
 		setEvent(event);
+		setResults(operations.returnResults(event));
 		setPoolType(poolType);
 		setCompetitionTitle(competitionTitle);
 		setTitle("All heats for " + event.getName());
@@ -387,7 +390,16 @@ public class AllHeats extends JDialog {
 			heatsPanel.add(new JLabel(heats.getLane3().getEntryMinutes() + ":"
 					+ heats.getLane3().getEntrySecondes() + ":"
 					+ heats.getLane3().getEntryMSeconds()));
+			// populate the times with the previously entered times
+			System.out.println("Min: " + operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMinutes());
+			System.out.println("Sec: " + operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultSecondes());
+			System.out.println("MSec: " + operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMSeconds());
+			tMCBL3.setSelectedItem(operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMinutes());
+			tSCBL3.setSelectedItem(operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultSecondes());
+			tMSCBL3.setSelectedItem(operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMSeconds());
 			heatsPanel.add(tMCBL3);
+			heatsPanel.add(tSCBL3);
+			heatsPanel.add(tMSCBL3);
 			heatsPanel.add(tSCBL3);
 			heatsPanel.add(tMSCBL3);
 			heatsPanel.add(saveL3);
@@ -1289,6 +1301,14 @@ public class AllHeats extends JDialog {
 
 	public void setCompetitionTitle(String competitionTitle) {
 		this.competitionTitle = competitionTitle;
+	}
+
+	public List<Result> getResults() {
+		return results;
+	}
+
+	public void setResults(List<Result> results) {
+		this.results = results;
 	}
 
 }
