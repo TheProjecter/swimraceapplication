@@ -8,15 +8,18 @@ public class Result {
 	private Integer resultMSeconds;
 	private long resultTime;
 	private double swimTimeSeconds;
+	private String performanceStatus;
 
 	public Result(Swimmer swimmer, Integer resultMinutes,
-			Integer resultSecondes, Integer resultMSeconds, long resultTime) {
+			Integer resultSecondes, Integer resultMSeconds, long resultTime,
+			String performanceStatus) {
 		setSwimmer(swimmer);
 		setResultMinutes(resultMinutes);
 		setResultSecondes(resultSecondes);
 		setResultMSeconds(resultMSeconds);
 		setResultTime(resultTime);
 		setSwimTimeSeconds();
+		setPerformanceStatus(performanceStatus.equals("") ? " " : performanceStatus);
 	}
 
 	public Swimmer getSwimmer() {
@@ -66,6 +69,14 @@ public class Result {
 	private void setSwimTimeSeconds() {
 		this.swimTimeSeconds = (this.resultMinutes * 60) + this.resultSecondes
 				+ (double) this.resultMSeconds / 100;
+	}
+
+	public String getPerformanceStatus() {
+		return performanceStatus;
+	}
+
+	public void setPerformanceStatus(String performanceStatus) {
+		this.performanceStatus = performanceStatus;
 	}
 
 }
