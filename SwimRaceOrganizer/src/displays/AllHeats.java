@@ -394,9 +394,12 @@ public class AllHeats extends JDialog {
 			System.out.println("Min: " + operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMinutes());
 			System.out.println("Sec: " + operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultSecondes());
 			System.out.println("MSec: " + operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMSeconds());
-			tMCBL3.setSelectedItem(operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMinutes());
-			tSCBL3.setSelectedItem(operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultSecondes());
-			tMSCBL3.setSelectedItem(operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMSeconds());
+			tMCBL3.setSelectedItem(operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMinutes().toString());
+			tSCBL3.setSelectedItem(operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultSecondes().toString());
+			tMSCBL3.setSelectedItem(operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMSeconds().toString());
+//			tMCBL3.setSelectedItem("01");
+//			tSCBL3.setSelectedItem("28");
+//			tMSCBL3.setSelectedItem("78");
 			heatsPanel.add(tMCBL3);
 			heatsPanel.add(tSCBL3);
 			heatsPanel.add(tMSCBL3);
