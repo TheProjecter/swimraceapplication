@@ -49,12 +49,11 @@ public class AllHeats extends JDialog {
 	private SwimmersPerHeatSingleton swimmerPerHeat = SwimmersPerHeatSingleton
 			.getInstance();
 	private List<Result> results = new ArrayList<Result>();
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public AllHeats(Event event, String poolType, String competitionTitle) {
 		super();
-		System.out.println("create HEAT");
 		setEvent(event);
 		setResults(operations.returnResults(event));
 		setPoolType(poolType);
@@ -142,6 +141,49 @@ public class AllHeats extends JDialog {
 			final Event eventL1 = heats.getLane1().getEvent();
 			final Lane lane1 = new Lane(swimmerL1, eventL1, 0, new Integer(0),
 					new Integer(0), new Integer(0));
+			// populate the times with the previously entered times, if there
+			// 	are any
+			final Result perviousResultL1 = operations.getResultForSwimmer(results, heats
+					.getLane1().getSwimmer());
+			if (!perviousResultL1.getSwimmer().getName().equals("")) {
+				tMCBL1.setSelectedItem(padLeft(perviousResultL1.getResultMinutes()
+						.toString(), 2));
+				tSCBL1.setSelectedItem(padLeft(perviousResultL1.getResultSecondes()
+						.toString(), 2));
+				tMSCBL1.setSelectedItem(padLeft(perviousResultL1.getResultMSeconds()
+						.toString(), 2));
+				tMCBL1.setEnabled(false);
+				tSCBL1.setEnabled(false);
+				tMSCBL1.setEnabled(false);
+				if (perviousResultL1.getPerformanceStatus().equals("OK")) {
+					tMCBL1.setEnabled(false);
+					tSCBL1.setEnabled(false);
+					tMSCBL1.setEnabled(false);
+					dsqL1.setEnabled(false);
+					dnsL1.setEnabled(false);
+					saveL1.setText("Edit");
+					statusLableL1.setText("OK");
+					statusLableL1.setForeground(new Color(0, 153, 0));
+				} else if (perviousResultL1.getPerformanceStatus().equals("DSQ")) {
+					tMCBL1.setEnabled(false);
+					tSCBL1.setEnabled(false);
+					tMSCBL1.setEnabled(false);
+					saveL1.setEnabled(false);
+					dnsL1.setEnabled(false);
+					dsqL1.setText("dsq");
+					statusLableL1.setText("DSQ");
+					statusLableL1.setForeground(Color.RED);
+				} else if (perviousResultL1.getPerformanceStatus().equals("DNS")) {
+					tMCBL1.setEnabled(false);
+					tSCBL1.setEnabled(false);
+					tMSCBL1.setEnabled(false);
+					saveL1.setEnabled(false);
+					dsqL1.setEnabled(false);
+					dnsL1.setText("dns");
+					statusLableL1.setText("DNS");
+					statusLableL1.setForeground(Color.BLUE);
+				}
+			}
 			saveL1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tMCBL1.isEnabled()) {
@@ -272,6 +314,49 @@ public class AllHeats extends JDialog {
 			final Event eventL2 = heats.getLane2().getEvent();
 			final Lane lane2 = new Lane(swimmerL2, eventL2, 0, new Integer(0),
 					new Integer(0), new Integer(0));
+			// populate the times with the previously entered times, if there
+			// 	are any
+			final Result perviousResultL2 = operations.getResultForSwimmer(results, heats
+					.getLane2().getSwimmer());
+			if (!perviousResultL2.getSwimmer().getName().equals("")) {
+				tMCBL2.setSelectedItem(padLeft(perviousResultL2.getResultMinutes()
+						.toString(), 2));
+				tSCBL2.setSelectedItem(padLeft(perviousResultL2.getResultSecondes()
+						.toString(), 2));
+				tMSCBL2.setSelectedItem(padLeft(perviousResultL2.getResultMSeconds()
+						.toString(), 2));
+				tMCBL2.setEnabled(false);
+				tSCBL2.setEnabled(false);
+				tMSCBL2.setEnabled(false);
+				if (perviousResultL2.getPerformanceStatus().equals("OK")) {
+					tMCBL2.setEnabled(false);
+					tSCBL2.setEnabled(false);
+					tMSCBL2.setEnabled(false);
+					dsqL2.setEnabled(false);
+					dnsL2.setEnabled(false);
+					saveL2.setText("Edit");
+					statusLableL2.setText("OK");
+					statusLableL2.setForeground(new Color(0, 153, 0));
+				} else if (perviousResultL2.getPerformanceStatus().equals("DSQ")) {
+					tMCBL1.setEnabled(false);
+					tSCBL1.setEnabled(false);
+					tMSCBL2.setEnabled(false);
+					saveL2.setEnabled(false);
+					dnsL2.setEnabled(false);
+					dsqL2.setText("dsq");
+					statusLableL2.setText("DSQ");
+					statusLableL2.setForeground(Color.RED);
+				} else if (perviousResultL2.getPerformanceStatus().equals("DNS")) {
+					tMCBL1.setEnabled(false);
+					tSCBL1.setEnabled(false);
+					tMSCBL2.setEnabled(false);
+					saveL2.setEnabled(false);
+					dsqL2.setEnabled(false);
+					dnsL2.setText("dns");
+					statusLableL2.setText("DNS");
+					statusLableL2.setForeground(Color.BLUE);
+				}
+			}
 			saveL2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tMCBL2.isEnabled()) {
@@ -390,16 +475,6 @@ public class AllHeats extends JDialog {
 			heatsPanel.add(new JLabel(heats.getLane3().getEntryMinutes() + ":"
 					+ heats.getLane3().getEntrySecondes() + ":"
 					+ heats.getLane3().getEntryMSeconds()));
-			// populate the times with the previously entered times
-			System.out.println("Min: " + operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMinutes());
-			System.out.println("Sec: " + operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultSecondes());
-			System.out.println("MSec: " + operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMSeconds());
-			tMCBL3.setSelectedItem(operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMinutes().toString());
-			tSCBL3.setSelectedItem(operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultSecondes().toString());
-			tMSCBL3.setSelectedItem(operations.getResultForSwimmer(results, heats.getLane3().getSwimmer()).getResultMSeconds().toString());
-//			tMCBL3.setSelectedItem("01");
-//			tSCBL3.setSelectedItem("28");
-//			tMSCBL3.setSelectedItem("78");
 			heatsPanel.add(tMCBL3);
 			heatsPanel.add(tSCBL3);
 			heatsPanel.add(tMSCBL3);
@@ -414,6 +489,49 @@ public class AllHeats extends JDialog {
 			final Event eventL3 = heats.getLane3().getEvent();
 			final Lane lane3 = new Lane(swimmerL3, eventL3, 0, new Integer(0),
 					new Integer(0), new Integer(0));
+			// populate the times with the previously entered times, if there
+			// 	are any
+			final Result perviousResultL3 = operations.getResultForSwimmer(results, heats
+					.getLane3().getSwimmer());
+			if (!perviousResultL3.getSwimmer().getName().equals("")) {
+				tMCBL3.setSelectedItem(padLeft(perviousResultL3.getResultMinutes()
+						.toString(), 2));
+				tSCBL3.setSelectedItem(padLeft(perviousResultL3.getResultSecondes()
+						.toString(), 2));
+				tMSCBL3.setSelectedItem(padLeft(perviousResultL3.getResultMSeconds()
+						.toString(), 2));
+				tMCBL3.setEnabled(false);
+				tSCBL3.setEnabled(false);
+				tMSCBL3.setEnabled(false);
+				if (perviousResultL3.getPerformanceStatus().equals("OK")) {
+					tMCBL3.setEnabled(false);
+					tSCBL3.setEnabled(false);
+					tMSCBL3.setEnabled(false);
+					dsqL3.setEnabled(false);
+					dnsL3.setEnabled(false);
+					saveL3.setText("Edit");
+					statusLableL3.setText("OK");
+					statusLableL3.setForeground(new Color(0, 153, 0));
+				} else if (perviousResultL3.getPerformanceStatus().equals("DSQ")) {
+					tMCBL3.setEnabled(false);
+					tSCBL3.setEnabled(false);
+					tMSCBL3.setEnabled(false);
+					saveL3.setEnabled(false);
+					dnsL3.setEnabled(false);
+					dsqL3.setText("dsq");
+					statusLableL3.setText("DSQ");
+					statusLableL3.setForeground(Color.RED);
+				} else if (perviousResultL3.getPerformanceStatus().equals("DNS")) {
+					tMCBL3.setEnabled(false);
+					tSCBL3.setEnabled(false);
+					tMSCBL3.setEnabled(false);
+					saveL3.setEnabled(false);
+					dsqL3.setEnabled(false);
+					dnsL3.setText("dns");
+					statusLableL3.setText("DNS");
+					statusLableL3.setForeground(Color.BLUE);
+				}
+			}
 			saveL3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tMCBL3.isEnabled()) {
@@ -544,6 +662,49 @@ public class AllHeats extends JDialog {
 			final Event eventL4 = heats.getLane4().getEvent();
 			final Lane lane4 = new Lane(swimmerL4, eventL4, 0, new Integer(0),
 					new Integer(0), new Integer(0));
+			// populate the times with the previously entered times, if there
+			// 	are any
+			final Result perviousResultL4 = operations.getResultForSwimmer(results, heats
+					.getLane4().getSwimmer());
+			if (!perviousResultL4.getSwimmer().getName().equals("")) {
+				tMCBL4.setSelectedItem(padLeft(perviousResultL4.getResultMinutes()
+						.toString(), 2));
+				tSCBL4.setSelectedItem(padLeft(perviousResultL4.getResultSecondes()
+						.toString(), 2));
+				tMSCBL4.setSelectedItem(padLeft(perviousResultL4.getResultMSeconds()
+						.toString(), 2));
+				tMCBL4.setEnabled(false);
+				tSCBL4.setEnabled(false);
+				tMSCBL4.setEnabled(false);
+				if (perviousResultL4.getPerformanceStatus().equals("OK")) {
+					tMCBL4.setEnabled(false);
+					tSCBL4.setEnabled(false);
+					tMSCBL4.setEnabled(false);
+					dsqL4.setEnabled(false);
+					dnsL4.setEnabled(false);
+					saveL4.setText("Edit");
+					statusLableL4.setText("OK");
+					statusLableL4.setForeground(new Color(0, 153, 0));
+				} else if (perviousResultL4.getPerformanceStatus().equals("DSQ")) {
+					tMCBL4.setEnabled(false);
+					tSCBL4.setEnabled(false);
+					tMSCBL4.setEnabled(false);
+					saveL4.setEnabled(false);
+					dnsL4.setEnabled(false);
+					dsqL4.setText("dsq");
+					statusLableL4.setText("DSQ");
+					statusLableL4.setForeground(Color.RED);
+				} else if (perviousResultL4.getPerformanceStatus().equals("DNS")) {
+					tMCBL4.setEnabled(false);
+					tSCBL4.setEnabled(false);
+					tMSCBL4.setEnabled(false);
+					saveL4.setEnabled(false);
+					dsqL4.setEnabled(false);
+					dnsL4.setText("dns");
+					statusLableL4.setText("DNS");
+					statusLableL4.setForeground(Color.BLUE);
+				}
+			}
 			saveL4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tMCBL4.isEnabled()) {
@@ -676,6 +837,49 @@ public class AllHeats extends JDialog {
 			final Event eventL5 = heats.getLane5().getEvent();
 			final Lane lane5 = new Lane(swimmerL5, eventL5, 0, new Integer(0),
 					new Integer(0), new Integer(0));
+			// populate the times with the previously entered times, if there
+			// 	are any
+			final Result perviousResultL5 = operations.getResultForSwimmer(results, heats
+					.getLane5().getSwimmer());
+			if (!perviousResultL5.getSwimmer().getName().equals("")) {
+				tMCBL5.setSelectedItem(padLeft(perviousResultL5.getResultMinutes()
+						.toString(), 2));
+				tSCBL5.setSelectedItem(padLeft(perviousResultL5.getResultSecondes()
+						.toString(), 2));
+				tMSCBL5.setSelectedItem(padLeft(perviousResultL5.getResultMSeconds()
+						.toString(), 2));
+				tMCBL5.setEnabled(false);
+				tSCBL5.setEnabled(false);
+				tMSCBL5.setEnabled(false);
+				if (perviousResultL5.getPerformanceStatus().equals("OK")) {
+					tMCBL5.setEnabled(false);
+					tSCBL5.setEnabled(false);
+					tMSCBL5.setEnabled(false);
+					dsqL5.setEnabled(false);
+					dnsL5.setEnabled(false);
+					saveL5.setText("Edit");
+					statusLableL5.setText("OK");
+					statusLableL5.setForeground(new Color(0, 153, 0));
+				} else if (perviousResultL5.getPerformanceStatus().equals("DSQ")) {
+					tMCBL5.setEnabled(false);
+					tSCBL5.setEnabled(false);
+					tMSCBL5.setEnabled(false);
+					saveL5.setEnabled(false);
+					dnsL5.setEnabled(false);
+					dsqL5.setText("dsq");
+					statusLableL5.setText("DSQ");
+					statusLableL5.setForeground(Color.RED);
+				} else if (perviousResultL5.getPerformanceStatus().equals("DNS")) {
+					tMCBL5.setEnabled(false);
+					tSCBL5.setEnabled(false);
+					tMSCBL5.setEnabled(false);
+					saveL5.setEnabled(false);
+					dsqL5.setEnabled(false);
+					dnsL5.setText("dns");
+					statusLableL5.setText("DNS");
+					statusLableL5.setForeground(Color.BLUE);
+				}
+			}
 			saveL5.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tMCBL5.isEnabled()) {
@@ -806,6 +1010,49 @@ public class AllHeats extends JDialog {
 			final Event eventL6 = heats.getLane6().getEvent();
 			final Lane lane6 = new Lane(swimmerL6, eventL6, 0, new Integer(0),
 					new Integer(0), new Integer(0));
+			// populate the times with the previously entered times, if there
+			// 	are any
+			Result perviousResultL6 = operations.getResultForSwimmer(results, heats
+					.getLane6().getSwimmer());
+			if (!perviousResultL6.getSwimmer().getName().equals("")) {
+				tMCBL6.setSelectedItem(padLeft(perviousResultL6.getResultMinutes()
+						.toString(), 2));
+				tSCBL6.setSelectedItem(padLeft(perviousResultL6.getResultSecondes()
+						.toString(), 2));
+				tMSCBL6.setSelectedItem(padLeft(perviousResultL6.getResultMSeconds()
+						.toString(), 2));
+				tMCBL6.setEnabled(false);
+				tSCBL6.setEnabled(false);
+				tMSCBL6.setEnabled(false);
+				if (perviousResultL6.getPerformanceStatus().equals("OK")) {
+					tMCBL6.setEnabled(false);
+					tSCBL6.setEnabled(false);
+					tMSCBL6.setEnabled(false);
+					dsqL6.setEnabled(false);
+					dnsL6.setEnabled(false);
+					saveL6.setText("Edit");
+					statusLableL6.setText("OK");
+					statusLableL6.setForeground(new Color(0, 153, 0));
+				} else if (perviousResultL6.getPerformanceStatus().equals("DSQ")) {
+					tMCBL6.setEnabled(false);
+					tSCBL6.setEnabled(false);
+					tMSCBL6.setEnabled(false);
+					saveL6.setEnabled(false);
+					dnsL6.setEnabled(false);
+					dsqL6.setText("dsq");
+					statusLableL6.setText("DSQ");
+					statusLableL6.setForeground(Color.RED);
+				} else if (perviousResultL6.getPerformanceStatus().equals("DNS")) {
+					tMCBL6.setEnabled(false);
+					tSCBL6.setEnabled(false);
+					tMSCBL6.setEnabled(false);
+					saveL6.setEnabled(false);
+					dsqL6.setEnabled(false);
+					dnsL6.setText("dns");
+					statusLableL6.setText("DNS");
+					statusLableL6.setForeground(Color.BLUE);
+				}
+			}
 			saveL6.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tMCBL6.isEnabled()) {
@@ -939,6 +1186,49 @@ public class AllHeats extends JDialog {
 				final Event eventL7 = heats.getLane7().getEvent();
 				final Lane lane7 = new Lane(swimmerL7, eventL7, 0, new Integer(
 						0), new Integer(0), new Integer(0));
+				// populate the times with the previously entered times, if there
+				// 	are any
+				Result perviousResultL7 = operations.getResultForSwimmer(results, heats
+						.getLane7().getSwimmer());
+				if (!perviousResultL7.getSwimmer().getName().equals("")) {
+					tMCBL7.setSelectedItem(padLeft(perviousResultL7.getResultMinutes()
+							.toString(), 2));
+					tSCBL7.setSelectedItem(padLeft(perviousResultL7.getResultSecondes()
+							.toString(), 2));
+					tMSCBL7.setSelectedItem(padLeft(perviousResultL7.getResultMSeconds()
+							.toString(), 2));
+					tMCBL7.setEnabled(false);
+					tSCBL7.setEnabled(false);
+					tMSCBL7.setEnabled(false);
+					if (perviousResultL7.getPerformanceStatus().equals("OK")) {
+						tMCBL7.setEnabled(false);
+						tSCBL7.setEnabled(false);
+						tMSCBL7.setEnabled(false);
+						dsqL7.setEnabled(false);
+						dnsL7.setEnabled(false);
+						saveL7.setText("Edit");
+						statusLableL7.setText("OK");
+						statusLableL7.setForeground(new Color(0, 153, 0));
+					} else if (perviousResultL7.getPerformanceStatus().equals("DSQ")) {
+						tMCBL7.setEnabled(false);
+						tSCBL7.setEnabled(false);
+						tMSCBL7.setEnabled(false);
+						saveL7.setEnabled(false);
+						dnsL7.setEnabled(false);
+						dsqL7.setText("dsq");
+						statusLableL7.setText("DSQ");
+						statusLableL7.setForeground(Color.RED);
+					} else if (perviousResultL7.getPerformanceStatus().equals("DNS")) {
+						tMCBL7.setEnabled(false);
+						tSCBL7.setEnabled(false);
+						tMSCBL7.setEnabled(false);
+						saveL7.setEnabled(false);
+						dsqL7.setEnabled(false);
+						dnsL7.setText("dns");
+						statusLableL7.setText("DNS");
+						statusLableL7.setForeground(Color.BLUE);
+					}
+				}
 				saveL7.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (tMCBL7.isEnabled()) {
@@ -1071,6 +1361,49 @@ public class AllHeats extends JDialog {
 				final Event eventL8 = heats.getLane8().getEvent();
 				final Lane lane8 = new Lane(swimmerL8, eventL8, 0, new Integer(
 						0), new Integer(0), new Integer(0));
+				// populate the times with the previously entered times, if there
+				// 	are any
+				Result perviousResultL8 = operations.getResultForSwimmer(results, heats
+						.getLane8().getSwimmer());
+				if (!perviousResultL8.getSwimmer().getName().equals("")) {
+					tMCBL8.setSelectedItem(padLeft(perviousResultL8.getResultMinutes()
+							.toString(), 2));
+					tSCBL8.setSelectedItem(padLeft(perviousResultL8.getResultSecondes()
+							.toString(), 2));
+					tMSCBL8.setSelectedItem(padLeft(perviousResultL8.getResultMSeconds()
+							.toString(), 2));
+					tMCBL8.setEnabled(false);
+					tSCBL8.setEnabled(false);
+					tMSCBL8.setEnabled(false);
+					if (perviousResultL8.getPerformanceStatus().equals("OK")) {
+						tMCBL8.setEnabled(false);
+						tSCBL8.setEnabled(false);
+						tMSCBL8.setEnabled(false);
+						dsqL8.setEnabled(false);
+						dnsL8.setEnabled(false);
+						saveL8.setText("Edit");
+						statusLableL8.setText("OK");
+						statusLableL8.setForeground(new Color(0, 153, 0));
+					} else if (perviousResultL8.getPerformanceStatus().equals("DSQ")) {
+						tMCBL8.setEnabled(false);
+						tSCBL8.setEnabled(false);
+						tMSCBL8.setEnabled(false);
+						saveL8.setEnabled(false);
+						dnsL8.setEnabled(false);
+						dsqL8.setText("dsq");
+						statusLableL8.setText("DSQ");
+						statusLableL8.setForeground(Color.RED);
+					} else if (perviousResultL8.getPerformanceStatus().equals("DNS")) {
+						tMCBL8.setEnabled(false);
+						tSCBL8.setEnabled(false);
+						tMSCBL8.setEnabled(false);
+						saveL8.setEnabled(false);
+						dsqL8.setEnabled(false);
+						dnsL8.setText("dns");
+						statusLableL8.setText("DNS");
+						statusLableL8.setForeground(Color.BLUE);
+					}
+				}
 				saveL8.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (tMCBL8.isEnabled()) {
@@ -1241,7 +1574,7 @@ public class AllHeats extends JDialog {
 						+ lanes.getResultMinutes() + ";"
 						+ lanes.getResultSecondes() + ";"
 						+ lanes.getResultMSeconds() + ";"
-						+ lanes.getResultTime()  + ";"
+						+ lanes.getResultTime() + ";"
 						+ lanes.getPerformanceStatus());
 				out.newLine();
 			}
@@ -1272,6 +1605,10 @@ public class AllHeats extends JDialog {
 				dialog.setVisible(true);
 			}
 		});
+	}
+
+	private static String padLeft(String s, int n) {
+		return String.format("%1$#" + n + "s", s).replace(' ', '0');
 	}
 
 	public Operations getOperations() {
