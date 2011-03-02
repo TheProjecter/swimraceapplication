@@ -635,7 +635,7 @@ public class Operations {
 				e.printStackTrace();
 			}
 		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
+			return new ArrayList<Result>();
 		}
 
 		return results;
@@ -708,7 +708,6 @@ public class Operations {
 		try {
 			File inFile = new File(file);
 			if (!inFile.isFile()) {
-				System.out.println("Parameter is not an existing file");
 				return;
 			}
 			File tempFile = new File(inFile.getAbsolutePath() + ".tmp");
@@ -727,7 +726,6 @@ public class Operations {
 
 			// Delete the original file
 			if (!inFile.delete()) {
-				System.out.println("Could not delete file");
 				return;
 			}
 			// Rename the new file to the filename the original file had.
