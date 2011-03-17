@@ -11,21 +11,17 @@
 
 package swimraceorganizer;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Map;
 
-import javax.swing.JFrame;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 import utils.Constants;
 import utils.EventOperations;
-import utils.SwimmerOperations;
-
-import customComponents.WarrningDialog;
-
 import entities.Event;
-import entities.Swimmer;
 
 /**
  * 
@@ -98,9 +94,13 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 		setTitle(resourceMap.getString("Form.title")); // NOI18N
 		setName("Form"); // NOI18N
 		setResizable(false);
-
+		
 		jTEventName.setText(resourceMap.getString("jTEventName.text")); // NOI18N
 		jTEventName.setName("jTEventName"); // NOI18N
+		jTEventName.setFont(new Font(jLEventName.getFont().getName(),
+				Font.BOLD, jLEventName.getFont().getSize()));
+		jTEventName.setEditable(false);
+		jTEventName.setBorder(BorderFactory.createEmptyBorder());
 
 		jLEventName.setText(resourceMap.getString("jLEventName.text")); // NOI18N
 		jLEventName.setName("jLEventName"); // NOI18N
@@ -300,6 +300,31 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 								.addContainerGap(
 										javax.swing.GroupLayout.DEFAULT_SIZE,
 										Short.MAX_VALUE)));
+
+		jCBDistance.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				try {
+					fillEventName();
+				} catch (NullPointerException e) {
+				}
+			}
+		});
+		jCBStyle.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				try {
+					fillEventName();
+				} catch (NullPointerException e) {
+				}
+			}
+		});
+		jCBGender.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				try {
+					fillEventName();
+				} catch (NullPointerException e) {
+				}
+			}
+		});
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
