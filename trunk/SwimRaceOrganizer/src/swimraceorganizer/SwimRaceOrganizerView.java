@@ -403,7 +403,7 @@ public class SwimRaceOrganizerView extends FrameView {
 			setPoolType(settingsWindow.getPoolType());
 			setCompetitionName(settingsWindow.getCompetitionName());
 			generateHeatOutputs = new HeatOutputGenerator(poolType, competitionName, "Store Results");
-			generateHeatOutputs.setLocationRelativeTo(mainFrame);
+			//generateHeatOutputs.setLocationRelativeTo(mainFrame);
 			SwimRaceOrganizerApp.getApplication().show(generateHeatOutputs);
 		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null,

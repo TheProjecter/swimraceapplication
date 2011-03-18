@@ -411,7 +411,7 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 	}
 
 	private void fillEventName() {
-		jTEventName.setText("Proba " + (evOp.getNumberOfEvent() + 1) + " : "
+		jTEventName.setText("Proba " + (evOp.getNumberOfEvent() + 1) + " - "
 				+ jCBDistance.getSelectedItem().toString() + " "
 				+ jCBStyle.getSelectedItem().toString() + " "
 				+ jCBGender.getSelectedItem().toString());

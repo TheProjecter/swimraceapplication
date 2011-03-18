@@ -39,7 +39,7 @@ public class SwimRaceOrganizerAboutBox extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class).getContext().getResourceMap(SwimRaceOrganizerAboutBox.class);
-        setTitle(resourceMap.getString("title")); // NOI18N
+        setTitle("About S.A.M. Race Edition v1.0"); // NOI18N
         setModal(true);
         setName("aboutBox"); // NOI18N
         setResizable(false);
@@ -49,28 +49,28 @@ public class SwimRaceOrganizerAboutBox extends javax.swing.JDialog {
         closeButton.setName("closeButton"); // NOI18N
 
         appTitleLabel.setFont(appTitleLabel.getFont().deriveFont(appTitleLabel.getFont().getStyle() | java.awt.Font.BOLD, appTitleLabel.getFont().getSize()+4));
-        appTitleLabel.setText(resourceMap.getString("Application.title")); // NOI18N
+        appTitleLabel.setText("S.A.M. Race Edition"); // NOI18N
         appTitleLabel.setName("appTitleLabel"); // NOI18N
 
         versionLabel.setFont(versionLabel.getFont().deriveFont(versionLabel.getFont().getStyle() | java.awt.Font.BOLD));
         versionLabel.setText(resourceMap.getString("versionLabel.text")); // NOI18N
         versionLabel.setName("versionLabel"); // NOI18N
 
-        appVersionLabel.setText(resourceMap.getString("Application.version")); // NOI18N
+        appVersionLabel.setText("1.0, build 97"); // NOI18N
         appVersionLabel.setName("appVersionLabel"); // NOI18N
 
         vendorLabel.setFont(vendorLabel.getFont().deriveFont(vendorLabel.getFont().getStyle() | java.awt.Font.BOLD));
         vendorLabel.setText(resourceMap.getString("vendorLabel.text")); // NOI18N
         vendorLabel.setName("vendorLabel"); // NOI18N
 
-        appVendorLabel.setText(resourceMap.getString("Application.vendor")); // NOI18N
+        appVendorLabel.setText("r.j. Sovarszki"); // NOI18N
         appVendorLabel.setName("appVendorLabel"); // NOI18N
 
         homepageLabel.setFont(homepageLabel.getFont().deriveFont(homepageLabel.getFont().getStyle() | java.awt.Font.BOLD));
-        homepageLabel.setText(resourceMap.getString("homepageLabel.text")); // NOI18N
+        homepageLabel.setText("Contact"); // NOI18N
         homepageLabel.setName("homepageLabel"); // NOI18N
 
-        appHomepageLabel.setText(resourceMap.getString("Application.homepage")); // NOI18N
+        appHomepageLabel.setText("rollandsov@gmail.com"); // NOI18N
         appHomepageLabel.setName("appHomepageLabel"); // NOI18N
 
         appDescLabel.setText(resourceMap.getString("appDescLabel.text")); // NOI18N

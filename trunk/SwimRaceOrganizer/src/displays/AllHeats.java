@@ -60,8 +60,9 @@ public class AllHeats extends JDialog {
 		setCompetitionTitle(competitionTitle);
 		setTitle("All heats for " + event.getName());
 		addComponentsToPane(getContentPane());
-		setAlwaysOnTop(true);
+		setAlwaysOnTop(false);
 		setResizable(false);
+		setLocation(100, 100);
 	}
 
 	/**
@@ -228,7 +229,7 @@ public class AllHeats extends JDialog {
 								.getSelectedItem().toString()));
 						lane1.setResultMSeconds(Integer.parseInt(tMSCBL1
 								.getSelectedItem().toString()));
-						lane1.setResultTime();
+						lane1.setResultTime(99999998);
 						lane1.setPerformanceStatus("DSQ");
 						resultLanes.add(lane1);
 						tMCBL1.setEnabled(false);
@@ -263,7 +264,7 @@ public class AllHeats extends JDialog {
 								.getSelectedItem().toString()));
 						lane1.setResultMSeconds(Integer.parseInt(tMSCBL1
 								.getSelectedItem().toString()));
-						lane1.setResultTime();
+						lane1.setResultTime(99999999);
 						lane1.setPerformanceStatus("DNS");
 						resultLanes.add(lane1);
 						tMCBL1.setEnabled(false);
@@ -401,7 +402,7 @@ public class AllHeats extends JDialog {
 								.getSelectedItem().toString()));
 						lane2.setResultMSeconds(Integer.parseInt(tMSCBL2
 								.getSelectedItem().toString()));
-						lane2.setResultTime();
+						lane2.setResultTime(99999998);
 						lane2.setPerformanceStatus("DSQ");
 						resultLanes.add(lane2);
 						tMCBL2.setEnabled(false);
@@ -436,7 +437,7 @@ public class AllHeats extends JDialog {
 								.getSelectedItem().toString()));
 						lane2.setResultMSeconds(Integer.parseInt(tMSCBL2
 								.getSelectedItem().toString()));
-						lane2.setResultTime();
+						lane2.setResultTime(99999999);
 						lane2.setPerformanceStatus("DNS");
 						resultLanes.add(lane2);
 						tMCBL2.setEnabled(false);
@@ -576,7 +577,7 @@ public class AllHeats extends JDialog {
 								.getSelectedItem().toString()));
 						lane3.setResultMSeconds(Integer.parseInt(tMSCBL3
 								.getSelectedItem().toString()));
-						lane3.setResultTime();
+						lane3.setResultTime(99999998);
 						lane3.setPerformanceStatus("DSQ");
 						resultLanes.add(lane3);
 						tMCBL3.setEnabled(false);
@@ -611,7 +612,7 @@ public class AllHeats extends JDialog {
 								.getSelectedItem().toString()));
 						lane3.setResultMSeconds(Integer.parseInt(tMSCBL3
 								.getSelectedItem().toString()));
-						lane3.setResultTime();
+						lane3.setResultTime(99999999);
 						lane3.setPerformanceStatus("DNS");
 						resultLanes.add(lane3);
 						tMCBL3.setEnabled(false);
@@ -751,7 +752,7 @@ public class AllHeats extends JDialog {
 								.getSelectedItem().toString()));
 						lane4.setResultMSeconds(Integer.parseInt(tMSCBL4
 								.getSelectedItem().toString()));
-						lane4.setResultTime();
+						lane4.setResultTime(99999998);
 						lane4.setPerformanceStatus("DSQ");
 						resultLanes.add(lane4);
 						tMCBL4.setEnabled(false);
@@ -786,7 +787,7 @@ public class AllHeats extends JDialog {
 								.getSelectedItem().toString()));
 						lane4.setResultMSeconds(Integer.parseInt(tMSCBL4
 								.getSelectedItem().toString()));
-						lane4.setResultTime();
+						lane4.setResultTime(99999999);
 						lane4.setPerformanceStatus("DNS");
 						resultLanes.add(lane4);
 						tMCBL4.setEnabled(false);
@@ -924,7 +925,7 @@ public class AllHeats extends JDialog {
 								.getSelectedItem().toString()));
 						lane5.setResultMSeconds(Integer.parseInt(tMSCBL5
 								.getSelectedItem().toString()));
-						lane5.setResultTime();
+						lane5.setResultTime(99999998);
 						lane5.setPerformanceStatus("DSQ");
 						resultLanes.add(lane5);
 						tMCBL5.setEnabled(false);
@@ -959,7 +960,7 @@ public class AllHeats extends JDialog {
 								.getSelectedItem().toString()));
 						lane5.setResultMSeconds(Integer.parseInt(tMSCBL5
 								.getSelectedItem().toString()));
-						lane5.setResultTime();
+						lane5.setResultTime(99999999);
 						lane5.setPerformanceStatus("DNS");
 						resultLanes.add(lane5);
 						tMCBL5.setEnabled(false);
@@ -1097,7 +1098,7 @@ public class AllHeats extends JDialog {
 								.getSelectedItem().toString()));
 						lane6.setResultMSeconds(Integer.parseInt(tMSCBL6
 								.getSelectedItem().toString()));
-						lane6.setResultTime();
+						lane6.setResultTime(99999998);
 						lane6.setPerformanceStatus("DSQ");
 						resultLanes.add(lane6);
 						tMCBL6.setEnabled(false);
@@ -1132,7 +1133,7 @@ public class AllHeats extends JDialog {
 								.getSelectedItem().toString()));
 						lane6.setResultMSeconds(Integer.parseInt(tMSCBL6
 								.getSelectedItem().toString()));
-						lane6.setResultTime();
+						lane6.setResultTime(99999999);
 						lane6.setPerformanceStatus("DNS");
 						resultLanes.add(lane6);
 						tMCBL6.setEnabled(false);
@@ -1273,7 +1274,7 @@ public class AllHeats extends JDialog {
 									.getSelectedItem().toString()));
 							lane7.setResultMSeconds(Integer.parseInt(tMSCBL7
 									.getSelectedItem().toString()));
-							lane7.setResultTime();
+							lane7.setResultTime(99999998);
 							lane7.setPerformanceStatus("DSQ");
 							resultLanes.add(lane7);
 							tMCBL7.setEnabled(false);
@@ -1308,7 +1309,7 @@ public class AllHeats extends JDialog {
 									.getSelectedItem().toString()));
 							lane7.setResultMSeconds(Integer.parseInt(tMSCBL7
 									.getSelectedItem().toString()));
-							lane7.setResultTime();
+							lane7.setResultTime(99999999);
 							lane7.setPerformanceStatus("DNS");
 							resultLanes.add(lane7);
 							tMCBL7.setEnabled(false);
@@ -1451,7 +1452,7 @@ public class AllHeats extends JDialog {
 									.getSelectedItem().toString()));
 							lane8.setResultMSeconds(Integer.parseInt(tMSCBL8
 									.getSelectedItem().toString()));
-							lane8.setResultTime();
+							lane8.setResultTime(99999998);
 							lane8.setPerformanceStatus("DSQ");
 							resultLanes.add(lane8);
 							tMCBL8.setEnabled(false);
@@ -1486,7 +1487,7 @@ public class AllHeats extends JDialog {
 									.getSelectedItem().toString()));
 							lane8.setResultMSeconds(Integer.parseInt(tMSCBL8
 									.getSelectedItem().toString()));
-							lane8.setResultTime();
+							lane8.setResultTime(99999999);
 							lane8.setPerformanceStatus("DNS");
 							resultLanes.add(lane8);
 							tMCBL8.setEnabled(false);
