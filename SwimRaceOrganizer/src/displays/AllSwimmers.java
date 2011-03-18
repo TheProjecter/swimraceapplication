@@ -173,7 +173,6 @@ public class AllSwimmers extends javax.swing.JDialog {
 	private void deleteSwimmer(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBDeletedeleteSwimmer
 		Swimmer swimmer = sOps.returnSwimmer(jCBSwimmerSelection
 				.getSelectedItem().toString());
-		System.out.println("Name: " + swimmer.getName());
 		sOps.deleteRegistrationForSwimmer(swimmer);
 		setSwimmers(sOps.deleteSwimmers(swimmers, swimmer));
 		fillAllSwimmers();
