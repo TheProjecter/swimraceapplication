@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -27,13 +28,15 @@ import entities.Heat;
 import entities.Lane;
 import entities.LaneComparator;
 import entities.Registration;
+import entities.Result;
 import entities.Swimmer;
 
 public class Sandbox {
 	private static Map<String, String> dataFile = new Constants().getDataFiles();
 	private static Map<String, String> pathFile = new Constants().getDataFiles();
 	private final List<String> list = new ArrayList<String>();
-	Operations operations = new Operations();
+	private Operations operations = new Operations();
+	private List<Result> results;
 	
 	public void push() {
 		list.add("value");
@@ -43,20 +46,21 @@ public class Sandbox {
 			System.out.println(i);
 		}
 	}
+	
 	public static void main(String[] args) throws IOException {
-		SwimmersPerHeatSingleton swimPerHeat = SwimmersPerHeatSingleton.getInstance();
-		swimPerHeat.push("sprint", 4);
-		swimPerHeat.push("testNR", 6);
 
-		swimPerHeat.push("sprint", 3);
-		swimPerHeat.push("testNR", 7);
-		
-		System.out.println(swimPerHeat.getValue("sprint"));	
-
-		for (Map.Entry<String, Integer> entry: swimPerHeat.getSwimmerPerHeatMapping().entrySet()) {
-			System.out.println(entry.getKey() + " - " + entry.getValue());	
-		}
-
+//		SwimmersPerHeatSingleton swimPerHeat = SwimmersPerHeatSingleton.getInstance();
+//		swimPerHeat.push("sprint", 4);
+//		swimPerHeat.push("testNR", 6);
+//
+//		swimPerHeat.push("sprint", 3);
+//		swimPerHeat.push("testNR", 7);
+//		
+//		System.out.println(swimPerHeat.getValue("sprint"));	
+//
+//		for (Map.Entry<String, Integer> entry: swimPerHeat.getSwimmerPerHeatMapping().entrySet()) {
+//			System.out.println(entry.getKey() + " - " + entry.getValue());	
+//		}
 //		s.push();
 //		s.display();
 //		System.out.println("------");
@@ -238,5 +242,11 @@ public class Sandbox {
 		//
 		// }
 		
+	}
+	public List<Result> getResults() {
+		return results;
+	}
+	public void setResults(List<Result> results) {
+		this.results = results;
 	}
 }

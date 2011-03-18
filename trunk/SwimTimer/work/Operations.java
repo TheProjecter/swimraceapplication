@@ -405,17 +405,20 @@ public class Operations {
 
 	}
 
-	public List<Heat> generateHeats(Event event, String poolType, int swimmersPerHeat) {
+	public List<Heat> generateHeats(Event event, String poolType,
+			int swimmersPerHeat) {
 		List<Lane> laneList = new ArrayList<Lane>();
 		List<Lane> lanesOnHeat = new ArrayList<Lane>();
 		List<Heat> heatList = new ArrayList<Heat>();
 		int laneNumbers = (poolType.contains("25") ? 6 : 8);
-		
+
 		// create and sort lanes
 		laneList = createLanes(event);
 		Collections.sort(laneList, new LaneComparator());
 
-		int heatCount = (laneList.size()) / swimmersPerHeat + 1;
+		int heatCount = laneList.size() % swimmersPerHeat == 0 ? laneList
+				.size() / swimmersPerHeat : laneList.size() / swimmersPerHeat
+				+ 1;
 		int startPos = 0;
 		int endPos = (swimmersPerHeat > laneList.size()) ? laneList.size()
 				: swimmersPerHeat;
@@ -629,7 +632,8 @@ public class Operations {
 					String[] entry = line.split(";");
 					results.add(new Result(returnSwimmer(entry[0]), Integer
 							.valueOf(entry[3]), Integer.valueOf(entry[4]),
-							Integer.valueOf(entry[5]), Long.valueOf(entry[6]), String.valueOf(entry[7])));
+							Integer.valueOf(entry[5]), Long.valueOf(entry[6]),
+							String.valueOf(entry[7])));
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -640,7 +644,7 @@ public class Operations {
 
 		return results;
 	}
-	
+
 	/**
 	 * Returns the results for one swimmer, from the results list
 	 */

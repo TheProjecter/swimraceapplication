@@ -38,6 +38,10 @@ public class Lane {
 		this.resultTime = (long) ((this.resultMinutes * 60 * 1000)
 				+ (this.resultSecondes * 1000) + this.resultMSeconds);
 	}
+	
+	public void setResultTime(long resultTime) {
+		this.resultTime = resultTime;
+	}
 
 	public Swimmer getSwimmer() {
 		return swimmer;

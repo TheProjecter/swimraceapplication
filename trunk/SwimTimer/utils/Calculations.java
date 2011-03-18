@@ -86,8 +86,6 @@ public class Calculations {
 		List<FinaBaseTimes> fina = getAllBaseTimes();
 		for (FinaBaseTimes times : fina) {
 			// establish the pooltype
-			System.out.println(times.getPoolType() + " - " + times.getStyle()
-					+ " - " + times.getLength());
 			matchFoundPoolType = (times.getPoolType().equals("SCM")) ? (event
 					.getPoolType().contains("25") ? true : false) : (times
 					.getPoolType().equals("LCM")) ? (event.getPoolType()
@@ -119,17 +117,11 @@ public class Calculations {
 			// match the gender
 			matchFoundGender = times.getGender().equals(event.getGender()) ? true
 					: false;
-			System.out.println(times.getGender() + " - " + event.getGender()
-					+ " - " + matchFoundPoolType + " - " + matchFoundStyle
-					+ " - " + matchFoundDistance + " - " + matchFoundGender);
 			if (matchFoundPoolType && matchFoundStyle && matchFoundDistance
 					&& matchFoundGender) {
-				System.out.println("time " + times.getBaseTimesSeconds());
 				return times.getBaseTimesSeconds();
 			}
 		}
-		System.out.println(matchFoundPoolType + " - " + matchFoundStyle + " - "
-				+ matchFoundDistance);
 		return 0;
 	}
 
