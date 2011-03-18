@@ -125,7 +125,7 @@ public class ResultWriter {
 	}
 
 	private PdfPTable getResultsTable() {
-		float[] tableWidth = { 0.02f, 0.27f, 0.23f, 0.12f, 0.14f, 0.12f, 0.04f, 0.06f };
+		float[] tableWidth = { 0.04f, 0.26f, 0.21f, 0.12f, 0.14f, 0.12f, 0.04f, 0.06f };
 		PdfPTable table = new PdfPTable(tableWidth);
 
 		// get the results and order them after the time

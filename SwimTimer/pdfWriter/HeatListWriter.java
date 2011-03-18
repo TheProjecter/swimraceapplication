@@ -105,7 +105,7 @@ public class HeatListWriter {
 
 		/**
 		 * Add the event name
-		 */
+  	    */
 		Paragraph eventNameParagraph = new Paragraph(event.getName()
 				.toUpperCase(), headerFont2);
 		document.add(eventNameParagraph);
