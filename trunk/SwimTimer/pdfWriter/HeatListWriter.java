@@ -36,8 +36,8 @@ public class HeatListWriter {
 			Font.BOLD);
 	private static Font headerFont2 = new Font(Font.FontFamily.COURIER, 14,
 			Font.BOLD);
-	private static Font normalHeaderFont = new Font(Font.FontFamily.COURIER, 10,
-			Font.BOLD);
+	private static Font normalHeaderFont = new Font(Font.FontFamily.COURIER,
+			10, Font.BOLD);
 	private static Font normalFont = new Font(Font.FontFamily.COURIER, 10,
 			Font.NORMAL);
 	private static String file;
@@ -47,11 +47,13 @@ public class HeatListWriter {
 	private Operations operations = new Operations();
 	private Map<String, String> pathFile = new Constants().getDataFiles();
 	private List<Heat> heatList;
-	
-	public HeatListWriter(Event event, String competitionTitle, List<Heat> heatList) {
+
+	public HeatListWriter(Event event, String competitionTitle,
+			List<Heat> heatList, String heatGender) {
 		setEvent(event);
 		setHeatList(heatList);
-		setFile(pathFile.get("serii") + "\\" + "Serii " + event.getName()+".pdf");
+		setFile(pathFile.get("serii") + "\\" + "Serii " + event.getName() + " "
+				+ heatGender + ".pdf");
 		setCompetitionTitle(competitionTitle);
 	}
 
@@ -77,7 +79,8 @@ public class HeatListWriter {
 		 * Add the logo
 		 */
 		try {
-			Image image = Image.getInstance(pathFile.get("util") + "\\logo.png");
+			Image image = Image
+					.getInstance(pathFile.get("util") + "\\logo.png");
 			image.setAlignment(Element.ALIGN_CENTER);
 			document.add(image);
 		} catch (MalformedURLException e) {
@@ -105,7 +108,7 @@ public class HeatListWriter {
 
 		/**
 		 * Add the event name
-  	    */
+		 */
 		Paragraph eventNameParagraph = new Paragraph(event.getName()
 				.toUpperCase(), headerFont2);
 		document.add(eventNameParagraph);
@@ -123,7 +126,7 @@ public class HeatListWriter {
 	}
 
 	private PdfPTable getHeatTable() {
-		float[] tableWidth = { 0.04f, 0.36f, 0.30f, 0.14f, 0.16f};
+		float[] tableWidth = { 0.04f, 0.36f, 0.30f, 0.14f, 0.16f };
 		PdfPTable table = new PdfPTable(tableWidth);
 
 		// add Column titles
@@ -156,7 +159,7 @@ public class HeatListWriter {
 			disableBorders(c11);
 			c11.setColspan(5);
 			table.addCell(c11);
-			
+
 			// lane 1 cells
 			PdfPCell c31 = new PdfPCell(new Phrase(Integer.toString(heats
 					.getLane1().getLaneNumber()), normalFont));
@@ -356,7 +359,7 @@ public class HeatListWriter {
 			table.addCell(c85);
 
 			if (event.getPoolType().contains("50")) {
-				
+
 				// lane 7 cells
 				PdfPCell c91 = new PdfPCell(new Phrase(Integer.toString(heats
 						.getLane7().getLaneNumber()), normalFont));
@@ -378,14 +381,15 @@ public class HeatListWriter {
 				c94.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c94);
 				table.addCell(c94);
-				PdfPCell c95 = new PdfPCell(new Phrase(padLeft(
-						Integer.toString(heats.getLane7().getEntryMinutes()), 2)
-						+ ":"
-						+ padLeft(Integer.toString(heats.getLane7()
-								.getEntrySecondes()), 2)
-						+ ","
-						+ padLeft(Integer.toString(heats.getLane7()
-								.getEntryMSeconds()), 2), normalFont));
+				PdfPCell c95 = new PdfPCell(new Phrase(
+						padLeft(Integer.toString(heats.getLane7()
+								.getEntryMinutes()), 2)
+								+ ":"
+								+ padLeft(Integer.toString(heats.getLane7()
+										.getEntrySecondes()), 2)
+								+ ","
+								+ padLeft(Integer.toString(heats.getLane7()
+										.getEntryMSeconds()), 2), normalFont));
 				c95.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c95);
 				table.addCell(c95);
@@ -411,19 +415,20 @@ public class HeatListWriter {
 				c10_4.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c10_4);
 				table.addCell(c10_4);
-				PdfPCell c10_5 = new PdfPCell(new Phrase(padLeft(
-						Integer.toString(heats.getLane8().getEntryMinutes()), 2)
-						+ ":"
-						+ padLeft(Integer.toString(heats.getLane8()
-								.getEntrySecondes()), 2)
-						+ ","
-						+ padLeft(Integer.toString(heats.getLane8()
-								.getEntryMSeconds()), 2), normalFont));
+				PdfPCell c10_5 = new PdfPCell(new Phrase(
+						padLeft(Integer.toString(heats.getLane8()
+								.getEntryMinutes()), 2)
+								+ ":"
+								+ padLeft(Integer.toString(heats.getLane8()
+										.getEntrySecondes()), 2)
+								+ ","
+								+ padLeft(Integer.toString(heats.getLane8()
+										.getEntryMSeconds()), 2), normalFont));
 				c10_5.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c10_5);
 				table.addCell(c10_5);
 			} // end 50m pool extra lanes
-			
+
 			// add empty line after each heat
 			PdfPCell c11_1 = new PdfPCell(new Phrase(" "));
 			c11_1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -441,7 +446,7 @@ public class HeatListWriter {
 			PdfPCell c11_5 = new PdfPCell(new Phrase(" "));
 			disableBorders(c11_5);
 			table.addCell(c11_5);
-			
+
 		}
 
 		return table;

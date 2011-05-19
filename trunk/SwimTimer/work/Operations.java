@@ -117,7 +117,7 @@ public class Operations {
 				while (scanner.hasNextLine()) {
 					entry = scanner.nextLine().split(";");
 					Event event = new Event(entry[0], entry[1], entry[2],
-							entry[3], entry[4]);
+							entry[3]);
 					events.add(event);
 				}
 			} finally {
@@ -132,7 +132,7 @@ public class Operations {
 
 	public Event returnEvent(String eventName) {
 		Scanner scanner;
-		Event event = new Event(null, null, null, null, null);
+		Event event = new Event(null, null, null, null);
 		try {
 			scanner = new Scanner(new File(pathFile.get("core") + "\\"
 					+ dataFile.get("events")));
@@ -143,8 +143,7 @@ public class Operations {
 						event.setName(entry[0]);
 						event.setLength(entry[1]);
 						event.setStyle(entry[2]);
-						event.setGender(entry[3]);
-						event.setPoolType(entry[4]);
+						event.setPoolType(entry[3]);
 						break;
 					}
 				}
@@ -245,7 +244,18 @@ public class Operations {
 		return null;
 	}
 
-	public List<Registration> getRegistrationsForEvent(Event event) {
+	public boolean isSwimmerRegisteredForEvent(Swimmer swimmer, Event event) {
+		List<Registration> registrations = getRegistrationsForSwimmer(swimmer);
+		for (Registration reg : registrations) {
+			if (reg.getEvent().getName().equals(event.getName())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public List<Registration> getRegistrationsForEvent(Event event,
+			String heatGender) {
 		Scanner scanner;
 		List<Registration> registrationsList = new ArrayList<Registration>();
 		try {
@@ -262,7 +272,14 @@ public class Operations {
 								Integer.parseInt(entry[6]),
 								Integer.parseInt(entry[7]),
 								Integer.parseInt(entry[8]));
-						registrationsList.add(registration);
+						// add it to the return list only if the gender of the
+						// Heat corresponds to the swimmers gender
+						boolean addRegistration = registration.getSwimmer()
+								.getGender().toString().equals(heatGender) ? true
+								: heatGender.equals("Mixt") ? true : false;
+						if (addRegistration) {
+							registrationsList.add(registration);
+						}
 					}
 				}
 			} finally {
@@ -342,8 +359,9 @@ public class Operations {
 		}
 	}
 
-	public void deleteRegistrationForEvent(Event event) {
-		List<Registration> registrations = getRegistrationsForEvent(event);
+	public void deleteRegistrationForEvent(Event event, String heatGender) {
+		List<Registration> registrations = getRegistrationsForEvent(event,
+				heatGender);
 		for (Registration reg : registrations) {
 			String lineToRemove = reg.getSwimmer().getName() + ";"
 					+ reg.getSwimmer().getBirthYear() + ";"
@@ -360,9 +378,10 @@ public class Operations {
 		}
 	}
 
-	public List<Lane> createLanes(Event event) {
+	public List<Lane> createLanes(Event event, String heatGender) {
 		List<Lane> laneList = new ArrayList<Lane>();
-		List<Registration> registrationsList = getRegistrationsForEvent(event);
+		List<Registration> registrationsList = getRegistrationsForEvent(event,
+				heatGender);
 
 		for (Registration reg : registrationsList) {
 			Lane lane = new Lane(reg.getSwimmer(), reg.getEvent(),
@@ -406,14 +425,14 @@ public class Operations {
 	}
 
 	public List<Heat> generateHeats(Event event, String poolType,
-			int swimmersPerHeat) {
+			int swimmersPerHeat, String heatGender) {
 		List<Lane> laneList = new ArrayList<Lane>();
 		List<Lane> lanesOnHeat = new ArrayList<Lane>();
 		List<Heat> heatList = new ArrayList<Heat>();
 		int laneNumbers = (poolType.contains("25") ? 6 : 8);
 
 		// create and sort lanes
-		laneList = createLanes(event);
+		laneList = createLanes(event, heatGender);
 		Collections.sort(laneList, new LaneComparator());
 
 		int heatCount = laneList.size() % swimmersPerHeat == 0 ? laneList
