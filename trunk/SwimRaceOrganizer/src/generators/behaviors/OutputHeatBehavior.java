@@ -13,7 +13,7 @@ public class OutputHeatBehavior implements GenerateHeatBehavior {
 	public void generateHeats(String eventName, String poolType,
 			String competitionTitle, String heatGender) {
 		allHeats = new AllHeats(operations.returnEvent(eventName), poolType,
-				competitionTitle);
+				competitionTitle, heatGender);
 		SwimRaceOrganizerApp.getApplication().show(allHeats);
 		allHeats.setSize(700, 300);
 	}
