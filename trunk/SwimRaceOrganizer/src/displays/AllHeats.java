@@ -88,9 +88,9 @@ public class AllHeats extends JDialog {
 		List<Heat> heatList;
 		try {
 			heatList = operations.generateHeats(event, poolType,
-					swimmerPerHeat.getValue(event.getName()));
+					swimmerPerHeat.getValue(event.getName()), null);
 		} catch (NullPointerException e) {
-			heatList = operations.generateHeats(event, poolType, 6);
+			heatList = operations.generateHeats(event, poolType, 6, null);
 		}
 
 		final JPanel heatsPanel = new JPanel();

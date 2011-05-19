@@ -68,6 +68,7 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 		fillSwimmerNames();
 		fillEventNames();
 		fillTimeTables();
+		jTGenderEvent.setVisible(false);
 	}
 
 	/**
@@ -167,11 +168,6 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 		jCBEventName.setModel(new javax.swing.DefaultComboBoxModel(
 				new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 		jCBEventName.setName("jCBEventName"); // NOI18N
-		jCBEventName.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jCBEventNameActionPerformed(evt);
-			}
-		});
 
 		jLSwimmerName.setText(resourceMap.getString("jLSwimmerName.text")); // NOI18N
 		jLSwimmerName.setName("jLSwimmerName"); // NOI18N
@@ -202,274 +198,234 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
-		layout
-				.setHorizontalGroup(layout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												layout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING)
-														.addComponent(
-																jLSwimmerName)
-														.addGroup(
-																layout
-																		.createSequentialGroup()
-																		.addGroup(
-																				layout
-																						.createParallelGroup(
-																								javax.swing.GroupLayout.Alignment.LEADING)
-																						.addComponent(
-																								jLEventName)
-																						.addComponent(
-																								jBRegister)
-																						.addGroup(
-																								layout
-																										.createParallelGroup(
-																												javax.swing.GroupLayout.Alignment.TRAILING,
-																												false)
-																										.addComponent(
-																												jCBSwimmerName,
-																												javax.swing.GroupLayout.Alignment.LEADING,
-																												0,
-																												javax.swing.GroupLayout.DEFAULT_SIZE,
-																												Short.MAX_VALUE)
-																										.addComponent(
-																												jCBEventName,
-																												javax.swing.GroupLayout.Alignment.LEADING,
-																												0,
-																												javax.swing.GroupLayout.DEFAULT_SIZE,
-																												Short.MAX_VALUE)
-																										.addGroup(
-																												javax.swing.GroupLayout.Alignment.LEADING,
-																												layout
-																														.createSequentialGroup()
-																														.addGroup(
-																																layout
-																																		.createParallelGroup(
-																																				javax.swing.GroupLayout.Alignment.LEADING)
-																																		.addComponent(
-																																				jLMinutes)
-																																		.addComponent(
-																																				jCBMinutes,
-																																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																																				56,
-																																				javax.swing.GroupLayout.PREFERRED_SIZE))
-																														.addPreferredGap(
-																																javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-																														.addGroup(
-																																layout
-																																		.createParallelGroup(
-																																				javax.swing.GroupLayout.Alignment.LEADING)
-																																		.addComponent(
-																																				jLSeconds)
-																																		.addComponent(
-																																				jCBSeconds,
-																																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																																				javax.swing.GroupLayout.PREFERRED_SIZE))
-																														.addGap(
-																																14,
-																																14,
-																																14)
-																														.addGroup(
-																																layout
-																																		.createParallelGroup(
-																																				javax.swing.GroupLayout.Alignment.LEADING)
-																																		.addComponent(
-																																				jLMSeconds)
-																																		.addComponent(
-																																				jCBMSeconds,
-																																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																																				javax.swing.GroupLayout.PREFERRED_SIZE)))))
-																		.addGap(
-																				53,
-																				53,
-																				53)
-																		.addGroup(
-																				layout
-																						.createParallelGroup(
-																								javax.swing.GroupLayout.Alignment.TRAILING)
-																						.addGroup(
-																								layout
-																										.createParallelGroup(
-																												javax.swing.GroupLayout.Alignment.TRAILING,
-																												false)
-																										.addComponent(
-																												jTClubName,
-																												javax.swing.GroupLayout.PREFERRED_SIZE,
-																												104,
-																												javax.swing.GroupLayout.PREFERRED_SIZE)
-																										.addGroup(
-																												layout
-																														.createSequentialGroup()
-																														.addComponent(
-																																jTAgeGroup,
-																																0,
-																																0,
-																																Short.MAX_VALUE)
-																														.addPreferredGap(
-																																javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-																														.addGroup(
-																																layout
-																																		.createParallelGroup(
-																																				javax.swing.GroupLayout.Alignment.LEADING,
-																																				false)
-																																		.addComponent(
-																																				jTGenderEvent,
-																																				javax.swing.GroupLayout.Alignment.TRAILING)
-																																		.addComponent(
-																																				jTGender,
-																																				javax.swing.GroupLayout.Alignment.TRAILING,
-																																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																																				41,
-																																				Short.MAX_VALUE))))
-																						.addComponent(
-																								jBCancel)))
-														.addComponent(
-																jSeparatorStatus,
-																javax.swing.GroupLayout.Alignment.TRAILING,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																349,
-																Short.MAX_VALUE)
-														.addComponent(jLStatus))
-										.addContainerGap()));
-		layout
-				.setVerticalGroup(layout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(jLSwimmerName)
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addGroup(
-												layout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING)
-														.addGroup(
-																layout
-																		.createSequentialGroup()
-																		.addComponent(
-																				jTClubName,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addGap(
-																				11,
-																				11,
-																				11)
-																		.addGroup(
-																				layout
-																						.createParallelGroup(
-																								javax.swing.GroupLayout.Alignment.BASELINE)
-																						.addComponent(
-																								jTGender,
-																								javax.swing.GroupLayout.PREFERRED_SIZE,
-																								javax.swing.GroupLayout.DEFAULT_SIZE,
-																								javax.swing.GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								jTAgeGroup,
-																								javax.swing.GroupLayout.PREFERRED_SIZE,
-																								javax.swing.GroupLayout.DEFAULT_SIZE,
-																								javax.swing.GroupLayout.PREFERRED_SIZE))
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				jTGenderEvent,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																				69,
-																				Short.MAX_VALUE)
-																		.addComponent(
-																				jBCancel)
-																		.addGap(
-																				1,
-																				1,
-																				1))
-														.addGroup(
-																layout
-																		.createSequentialGroup()
-																		.addComponent(
-																				jCBSwimmerName,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																		.addComponent(
-																				jLEventName)
-																		.addGap(
-																				10,
-																				10,
-																				10)
-																		.addComponent(
-																				jCBEventName,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				Short.MAX_VALUE)
-																		.addGroup(
-																				layout
-																						.createParallelGroup(
-																								javax.swing.GroupLayout.Alignment.BASELINE)
-																						.addComponent(
-																								jLMinutes)
-																						.addComponent(
-																								jLSeconds)
-																						.addComponent(
-																								jLMSeconds))
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																		.addGroup(
-																				layout
-																						.createParallelGroup(
-																								javax.swing.GroupLayout.Alignment.BASELINE)
-																						.addComponent(
-																								jCBMinutes,
-																								javax.swing.GroupLayout.PREFERRED_SIZE,
-																								javax.swing.GroupLayout.DEFAULT_SIZE,
-																								javax.swing.GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								jCBMSeconds,
-																								javax.swing.GroupLayout.PREFERRED_SIZE,
-																								javax.swing.GroupLayout.DEFAULT_SIZE,
-																								javax.swing.GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								jCBSeconds,
-																								javax.swing.GroupLayout.PREFERRED_SIZE,
-																								javax.swing.GroupLayout.DEFAULT_SIZE,
-																								javax.swing.GroupLayout.PREFERRED_SIZE))
-																		.addGap(
-																				18,
-																				18,
-																				18)
-																		.addComponent(
-																				jBRegister)))
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(
-												jSeparatorStatus,
-												javax.swing.GroupLayout.PREFERRED_SIZE,
-												10,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(jLStatus)
-										.addContainerGap()));
+		layout.setHorizontalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.LEADING)
+												.addComponent(jLSwimmerName)
+												.addGroup(
+														layout.createSequentialGroup()
+																.addGroup(
+																		layout.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.LEADING)
+																				.addComponent(
+																						jLEventName)
+																				.addComponent(
+																						jBRegister)
+																				.addGroup(
+																						layout.createParallelGroup(
+																								javax.swing.GroupLayout.Alignment.TRAILING,
+																								false)
+																								.addComponent(
+																										jCBSwimmerName,
+																										javax.swing.GroupLayout.Alignment.LEADING,
+																										0,
+																										javax.swing.GroupLayout.DEFAULT_SIZE,
+																										Short.MAX_VALUE)
+																								.addComponent(
+																										jCBEventName,
+																										javax.swing.GroupLayout.Alignment.LEADING,
+																										0,
+																										javax.swing.GroupLayout.DEFAULT_SIZE,
+																										Short.MAX_VALUE)
+																								.addGroup(
+																										javax.swing.GroupLayout.Alignment.LEADING,
+																										layout.createSequentialGroup()
+																												.addGroup(
+																														layout.createParallelGroup(
+																																javax.swing.GroupLayout.Alignment.LEADING)
+																																.addComponent(
+																																		jLMinutes)
+																																.addComponent(
+																																		jCBMinutes,
+																																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																																		56,
+																																		javax.swing.GroupLayout.PREFERRED_SIZE))
+																												.addPreferredGap(
+																														javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+																												.addGroup(
+																														layout.createParallelGroup(
+																																javax.swing.GroupLayout.Alignment.LEADING)
+																																.addComponent(
+																																		jLSeconds)
+																																.addComponent(
+																																		jCBSeconds,
+																																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																																		javax.swing.GroupLayout.DEFAULT_SIZE,
+																																		javax.swing.GroupLayout.PREFERRED_SIZE))
+																												.addGap(14,
+																														14,
+																														14)
+																												.addGroup(
+																														layout.createParallelGroup(
+																																javax.swing.GroupLayout.Alignment.LEADING)
+																																.addComponent(
+																																		jLMSeconds)
+																																.addComponent(
+																																		jCBMSeconds,
+																																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																																		javax.swing.GroupLayout.DEFAULT_SIZE,
+																																		javax.swing.GroupLayout.PREFERRED_SIZE)))))
+																.addGap(53, 53,
+																		53)
+																.addGroup(
+																		layout.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.TRAILING)
+																				.addGroup(
+																						layout.createParallelGroup(
+																								javax.swing.GroupLayout.Alignment.TRAILING,
+																								false)
+																								.addComponent(
+																										jTClubName,
+																										javax.swing.GroupLayout.PREFERRED_SIZE,
+																										104,
+																										javax.swing.GroupLayout.PREFERRED_SIZE)
+																								.addGroup(
+																										layout.createSequentialGroup()
+																												.addComponent(
+																														jTAgeGroup,
+																														0,
+																														0,
+																														Short.MAX_VALUE)
+																												.addPreferredGap(
+																														javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+																												.addGroup(
+																														layout.createParallelGroup(
+																																javax.swing.GroupLayout.Alignment.LEADING,
+																																false)
+																																.addComponent(
+																																		jTGenderEvent,
+																																		javax.swing.GroupLayout.Alignment.TRAILING)
+																																.addComponent(
+																																		jTGender,
+																																		javax.swing.GroupLayout.Alignment.TRAILING,
+																																		javax.swing.GroupLayout.DEFAULT_SIZE,
+																																		41,
+																																		Short.MAX_VALUE))))
+																				.addComponent(
+																						jBCancel)))
+												.addComponent(
+														jSeparatorStatus,
+														javax.swing.GroupLayout.Alignment.TRAILING,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														349, Short.MAX_VALUE)
+												.addComponent(jLStatus))
+								.addContainerGap()));
+		layout.setVerticalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(jLSwimmerName)
+								.addPreferredGap(
+										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.LEADING)
+												.addGroup(
+														layout.createSequentialGroup()
+																.addComponent(
+																		jTClubName,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		javax.swing.GroupLayout.DEFAULT_SIZE,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addGap(11, 11,
+																		11)
+																.addGroup(
+																		layout.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.BASELINE)
+																				.addComponent(
+																						jTGender,
+																						javax.swing.GroupLayout.PREFERRED_SIZE,
+																						javax.swing.GroupLayout.DEFAULT_SIZE,
+																						javax.swing.GroupLayout.PREFERRED_SIZE)
+																				.addComponent(
+																						jTAgeGroup,
+																						javax.swing.GroupLayout.PREFERRED_SIZE,
+																						javax.swing.GroupLayout.DEFAULT_SIZE,
+																						javax.swing.GroupLayout.PREFERRED_SIZE))
+																.addPreferredGap(
+																		javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+																.addComponent(
+																		jTGenderEvent,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		javax.swing.GroupLayout.DEFAULT_SIZE,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(
+																		javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+																		69,
+																		Short.MAX_VALUE)
+																.addComponent(
+																		jBCancel)
+																.addGap(1, 1, 1))
+												.addGroup(
+														layout.createSequentialGroup()
+																.addComponent(
+																		jCBSwimmerName,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		javax.swing.GroupLayout.DEFAULT_SIZE,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(
+																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+																.addComponent(
+																		jLEventName)
+																.addGap(10, 10,
+																		10)
+																.addComponent(
+																		jCBEventName,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		javax.swing.GroupLayout.DEFAULT_SIZE,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(
+																		javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+																		javax.swing.GroupLayout.DEFAULT_SIZE,
+																		Short.MAX_VALUE)
+																.addGroup(
+																		layout.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.BASELINE)
+																				.addComponent(
+																						jLMinutes)
+																				.addComponent(
+																						jLSeconds)
+																				.addComponent(
+																						jLMSeconds))
+																.addPreferredGap(
+																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+																.addGroup(
+																		layout.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.BASELINE)
+																				.addComponent(
+																						jCBMinutes,
+																						javax.swing.GroupLayout.PREFERRED_SIZE,
+																						javax.swing.GroupLayout.DEFAULT_SIZE,
+																						javax.swing.GroupLayout.PREFERRED_SIZE)
+																				.addComponent(
+																						jCBMSeconds,
+																						javax.swing.GroupLayout.PREFERRED_SIZE,
+																						javax.swing.GroupLayout.DEFAULT_SIZE,
+																						javax.swing.GroupLayout.PREFERRED_SIZE)
+																				.addComponent(
+																						jCBSeconds,
+																						javax.swing.GroupLayout.PREFERRED_SIZE,
+																						javax.swing.GroupLayout.DEFAULT_SIZE,
+																						javax.swing.GroupLayout.PREFERRED_SIZE))
+																.addGap(18, 18,
+																		18)
+																.addComponent(
+																		jBRegister)))
+								.addPreferredGap(
+										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(jSeparatorStatus,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										10,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(
+										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(jLStatus).addContainerGap()));
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
@@ -486,16 +442,6 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 		}
 	}// GEN-LAST:event_jCBSwimmerNameActionPerformed
 
-	private void jCBEventNameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jCBEventNameActionPerformed
-		try {
-			Event event = operations.returnEvent((String) jCBEventName
-					.getSelectedItem());
-			jTGenderEvent.setText((event.getGender().equals("M")) ? "Male"
-					: "Female");
-		} catch (Exception e) {
-		}
-	}// GEN-LAST:event_jCBEventNameActionPerformed
-
 	private void cancel(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cancel
 		dispose();
 	}// GEN-LAST:event_cancel
@@ -507,32 +453,34 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 	}// GEN-LAST:event_formComponentShown
 
 	private void registerSwimmerToEvent(java.awt.event.ActionEvent evt) {
-		Boolean register = true;
-		if (!((String) jTGender.getText()).equals((String) jTGenderEvent
-				.getText())) {
-			register = false;
-			JOptionPane.showMessageDialog(null,
-					"Gender of Swimmer differs from Gender of Event",
+		if (operations.isSwimmerRegisteredForEvent(operations
+				.returnSwimmer(jCBSwimmerName.getSelectedItem().toString()),
+				operations.returnEvent(jCBEventName.getSelectedItem()
+						.toString()))) {
+			JOptionPane.showMessageDialog(
+					null,
+					"Inotatorul a fost deja inregistrat la proba "
+							+ operations.returnEvent(jCBEventName
+									.getSelectedItem().toString()).getName(),
 					"Warrning!!!", 1);
+			return;
 		}
-		if (register) {
-			Registration registration = new Registration(
-					operations.returnSwimmer(jCBSwimmerName.getSelectedItem()
-							.toString()), operations.returnEvent(jCBEventName
-							.getSelectedItem().toString()), Integer
-							.parseInt(jCBMinutes.getSelectedItem().toString()),
-					Integer.parseInt(jCBSeconds.getSelectedItem().toString()),
-					Integer.parseInt(jCBMSeconds.getSelectedItem().toString()));
-			try {
-				operations.registerRegistration(registration);
-				jLStatus.setText("Inregistrat, "
-						+ registration.getSwimmer().getName() + " : "
-						+ registration.getEvent().getName());
-			} catch (IOException e) {
-				jLStatus.setText("Probleme cu inregistrarea, "
-						+ registration.getSwimmer().getName() + " : "
-						+ registration.getEvent().getName());
-			}
+		Registration registration = new Registration(
+				operations.returnSwimmer(jCBSwimmerName.getSelectedItem()
+						.toString()), operations.returnEvent(jCBEventName
+						.getSelectedItem().toString()),
+				Integer.parseInt(jCBMinutes.getSelectedItem().toString()),
+				Integer.parseInt(jCBSeconds.getSelectedItem().toString()),
+				Integer.parseInt(jCBMSeconds.getSelectedItem().toString()));
+		try {
+			operations.registerRegistration(registration);
+			jLStatus.setText("Inregistrat, "
+					+ registration.getSwimmer().getName() + " : "
+					+ registration.getEvent().getName());
+		} catch (IOException e) {
+			jLStatus.setText("Probleme cu inregistrarea, "
+					+ registration.getSwimmer().getName() + " : "
+					+ registration.getEvent().getName());
 		}
 	}// GEN-LAST:event_registerSwimmerToEvent
 

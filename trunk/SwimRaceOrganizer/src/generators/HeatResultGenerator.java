@@ -73,7 +73,7 @@ public class HeatResultGenerator extends HeatGenerator {
 			public void actionPerformed(ActionEvent e) {
 				generateHeatBehavior.generateHeats(jCBHeatName
 						.getSelectedItem().toString(), getPoolType(),
-						getCompetitionTitle());
+						getCompetitionTitle(), null);
 			}
 		});
 

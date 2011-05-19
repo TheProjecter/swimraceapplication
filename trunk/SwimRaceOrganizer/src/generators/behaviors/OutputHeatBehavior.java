@@ -11,7 +11,7 @@ public class OutputHeatBehavior implements GenerateHeatBehavior {
 	
 	@Override
 	public void generateHeats(String eventName, String poolType,
-			String competitionTitle) {
+			String competitionTitle, String heatGender) {
 		allHeats = new AllHeats(operations.returnEvent(eventName), poolType,
 				competitionTitle);
 		SwimRaceOrganizerApp.getApplication().show(allHeats);
