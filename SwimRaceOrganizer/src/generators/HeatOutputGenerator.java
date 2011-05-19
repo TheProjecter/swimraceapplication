@@ -25,7 +25,6 @@ public class HeatOutputGenerator extends HeatGenerator {
 	private GridBagLayout controlLayout = new GridBagLayout();
 	private JButton jBCancel = new JButton("Cancel");
 	private JButton jBGenerate = new JButton("Generate");
-	private JComboBox jCBHeatName = new JComboBox();
 	private EventOperations evOperations = new EventOperations();
 	private String poolType;
 	private String competitionTitle;
@@ -38,8 +37,6 @@ public class HeatOutputGenerator extends HeatGenerator {
 		generateHeatBehavior = new OutputHeatBehavior();
 		setPoolType(poolType);
 		setCompetitionTitle(competitionTitle);
-		fillEventNames();
-		jCBHeatName.setPreferredSize(new Dimension(120, 20));
 		jBGenerate.setPreferredSize(new Dimension(100, 26));
 		jBCancel.setPreferredSize(new Dimension(100, 26));
 		addComponentsToPane(getContentPane());
@@ -63,10 +60,19 @@ public class HeatOutputGenerator extends HeatGenerator {
 
 		c.gridx = 0;
 		c.gridy = 1;
-		pane.add(jBGenerate, c);
+		c.insets = new Insets(10, 10, 10, 10);
+		pane.add(new JLabel("Tipul probei"), c);
 
 		c.gridx = 2;
 		c.gridy = 1;
+		pane.add(jCBHeatsGender, c);
+
+		c.gridx = 0;
+		c.gridy = 2;
+		pane.add(jBGenerate, c);
+
+		c.gridx = 2;
+		c.gridy = 2;
 		pane.add(jBCancel, c);
 
 		jBCancel.addActionListener(new ActionListener() {
@@ -83,7 +89,8 @@ public class HeatOutputGenerator extends HeatGenerator {
 				} else {
 					generateHeatBehavior.generateHeats(jCBHeatName
 							.getSelectedItem().toString(), getPoolType(),
-							getCompetitionTitle());
+							getCompetitionTitle(), jCBHeatsGender
+									.getSelectedItem().toString());
 				}
 				dispose();
 			}
@@ -92,14 +99,6 @@ public class HeatOutputGenerator extends HeatGenerator {
 		pack();
 		setVisible(true);
 
-	}
-
-	public void fillEventNames() {
-		List<String> eventNames = evOperations.getEventNames();
-		jCBHeatName.removeAllItems();
-		for (String evName : eventNames) {
-			jCBHeatName.addItem(evName);
-		}
 	}
 
 	public static void main(String args[]) {

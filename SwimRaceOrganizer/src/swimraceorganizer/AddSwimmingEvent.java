@@ -55,11 +55,14 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 		super();
 		setPoolType(poolType);
 		initComponents();
-		fillGenderCB();
 		fillDistanceCB();
 		fillStyleCB();
 		fillPoolTypeCB();
 		fillEventName();
+		// removing the gender stuff
+		// fillGenderCB();
+		jLGender.setVisible(false);
+		jCBGender.setVisible(false);
 	}
 
 	/**
@@ -94,7 +97,7 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 		setTitle(resourceMap.getString("Form.title")); // NOI18N
 		setName("Form"); // NOI18N
 		setResizable(false);
-		
+
 		jTEventName.setText(resourceMap.getString("jTEventName.text")); // NOI18N
 		jTEventName.setName("jTEventName"); // NOI18N
 		jTEventName.setFont(new Font(jLEventName.getFont().getName(),
@@ -340,8 +343,7 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 		} else {
 			Event event = new Event(jTEventName.getText(), jCBDistance
 					.getSelectedItem().toString(), jCBStyle.getSelectedItem()
-					.toString(), jCBGender.getSelectedItem().toString(),
-					jCBPoolType.getSelectedItem().toString());
+					.toString(), jCBPoolType.getSelectedItem().toString());
 			try {
 				evOp.registerEvent(event);
 				jLStatus.setText("S-a inregistrat proba, " + event.getName());
@@ -413,7 +415,6 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 	private void fillEventName() {
 		jTEventName.setText("Proba " + (evOp.getNumberOfEvent() + 1) + " - "
 				+ jCBDistance.getSelectedItem().toString() + " "
-				+ jCBStyle.getSelectedItem().toString() + " "
-				+ jCBGender.getSelectedItem().toString());
+				+ jCBStyle.getSelectedItem().toString());
 	}
 }

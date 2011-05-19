@@ -15,7 +15,7 @@ public class ResultHeatBehavior implements GenerateHeatBehavior {
 
 	@Override
 	public void generateHeats(String eventName, String poolType,
-			String competitionTitle) {
+			String competitionTitle, String heatGender) {
 		setResults(operations.returnResults(operations.returnEvent(eventName)));
 		Collections.sort(results, new ResultComparator());
 		operations.generateResultTable(results,

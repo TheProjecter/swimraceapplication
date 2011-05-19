@@ -15,24 +15,24 @@ public class CreateHeatsBehavior implements GenerateHeatBehavior,
 
 	@Override
 	public void generateHeats(String eventName, String poolType,
-			String competitionTitle) {
+			String competitionTitle, String heatGender) {
 		// get the list with the heats
 		List<Heat> heatList = operations.generateHeats(
-				operations.returnEvent(eventName), poolType, swimmersPerHeat);
+				operations.returnEvent(eventName), poolType, swimmersPerHeat, heatGender);
 
 		// register the heats in csv files
 		operations.registerHeats(poolType, heatList, heatList.get(0)
-				.getEventName() + ".csv");
+				.getEventName() + " " + heatGender + ".csv");
 
 		// write the heats in pdf files
 		HeatListWriter hWriter = new HeatListWriter(
-				operations.returnEvent(eventName), competitionTitle, heatList);
+				operations.returnEvent(eventName), competitionTitle, heatList, heatGender);
 		hWriter.run();
 
 		// write the judges list
 		for (Heat heat : heatList) {
 			JudgesListWriter judgeWriter = new JudgesListWriter(
-					operations.returnEvent(eventName), competitionTitle, heat);
+					operations.returnEvent(eventName), competitionTitle, heat, heatGender);
 			judgeWriter.run();
 		}
 	}

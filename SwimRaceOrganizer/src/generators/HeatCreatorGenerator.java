@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -28,12 +29,11 @@ public class HeatCreatorGenerator extends HeatGenerator {
 	private GridBagLayout controlLayout = new GridBagLayout();
 	private JButton jBCancel = new JButton("Cancel");
 	private JButton jBGenerate = new JButton("Generate");
-	private JComboBox jCBHeatName = new JComboBox();
 	private JTextField jTSwimmersPerHeat = new JTextField(5);
-	private EventOperations evOperations = new EventOperations();
 	private String poolType;
 	private String competitionTitle;
-	private SwimmersPerHeatSingleton swimmerPerHeat = SwimmersPerHeatSingleton.getInstance();
+	private SwimmersPerHeatSingleton swimmerPerHeat = SwimmersPerHeatSingleton
+			.getInstance();
 
 	public HeatCreatorGenerator(String poolType, String competitionTitle,
 			String title) {
@@ -42,8 +42,6 @@ public class HeatCreatorGenerator extends HeatGenerator {
 		swimmerRelated = (SwimmerRelated) generateHeatBehavior;
 		setPoolType(poolType);
 		setCompetitionTitle(competitionTitle);
-		fillEventNames();
-		jCBHeatName.setPreferredSize(new Dimension(120, 20));
 		jBGenerate.setPreferredSize(new Dimension(100, 26));
 		jBCancel.setPreferredSize(new Dimension(100, 26));
 		addComponentsToPane(getContentPane());
@@ -68,18 +66,27 @@ public class HeatCreatorGenerator extends HeatGenerator {
 		c.gridx = 0;
 		c.gridy = 1;
 		c.insets = new Insets(10, 10, 10, 10);
-		pane.add(new JLabel("Concurenti pe serie"), c);
+		pane.add(new JLabel("Tipul probei"), c);
 
 		c.gridx = 2;
 		c.gridy = 1;
-		pane.add(jTSwimmersPerHeat, c);
+		pane.add(jCBHeatsGender, c);
 
 		c.gridx = 0;
 		c.gridy = 2;
-		pane.add(jBGenerate, c);
+		c.insets = new Insets(10, 10, 10, 10);
+		pane.add(new JLabel("Concurenti pe serie"), c);
 
 		c.gridx = 2;
 		c.gridy = 2;
+		pane.add(jTSwimmersPerHeat, c);
+
+		c.gridx = 0;
+		c.gridy = 3;
+		pane.add(jBGenerate, c);
+
+		c.gridx = 2;
+		c.gridy = 3;
 		pane.add(jBCancel, c);
 
 		jBCancel.addActionListener(new ActionListener() {
@@ -94,15 +101,17 @@ public class HeatCreatorGenerator extends HeatGenerator {
 							"Specificati numarul de concurenti pe serie!",
 							"Warrning...", 1);
 				} else {
-					// adding the number of swimmers / heat / event. It needs to be used later
-					swimmerPerHeat.push(jCBHeatName
-							.getSelectedItem().toString(), Integer
-							.parseInt(jTSwimmersPerHeat.getText()));
+					// adding the number of swimmers / heat / event. It needs to
+					// be used later
+					swimmerPerHeat.push(jCBHeatName.getSelectedItem()
+							.toString(), Integer.parseInt(jTSwimmersPerHeat
+							.getText()));
 					swimmerRelated.setSwimmersPerHeat(Integer
 							.parseInt(jTSwimmersPerHeat.getText()));
 					generateHeatBehavior.generateHeats(jCBHeatName
 							.getSelectedItem().toString(), getPoolType(),
-							getCompetitionTitle());
+							getCompetitionTitle(), jCBHeatsGender
+									.getSelectedItem().toString());
 				}
 			}
 		});
@@ -110,14 +119,6 @@ public class HeatCreatorGenerator extends HeatGenerator {
 		pack();
 		setVisible(true);
 
-	}
-
-	public void fillEventNames() {
-		List<String> eventNames = evOperations.getEventNames();
-		jCBHeatName.removeAllItems();
-		for (String evName : eventNames) {
-			jCBHeatName.addItem(evName);
-		}
 	}
 
 	public static void main(String args[]) {
