@@ -43,11 +43,13 @@ public class JudgesListWriter {
 	private Map<String, String> pathFile = new Constants().getDataFiles();
 	private Heat heat;
 
-	public JudgesListWriter(Event event, String competitionTitle, Heat heat) {
+	public JudgesListWriter(Event event, String competitionTitle, Heat heat,
+			String heatGender) {
 		setEvent(event);
 		setHeat(heat);
 		setFile(pathFile.get("arbitrii") + "\\" + "Foaie pt seria "
-				+ heat.getHeatNumber() + " proba " + event.getName() + ".pdf");
+				+ heat.getHeatNumber() + " proba " + event.getName() + " "
+				+ heatGender + ".pdf");
 		setCompetitionTitle(competitionTitle);
 	}
 
@@ -134,17 +136,17 @@ public class JudgesListWriter {
 		table.addCell(c23);
 
 		// lane 1 cells
-		PdfPCell c31 = new PdfPCell(new Phrase(Integer.toString(heat
-				.getLane1().getLaneNumber()), normalFont));
+		PdfPCell c31 = new PdfPCell(new Phrase(Integer.toString(heat.getLane1()
+				.getLaneNumber()), normalFont));
 		table.addCell(c31);
 		PdfPCell c32 = new PdfPCell(new Phrase(heat.getLane1().getSwimmer()
 				.getName(), normalFont));
 		table.addCell(c32);
 		table.addCell(new PdfPCell());
-		
+
 		// lane 2 cells
-		PdfPCell c41 = new PdfPCell(new Phrase(Integer.toString(heat
-				.getLane2().getLaneNumber()), normalFont));
+		PdfPCell c41 = new PdfPCell(new Phrase(Integer.toString(heat.getLane2()
+				.getLaneNumber()), normalFont));
 		table.addCell(c41);
 		PdfPCell c42 = new PdfPCell(new Phrase(heat.getLane2().getSwimmer()
 				.getName(), normalFont));
@@ -152,8 +154,8 @@ public class JudgesListWriter {
 		table.addCell(new PdfPCell());
 
 		// lane 3 cells
-		PdfPCell c51 = new PdfPCell(new Phrase(Integer.toString(heat
-				.getLane3().getLaneNumber()), normalFont));
+		PdfPCell c51 = new PdfPCell(new Phrase(Integer.toString(heat.getLane3()
+				.getLaneNumber()), normalFont));
 		table.addCell(c51);
 		PdfPCell c52 = new PdfPCell(new Phrase(heat.getLane3().getSwimmer()
 				.getName(), normalFont));
@@ -161,8 +163,8 @@ public class JudgesListWriter {
 		table.addCell(new PdfPCell());
 
 		// lane 4 cells
-		PdfPCell c61 = new PdfPCell(new Phrase(Integer.toString(heat
-				.getLane4().getLaneNumber()), normalFont));
+		PdfPCell c61 = new PdfPCell(new Phrase(Integer.toString(heat.getLane4()
+				.getLaneNumber()), normalFont));
 		table.addCell(c61);
 		PdfPCell c62 = new PdfPCell(new Phrase(heat.getLane4().getSwimmer()
 				.getName(), normalFont));
@@ -170,8 +172,8 @@ public class JudgesListWriter {
 		table.addCell(new PdfPCell());
 
 		// lane 5 cells
-		PdfPCell c71 = new PdfPCell(new Phrase(Integer.toString(heat
-				.getLane5().getLaneNumber()), normalFont));
+		PdfPCell c71 = new PdfPCell(new Phrase(Integer.toString(heat.getLane5()
+				.getLaneNumber()), normalFont));
 		table.addCell(c71);
 		PdfPCell c72 = new PdfPCell(new Phrase(heat.getLane5().getSwimmer()
 				.getName(), normalFont));
@@ -179,8 +181,8 @@ public class JudgesListWriter {
 		table.addCell(new PdfPCell());
 
 		// lane 6 cells
-		PdfPCell c81 = new PdfPCell(new Phrase(Integer.toString(heat
-				.getLane6().getLaneNumber()), normalFont));
+		PdfPCell c81 = new PdfPCell(new Phrase(Integer.toString(heat.getLane6()
+				.getLaneNumber()), normalFont));
 		table.addCell(c81);
 		PdfPCell c82 = new PdfPCell(new Phrase(heat.getLane6().getSwimmer()
 				.getName(), normalFont));
@@ -202,8 +204,8 @@ public class JudgesListWriter {
 			PdfPCell c101 = new PdfPCell(new Phrase(Integer.toString(heat
 					.getLane8().getLaneNumber()), normalFont));
 			table.addCell(c101);
-			PdfPCell c102 = new PdfPCell(new Phrase(heat.getLane8().getSwimmer()
-					.getName(), normalFont));
+			PdfPCell c102 = new PdfPCell(new Phrase(heat.getLane8()
+					.getSwimmer().getName(), normalFont));
 			table.addCell(c102);
 			table.addCell(new PdfPCell());
 		} // end 50m pool extra lanes

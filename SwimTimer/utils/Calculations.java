@@ -115,8 +115,8 @@ public class Calculations {
 			matchFoundDistance = ((times.getLength() + " Meters").equals(event
 					.getLength())) ? true : false;
 			// match the gender
-			matchFoundGender = times.getGender().equals(event.getGender()) ? true
-					: false;
+//			matchFoundGender = times.getGender().equals(event.getGender()) ? true
+//					: false;
 			if (matchFoundPoolType && matchFoundStyle && matchFoundDistance
 					&& matchFoundGender) {
 				return times.getBaseTimesSeconds();

@@ -54,7 +54,7 @@ public class EventOperations {
 		FileWriter fstream = new FileWriter(pathFile.get("core") + "\\" + dataFile.get("events"), true);
 		BufferedWriter out = new BufferedWriter(fstream);
 		out.write(event.getName() + ";" + event.getLength() + ";" + event.getStyle()
-				+ ";" + event.getGender() + ";" + event.getPoolType());
+				+ ";" + event.getPoolType());
 		out.newLine();
 		out.close();
 	}
