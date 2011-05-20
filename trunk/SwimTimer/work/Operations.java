@@ -450,7 +450,7 @@ public class Operations {
 			endPos = ((endPos + swimmersPerHeat) < laneList.size()) ? (endPos + swimmersPerHeat)
 					: laneList.size();
 		}
-		
+
 		Collections.sort(heatList, new HeatComparator());
 		return heatList;
 	}
@@ -640,13 +640,13 @@ public class Operations {
 		}
 	}
 
-	public List<Result> returnResults(Event event) {
+	public List<Result> returnResults(Event event, String heatGender) {
 
 		List<Result> results = new ArrayList<Result>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(
 					pathFile.get("rezultate") + "\\" + "Rezultate "
-							+ event.getName() + ".csv"));
+							+ event.getName() + " " + heatGender + ".csv"));
 			try {
 				String line = null;
 				while ((line = br.readLine()) != null) {
@@ -685,44 +685,104 @@ public class Operations {
 	 * @param results
 	 * @param event
 	 */
-	public void generateResultTable(List<Result> results, Event event) {
+	public void generateResultTable(List<Result> results, Event event,
+			String heatGender) {
 		AgeGroup ageGroup = new AgeGroup();
 		List<String> ageGroups = ageGroup.getAgeGroups();
 
 		try {
-			FileWriter fstream = new FileWriter(pathFile.get("rezultate")
-					+ "\\" + "Rezultate Ordonate " + event.getName() + ".csv",
-					false);
-			BufferedWriter out = new BufferedWriter(fstream);
+			if (heatGender.equals("Mixt")) {
+				// results for Mixt heatGender
+				FileWriter fstreamM = new FileWriter(pathFile.get("rezultate")
+						+ "\\" + "Rezultate Ordonate " + event.getName() + " "
+						+ "M" + ".csv", false);
+				FileWriter fstreamF = new FileWriter(pathFile.get("rezultate")
+						+ "\\" + "Rezultate Ordonate " + event.getName() + " "
+						+ "F" + ".csv", false);
+				BufferedWriter outM = new BufferedWriter(fstreamM);
+				BufferedWriter outF = new BufferedWriter(fstreamF);
 
-			for (String age : ageGroups) {
-				if (searchAgeGroupInResult(results, age)) {
-					out.write(age);
-					out.newLine();
-					for (Result res : results) {
-						if (res.getSwimmer().getAgeGroup().equals(age)) {
-							out.write(res.getSwimmer().getName() + ";"
-									+ res.getSwimmer().getClub() + ";"
-									+ res.getSwimmer().getBirthYear() + ";"
-									+ res.getResultMinutes() + ";"
-									+ res.getResultSecondes() + ";"
-									+ res.getResultMSeconds());
-							out.newLine();
+				for (String age : ageGroups) {
+					if (searchAgeGroupInResult(results, age, "M")) {
+						outM.write(age);
+						outM.newLine();
+						for (Result res : results) {
+							if (res.getSwimmer().getAgeGroup().equals(age)
+									&& res.getSwimmer().getGender().equals("M")) {
+								outM.write(res.getSwimmer().getName() + ";"
+										+ res.getSwimmer().getClub() + ";"
+										+ res.getSwimmer().getBirthYear() + ";"
+										+ res.getResultMinutes() + ";"
+										+ res.getResultSecondes() + ";"
+										+ res.getResultMSeconds());
+								outM.newLine();
+							}
 						}
+						outM.newLine();
 					}
-					out.newLine();
+					if (searchAgeGroupInResult(results, age, "F")) {
+						outF.write(age);
+						outF.newLine();
+						for (Result res : results) {
+							if (res.getSwimmer().getAgeGroup().equals(age)
+									&& res.getSwimmer().getGender().equals("F")) {
+								outF.write(res.getSwimmer().getName() + ";"
+										+ res.getSwimmer().getClub() + ";"
+										+ res.getSwimmer().getBirthYear() + ";"
+										+ res.getResultMinutes() + ";"
+										+ res.getResultSecondes() + ";"
+										+ res.getResultMSeconds());
+								outF.newLine();
+							}
+						}
+						outF.newLine();
+					}
 				}
+				outM.newLine();
+				outM.close();
+				outF.newLine();
+				outF.close();
+			} else {
+				// results for defined heatGender: M or F
+				FileWriter fstream = new FileWriter(pathFile.get("rezultate")
+						+ "\\" + "Rezultate Ordonate " + event.getName() + " "
+						+ heatGender + ".csv", false);
+				BufferedWriter out = new BufferedWriter(fstream);
+
+				for (String age : ageGroups) {
+					if (searchAgeGroupInResult(results, age, heatGender)) {
+						out.write(age);
+						out.newLine();
+						for (Result res : results) {
+							if (res.getSwimmer().getAgeGroup().equals(age)
+									&& res.getSwimmer().getGender()
+											.equals(heatGender)) {
+								out.write(res.getSwimmer().getName() + ";"
+										+ res.getSwimmer().getClub() + ";"
+										+ res.getSwimmer().getBirthYear() + ";"
+										+ res.getResultMinutes() + ";"
+										+ res.getResultSecondes() + ";"
+										+ res.getResultMSeconds());
+								out.newLine();
+							}
+						}
+						out.newLine();
+					}
+				}
+				out.newLine();
+				out.close();
 			}
-			out.newLine();
-			out.close();
 		} catch (Exception e) {
 			e.getMessage();
 		}
 	}
 
-	public boolean searchAgeGroupInResult(List<Result> results, String age) {
+	public boolean searchAgeGroupInResult(List<Result> results, String age,
+			String heatGender) {
 		for (Result res : results) {
-			if (age.equals(res.getSwimmer().getAgeGroup())) {
+			if (age.equals(res.getSwimmer().getAgeGroup())
+					&& heatGender.equals(res.getSwimmer().getGender()
+							.toString())) {
 				return true;
 			}
 		}

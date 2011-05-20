@@ -50,9 +50,10 @@ public class ResultWriter {
 	private Calculations calculations = Calculations.getInstance();
 	private Map<String, String> pathFile = new Constants().getDataFiles();
 
-	public ResultWriter(Event event, String competitionTitle) {
+	public ResultWriter(Event event, String competitionTitle, String heatGender) {
 		setEvent(event);
-		setFile(pathFile.get("rezultate") + "\\" + "Rezultate " + event.getName() + ".pdf");
+		setFile(pathFile.get("rezultate") + "\\" + "Rezultate "
+				+ event.getName() + " " + heatGender + ".pdf");
 		setCompetitionTitle(competitionTitle);
 	}
 
@@ -78,7 +79,8 @@ public class ResultWriter {
 		 * Add the logo
 		 */
 		try {
-			Image image = Image.getInstance(pathFile.get("util") + "\\logo.png");
+			Image image = Image
+					.getInstance(pathFile.get("util") + "\\logo.png");
 			image.setAlignment(Element.ALIGN_CENTER);
 			document.add(image);
 		} catch (MalformedURLException e) {
@@ -125,11 +127,12 @@ public class ResultWriter {
 	}
 
 	private PdfPTable getResultsTable() {
-		float[] tableWidth = { 0.04f, 0.26f, 0.21f, 0.12f, 0.14f, 0.12f, 0.04f, 0.06f };
+		float[] tableWidth = { 0.04f, 0.26f, 0.21f, 0.12f, 0.14f, 0.12f, 0.04f,
+				0.06f };
 		PdfPTable table = new PdfPTable(tableWidth);
 
 		// get the results and order them after the time
-		List<Result> results = operations.returnResults(event);
+		List<Result> results = operations.returnResults(event, null);
 		Collections.sort(results, new ResultComparator());
 		// get the age-groups
 		AgeGroup ageGroup = new AgeGroup();
@@ -138,7 +141,7 @@ public class ResultWriter {
 		int classification = 1;
 
 		for (String age : ageGroups) {
-			if (operations.searchAgeGroupInResult(results, age)) {
+			if (operations.searchAgeGroupInResult(results, age, null)) {
 				// Age-group
 				PdfPCell c11 = new PdfPCell(new Phrase(age, normalHeaderFont));
 				c11.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -192,7 +195,8 @@ public class ResultWriter {
 								normalFont));
 						disableBorders(c27);
 						table.addCell(c27);
-						PdfPCell c28 = new PdfPCell(new Phrase(res.getPerformanceStatus(), normalFont));
+						PdfPCell c28 = new PdfPCell(new Phrase(
+								res.getPerformanceStatus(), normalFont));
 						disableBorders(c28);
 						table.addCell(c28);
 						classification++;
