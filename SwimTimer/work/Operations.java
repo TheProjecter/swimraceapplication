@@ -19,6 +19,7 @@ import utils.Constants;
 
 import entities.Event;
 import entities.Heat;
+import entities.HeatComparator;
 import entities.Lane;
 import entities.LaneComparator;
 import entities.Registration;
@@ -449,7 +450,8 @@ public class Operations {
 			endPos = ((endPos + swimmersPerHeat) < laneList.size()) ? (endPos + swimmersPerHeat)
 					: laneList.size();
 		}
-
+		
+		Collections.sort(heatList, new HeatComparator());
 		return heatList;
 	}
 
