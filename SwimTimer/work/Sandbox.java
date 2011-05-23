@@ -48,7 +48,12 @@ public class Sandbox {
 	}
 	
 	public static void main(String[] args) throws IOException {
-
+		String x = "";
+		String y = null;
+		
+		if (x.isEmpty()) {
+			System.out.println("x is empty");
+		}
 //		SwimmersPerHeatSingleton swimPerHeat = SwimmersPerHeatSingleton.getInstance();
 //		swimPerHeat.push("sprint", 4);
 //		swimPerHeat.push("testNR", 6);

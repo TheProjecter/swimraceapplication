@@ -52,7 +52,7 @@ public abstract class HeatGenerator extends JDialog {
 	}
 
 	public void fillGenderCB() {
-		jCBHeatsGender.removeAllItems();
+		//jCBHeatsGender.removeAllItems();
 		jCBHeatsGender.addItem("Mixt".toString());
 		jCBHeatsGender.addItem("F".toString());
 		jCBHeatsGender.addItem("M".toString());
