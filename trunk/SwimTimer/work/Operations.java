@@ -640,8 +640,8 @@ public class Operations {
 		}
 	}
 
-	public List<Result> returnResults(Event event, String heatGender) {
-
+	public List<Result> returnResults(Event event, String heatGender,
+			String requiredGender) {
 		List<Result> results = new ArrayList<Result>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(
@@ -651,10 +651,25 @@ public class Operations {
 				String line = null;
 				while ((line = br.readLine()) != null) {
 					String[] entry = line.split(";");
-					results.add(new Result(returnSwimmer(entry[0]), Integer
-							.valueOf(entry[3]), Integer.valueOf(entry[4]),
-							Integer.valueOf(entry[5]), Long.valueOf(entry[6]),
-							String.valueOf(entry[7])));
+					// return the results based on the gender
+					if (requiredGender.equals("M")
+							|| requiredGender.equals("F")) {
+						if (returnSwimmer(entry[0]).getGender().equals(
+								requiredGender)) {
+							results.add(new Result(returnSwimmer(entry[0]),
+									Integer.valueOf(entry[3]), Integer
+											.valueOf(entry[4]), Integer
+											.valueOf(entry[5]), Long
+											.valueOf(entry[6]), String
+											.valueOf(entry[7])));
+						}
+					} else {
+						results.add(new Result(returnSwimmer(entry[0]), Integer
+								.valueOf(entry[3]), Integer.valueOf(entry[4]),
+								Integer.valueOf(entry[5]), Long
+										.valueOf(entry[6]), String
+										.valueOf(entry[7])));
+					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -16,18 +16,18 @@ public class ResultHeatBehavior implements GenerateHeatBehavior {
 	@Override
 	public void generateHeats(String eventName, String poolType,
 			String competitionTitle, String heatGender) {
-		setResults(operations.returnResults(operations.returnEvent(eventName), heatGender));
+		setResults(operations.returnResults(operations.returnEvent(eventName), heatGender, "Mixt"));
 		Collections.sort(results, new ResultComparator());
 		operations.generateResultTable(results,
 				operations.returnEvent(eventName), heatGender);
 		Event event = operations.returnEvent(eventName);
 		if (heatGender.equals("Mixt")) {
-			ResultWriter rWriterM = new ResultWriter(event, competitionTitle, "M");			
+			ResultWriter rWriterM = new ResultWriter(event, competitionTitle, heatGender, "M");			
 			rWriterM.run();
-			ResultWriter rWriterF = new ResultWriter(event, competitionTitle, "F");			
+			ResultWriter rWriterF = new ResultWriter(event, competitionTitle, heatGender, "F");			
 			rWriterF.run();
 		} else {
-			ResultWriter rWriter = new ResultWriter(event, competitionTitle, heatGender);			
+			ResultWriter rWriter = new ResultWriter(event, competitionTitle, heatGender, "Mixt");			
 			rWriter.run();
 		}
 	}

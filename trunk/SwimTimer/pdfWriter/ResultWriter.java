@@ -49,12 +49,18 @@ public class ResultWriter {
 	private Operations operations = new Operations();
 	private Calculations calculations = Calculations.getInstance();
 	private Map<String, String> pathFile = new Constants().getDataFiles();
+	private String heatGender;
+	private String requiredGender;
 
-	public ResultWriter(Event event, String competitionTitle, String heatGender) {
+	public ResultWriter(Event event, String competitionTitle,
+			String heatGender, String requiredGender) {
 		setEvent(event);
 		setFile(pathFile.get("rezultate") + "\\" + "Rezultate "
-				+ event.getName() + " " + heatGender + ".pdf");
+				+ event.getName() + " " + heatGender + " " + requiredGender
+				+ ".pdf");
 		setCompetitionTitle(competitionTitle);
+		setHeatGender(heatGender);
+		setRequiredGender(requiredGender);
 	}
 
 	public void run() {
@@ -132,7 +138,9 @@ public class ResultWriter {
 		PdfPTable table = new PdfPTable(tableWidth);
 
 		// get the results and order them after the time
-		List<Result> results = operations.returnResults(event, null);
+		List<Result> results = operations.returnResults(event, heatGender,
+				requiredGender);
+
 		Collections.sort(results, new ResultComparator());
 		// get the age-groups
 		AgeGroup ageGroup = new AgeGroup();
@@ -141,7 +149,7 @@ public class ResultWriter {
 		int classification = 1;
 
 		for (String age : ageGroups) {
-			if (operations.searchAgeGroupInResult(results, age, null)) {
+			if (operations.searchAgeGroupInResult(results, age, requiredGender)) {
 				// Age-group
 				PdfPCell c11 = new PdfPCell(new Phrase(age, normalHeaderFont));
 				c11.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -257,6 +265,22 @@ public class ResultWriter {
 
 	public void setEvent(Event event) {
 		this.event = event;
+	}
+
+	public String getHeatGender() {
+		return heatGender;
+	}
+
+	public void setHeatGender(String heatGender) {
+		this.heatGender = heatGender;
+	}
+
+	public String getRequiredGender() {
+		return requiredGender;
+	}
+
+	public void setRequiredGender(String requiredGender) {
+		this.requiredGender = requiredGender;
 	}
 
 }

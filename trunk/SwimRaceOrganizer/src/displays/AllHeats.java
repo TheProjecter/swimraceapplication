@@ -57,7 +57,7 @@ public class AllHeats extends JDialog {
 			String heatGender) {
 		super();
 		setEvent(event);
-		setResults(operations.returnResults(event, heatGender));
+		setResults(operations.returnResults(event, heatGender, "Mixt"));
 		setPoolType(poolType);
 		setCompetitionTitle(competitionTitle);
 		setHeatGender(heatGender);
@@ -232,6 +232,7 @@ public class AllHeats extends JDialog {
 						saveL1.setText("Save");
 						statusLableL1.setText("waiting");
 						statusLableL1.setForeground(Color.BLACK);
+						resultLanes.remove(lane1);
 					}
 				}
 			});
@@ -420,6 +421,7 @@ public class AllHeats extends JDialog {
 						saveL2.setText("Save");
 						statusLableL2.setText("waiting");
 						statusLableL2.setForeground(Color.BLACK);
+						resultLanes.remove(lane2);
 					}
 				}
 			});
@@ -610,6 +612,7 @@ public class AllHeats extends JDialog {
 						saveL3.setText("Save");
 						statusLableL3.setText("waiting");
 						statusLableL3.setForeground(Color.BLACK);
+						resultLanes.remove(lane3);
 					}
 				}
 			});
@@ -800,6 +803,7 @@ public class AllHeats extends JDialog {
 						saveL4.setText("Save");
 						statusLableL4.setText("waiting");
 						statusLableL4.setForeground(Color.BLACK);
+						resultLanes.remove(lane4);
 					}
 				}
 			});
@@ -988,6 +992,7 @@ public class AllHeats extends JDialog {
 						saveL5.setText("Save");
 						statusLableL5.setText("waiting");
 						statusLableL5.setForeground(Color.BLACK);
+						resultLanes.remove(lane5);
 					}
 				}
 			});
@@ -1176,6 +1181,7 @@ public class AllHeats extends JDialog {
 						saveL6.setText("Save");
 						statusLableL6.setText("waiting");
 						statusLableL6.setForeground(Color.BLACK);
+						resultLanes.remove(lane6);
 					}
 				}
 			});
@@ -1368,6 +1374,7 @@ public class AllHeats extends JDialog {
 							saveL7.setText("Save");
 							statusLableL7.setText("waiting");
 							statusLableL7.setForeground(Color.BLACK);
+							resultLanes.remove(lane7);
 						}
 					}
 				});
@@ -1562,6 +1569,7 @@ public class AllHeats extends JDialog {
 							saveL8.setText("Save");
 							statusLableL8.setText("waiting");
 							statusLableL8.setForeground(Color.BLACK);
+							resultLanes.remove(lane8);
 						}
 					}
 				});
