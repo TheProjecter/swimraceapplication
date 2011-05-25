@@ -30,15 +30,15 @@ import entities.HeatComparator;
 
 public class HeatListWriter {
 
-	private static Font titleFont = new Font(Font.FontFamily.COURIER, 26,
+	private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 26,
 			Font.BOLD);
-	private static Font headerFont1 = new Font(Font.FontFamily.COURIER, 18,
+	private static Font headerFont1 = new Font(Font.FontFamily.HELVETICA, 18,
 			Font.BOLD);
-	private static Font headerFont2 = new Font(Font.FontFamily.COURIER, 14,
+	private static Font headerFont2 = new Font(Font.FontFamily.HELVETICA, 14,
 			Font.BOLD);
-	private static Font normalHeaderFont = new Font(Font.FontFamily.COURIER,
+	private static Font normalHeaderFont = new Font(Font.FontFamily.HELVETICA,
 			10, Font.BOLD);
-	private static Font normalFont = new Font(Font.FontFamily.COURIER, 10,
+	private static Font normalFont = new Font(Font.FontFamily.HELVETICA, 8,
 			Font.NORMAL);
 	private static String file;
 	private String competitionTitle;

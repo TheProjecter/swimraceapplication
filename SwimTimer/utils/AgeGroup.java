@@ -9,8 +9,7 @@ public class AgeGroup {
 	private List<String> ageGroups = new ArrayList<String>();
 	
 	public AgeGroup(){
-		ageGroups.add("18 - 19");
-		ageGroups.add("20 - 24");
+		ageGroups.add("18 - 24");
 		ageGroups.add("25 - 29");
 		ageGroups.add("30 - 34");
 		ageGroups.add("35 - 39");

@@ -3,6 +3,7 @@ package displays;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
@@ -65,7 +66,7 @@ public class AllHeats extends JDialog {
 		addComponentsToPane(getContentPane());
 		setAlwaysOnTop(false);
 		setResizable(false);
-		setLocation(100, 100);
+		setLocation(25, 25);
 	}
 
 	/**
@@ -125,14 +126,17 @@ public class AllHeats extends JDialog {
 			final JButton saveL1 = new JButton("Save");
 			final JButton dsqL1 = new JButton("DSQ");
 			final JButton dnsL1 = new JButton("DNS");
-			heatsPanel.add(new JLabel("Lane "
-					+ heats.getLane1().getLaneNumber()));
+			final JLabel laneNumberL1 = new JLabel("Lane "
+					+ heats.getLane1().getLaneNumber(), JLabel.CENTER);
+			heatsPanel.add(laneNumberL1);
 			heatsPanel.add(new JLabel(heats.getLane1().getSwimmer().getName()));
-			heatsPanel.add(new JLabel(heats.getLane1().getSwimmer()
-					.getAgeGroup()));
-			heatsPanel.add(new JLabel(heats.getLane1().getEntryMinutes() + ":"
+			final JLabel ageGroupL1 = new JLabel(heats.getLane1()
+					.getSwimmer().getAgeGroup(), JLabel.CENTER);
+			heatsPanel.add(ageGroupL1);
+			final JLabel entryTimeL1 = new JLabel(heats.getLane1().getEntryMinutes() + ":"
 					+ heats.getLane1().getEntrySecondes() + ":"
-					+ heats.getLane1().getEntryMSeconds()));
+					+ heats.getLane1().getEntryMSeconds(), JLabel.CENTER);
+			heatsPanel.add(entryTimeL1);
 			heatsPanel.add(tMCBL1);
 			heatsPanel.add(tSCBL1);
 			heatsPanel.add(tMSCBL1);
@@ -314,14 +318,17 @@ public class AllHeats extends JDialog {
 			final JButton saveL2 = new JButton("Save");
 			final JButton dsqL2 = new JButton("DSQ");
 			final JButton dnsL2 = new JButton("DNS");
-			heatsPanel.add(new JLabel("Lane "
-					+ heats.getLane2().getLaneNumber()));
+			final JLabel laneNumberL2 = new JLabel("Lane "
+					+ heats.getLane2().getLaneNumber(), JLabel.CENTER);
+			heatsPanel.add(laneNumberL2);
 			heatsPanel.add(new JLabel(heats.getLane2().getSwimmer().getName()));
-			heatsPanel.add(new JLabel(heats.getLane2().getSwimmer()
-					.getAgeGroup()));
-			heatsPanel.add(new JLabel(heats.getLane2().getEntryMinutes() + ":"
+			final JLabel ageGroupL2 = new JLabel(heats.getLane2()
+					.getSwimmer().getAgeGroup(), JLabel.CENTER);
+			heatsPanel.add(ageGroupL2);
+			final JLabel entryTimeL2 = new JLabel(heats.getLane2().getEntryMinutes() + ":"
 					+ heats.getLane2().getEntrySecondes() + ":"
-					+ heats.getLane2().getEntryMSeconds()));
+					+ heats.getLane2().getEntryMSeconds(), JLabel.CENTER);
+			heatsPanel.add(entryTimeL2);
 			heatsPanel.add(tMCBL2);
 			heatsPanel.add(tSCBL2);
 			heatsPanel.add(tMSCBL2);
@@ -503,14 +510,17 @@ public class AllHeats extends JDialog {
 			final JButton saveL3 = new JButton("Save");
 			final JButton dsqL3 = new JButton("DSQ");
 			final JButton dnsL3 = new JButton("DNS");
-			heatsPanel.add(new JLabel("Lane "
-					+ heats.getLane3().getLaneNumber()));
+			final JLabel laneNumberL3 = new JLabel("Lane "
+					+ heats.getLane3().getLaneNumber(), JLabel.CENTER);
+			heatsPanel.add(laneNumberL3);
 			heatsPanel.add(new JLabel(heats.getLane3().getSwimmer().getName()));
-			heatsPanel.add(new JLabel(heats.getLane3().getSwimmer()
-					.getAgeGroup()));
-			heatsPanel.add(new JLabel(heats.getLane3().getEntryMinutes() + ":"
+			final JLabel ageGroupL3 = new JLabel(heats.getLane3()
+					.getSwimmer().getAgeGroup(), JLabel.CENTER);
+			heatsPanel.add(ageGroupL3);
+			final JLabel entryTimeL3 = new JLabel(heats.getLane3().getEntryMinutes() + ":"
 					+ heats.getLane3().getEntrySecondes() + ":"
-					+ heats.getLane3().getEntryMSeconds()));
+					+ heats.getLane3().getEntryMSeconds(), JLabel.CENTER);
+			heatsPanel.add(entryTimeL3);
 			heatsPanel.add(tMCBL3);
 			heatsPanel.add(tSCBL3);
 			heatsPanel.add(tMSCBL3);
@@ -694,14 +704,17 @@ public class AllHeats extends JDialog {
 			final JButton saveL4 = new JButton("Save");
 			final JButton dsqL4 = new JButton("DSQ");
 			final JButton dnsL4 = new JButton("DNS");
-			heatsPanel.add(new JLabel("Lane "
-					+ heats.getLane4().getLaneNumber()));
+			final JLabel laneNumberL4 = new JLabel("Lane "
+					+ heats.getLane4().getLaneNumber(), JLabel.CENTER);
+			heatsPanel.add(laneNumberL4);
 			heatsPanel.add(new JLabel(heats.getLane4().getSwimmer().getName()));
-			heatsPanel.add(new JLabel(heats.getLane4().getSwimmer()
-					.getAgeGroup()));
-			heatsPanel.add(new JLabel(heats.getLane4().getEntryMinutes() + ":"
+			final JLabel ageGroupL4 = new JLabel(heats.getLane4()
+					.getSwimmer().getAgeGroup(), JLabel.CENTER);
+			heatsPanel.add(ageGroupL4);
+			final JLabel entryTimeL4 = new JLabel(heats.getLane4().getEntryMinutes() + ":"
 					+ heats.getLane4().getEntrySecondes() + ":"
-					+ heats.getLane4().getEntryMSeconds()));
+					+ heats.getLane4().getEntryMSeconds(), JLabel.CENTER);
+			heatsPanel.add(entryTimeL4);
 			heatsPanel.add(tMCBL4);
 			heatsPanel.add(tSCBL4);
 			heatsPanel.add(tMSCBL4);
@@ -885,14 +898,17 @@ public class AllHeats extends JDialog {
 			final JButton saveL5 = new JButton("Save");
 			final JButton dsqL5 = new JButton("DSQ");
 			final JButton dnsL5 = new JButton("DNS");
-			heatsPanel.add(new JLabel("Lane "
-					+ heats.getLane5().getLaneNumber()));
+			final JLabel laneNumberL5 = new JLabel("Lane "
+					+ heats.getLane5().getLaneNumber(), JLabel.CENTER);
+			heatsPanel.add(laneNumberL5);
 			heatsPanel.add(new JLabel(heats.getLane5().getSwimmer().getName()));
-			heatsPanel.add(new JLabel(heats.getLane5().getSwimmer()
-					.getAgeGroup()));
-			heatsPanel.add(new JLabel(heats.getLane5().getEntryMinutes() + ":"
+			final JLabel ageGroupL5 = new JLabel(heats.getLane5()
+					.getSwimmer().getAgeGroup(), JLabel.CENTER);
+			heatsPanel.add(ageGroupL5);
+			final JLabel entryTimeL5 = new JLabel(heats.getLane5().getEntryMinutes() + ":"
 					+ heats.getLane5().getEntrySecondes() + ":"
-					+ heats.getLane5().getEntryMSeconds()));
+					+ heats.getLane5().getEntryMSeconds(), JLabel.CENTER);
+			heatsPanel.add(entryTimeL5);
 			heatsPanel.add(tMCBL5);
 			heatsPanel.add(tSCBL5);
 			heatsPanel.add(tMSCBL5);
@@ -1074,14 +1090,17 @@ public class AllHeats extends JDialog {
 			final JButton saveL6 = new JButton("Save");
 			final JButton dsqL6 = new JButton("DSQ");
 			final JButton dnsL6 = new JButton("DNS");
-			heatsPanel.add(new JLabel("Lane "
-					+ heats.getLane6().getLaneNumber()));
+			final JLabel laneNumberL6 = new JLabel("Lane "
+					+ heats.getLane6().getLaneNumber(), JLabel.CENTER);
+			heatsPanel.add(laneNumberL6);
 			heatsPanel.add(new JLabel(heats.getLane6().getSwimmer().getName()));
-			heatsPanel.add(new JLabel(heats.getLane6().getSwimmer()
-					.getAgeGroup()));
-			heatsPanel.add(new JLabel(heats.getLane6().getEntryMinutes() + ":"
+			final JLabel ageGroupL6 = new JLabel(heats.getLane6()
+					.getSwimmer().getAgeGroup(), JLabel.CENTER);
+			heatsPanel.add(ageGroupL6);
+			final JLabel entryTimeL6 = new JLabel(heats.getLane6().getEntryMinutes() + ":"
 					+ heats.getLane6().getEntrySecondes() + ":"
-					+ heats.getLane6().getEntryMSeconds()));
+					+ heats.getLane6().getEntryMSeconds(), JLabel.CENTER);
+			heatsPanel.add(entryTimeL6);
 			heatsPanel.add(tMCBL6);
 			heatsPanel.add(tSCBL6);
 			heatsPanel.add(tMSCBL6);
@@ -1264,15 +1283,18 @@ public class AllHeats extends JDialog {
 				final JButton saveL7 = new JButton("Save");
 				final JButton dsqL7 = new JButton("DSQ");
 				final JButton dnsL7 = new JButton("DNS");
-				heatsPanel.add(new JLabel("Lane "
-						+ heats.getLane7().getLaneNumber()));
+				final JLabel laneNumberL7 = new JLabel("Lane "
+						+ heats.getLane7().getLaneNumber(), JLabel.CENTER);
+				heatsPanel.add(laneNumberL7);
 				heatsPanel.add(new JLabel(heats.getLane7().getSwimmer()
 						.getName()));
-				heatsPanel.add(new JLabel(heats.getLane7().getSwimmer()
-						.getAgeGroup()));
-				heatsPanel.add(new JLabel(heats.getLane7().getEntryMinutes()
-						+ ":" + heats.getLane7().getEntrySecondes() + ":"
-						+ heats.getLane7().getEntryMSeconds()));
+				final JLabel ageGroupL7 = new JLabel(heats.getLane7()
+						.getSwimmer().getAgeGroup(), JLabel.CENTER);
+				heatsPanel.add(ageGroupL7);
+				final JLabel entryTimeL7 = new JLabel(heats.getLane7().getEntryMinutes() + ":"
+						+ heats.getLane7().getEntrySecondes() + ":"
+						+ heats.getLane7().getEntryMSeconds(), JLabel.CENTER);
+				heatsPanel.add(entryTimeL7);
 				heatsPanel.add(tMCBL7);
 				heatsPanel.add(tSCBL7);
 				heatsPanel.add(tMSCBL7);
@@ -1456,15 +1478,18 @@ public class AllHeats extends JDialog {
 				final JButton saveL8 = new JButton("Save");
 				final JButton dsqL8 = new JButton("DSQ");
 				final JButton dnsL8 = new JButton("DNS");
-				heatsPanel.add(new JLabel("Lane "
-						+ heats.getLane8().getLaneNumber()));
+				final JLabel laneNumberL8 = new JLabel("Lane "
+						+ heats.getLane8().getLaneNumber(), JLabel.CENTER);
+				heatsPanel.add(laneNumberL8);
 				heatsPanel.add(new JLabel(heats.getLane8().getSwimmer()
 						.getName()));
-				heatsPanel.add(new JLabel(heats.getLane8().getSwimmer()
-						.getAgeGroup()));
-				heatsPanel.add(new JLabel(heats.getLane8().getEntryMinutes()
-						+ ":" + heats.getLane8().getEntrySecondes() + ":"
-						+ heats.getLane8().getEntryMSeconds()));
+				final JLabel ageGroupL8 = new JLabel(heats.getLane8()
+						.getSwimmer().getAgeGroup(), JLabel.CENTER);
+				heatsPanel.add(ageGroupL8);
+				final JLabel entryTimeL8 = new JLabel(heats.getLane8().getEntryMinutes() + ":"
+						+ heats.getLane8().getEntrySecondes() + ":"
+						+ heats.getLane8().getEntryMSeconds(), JLabel.CENTER);
+				heatsPanel.add(entryTimeL8);
 				heatsPanel.add(tMCBL8);
 				heatsPanel.add(tSCBL8);
 				heatsPanel.add(tMSCBL8);
@@ -1699,7 +1724,8 @@ public class AllHeats extends JDialog {
 		try {
 			handleFile("rezultate", "-1");
 			FileWriter fstream = new FileWriter(pathFile.get("rezultate")
-					+ "\\" + "Rezultate " + eventName + " " + heatGender + ".csv", false);
+					+ "\\" + "Rezultate " + eventName + " " + heatGender
+					+ ".csv", false);
 			BufferedWriter out = new BufferedWriter(fstream);
 			for (Lane lanes : resultLanes) {
 				out.write(lanes.getSwimmer().getName() + ";"

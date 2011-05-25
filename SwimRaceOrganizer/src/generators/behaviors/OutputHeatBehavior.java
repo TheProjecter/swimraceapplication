@@ -15,6 +15,6 @@ public class OutputHeatBehavior implements GenerateHeatBehavior {
 		allHeats = new AllHeats(operations.returnEvent(eventName), poolType,
 				competitionTitle, heatGender);
 		SwimRaceOrganizerApp.getApplication().show(allHeats);
-		allHeats.setSize(700, 300);
+		allHeats.setSize(1200, 300);
 	}
 }

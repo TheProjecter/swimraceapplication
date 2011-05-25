@@ -26,7 +26,10 @@ public class SwimmerOperations {
     
 	public String ageGroupCalculation(int age) {
 		String ageGroup = "18 - ";
-		for (int i = 18; i<120; i++) {
+		if (age < 25) {
+			return "18 - 24";
+		}
+		for (int i = 25; i<120; i++) {
 			if (i%5 == 0 && (age - i <= 4) && (age - i >= 0)) {
 				ageGroup = "" + i + " - ";
 			}
