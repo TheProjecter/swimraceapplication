@@ -32,15 +32,15 @@ import entities.ResultComparator;
 
 public class ResultWriter {
 
-	private static Font titleFont = new Font(Font.FontFamily.COURIER, 26,
+	private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 26,
 			Font.BOLD);
-	private static Font headerFont1 = new Font(Font.FontFamily.COURIER, 18,
+	private static Font headerFont1 = new Font(Font.FontFamily.HELVETICA, 18,
 			Font.BOLD);
-	private static Font headerFont2 = new Font(Font.FontFamily.COURIER, 14,
+	private static Font headerFont2 = new Font(Font.FontFamily.HELVETICA, 14,
 			Font.BOLD);
-	private static Font normalHeaderFont = new Font(Font.FontFamily.COURIER,
+	private static Font normalHeaderFont = new Font(Font.FontFamily.HELVETICA,
 			10, Font.BOLD);
-	private static Font normalFont = new Font(Font.FontFamily.COURIER, 10,
+	private static Font normalFont = new Font(Font.FontFamily.HELVETICA, 8,
 			Font.NORMAL);
 	private static String file;
 	private String competitionTitle;
@@ -147,6 +147,8 @@ public class ResultWriter {
 		List<String> ageGroups = ageGroup.getAgeGroups();
 
 		int classification = 1;
+		long previousResultTime = 999999;
+		int loopNr = 1;
 
 		for (String age : ageGroups) {
 			if (operations.searchAgeGroupInResult(results, age, requiredGender)) {
@@ -160,6 +162,14 @@ public class ResultWriter {
 				for (Result res : results) {
 					if (res.getSwimmer().getAgeGroup().equals(age)) {
 						// add the swimmer
+
+						if (loopNr > 1
+								&& previousResultTime == res.getResultTime()) {
+							classification--;
+						} else {
+							classification = loopNr;
+						}
+
 						PdfPCell c21 = new PdfPCell(new Phrase(
 								Integer.toString(classification), normalFont));
 						c21.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -197,21 +207,30 @@ public class ResultWriter {
 										normalFont));
 						disableBorders(c26);
 						table.addCell(c26);
-						PdfPCell c27 = new PdfPCell(new Phrase(
-								Integer.toString(calculations
-										.calculateLocalPoints(classification)),
-								normalFont));
+						PdfPCell c27 = new PdfPCell(
+								new Phrase(
+										Integer.toString((!res
+												.getPerformanceStatus().equals(
+														"OK") ? 0
+												: calculations
+														.calculateLocalPoints(classification))),
+										normalFont));
 						disableBorders(c27);
 						table.addCell(c27);
-						PdfPCell c28 = new PdfPCell(new Phrase(
-								res.getPerformanceStatus(), normalFont));
+						PdfPCell c28 = new PdfPCell(new Phrase((res
+								.getPerformanceStatus().equals("OK") ? ""
+								: res.getPerformanceStatus()), normalFont));
 						disableBorders(c28);
 						table.addCell(c28);
 						classification++;
+						loopNr++;
+						previousResultTime = res.getResultTime();
 					}
 				}
 
 				classification = 1;
+				previousResultTime = 99999;
+				loopNr = 1;
 
 				// add empty line
 				PdfPCell c31 = new PdfPCell(new Phrase(" ", normalHeaderFont));
