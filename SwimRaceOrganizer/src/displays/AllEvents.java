@@ -67,6 +67,7 @@ public class AllEvents extends javax.swing.JDialog {
 
 		jScrollPane1 = new javax.swing.JScrollPane();
 		jTAllEvents = new javax.swing.JTable();
+		jTAllEvents.setAutoCreateRowSorter(true);
 		jBCancel = new javax.swing.JButton();
 		jBDelete = new javax.swing.JButton();
 		jCBEventSelection = new javax.swing.JComboBox();

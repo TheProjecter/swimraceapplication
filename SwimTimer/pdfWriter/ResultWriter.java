@@ -32,9 +32,9 @@ import entities.ResultComparator;
 
 public class ResultWriter {
 
-	private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 26,
+	private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 20,
 			Font.BOLD);
-	private static Font headerFont1 = new Font(Font.FontFamily.HELVETICA, 18,
+	private static Font headerFont1 = new Font(Font.FontFamily.HELVETICA, 14,
 			Font.BOLD);
 	private static Font headerFont2 = new Font(Font.FontFamily.HELVETICA, 14,
 			Font.BOLD);
@@ -86,31 +86,15 @@ public class ResultWriter {
 		 */
 		try {
 			Image image = Image
-					.getInstance(pathFile.get("util") + "\\logo.png");
-			image.setAlignment(Element.ALIGN_CENTER);
+					.getInstance(pathFile.get("util") + "\\logo.jpg");
+			image.setAlignment(Element.ALIGN_LEFT);
+			image.setWidthPercentage(50);
 			document.add(image);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		/**
-		 * Add the Title paragraph
-		 */
-		Paragraph titleParagraph = new Paragraph(competitionTitle, titleFont);
-		titleParagraph.setAlignment(Element.ALIGN_CENTER);
-		document.add(titleParagraph);
-		document.add(twoEmptyLine);
-
-		/**
-		 * Add the date
-		 */
-		Format format = new SimpleDateFormat("EEEE dd MMM yyyy");
-		Paragraph dateParagraph = new Paragraph(format.format((new Date())),
-				headerFont1);
-		document.add(dateParagraph);
-		document.add(twoEmptyLine);
 
 		/**
 		 * Add the event name

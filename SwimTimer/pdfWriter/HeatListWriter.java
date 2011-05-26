@@ -81,30 +81,13 @@ public class HeatListWriter {
 		try {
 			Image image = Image
 					.getInstance(pathFile.get("util") + "\\logo.png");
-			image.setAlignment(Element.ALIGN_CENTER);
+			image.setAlignment(Element.ALIGN_LEFT);
 			document.add(image);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		/**
-		 * Add the Title paragraph
-		 */
-		Paragraph titleParagraph = new Paragraph(competitionTitle, titleFont);
-		titleParagraph.setAlignment(Element.ALIGN_CENTER);
-		document.add(titleParagraph);
-		document.add(twoEmptyLine);
-
-		/**
-		 * Add the date
-		 */
-		Format format = new SimpleDateFormat("EEEE dd MMM yyyy");
-		Paragraph dateParagraph = new Paragraph(format.format((new Date())),
-				headerFont1);
-		document.add(dateParagraph);
-		document.add(twoEmptyLine);
 
 		/**
 		 * Add the event name
