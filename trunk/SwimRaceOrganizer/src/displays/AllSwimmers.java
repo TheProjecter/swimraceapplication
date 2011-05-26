@@ -76,6 +76,7 @@ public class AllSwimmers extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTAllSwimmers = new javax.swing.JTable();
+        jTAllSwimmers.setAutoCreateRowSorter(true);
         jLSwimmerToDelete = new javax.swing.JLabel();
         jCBSwimmerSelection = new javax.swing.JComboBox();
         jBDelete = new javax.swing.JButton();

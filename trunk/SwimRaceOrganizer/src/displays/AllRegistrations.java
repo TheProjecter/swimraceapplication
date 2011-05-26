@@ -66,6 +66,7 @@ public class AllRegistrations extends javax.swing.JDialog {
 
 		jScrollPane1 = new javax.swing.JScrollPane();
 		jTAllRegistrations = new javax.swing.JTable();
+		jTAllRegistrations.setAutoCreateRowSorter(true);
 		jCBRegistrationSelection = new javax.swing.JComboBox();
 		jBDelete = new javax.swing.JButton();
 		jBCancel = new javax.swing.JButton();
