@@ -3,7 +3,6 @@ package displays;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
@@ -28,6 +27,7 @@ import utils.Constants;
 import utils.SwimmersPerHeatSingleton;
 import work.Operations;
 import customComponents.HeaderText;
+import customComponents.HeatGridLayout;
 import customComponents.TimesComboBox;
 import entities.Event;
 import entities.Heat;
@@ -100,9 +100,11 @@ public class AllHeats extends JDialog {
 		final JPanel heatsPanel = new JPanel();
 		/**
 		 * The lines are 8 or 10 based on the pooltype
-		 */
-		heatsPanel.setLayout(new GridLayout((heatList.size() * (poolType
+		 */ /*TO REMOVE!!!*/
+		heatsPanel.setLayout(new HeatGridLayout((heatList.size() * (poolType
 				.contains("50") ? 10 : 8)), 10));
+//		heatsPanel.setLayout(new HeatGridLayout((heatList.size() * (poolType
+//		.contains("50") ? 3 : 1)), 3));
 
 		for (Heat heats : heatList) {
 			// header
@@ -111,7 +113,10 @@ public class AllHeats extends JDialog {
 			heatsPanel.add(new HeaderText("Name", JLabel.CENTER));
 			heatsPanel.add(new HeaderText("Age Gr.", JLabel.CENTER));
 			heatsPanel.add(new HeaderText("Entry", JLabel.CENTER));
+			//JLabel lMinutes = new JLabel("Minutes", JLabel.CENTER);
 			heatsPanel.add(new HeaderText("Minutes", JLabel.CENTER));
+			//lMinutes.setSize(20, lMinutes.getHeight());
+			//heatsPanel.add(lMinutes);
 			heatsPanel.add(new HeaderText("Seconds", JLabel.CENTER));
 			heatsPanel.add(new HeaderText("M. Sec.", JLabel.CENTER));
 			heatsPanel.add(new HeaderText("Save", JLabel.CENTER));
@@ -123,9 +128,15 @@ public class AllHeats extends JDialog {
 			final TimesComboBox tMCBL1 = new TimesComboBox("minutes");
 			final TimesComboBox tSCBL1 = new TimesComboBox("seconds");
 			final TimesComboBox tMSCBL1 = new TimesComboBox("mseconds");
+			tMCBL1.setSize(10, 20);
+			tSCBL1.setSize(10, 20);
+			tMSCBL1.setSize(10, 20);
 			final JButton saveL1 = new JButton("Save");
 			final JButton dsqL1 = new JButton("DSQ");
 			final JButton dnsL1 = new JButton("DNS");
+			saveL1.setSize(10, 20);
+			dsqL1.setSize(10, 20);
+			dnsL1.setSize(10, 20);
 			final JLabel laneNumberL1 = new JLabel("Lane "
 					+ heats.getLane1().getLaneNumber(), JLabel.CENTER);
 			heatsPanel.add(laneNumberL1);
@@ -315,6 +326,9 @@ public class AllHeats extends JDialog {
 			final TimesComboBox tMCBL2 = new TimesComboBox("minutes");
 			final TimesComboBox tSCBL2 = new TimesComboBox("seconds");
 			final TimesComboBox tMSCBL2 = new TimesComboBox("mseconds");
+			tMCBL2.setSize(10, tMCBL2.getHeight());
+			tSCBL2.setSize(10, tSCBL2.getHeight());
+			tMSCBL2.setSize(10, tMSCBL2.getHeight());
 			final JButton saveL2 = new JButton("Save");
 			final JButton dsqL2 = new JButton("DSQ");
 			final JButton dnsL2 = new JButton("DNS");
@@ -507,6 +521,9 @@ public class AllHeats extends JDialog {
 			final TimesComboBox tMCBL3 = new TimesComboBox("minutes");
 			final TimesComboBox tSCBL3 = new TimesComboBox("seconds");
 			final TimesComboBox tMSCBL3 = new TimesComboBox("mseconds");
+			tMCBL3.setSize(10, tMCBL3.getHeight());
+			tSCBL3.setSize(10, tSCBL3.getHeight());
+			tMSCBL3.setSize(10, tMSCBL3.getHeight());
 			final JButton saveL3 = new JButton("Save");
 			final JButton dsqL3 = new JButton("DSQ");
 			final JButton dnsL3 = new JButton("DNS");
@@ -701,6 +718,9 @@ public class AllHeats extends JDialog {
 			final TimesComboBox tMCBL4 = new TimesComboBox("minutes");
 			final TimesComboBox tSCBL4 = new TimesComboBox("seconds");
 			final TimesComboBox tMSCBL4 = new TimesComboBox("mseconds");
+			tMCBL4.setSize(10, tMCBL4.getHeight());
+			tSCBL4.setSize(10, tSCBL4.getHeight());
+			tMSCBL4.setSize(10, tMSCBL4.getHeight());
 			final JButton saveL4 = new JButton("Save");
 			final JButton dsqL4 = new JButton("DSQ");
 			final JButton dnsL4 = new JButton("DNS");
@@ -895,6 +915,9 @@ public class AllHeats extends JDialog {
 			final TimesComboBox tMCBL5 = new TimesComboBox("minutes");
 			final TimesComboBox tSCBL5 = new TimesComboBox("seconds");
 			final TimesComboBox tMSCBL5 = new TimesComboBox("mseconds");
+			tMCBL5.setSize(10, tMCBL5.getHeight());
+			tSCBL5.setSize(10, tSCBL5.getHeight());
+			tMSCBL5.setSize(10, tMSCBL5.getHeight());
 			final JButton saveL5 = new JButton("Save");
 			final JButton dsqL5 = new JButton("DSQ");
 			final JButton dnsL5 = new JButton("DNS");
@@ -1087,6 +1110,9 @@ public class AllHeats extends JDialog {
 			final TimesComboBox tMCBL6 = new TimesComboBox("minutes");
 			final TimesComboBox tSCBL6 = new TimesComboBox("seconds");
 			final TimesComboBox tMSCBL6 = new TimesComboBox("mseconds");
+			tMCBL6.setSize(10, tMCBL6.getHeight());
+			tSCBL6.setSize(10, tSCBL6.getHeight());
+			tMSCBL6.setSize(10, tMSCBL6.getHeight());
 			final JButton saveL6 = new JButton("Save");
 			final JButton dsqL6 = new JButton("DSQ");
 			final JButton dnsL6 = new JButton("DNS");
@@ -1280,6 +1306,9 @@ public class AllHeats extends JDialog {
 				final TimesComboBox tMCBL7 = new TimesComboBox("minutes");
 				final TimesComboBox tSCBL7 = new TimesComboBox("seconds");
 				final TimesComboBox tMSCBL7 = new TimesComboBox("mseconds");
+				tMCBL7.setSize(10, tMCBL7.getHeight());
+				tSCBL7.setSize(10, tSCBL7.getHeight());
+				tMSCBL7.setSize(10, tMSCBL7.getHeight());
 				final JButton saveL7 = new JButton("Save");
 				final JButton dsqL7 = new JButton("DSQ");
 				final JButton dnsL7 = new JButton("DNS");
@@ -1475,6 +1504,9 @@ public class AllHeats extends JDialog {
 				final TimesComboBox tMCBL8 = new TimesComboBox("minutes");
 				final TimesComboBox tSCBL8 = new TimesComboBox("seconds");
 				final TimesComboBox tMSCBL8 = new TimesComboBox("mseconds");
+				tMCBL8.setSize(10, tMCBL8.getHeight());
+				tSCBL8.setSize(10, tSCBL8.getHeight());
+				tMSCBL8.setSize(10, tMSCBL8.getHeight());
 				final JButton saveL8 = new JButton("Save");
 				final JButton dsqL8 = new JButton("DSQ");
 				final JButton dnsL8 = new JButton("DNS");

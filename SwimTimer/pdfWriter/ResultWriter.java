@@ -99,8 +99,8 @@ public class ResultWriter {
 		/**
 		 * Add the event name
 		 */
-		Paragraph eventNameParagraph = new Paragraph(event.getName()
-				.toUpperCase(), headerFont2);
+		Paragraph eventNameParagraph = new Paragraph(event.getName() + " "
+				+ requiredGender.toUpperCase(), headerFont2);
 		document.add(eventNameParagraph);
 		document.add(oneEmptyLine);
 
@@ -187,7 +187,7 @@ public class ResultWriter {
 												.calculateFinaPoints(
 														res.getSwimTimeSeconds(),
 														calculations
-																.getBaseTimeForEvent(event)),
+																.getBaseTimeForEvent(event, age, requiredGender)),
 										normalFont));
 						disableBorders(c26);
 						table.addCell(c26);

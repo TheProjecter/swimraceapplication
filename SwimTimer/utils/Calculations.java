@@ -54,72 +54,81 @@ public class Calculations {
 	public List<FinaBaseTimes> getAllBaseTimes() {
 		List<FinaBaseTimes> fina = new ArrayList<FinaBaseTimes>();
 		Scanner scanner;
+		String tmp = "buzz";
 		try {
 			scanner = new Scanner(new File(pathFile.get("util")
 					+ "\\FINA Base Times.csv"));
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
-
+					tmp = entry[11];
 					fina.add(new FinaBaseTimes(entry[0], entry[1], entry[2],
-							Integer.parseInt(entry[3]), entry[4], entry[5],
-							getMinuteFromString(entry[6]),
-							getSecondsFromString(entry[6]),
-							getMSecondsFromString(entry[6]), Double
-									.parseDouble(entry[7].replace(",", "."))));
+							entry[4], Integer.parseInt(entry[3]), entry[5],
+							entry[6], getMinuteFromString(entry[10]),
+							getSecondsFromString(entry[10]),
+							getMSecondsFromString(entry[10]), Double
+									.parseDouble(entry[11].replace(",", "."))));
 				}
+			} catch (NumberFormatException e) {
+			} catch (ArrayIndexOutOfBoundsException e) {
 			} finally {
 				scanner.close();
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
 		return fina;
 	}
 
-	public double getBaseTimeForEvent(Event event) {
+	public double getBaseTimeForEvent(Event event, String age, String gender) {
 		Boolean matchFoundPoolType = false;
 		Boolean matchFoundStyle = false;
 		Boolean matchFoundDistance = false;
 		Boolean matchFoundGender = false;
 		List<FinaBaseTimes> fina = getAllBaseTimes();
 		for (FinaBaseTimes times : fina) {
-			// establish the pooltype
-			matchFoundPoolType = (times.getPoolType().equals("SCM")) ? (event
-					.getPoolType().contains("25") ? true : false) : (times
-					.getPoolType().equals("LCM")) ? (event.getPoolType()
-					.contains("50") ? true : false) : false;
-			// establish the style
-			matchFoundStyle = (times.getStyle().equals("FREE")) ? (event
-					.getStyle().equals(styleType.get("FREE").toString()) ? true
-					: false)
-					: (times.getStyle().equals("BACK")) ? (event.getStyle()
-							.equals(styleType.get("BACK").toString()) ? true
-							: false)
-							: (times.getStyle().equals("BREAST")) ? (event
-									.getStyle().equals(
-											styleType.get("BREAST").toString()) ? true
-									: false)
-									: (times.getStyle().equals("FLY")) ? (event
-											.getStyle().equals(
-													styleType.get("FLY")
-															.toString()) ? true
-											: false) : (times.getStyle()
-											.equals("MEDLEY")) ? (event
-											.getStyle().equals(
-													styleType.get("MEDLEY")
-															.toString()) ? true
-											: false) : false;
-			// establish the length
-			matchFoundDistance = ((times.getLength() + " Meters").equals(event
-					.getLength())) ? true : false;
-			// match the gender
-//			matchFoundGender = times.getGender().equals(event.getGender()) ? true
-//					: false;
-			if (matchFoundPoolType && matchFoundStyle && matchFoundDistance
-					&& matchFoundGender) {
-				return times.getBaseTimesSeconds();
+			// only base times of a certain age group are taken into account
+			if (times.getAgeGroup().equals(age)) {
+				// establish the pooltype
+				matchFoundPoolType = (times.getPoolType().equals("SCM")) ? (event
+						.getPoolType().contains("25") ? true : false) : (times
+						.getPoolType().equals("LCM")) ? (event.getPoolType()
+						.contains("50") ? true : false) : false;
+				// establish the style
+				matchFoundStyle = (times.getStyle().equals("FREE")) ? (event
+						.getStyle().equals(styleType.get("FREE").toString()) ? true
+						: false)
+						: (times.getStyle().equals("BACK")) ? (event.getStyle()
+								.equals(styleType.get("BACK").toString()) ? true
+								: false)
+								: (times.getStyle().equals("BREAST")) ? (event
+										.getStyle().equals(
+												styleType.get("BREAST")
+														.toString()) ? true
+										: false)
+										: (times.getStyle().equals("FLY")) ? (event
+												.getStyle().equals(
+														styleType.get("FLY")
+																.toString()) ? true
+												: false)
+												: (times.getStyle()
+														.equals("MEDLEY")) ? (event
+														.getStyle()
+														.equals(styleType.get(
+																"MEDLEY")
+																.toString()) ? true
+														: false)
+														: false;
+				// establish the length
+				matchFoundDistance = ((times.getLength() + " Meters")
+						.equals(event.getLength())) ? true : false;
+				// match the gender
+				matchFoundGender = times.getGender().toLowerCase()
+						.equals(gender.toLowerCase()) ? true : false;
+				if (matchFoundPoolType && matchFoundStyle && matchFoundDistance
+						&& matchFoundGender) {
+					return times.getBaseTimesSeconds();
+				}
 			}
 		}
 		return 0;

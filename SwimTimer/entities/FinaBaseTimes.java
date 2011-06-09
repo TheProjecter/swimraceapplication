@@ -12,14 +12,17 @@ public class FinaBaseTimes {
 	private Integer seconds;
 	private Integer mSeconds;
 	private long swimTime;
-	private double baseTimesSeconds; 
+	private double baseTimesSeconds;
+	private String ageGroup;
 
 	public FinaBaseTimes(String year, String poolType, String gender,
-			int relayCount, String length, String style, Integer minutes,
-			Integer seconds, Integer mSeconds, double baseTimesSeconds) {
+			String ageGroup, int relayCount, String length, String style,
+			Integer minutes, Integer seconds, Integer mSeconds,
+			double baseTimesSeconds) {
 		setYear(year);
 		setPoolType(poolType);
 		setGender(gender);
+		setAgeGroup(ageGroup);
 		setRelayCount(relayCount);
 		setLength(length);
 		setStyle(style);
@@ -117,6 +120,14 @@ public class FinaBaseTimes {
 
 	public void setBaseTimesSeconds(double baseTimesSeconds) {
 		this.baseTimesSeconds = baseTimesSeconds;
+	}
+
+	public String getAgeGroup() {
+		return ageGroup;
+	}
+
+	public void setAgeGroup(String ageGroup) {
+		this.ageGroup = ageGroup;
 	}
 
 }
