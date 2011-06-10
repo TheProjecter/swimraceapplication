@@ -4,12 +4,25 @@
 
 package swimraceorganizer;
 
+import java.awt.Font;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+
 import org.jdesktop.application.Action;
+import javax.swing.JTextArea;
+import java.awt.SystemColor;
 
 public class SwimRaceOrganizerAboutBox extends javax.swing.JDialog {
 
     public SwimRaceOrganizerAboutBox(java.awt.Frame parent) {
         super(parent);
+        setResizable(false);
+        setModal(true);
         initComponents();
         getRootPane().setDefaultButton(closeButton);
     }
@@ -28,21 +41,19 @@ public class SwimRaceOrganizerAboutBox extends javax.swing.JDialog {
 
         closeButton = new javax.swing.JButton();
         javax.swing.JLabel appTitleLabel = new javax.swing.JLabel();
+        appTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         javax.swing.JLabel versionLabel = new javax.swing.JLabel();
         javax.swing.JLabel appVersionLabel = new javax.swing.JLabel();
-        javax.swing.JLabel vendorLabel = new javax.swing.JLabel();
-        javax.swing.JLabel appVendorLabel = new javax.swing.JLabel();
         javax.swing.JLabel homepageLabel = new javax.swing.JLabel();
         javax.swing.JLabel appHomepageLabel = new javax.swing.JLabel();
         javax.swing.JLabel appDescLabel = new javax.swing.JLabel();
+        appDescLabel.setHorizontalAlignment(SwingConstants.CENTER);
         javax.swing.JLabel imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class).getContext().getResourceMap(SwimRaceOrganizerAboutBox.class);
-        setTitle("About S.A.M. Race Edition v1.0"); // NOI18N
-        setModal(true);
-        setName("aboutBox"); // NOI18N
-        setResizable(false);
+        setTitle("About S.A.M. Race Edition v1.1");
+        setName("aboutBox");
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class).getContext().getActionMap(SwimRaceOrganizerAboutBox.class, this);
         closeButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
@@ -56,15 +67,8 @@ public class SwimRaceOrganizerAboutBox extends javax.swing.JDialog {
         versionLabel.setText(resourceMap.getString("versionLabel.text")); // NOI18N
         versionLabel.setName("versionLabel"); // NOI18N
 
-        appVersionLabel.setText("1.0, build 97"); // NOI18N
-        appVersionLabel.setName("appVersionLabel"); // NOI18N
-
-        vendorLabel.setFont(vendorLabel.getFont().deriveFont(vendorLabel.getFont().getStyle() | java.awt.Font.BOLD));
-        vendorLabel.setText(resourceMap.getString("vendorLabel.text")); // NOI18N
-        vendorLabel.setName("vendorLabel"); // NOI18N
-
-        appVendorLabel.setText("r.j. Sovarszki"); // NOI18N
-        appVendorLabel.setName("appVendorLabel"); // NOI18N
+        appVersionLabel.setText("1.1, build 110"); // NOI18N
+        appVersionLabel.setName("appVersionLabel");
 
         homepageLabel.setFont(homepageLabel.getFont().deriveFont(homepageLabel.getFont().getStyle() | java.awt.Font.BOLD));
         homepageLabel.setText("Contact"); // NOI18N
@@ -78,60 +82,83 @@ public class SwimRaceOrganizerAboutBox extends javax.swing.JDialog {
 
         imageLabel.setIcon(resourceMap.getIcon("imageLabel.icon")); // NOI18N
         imageLabel.setName("imageLabel"); // NOI18N
+        
+        JLabel lblCopyright = new JLabel();
+        lblCopyright.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        lblCopyright.setHorizontalAlignment(SwingConstants.CENTER);
+        lblCopyright.setText("Copyright \u00A9 2010-2011, Rolland Sovarszki");
+        lblCopyright.setName("appCopyright");
+        
+        JTextArea txtrSamIsA = new JTextArea();
+        txtrSamIsA.setEditable(false);
+        txtrSamIsA.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        txtrSamIsA.setBackground(SystemColor.control);
+        txtrSamIsA.setText("SAM is a free software. It can be redistributed or modied under the terms of the GNU General Public License as published by the Free Software      Foundation; ");
+        txtrSamIsA.setRows(12);
+        txtrSamIsA.setLineWrap(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(imageLabel)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(versionLabel)
-                            .addComponent(vendorLabel)
-                            .addComponent(homepageLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(appVersionLabel)
-                            .addComponent(appVendorLabel)
-                            .addComponent(appHomepageLabel)))
-                    .addComponent(appTitleLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(appDescLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                    .addComponent(closeButton))
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addComponent(imageLabel)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        					.addGroup(layout.createSequentialGroup()
+        						.addComponent(appTitleLabel)
+        						.addGap(118))
+        					.addGroup(layout.createSequentialGroup()
+        						.addGap(18)
+        						.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        							.addComponent(txtrSamIsA, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(appDescLabel, GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+        							.addGroup(layout.createSequentialGroup()
+        								.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        									.addComponent(versionLabel)
+        									.addComponent(homepageLabel))
+        								.addPreferredGap(ComponentPlacement.RELATED)
+        								.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        									.addComponent(appHomepageLabel)
+        									.addComponent(appVersionLabel))
+        								.addGap(66))
+        							.addComponent(closeButton))
+        						.addContainerGap()))
+        				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        					.addComponent(lblCopyright, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)
+        					.addGap(55))))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(appTitleLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(appDescLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(versionLabel)
-                    .addComponent(appVersionLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vendorLabel)
-                    .addComponent(appVendorLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(homepageLabel)
-                    .addComponent(appHomepageLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(closeButton)
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(appTitleLabel)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(appDescLabel)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(versionLabel)
+        						.addComponent(appVersionLabel))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(homepageLabel)
+        						.addComponent(appHomepageLabel))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(lblCopyright)
+        					.addGap(11)
+        					.addComponent(txtrSamIsA, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+        					.addGap(18)
+        					.addComponent(closeButton))
+        				.addComponent(imageLabel, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(49, Short.MAX_VALUE))
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
-    // End of variables declaration//GEN-END:variables
-    
 }
