@@ -61,7 +61,10 @@ public class Calculations {
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
-					tmp = entry[11];
+
+					entry[10] = entry[10].isEmpty() ? "99:99.99" : entry[10];
+					entry[11] = entry[11].isEmpty() ? "99:99.99" : entry[11];
+					
 					fina.add(new FinaBaseTimes(entry[0], entry[1], entry[2],
 							entry[4], Integer.parseInt(entry[3]), entry[5],
 							entry[6], getMinuteFromString(entry[10]),
@@ -70,6 +73,7 @@ public class Calculations {
 									.parseDouble(entry[11].replace(",", "."))));
 				}
 			} catch (NumberFormatException e) {
+				
 			} catch (ArrayIndexOutOfBoundsException e) {
 			} finally {
 				scanner.close();

@@ -51,9 +51,15 @@ public class Sandbox {
 		String x = "";
 		String y = null;
 		
-		if (x.isEmpty()) {
-			System.out.println("x is empty");
-		}
+		System.out.println("".isEmpty());
+		Operations sOps = new Operations();
+		Calculations calculations = Calculations.getInstance();
+		Event event = sOps.returnEvent("Proba 6 - 50 Meters freestyle");
+		System.out.println(calculations.getBaseTimeForEvent(event, "25 - 29", "M"));
+		
+//		if (x.isEmpty()) {
+//			System.out.println("x is empty");
+//		}
 //		SwimmersPerHeatSingleton swimPerHeat = SwimmersPerHeatSingleton.getInstance();
 //		swimPerHeat.push("sprint", 4);
 //		swimPerHeat.push("testNR", 6);
