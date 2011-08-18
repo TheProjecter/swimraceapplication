@@ -65,9 +65,8 @@ public class SwimRaceOrganizerView extends FrameView {
     
     public SwimRaceOrganizerView(SingleFrameApplication app) {
         super(app);
-
         initComponents();
-
+        getFrame().setResizable(false);
     }
 
     @Action
@@ -220,69 +219,69 @@ public class SwimRaceOrganizerView extends FrameView {
             }
         });
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout gl_mainPanel = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(gl_mainPanel);
+        gl_mainPanel.setHorizontalGroup(
+            gl_mainPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gl_mainPanel.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(gl_mainPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBRegisterSwimmer, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBGenerateHeats, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBAllSwimmers, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBAddSwimmer, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGroup(gl_mainPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(gl_mainPanel.createSequentialGroup()
                         .addGap(143, 143, 143)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(gl_mainPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBAddSwimmingEvent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                             .addComponent(jBAllEvents, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                             .addComponent(jBAllRegistrations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addGroup(gl_mainPanel.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBStoreResults, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(mainPanelLayout.createSequentialGroup()
+            .addGroup(gl_mainPanel.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLSwimmerActions)
                 .addGap(401, 401, 401))
-            .addGroup(mainPanelLayout.createSequentialGroup()
+            .addGroup(gl_mainPanel.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                 .addContainerGap(11, Short.MAX_VALUE))
-            .addGroup(mainPanelLayout.createSequentialGroup()
+            .addGroup(gl_mainPanel.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                 .addContainerGap(11, Short.MAX_VALUE))
-            .addGroup(mainPanelLayout.createSequentialGroup()
+            .addGroup(gl_mainPanel.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLGenerateActions)
                 .addContainerGap(423, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, mainPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, gl_mainPanel.createSequentialGroup()
                 .addGap(367, 367, 367)
                 .addComponent(jLEventActions)
                 .addGap(58, 58, 58))
-            .addGroup(mainPanelLayout.createSequentialGroup()
+            .addGroup(gl_mainPanel.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jRegistrationActions)
                 .addContainerGap(385, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gl_mainPanel.createSequentialGroup()
                 .addContainerGap(317, Short.MAX_VALUE)
                 .addComponent(jBGenerateResults, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
+        gl_mainPanel.setVerticalGroup(
+            gl_mainPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gl_mainPanel.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGroup(gl_mainPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(gl_mainPanel.createSequentialGroup()
                         .addComponent(jLSwimmerActions)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBAddSwimmer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBAllSwimmers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addGroup(gl_mainPanel.createSequentialGroup()
                         .addComponent(jLEventActions)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBAddSwimmingEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,7 +292,7 @@ public class SwimRaceOrganizerView extends FrameView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRegistrationActions)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(gl_mainPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBRegisterSwimmer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBAllRegistrations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -301,7 +300,7 @@ public class SwimRaceOrganizerView extends FrameView {
                 .addGap(5, 5, 5)
                 .addComponent(jLGenerateActions)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(gl_mainPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBGenerateHeats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBStoreResults))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -337,6 +336,7 @@ public class SwimRaceOrganizerView extends FrameView {
 
         setComponent(mainPanel);
         setMenuBar(menuBar);
+        
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAddSwimmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddSwimmerActionPerformed
