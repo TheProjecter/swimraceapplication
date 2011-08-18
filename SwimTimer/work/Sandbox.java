@@ -48,14 +48,12 @@ public class Sandbox {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		String x = "";
-		String y = null;
-		
-		System.out.println("".isEmpty());
+
 		Operations sOps = new Operations();
 		Calculations calculations = Calculations.getInstance();
-		Event event = sOps.returnEvent("Proba 6 - 50 Meters freestyle");
-		System.out.println(calculations.getBaseTimeForEvent(event, "25 - 29", "M"));
+		Event event = sOps.returnEvent("Proba 11 - 100 Meters freestyle");
+		System.out.println(calculations.calculateFinaPoints(69.00, 
+					calculations.getBaseTimeForEvent(event, "30 - 34", "M")));
 		
 //		if (x.isEmpty()) {
 //			System.out.println("x is empty");
