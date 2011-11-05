@@ -13,21 +13,14 @@ package swimraceorganizer;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
+
 import javax.swing.JOptionPane;
 
-import org.jdesktop.application.Action;
-
-import customComponents.WarrningDialog;
-
-import entities.Swimmer;
-
 import utils.SwimmerOperations;
+import customComponents.WarrningDialog;
+import entities.Swimmer;
 
 /**
  * 
@@ -52,9 +45,8 @@ public class AddSwimmer extends javax.swing.JDialog {
 	private javax.swing.JTextField jTAgeGroup;
 	private javax.swing.JTextField jTClub;
 	private javax.swing.JTextField jTSwimmerName;
-	private org.jdesktop.beansbinding.BindingGroup bindingGroup;
 	// End of variables declaration//GEN-END:variables
-
+	
 	private WarrningDialog warrningBox;
 
 	/** Creates new form AddSwimmer */
