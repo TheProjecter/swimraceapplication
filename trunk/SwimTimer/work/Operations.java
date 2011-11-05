@@ -30,8 +30,16 @@ public class Operations {
 
 	private Map<String, String> dataFile = new Constants().getDataFiles();
 	private Map<String, String> pathFile = new Constants().getDataFiles();
-
+	private String osName = new Constants().getOsName();
+	private String separator = null;
+	
 	public Operations() {
+		// setting the separator Linux/Windows
+		if (osName.toLowerCase().startsWith("linux")) {
+			setSeparator("/");
+		} else if (osName.toLowerCase().startsWith("windows")) {
+			setSeparator("\\");
+		}
 	}
 
 	public void clearDB(String dbType) {
@@ -50,10 +58,13 @@ public class Operations {
 		List<Swimmer> swimmers = new ArrayList<Swimmer>();
 		try {
 			handleFile("core", "swimmers");
-			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+			System.out.println(pathFile.get("core") + separator
+					+ dataFile.get("swimmers"));
+			scanner = new Scanner(new File(pathFile.get("core") + separator
 					+ dataFile.get("swimmers")));
 			try {
 				while (scanner.hasNextLine()) {
+					System.out.println("inside...");
 					String[] entry = scanner.nextLine().split(";");
 					swimmers.add(new Swimmer(entry[0], entry[1], entry[2],
 							entry[3], entry[4]));
@@ -71,7 +82,7 @@ public class Operations {
 		Scanner scanner;
 		Swimmer swimmer = new Swimmer(null, null, null, null, null);
 		try {
-			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+			scanner = new Scanner(new File(pathFile.get("core") + separator
 					+ dataFile.get("swimmers")));
 			try {
 				while (scanner.hasNextLine()) {
@@ -112,7 +123,9 @@ public class Operations {
 		String[] entry = new String[5];
 		try {
 			handleFile("core", "events");
-			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+			System.out.println(pathFile.get("core") + separator
+					+ dataFile.get("events"));
+			scanner = new Scanner(new File(pathFile.get("core") + separator
 					+ dataFile.get("events")));
 			try {
 				while (scanner.hasNextLine()) {
@@ -135,7 +148,7 @@ public class Operations {
 		Scanner scanner;
 		Event event = new Event(null, null, null, null);
 		try {
-			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+			scanner = new Scanner(new File(pathFile.get("core") + separator
 					+ dataFile.get("events")));
 			try {
 				while (scanner.hasNextLine()) {
@@ -172,7 +185,7 @@ public class Operations {
 	public void registerRegistration(Registration registration)
 			throws IOException {
 		handleFile("core", "registrations");
-		FileWriter fstream = new FileWriter(pathFile.get("core") + "\\"
+		FileWriter fstream = new FileWriter(pathFile.get("core") + separator
 				+ dataFile.get("registrations"), true);
 		BufferedWriter out = new BufferedWriter(fstream);
 		out.write(registration.getSwimmer().getName() + ";"
@@ -192,7 +205,7 @@ public class Operations {
 		Scanner scanner;
 		List<Registration> registrationsList = new ArrayList<Registration>();
 		try {
-			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+			scanner = new Scanner(new File(pathFile.get("core") + separator
 					+ dataFile.get("registrations")));
 			try {
 				while (scanner.hasNextLine()) {
@@ -217,7 +230,7 @@ public class Operations {
 			Integer minutes, Integer seconds, Integer mSeconds) {
 		Scanner scanner;
 		try {
-			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+			scanner = new Scanner(new File(pathFile.get("core") + separator
 					+ dataFile.get("registrations")));
 			try {
 				while (scanner.hasNextLine()) {
@@ -260,7 +273,7 @@ public class Operations {
 		Scanner scanner;
 		List<Registration> registrationsList = new ArrayList<Registration>();
 		try {
-			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+			scanner = new Scanner(new File(pathFile.get("core") + separator
 					+ dataFile.get("registrations")));
 			try {
 				while (scanner.hasNextLine()) {
@@ -297,7 +310,7 @@ public class Operations {
 		List<Registration> registrationsList = new ArrayList<Registration>();
 		try {
 			handleFile("core", "registrations");
-			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+			scanner = new Scanner(new File(pathFile.get("core") + separator
 					+ dataFile.get("registrations")));
 			try {
 				while (scanner.hasNextLine()) {
@@ -355,7 +368,7 @@ public class Operations {
 					+ setZero(reg.getSeconds().toString()) + ";"
 					+ setZero(reg.getmSeconds().toString());
 			removeLineFromFile(
-					pathFile.get("core") + "\\" + dataFile.get("registrations"),
+					pathFile.get("core") + separator + dataFile.get("registrations"),
 					lineToRemove);
 		}
 	}
@@ -374,7 +387,7 @@ public class Operations {
 					+ setZero(reg.getSeconds().toString()) + ";"
 					+ setZero(reg.getmSeconds().toString());
 			removeLineFromFile(
-					pathFile.get("core") + "\\" + dataFile.get("registrations"),
+					pathFile.get("core") + separator + dataFile.get("registrations"),
 					lineToRemove);
 		}
 	}
@@ -460,7 +473,7 @@ public class Operations {
 		Collections.sort(heatList);
 		try {
 			handleFile("serii", "-1");
-			FileWriter fstream = new FileWriter(pathFile.get("serii") + "\\"
+			FileWriter fstream = new FileWriter(pathFile.get("serii") + separator
 					+ fileName, false);
 			BufferedWriter out = new BufferedWriter(fstream);
 			out.newLine();
@@ -645,7 +658,7 @@ public class Operations {
 		List<Result> results = new ArrayList<Result>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(
-					pathFile.get("rezultate") + "\\" + "Rezultate "
+					pathFile.get("rezultate") + separator + "Rezultate "
 							+ event.getName() + " " + heatGender + ".csv"));
 			try {
 				String line = null;
@@ -709,10 +722,10 @@ public class Operations {
 			if (heatGender.equals("Mixt")) {
 				// results for Mixt heatGender
 				FileWriter fstreamM = new FileWriter(pathFile.get("rezultate")
-						+ "\\" + "Rezultate Ordonate " + event.getName() + " "
+						+ separator + "Rezultate Ordonate " + event.getName() + " "
 						+ "M" + ".csv", false);
 				FileWriter fstreamF = new FileWriter(pathFile.get("rezultate")
-						+ "\\" + "Rezultate Ordonate " + event.getName() + " "
+						+ separator + "Rezultate Ordonate " + event.getName() + " "
 						+ "F" + ".csv", false);
 				BufferedWriter outM = new BufferedWriter(fstreamM);
 				BufferedWriter outF = new BufferedWriter(fstreamF);
@@ -760,7 +773,7 @@ public class Operations {
 			} else {
 				// results for defined heatGender: M or F
 				FileWriter fstream = new FileWriter(pathFile.get("rezultate")
-						+ "\\" + "Rezultate Ordonate " + event.getName() + " "
+						+ separator + "Rezultate Ordonate " + event.getName() + " "
 						+ heatGender + ".csv", false);
 				BufferedWriter out = new BufferedWriter(fstream);
 
@@ -857,16 +870,24 @@ public class Operations {
 			File dir = new File(pathFile.get(dirType));
 			if (!dir.exists()) {
 				dir.mkdir();
-				File file = new File(pathFile.get(dirType) + "\\"
+				File file = new File(pathFile.get(dirType) + separator
 						+ dataFile.get(fileType));
 				file.createNewFile();
 			} else {
-				File file = new File(pathFile.get(dirType) + "\\"
+				File file = new File(pathFile.get(dirType) + separator
 						+ dataFile.get(fileType));
 				if (!file.exists())
 					file.createNewFile();
 			}
 		}
+	}
+
+	public String getSeparator() {
+		return separator;
+	}
+
+	public void setSeparator(String separator) {
+		this.separator = separator;
 	}
 
 }
