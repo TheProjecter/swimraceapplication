@@ -2,9 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Program Files/NetBeans 6.8/java3/modules/ext/swing-worker-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/NetBeans 6.8/java3/modules/ext/appframework-1.0.3.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SwimTimer"/>
-	<classpathentry kind="lib" path="C:/Program Files/NetBeans 6.8/java3/modules/ext/beansbinding-1.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/appframework-1.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/swing-worker-1.1.jar"/>
 	<classpathentry kind="output" path="src"/>
 </classpath>
