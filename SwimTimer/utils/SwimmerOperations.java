@@ -18,8 +18,16 @@ public class SwimmerOperations {
     private Operations operations = new Operations();
 	private Map<String, String> dataFile = new Constants().getDataFiles();
 	private Map<String, String> pathFile = new Constants().getDataFiles();
+	private String osName = new Constants().getOsName();
+	private String separator = null;
 	
     public SwimmerOperations() {
+		// setting the separator Linux/Windows
+		if (osName.toLowerCase().startsWith("linux")) {
+			setSeparator("/");
+		} else if (osName.toLowerCase().startsWith("windows")) {
+			setSeparator("\\");
+		}
     	fillBirthYears();
     	fillSwimmerNames();
     }
@@ -56,7 +64,7 @@ public class SwimmerOperations {
 	public void registerSwimmer(Swimmer swimmer) throws IOException {
 		FileWriter fstream;
 		handleFile("core", "swimmers");
-		fstream = new FileWriter(pathFile.get("core") + "\\" + dataFile.get("swimmers"), true);
+		fstream = new FileWriter(pathFile.get("core") + separator + dataFile.get("swimmers"), true);
 		BufferedWriter out = new BufferedWriter(fstream);
 		out.write(swimmer.getName() + ";" + swimmer.getBirthYear() + ";"
 				+ swimmer.getAgeGroup() + ";" + swimmer.getGender() + ";" + swimmer.getClub());
@@ -75,11 +83,11 @@ public class SwimmerOperations {
 			File dir = new File(pathFile.get(dirType));
 			if (!dir.exists()) {
 				dir.mkdir();
-				File file = new File(pathFile.get(dirType) + "\\"
+				File file = new File(pathFile.get(dirType) + separator
 						+ dataFile.get(fileType));
 				file.createNewFile();
 			} else {
-				File file = new File(pathFile.get(dirType) + "\\"
+				File file = new File(pathFile.get(dirType) + separator
 						+ dataFile.get(fileType));
 				if (!file.exists())
 					file.createNewFile();
@@ -101,6 +109,14 @@ public class SwimmerOperations {
 
 	public void setSwimmerNames(List<String> swimmerNames) {
 		this.swimmerNames = swimmerNames;
+	}
+
+	public String getSeparator() {
+		return separator;
+	}
+
+	public void setSeparator(String separator) {
+		this.separator = separator;
 	}
 
 }
