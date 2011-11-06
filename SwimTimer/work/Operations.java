@@ -58,13 +58,10 @@ public class Operations {
 		List<Swimmer> swimmers = new ArrayList<Swimmer>();
 		try {
 			handleFile("core", "swimmers");
-			System.out.println(pathFile.get("core") + separator
-					+ dataFile.get("swimmers"));
 			scanner = new Scanner(new File(pathFile.get("core") + separator
 					+ dataFile.get("swimmers")));
 			try {
 				while (scanner.hasNextLine()) {
-					System.out.println("inside...");
 					String[] entry = scanner.nextLine().split(";");
 					swimmers.add(new Swimmer(entry[0], entry[1], entry[2],
 							entry[3], entry[4]));
@@ -116,6 +113,14 @@ public class Operations {
 		}
 		return newSwimmersList;
 	}
+	
+	public boolean existsSwimmer(String swimmerName) {
+		Swimmer sw = returnSwimmer(swimmerName);
+		if (sw.getName() == null) {
+			return false;
+		}
+		return true;
+	}
 
 	public List<Event> returnAllEvents() {
 		Scanner scanner;
@@ -123,8 +128,6 @@ public class Operations {
 		String[] entry = new String[5];
 		try {
 			handleFile("core", "events");
-			System.out.println(pathFile.get("core") + separator
-					+ dataFile.get("events"));
 			scanner = new Scanner(new File(pathFile.get("core") + separator
 					+ dataFile.get("events")));
 			try {

@@ -20,6 +20,7 @@ import pdfWriter.ResultWriter;
 
 import utils.Calculations;
 import utils.Constants;
+import utils.SwimmerOperations;
 import utils.SwimmersPerHeatSingleton;
 
 import entities.Event;
@@ -52,9 +53,14 @@ public class Sandbox {
 		Operations sOps = new Operations();
 		Calculations calculations = Calculations.getInstance();
 		Event event = sOps.returnEvent("Proba 11 - 100 Meters freestyle");
-		System.out.println(calculations.calculateFinaPoints(69.00, 
-					calculations.getBaseTimeForEvent(event, "30 - 34", "M")));
+		//System.out.println(calculations.calculateFinaPoints(69.00, 
+		//			calculations.getBaseTimeForEvent(event, "30 - 34", "M")));
+		SwimmerOperations swOps = new SwimmerOperations();
 		
+		if (sOps.existsSwimmer("hhhhhhhhhhhhh")) {
+			System.out.println("exists....");
+		} else
+			System.out.println("not exists...");
 //		if (x.isEmpty()) {
 //			System.out.println("x is empty");
 //		}
