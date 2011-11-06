@@ -352,11 +352,13 @@ public class AddSwimmer extends javax.swing.JDialog {
 			JOptionPane.showMessageDialog(null,
 					"Club Name can not be empty!",
 					"Warrning!!!", 1);
-		}
+		}		
 		if (register) {
 			Swimmer swimmer = new Swimmer(jTSwimmerName.getText(), jCBBirthYear
 					.getSelectedItem().toString(), jTAgeGroup.getText(), jCBGender
 					.getSelectedItem().toString(), jTClub.getText());
+			// check that the swimmer has not been registered already
+			
 			try {
 				swOp.registerSwimmer(swimmer);
 				jLStatus.setText("Adaugat inotatorul, " + swimmer.getName());
