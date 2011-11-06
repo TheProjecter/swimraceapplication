@@ -57,10 +57,14 @@ public class Sandbox {
 		//			calculations.getBaseTimeForEvent(event, "30 - 34", "M")));
 		SwimmerOperations swOps = new SwimmerOperations();
 		
-		if (sOps.existsSwimmer("hhhhhhhhhhhhh")) {
-			System.out.println("exists....");
-		} else
-			System.out.println("not exists...");
+		String xxx = "Proba 1 - 200 Meters freestyle";
+		String[] eventInternalName = xxx.split("- ");
+		System.out.println(eventInternalName[0]);
+		System.out.println(eventInternalName[1]);
+//		if (sOps.existsSwimmer("hhhhhhhhhhhhh")) {
+//			System.out.println("exists....");
+//		} else
+//			System.out.println("not exists...");
 //		if (x.isEmpty()) {
 //			System.out.println("x is empty");
 //		}
