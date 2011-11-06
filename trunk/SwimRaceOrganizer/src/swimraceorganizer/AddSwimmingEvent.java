@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 
 import utils.Constants;
 import utils.EventOperations;
+import work.Operations;
 import entities.Event;
 
 /**
@@ -49,6 +50,8 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 	private String poolType;
 	private Map<String, String> styleType = new Constants().getStyleNames();
 	private EventOperations evOp = new EventOperations();
+	private String internalEventName = null;
+	private Operations sOp = new Operations();
 
 	/** Creates new form AddSwimmingEvent */
 	public AddSwimmingEvent(String poolType) {
@@ -341,15 +344,23 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 			JOptionPane.showMessageDialog(null, "Event Name can not be empty!",
 					"Warrning!!!", 1);
 		} else {
-			Event event = new Event(jTEventName.getText(), jCBDistance
-					.getSelectedItem().toString(), jCBStyle.getSelectedItem()
-					.toString(), jCBPoolType.getSelectedItem().toString());
-			try {
-				evOp.registerEvent(event);
-				jLStatus.setText("S-a inregistrat proba, " + event.getName());
-			} catch (IOException e) {
-				jLStatus.setText("Nu s-a putut inregistra proba, "
-						+ event.getName());
+			Event event = new Event(jTEventName.getText(),
+					jCBDistance.getSelectedItem().toString(), jCBStyle
+							.getSelectedItem().toString(), jCBPoolType
+							.getSelectedItem().toString());
+			// check that the event has not been registered already
+			if (sOp.existsEvent(internalEventName)) {
+				JOptionPane.showMessageDialog(null, "Event already exists!",
+						"Warrning!!!", 1);
+			} else {
+				try {
+					evOp.registerEvent(event);
+					jLStatus.setText("S-a inregistrat proba, "
+							+ event.getName());
+				} catch (IOException e) {
+					jLStatus.setText("Nu s-a putut inregistra proba, "
+							+ event.getName());
+				}
 			}
 		}
 	}
@@ -416,5 +427,7 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 		jTEventName.setText("Proba " + (evOp.getNumberOfEvent() + 1) + " - "
 				+ jCBDistance.getSelectedItem().toString() + " "
 				+ jCBStyle.getSelectedItem().toString());
+		internalEventName = jCBDistance.getSelectedItem().toString() + " "
+				+ jCBStyle.getSelectedItem().toString();
 	}
 }

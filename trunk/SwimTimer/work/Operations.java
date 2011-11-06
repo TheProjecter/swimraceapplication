@@ -185,6 +185,17 @@ public class Operations {
 		return newEventsList;
 	}
 
+	public boolean existsEvent(String eventName) {
+		List<Event> events = returnAllEvents();
+		for (Event ev : events) {
+			String[] eventInternalName = ev.getName().split("- ");
+			if (eventInternalName[1].equals(eventName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void registerRegistration(Registration registration)
 			throws IOException {
 		handleFile("core", "registrations");

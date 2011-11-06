@@ -22,8 +22,16 @@ public class EventOperations {
     private List<String> mSecondes = new ArrayList<String>();
 	private Map<String, String> dataFile = new Constants().getDataFiles();
 	private Map<String, String> pathFile = new Constants().getDataFiles();
+	private String osName = new Constants().getOsName();
+	private String separator = null;
 	
     public EventOperations() {
+		// setting the separator Linux/Windows
+		if (osName.toLowerCase().startsWith("linux")) {
+			setSeparator("/");
+		} else if (osName.toLowerCase().startsWith("windows")) {
+			setSeparator("\\");
+		}
     	fillEventNames();
     	fillTimes();
     }
@@ -51,7 +59,7 @@ public class EventOperations {
 
 	public void registerEvent(Event event)  throws IOException {
 		handleFile("core", "events");
-		FileWriter fstream = new FileWriter(pathFile.get("core") + "\\" + dataFile.get("events"), true);
+		FileWriter fstream = new FileWriter(pathFile.get("core") + separator + dataFile.get("events"), true);
 		BufferedWriter out = new BufferedWriter(fstream);
 		out.write(event.getName() + ";" + event.getLength() + ";" + event.getStyle()
 				+ ";" + event.getPoolType());
@@ -63,7 +71,7 @@ public class EventOperations {
 		Scanner scanner;
 		int eventNumber = 0;
 		try {
-			scanner = new Scanner(new File(pathFile.get("core") + "\\"
+			scanner = new Scanner(new File(pathFile.get("core") + separator
 					+ dataFile.get("events")));
 			try {
 				while (scanner.hasNextLine()) {
@@ -83,11 +91,11 @@ public class EventOperations {
 		File dir = new File(pathFile.get(dirType));
 		if (!dir.exists()) {
 			dir.mkdir();
-			File file = new File(pathFile.get(dirType) + "\\" + dataFile.get(fileType));
+			File file = new File(pathFile.get(dirType) + separator + dataFile.get(fileType));
 			file.createNewFile();
 		}
 		else {
-			File file = new File(pathFile.get(dirType) + "\\" + dataFile.get(fileType));
+			File file = new File(pathFile.get(dirType) + separator + dataFile.get(fileType));
 			if (!file.exists()) 
 				file.createNewFile();
 		}
@@ -123,6 +131,14 @@ public class EventOperations {
 
 	public void setmSecondes(List<String> mSecondes) {
 		this.mSecondes = mSecondes;
+	}
+
+	public String getSeparator() {
+		return separator;
+	}
+
+	public void setSeparator(String separator) {
+		this.separator = separator;
 	}
 
 }
