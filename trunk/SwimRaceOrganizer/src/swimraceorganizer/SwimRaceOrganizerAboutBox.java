@@ -52,7 +52,7 @@ public class SwimRaceOrganizerAboutBox extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class).getContext().getResourceMap(SwimRaceOrganizerAboutBox.class);
-        setTitle("About S.A.M. Race Edition v1.1");
+        setTitle("About S.A.M. Race Edition v1.2");
         setName("aboutBox");
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class).getContext().getActionMap(SwimRaceOrganizerAboutBox.class, this);
@@ -67,7 +67,7 @@ public class SwimRaceOrganizerAboutBox extends javax.swing.JDialog {
         versionLabel.setText(resourceMap.getString("versionLabel.text")); // NOI18N
         versionLabel.setName("versionLabel"); // NOI18N
 
-        appVersionLabel.setText("1.1, build 110"); // NOI18N
+        appVersionLabel.setText("1.2, build 117"); // NOI18N
         appVersionLabel.setName("appVersionLabel");
 
         homepageLabel.setFont(homepageLabel.getFont().deriveFont(homepageLabel.getFont().getStyle() | java.awt.Font.BOLD));
