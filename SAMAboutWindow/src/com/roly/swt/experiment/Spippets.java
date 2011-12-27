@@ -3,113 +3,51 @@ package com.roly.swt.experiment;
 import org.eclipse.swt.*;
 import org.eclipse.swt.layout.*;
 import org.eclipse.swt.widgets.*;
-import org.eclipse.swt.events.*;
-import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.custom.*;
+import org.eclipse.swt.graphics.*;
 
-/**
- * StyledText snippet: embed images
- *
- * For a list of all SWT example snippets see
- * http://www.eclipse.org/swt/snippets/
- * 
- * @since 3.2
- */
 public class Spippets {
-	
-	static StyledText styledText;
-	static String text = 
-		"This snippet shows how to embed images in a StyledText.\n"+
-		"Here is one: \uFFFC, and here is another: \uFFFC."+
-		"Use the add button to add an image from your filesystem to the StyledText at the current caret offset.";
 
-	static void addImage(Image image, int offset) {
-		StyleRange style = new StyleRange ();
-		style.start = offset;
-		style.length = 1;
-		style.data = image;
-		Rectangle rect = image.getBounds();
-		style.metrics = new GlyphMetrics(rect.height, 0, rect.width);
-		styledText.setStyleRange(style);		
-	}
+	static String text = "Plans do not materialize out of nowhere, nor are they entirely static. To ensure the planning process is " +
+		"transparent and open to the entire Eclipse community, we (the Eclipse PMC) post plans in an embryonic "+
+		"form and revise them throughout the release cycle. \n"+
+		"The first part of the plan deals with the important matters of release deliverables, release milestones, target "+
+		"operating environments, and release-to-release compatibility. These are all things that need to be clear for "+
+		"any release, even if no features were to change.  \n";
+	static Image oldImage;
 	
 	public static void main(String [] args) {
 		final Display display = new Display();
 		final Shell shell = new Shell(display);
-		shell.setLayout(new GridLayout());
-		styledText = new StyledText(shell, SWT.WRAP | SWT.BORDER);
-		styledText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		shell.setLayout(new FillLayout());
+		final StyledText styledText = new StyledText(shell, SWT.WRAP | SWT.BORDER);
 		styledText.setText(text);
-		int offset = text.indexOf("\uFFFC", 0);
-		addImage(display.getSystemImage(SWT.ICON_QUESTION), offset);
-		offset = text.indexOf("\uFFFC", offset + 1);
-		addImage(display.getSystemImage(SWT.ICON_INFORMATION), offset);
-
-		// use a verify listener to dispose the images
-		styledText.addVerifyListener(new VerifyListener()  {
-			public void verifyText(VerifyEvent event) {
-				if (event.start == event.end) return;
-				String text = styledText.getText(event.start, event.end - 1);
-				int index = text.indexOf('\uFFFC');
-				while (index != -1) {
-					StyleRange style = styledText.getStyleRangeAtOffset(event.start + index);
-					if (style != null) {
-						Image image = (Image)style.data;
-						if (image != null) image.dispose();
-					}
-					index = text.indexOf('\uFFFC', index + 1);
-				}
+		FontData data = display.getSystemFont().getFontData()[0];
+		Font font = new Font(display, data.getName(), 16, SWT.BOLD);
+		styledText.setFont(font);
+		styledText.setForeground(display.getSystemColor (SWT.COLOR_BLUE));
+		styledText.addListener (SWT.Resize, new Listener () {
+			public void handleEvent (Event event) {
+				Rectangle rect = styledText.getClientArea ();
+				Image newImage = new Image (display, 1, Math.max (1, rect.height));
+				GC gc = new GC (newImage);
+				gc.setForeground (display.getSystemColor (SWT.COLOR_WHITE));
+				gc.setBackground (display.getSystemColor (SWT.COLOR_YELLOW));
+				gc.fillGradientRectangle (rect.x, rect.y, 1, rect.height, true);
+				gc.dispose ();
+				styledText.setBackgroundImage (newImage);
+				if (oldImage != null) oldImage.dispose ();
+				oldImage = newImage;
 			}
-		});
-		// draw images on paint event
-		styledText.addPaintObjectListener(new PaintObjectListener() {
-			public void paintObject(PaintObjectEvent event) {
-				StyleRange style = event.style;
-				Image image = (Image)style.data;
-				if (!image.isDisposed()) {
-					int x = event.x;
-					int y = event.y + event.ascent - style.metrics.ascent;						
-					event.gc.drawImage(image, x, y);
-				}
-			}
-		});
-		styledText.addListener(SWT.Dispose, new Listener() {
-			public void handleEvent(Event event) {
-				StyleRange[] styles = styledText.getStyleRanges();
-				for (int i = 0; i < styles.length; i++) {
-					StyleRange style = styles[i];
-					if (style.data != null) {
-						Image image = (Image)style.data;
-						if (image != null) image.dispose();
-					}
-				}
-			}
-		});
-		Button button = new Button (shell, SWT.PUSH);
-		button.setText("Add Image");
-		button.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false));
-		button.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				FileDialog dialog = new FileDialog(shell);
-				String filename = dialog.open();
-				if (filename != null) {
-					try {
-						Image image = new Image(display, filename);
-						int offset = styledText.getCaretOffset();
-						styledText.replaceTextRange(offset, 0, "\uFFFC");
-						addImage(image, offset);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}				
-			}
-		});
-		shell.setSize(400, 400);
+		});	
+		shell.setSize(700, 400);
 		shell.open();
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch())
 				display.sleep();
 		}
+		if (oldImage != null) oldImage.dispose ();
+		font.dispose();
 		display.dispose();
 	}
 }
