@@ -1,53 +1,70 @@
 package com.roly.swt.experiment;
 
-import org.eclipse.swt.*;
-import org.eclipse.swt.layout.*;
-import org.eclipse.swt.widgets.*;
-import org.eclipse.swt.custom.*;
-import org.eclipse.swt.graphics.*;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.swt.widgets.Text;
 
 public class Spippets {
 
-	static String text = "Plans do not materialize out of nowhere, nor are they entirely static. To ensure the planning process is " +
-		"transparent and open to the entire Eclipse community, we (the Eclipse PMC) post plans in an embryonic "+
-		"form and revise them throughout the release cycle. \n"+
-		"The first part of the plan deals with the important matters of release deliverables, release milestones, target "+
-		"operating environments, and release-to-release compatibility. These are all things that need to be clear for "+
-		"any release, even if no features were to change.  \n";
-	static Image oldImage;
-	
-	public static void main(String [] args) {
-		final Display display = new Display();
-		final Shell shell = new Shell(display);
-		shell.setLayout(new FillLayout());
-		final StyledText styledText = new StyledText(shell, SWT.WRAP | SWT.BORDER);
-		styledText.setText(text);
-		FontData data = display.getSystemFont().getFontData()[0];
-		Font font = new Font(display, data.getName(), 16, SWT.BOLD);
-		styledText.setFont(font);
-		styledText.setForeground(display.getSystemColor (SWT.COLOR_BLUE));
-		styledText.addListener (SWT.Resize, new Listener () {
-			public void handleEvent (Event event) {
-				Rectangle rect = styledText.getClientArea ();
-				Image newImage = new Image (display, 1, Math.max (1, rect.height));
-				GC gc = new GC (newImage);
-				gc.setForeground (display.getSystemColor (SWT.COLOR_WHITE));
-				gc.setBackground (display.getSystemColor (SWT.COLOR_YELLOW));
-				gc.fillGradientRectangle (rect.x, rect.y, 1, rect.height, true);
-				gc.dispose ();
-				styledText.setBackgroundImage (newImage);
-				if (oldImage != null) oldImage.dispose ();
-				oldImage = newImage;
-			}
-		});	
-		shell.setSize(700, 400);
-		shell.open();
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch())
-				display.sleep();
-		}
-		if (oldImage != null) oldImage.dispose ();
-		font.dispose();
-		display.dispose();
-	}
+  Display d;
+
+  Shell s;
+
+  Spippets() {
+    d = new Display();
+    s = new Shell(d);
+
+    s.setSize(250, 200);
+    
+    s.setText("A Tabbed Shell Example");
+    s.setLayout(new FillLayout());
+
+    TabFolder tf = new TabFolder(s, SWT.BORDER);
+
+    TabItem ti1 = new TabItem(tf, SWT.BORDER);
+    ti1.setText("Option Group");
+    ti1.setControl(new GroupExample(tf, SWT.SHADOW_ETCHED_IN));
+
+    TabItem ti2 = new TabItem(tf, SWT.BORDER);
+    ti2.setText("Grid");
+    ti2.setControl(new GridComposite(tf));
+
+    TabItem ti3 = new TabItem(tf, SWT.BORDER);
+    ti3.setText("Text");
+    Composite c1 = new Composite(tf, SWT.BORDER);
+    c1.setLayout(new FillLayout());
+    Text t = new Text(c1, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
+    ti3.setControl(c1);
+
+    TabItem ti4 = new TabItem(tf, SWT.BORDER);
+    ti4.setText("Settings");
+    Composite c2 = new Composite(tf, SWT.BORDER);
+    c2.setLayout(new RowLayout());
+    Text t2 = new Text(c2, SWT.BORDER | SWT.SINGLE | SWT.WRAP
+        | SWT.V_SCROLL);
+    Button b = new Button(c2, SWT.PUSH | SWT.BORDER);
+    b.setText("Save");
+    ti4.setControl(c2);
+
+    s.open();
+    while (!s.isDisposed()) {
+      if (!d.readAndDispatch())
+        d.sleep();
+    }
+    d.dispose();
+  }
 }
+
+
