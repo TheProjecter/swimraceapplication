@@ -1,4 +1,4 @@
-package com.roly.samaboutwindow;
+package com.roly.swt.experiment;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
