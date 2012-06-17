@@ -34,8 +34,10 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
@@ -45,9 +47,15 @@ public class AboutWindow {
 	private GridData gridData;
 
 	public Shell createShell(final Display display) {
-		final Shell shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
-		//final Shell shell = new Shell(display);
+		final Shell shell = new Shell(display, SWT.TITLE);
+		// final Shell shell = new Shell(display);
 		shell.setText("About SAM...");
+		shell.addListener(SWT.Close, new Listener() {
+			public void handleEvent(Event event) {
+				shell.dispose();
+				display.dispose();
+			}
+		});
 
 		final Font bitstreamVeraSansMono9 = new Font(shell.getDisplay(), "Bitstream Vera Sans Mono", 9, SWT.NONE);
 		final Font bitstreamVeraSansMonoItallic9 = new Font(shell.getDisplay(), "Bitstream Vera Sans Mono", 9, SWT.ITALIC);
@@ -217,6 +225,7 @@ public class AboutWindow {
 		closeButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				shell.dispose();
+				display.dispose();
 			}
 		});
 
