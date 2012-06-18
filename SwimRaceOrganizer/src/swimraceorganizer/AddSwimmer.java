@@ -56,6 +56,7 @@ public class AddSwimmer extends javax.swing.JDialog {
 		initComponents();
 		fillBirthYearCB();
 		fillGenderCB();
+		fillDefaultClub();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -359,6 +360,10 @@ public class AddSwimmer extends javax.swing.JDialog {
 		jTAgeGroup.setText(swOp.ageGroupCalculation(year - birthYear));
 	}
 
+	private void fillDefaultClub () {
+		this.jTClub.setText("<No Club>");
+	}
+	
 	/**
 	 * @param args
 	 *            the command line arguments
