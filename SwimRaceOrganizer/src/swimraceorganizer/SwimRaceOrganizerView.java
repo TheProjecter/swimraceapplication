@@ -414,7 +414,7 @@ public class SwimRaceOrganizerView extends FrameView {
 		JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
 		try {
 			setPoolType(settingsWindow.getPoolType());
-			setCompetitionName(settingsWindow.getCompetitionName());
+			//setCompetitionName(settingsWindow.getCompetitionName());
 			generateHeats = new HeatCreatorGenerator(poolType, competitionName, "Generare Serii");
 			generateHeats.setLocationRelativeTo(mainFrame);
 			SwimRaceOrganizerApp.getApplication().show(generateHeats);
@@ -434,7 +434,7 @@ public class SwimRaceOrganizerView extends FrameView {
 		try {
 			JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
 			setPoolType(settingsWindow.getPoolType());
-			setCompetitionName(settingsWindow.getCompetitionName());
+			//setCompetitionName(settingsWindow.getCompetitionName());
 			generateHeatOutputs = new HeatOutputGenerator(poolType, competitionName, "Store Results");
 			// generateHeatOutputs.setLocationRelativeTo(mainFrame);
 			SwimRaceOrganizerApp.getApplication().show(generateHeatOutputs);
@@ -447,7 +447,7 @@ public class SwimRaceOrganizerView extends FrameView {
 		try {
 			JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
 			setPoolType(settingsWindow.getPoolType());
-			setCompetitionName(settingsWindow.getCompetitionName());
+//			setCompetitionName(settingsWindow.getCompetitionName());
 			generateHeatResults = new HeatResultGenerator(poolType, competitionName, "Generate Results");
 			generateHeatResults.setLocationRelativeTo(mainFrame);
 			SwimRaceOrganizerApp.getApplication().show(generateHeatResults);
