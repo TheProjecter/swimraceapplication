@@ -66,6 +66,7 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 		// fillGenderCB();
 		jLGender.setVisible(false);
 		jCBGender.setVisible(false);
+		
 	}
 
 	/**
@@ -332,6 +333,7 @@ public class AddSwimmingEvent extends javax.swing.JDialog {
 			}
 		});
 
+		
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 

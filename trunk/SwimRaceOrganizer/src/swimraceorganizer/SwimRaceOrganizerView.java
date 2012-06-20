@@ -379,10 +379,14 @@ public class SwimRaceOrganizerView extends FrameView {
 
 	private void jBAddSwimmingEventActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBAddSwimmingEventActionPerformed
 		JFrame mainFrame = SwimRaceOrganizerApp.getApplication().getMainFrame();
-		setPoolType(settingsWindow.getPoolType());
-		addSwimmingEvent = new AddSwimmingEvent(poolType);
-		addSwimmingEvent.setLocationRelativeTo(mainFrame);
-		SwimRaceOrganizerApp.getApplication().show(addSwimmingEvent);
+		try {
+			setPoolType(settingsWindow.getPoolType());
+			addSwimmingEvent = new AddSwimmingEvent(poolType);
+			addSwimmingEvent.setLocationRelativeTo(mainFrame);
+			SwimRaceOrganizerApp.getApplication().show(addSwimmingEvent);
+		} catch (NullPointerException e) {
+			JOptionPane.showMessageDialog(null, "Trebuie completate setarile pt a purcede!", "Atentie!!!", 1);			
+		}
 	}// GEN-LAST:event_jBAddSwimmingEventActionPerformed
 
 	private void jBAllSwimmersActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBAllSwimmersActionPerformed
