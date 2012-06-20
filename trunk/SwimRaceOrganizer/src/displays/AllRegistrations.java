@@ -83,21 +83,21 @@ public class AllRegistrations extends javax.swing.JDialog {
 
 		jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-		jTAllRegistrations.setModel(new javax.swing.table.DefaultTableModel(
-				new Object[][] {
+		jTAllRegistrations.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
 
-				}, new String[] { "Swimmer Name", "BirthYear", "Age Group",
-						"Gender", "Club", "Event Name", "Entry Time" }));
+		},
+				new String[] { "Nr.", "Swimmer Name", "BirthYear", "Age Group", "Gender", "Club", "Event Name",
+						"Entry Time" }));
 		jTAllRegistrations.setName("jTAllRegistrations"); // NOI18N
 		jScrollPane1.setViewportView(jTAllRegistrations);
 
-		jCBRegistrationSelection.setModel(new javax.swing.DefaultComboBoxModel(
-				new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+		jCBRegistrationSelection.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2",
+				"Item 3", "Item 4" }));
 		jCBRegistrationSelection.setName("jCBRegistrationSelection"); // NOI18N
 
 		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-				.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class)
-				.getContext().getResourceMap(AllRegistrations.class);
+				.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class).getContext()
+				.getResourceMap(AllRegistrations.class);
 		jBDelete.setText(resourceMap.getString("jBDelete.text")); // NOI18N
 		jBDelete.setName("jBDelete"); // NOI18N
 		jBDelete.setPreferredSize(new java.awt.Dimension(100, 25));
@@ -118,81 +118,51 @@ public class AllRegistrations extends javax.swing.JDialog {
 
 		jLRegToDelete.setName("jLRegToDelete"); // NOI18N
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(
-														jScrollPane1,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														665,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addComponent(
-																		jCBRegistrationSelection,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		441,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addGap(18, 18,
-																		18)
-																.addComponent(
-																		jBDelete,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																.addComponent(
-																		jBCancel,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.PREFERRED_SIZE))
-												.addComponent(jLRegToDelete))
-								.addContainerGap(
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)));
-		layout.setVerticalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(jScrollPane1,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										194,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-								.addComponent(jLRegToDelete)
-								.addGap(3, 3, 3)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(
-														jCBRegistrationSelection,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														jBDelete,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														jBCancel,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addContainerGap(
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)));
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				layout.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(
+								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 665,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addGroup(
+												layout.createSequentialGroup()
+														.addComponent(jCBRegistrationSelection,
+																javax.swing.GroupLayout.PREFERRED_SIZE, 441,
+																javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addGap(18, 18, 18)
+														.addComponent(jBDelete, javax.swing.GroupLayout.PREFERRED_SIZE,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+														.addComponent(jBCancel, javax.swing.GroupLayout.PREFERRED_SIZE,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addComponent(jLRegToDelete))
+						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				layout.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194,
+								javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+						.addComponent(jLRegToDelete)
+						.addGap(3, 3, 3)
+						.addGroup(
+								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jCBRegistrationSelection, javax.swing.GroupLayout.PREFERRED_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(jBDelete, javax.swing.GroupLayout.PREFERRED_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(jBCancel, javax.swing.GroupLayout.PREFERRED_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
@@ -208,28 +178,20 @@ public class AllRegistrations extends javax.swing.JDialog {
 	}// GEN-LAST:event_cancel
 
 	private void deleteRegistration(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_deleteRegistration
-		String[] entry = jCBRegistrationSelection.getSelectedItem().toString()
-				.split(",");
+		String[] entry = jCBRegistrationSelection.getSelectedItem().toString().split(",");
 		String[] times = entry[2].split(":");
-		Registration registration = sOps.getRegistration(entry[0].trim(),
-				entry[1].trim(), Integer.parseInt(times[0].trim()),
-				Integer.parseInt(times[1].trim()),
-				Integer.parseInt(times[2].trim()));
+		Registration registration = sOps
+				.getRegistration(entry[0].trim(), entry[1].trim(), Integer.parseInt(times[0].trim()),
+						Integer.parseInt(times[1].trim()), Integer.parseInt(times[2].trim()));
 		setRegistrations(sOps.deleteRegistration(registrations, registration));
 		fillAllRegistrations();
 		fillRegistrationComboBox();
-		String lineToRemove = registration.getSwimmer().getName() + ";"
-				+ registration.getSwimmer().getBirthYear() + ";"
-				+ registration.getSwimmer().getAgeGroup() + ";"
-				+ registration.getSwimmer().getGender() + ";"
-				+ registration.getSwimmer().getClub() + ";"
-				+ registration.getEvent().getName() + ";"
-				+ setZero(registration.getMinutes().toString()) + ";"
-				+ setZero(registration.getSeconds().toString()) + ";"
-				+ setZero(registration.getmSeconds().toString());
-		sOps.removeLineFromFile(
-				pathFile.get("core") + "\\" + dataFile.get("registrations"),
-				lineToRemove);
+		String lineToRemove = registration.getSwimmer().getName() + ";" + registration.getSwimmer().getBirthYear()
+				+ ";" + registration.getSwimmer().getAgeGroup() + ";" + registration.getSwimmer().getGender() + ";"
+				+ registration.getSwimmer().getClub() + ";" + registration.getEvent().getName() + ";"
+				+ setZero(registration.getMinutes().toString()) + ";" + setZero(registration.getSeconds().toString())
+				+ ";" + setZero(registration.getmSeconds().toString());
+		sOps.removeLineFromFile(pathFile.get("core") + "\\" + dataFile.get("registrations"), lineToRemove);
 	}// GEN-LAST:event_deleteRegistration
 
 	public String setZero(String value) {
@@ -237,25 +199,25 @@ public class AllRegistrations extends javax.swing.JDialog {
 	}
 
 	public void fillAllRegistrations() {
-		String[] columnNames = { "Swimmer Name", "BirthYear", "Age Group",
-				"Gender", "Club", "Event Name", "Entry Time" };
+		String[] columnNames = { "Nr.", "Swimmer Name", "BirthYear", "Age Group", "Gender", "Club", "Event Name",
+				"Entry Time" };
 		List<String[]> tableLines = new ArrayList<String[]>();
+		
+		int counter = 0; // display registration order number
 		for (Registration reg : registrations) {
 			String time = padLeft(Integer.toString(reg.getMinutes()), 2) + ":"
 					+ padLeft(Integer.toString(reg.getSeconds()), 2) + ":"
 					+ padLeft(Integer.toString(reg.getmSeconds()), 2);
-			tableLines.add(new String[] { reg.getSwimmer().getName(),
-					reg.getSwimmer().getBirthYear(),
-					reg.getSwimmer().getAgeGroup(),
-					reg.getSwimmer().getGender(), reg.getSwimmer().getClub(),
+			tableLines.add(new String[] {Integer.toString(++counter), reg.getSwimmer().getName(), reg.getSwimmer().getBirthYear(),
+					reg.getSwimmer().getAgeGroup(), reg.getSwimmer().getGender(), reg.getSwimmer().getClub(),
 					reg.getEvent().getName(), time });
 		}
 		Object[][] data = new Object[tableLines.size()][5];
 		for (int i = 0; i < tableLines.size(); i++) {
 			data[i] = tableLines.get(i);
 		}
-		jTAllRegistrations.setModel(new javax.swing.table.DefaultTableModel(
-				data, columnNames) {
+		jTAllRegistrations.setModel(new javax.swing.table.DefaultTableModel(data, columnNames) {
+			private static final long serialVersionUID = 1L;
 			@Override
 			public boolean isCellEditable(int row, int col) {
 				return false;
@@ -273,8 +235,8 @@ public class AllRegistrations extends javax.swing.JDialog {
 			String time = padLeft(Integer.toString(reg.getMinutes()), 2) + ":"
 					+ padLeft(Integer.toString(reg.getSeconds()), 2) + ":"
 					+ padLeft(Integer.toString(reg.getmSeconds()), 2);
-			jCBRegistrationSelection.addItem(reg.getSwimmer().getName() + ", "
-					+ reg.getEvent().getName() + ", " + time);
+			jCBRegistrationSelection
+					.addItem(reg.getSwimmer().getName() + ", " + reg.getEvent().getName() + ", " + time);
 		}
 	}
 
@@ -285,8 +247,7 @@ public class AllRegistrations extends javax.swing.JDialog {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				AllRegistrations dialog = new AllRegistrations(
-						new javax.swing.JFrame(), true);
+				AllRegistrations dialog = new AllRegistrations(new javax.swing.JFrame(), true);
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
 						System.exit(0);

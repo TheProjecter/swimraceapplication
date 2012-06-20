@@ -224,9 +224,11 @@ public class Operations {
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
+					//System.out.println(returnEvent(entry[5]).getName());
 					Registration registration = new Registration(
 							returnSwimmer(entry[0].toString()),
-							returnEvent(entry[5]), Integer.parseInt(entry[6]),
+							returnEvent(entry[5]), 
+							Integer.parseInt(entry[6]),
 							Integer.parseInt(entry[7]),
 							Integer.parseInt(entry[8]));
 					registrationsList.add(registration);
