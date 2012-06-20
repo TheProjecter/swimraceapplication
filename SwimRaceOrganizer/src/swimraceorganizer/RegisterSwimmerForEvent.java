@@ -18,6 +18,8 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import com.sun.org.apache.xerces.internal.impl.dtd.models.DFAContentModel;
+
 import customComponents.WarrningDialog;
 
 import entities.Event;
@@ -101,9 +103,8 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 		jLStatus = new javax.swing.JLabel();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-				.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class)
-				.getContext().getResourceMap(RegisterSwimmerForEvent.class);
+		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(swimraceorganizer.SwimRaceOrganizerApp.class).getContext()
+				.getResourceMap(RegisterSwimmerForEvent.class);
 		setTitle(resourceMap.getString("AddRegistrationsToEvent.title")); // NOI18N
 		setName("AddRegistrationsToEvent"); // NOI18N
 		setResizable(false);
@@ -113,8 +114,7 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 			}
 		});
 
-		jCBSwimmerName.setModel(new javax.swing.DefaultComboBoxModel(
-				new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+		jCBSwimmerName.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 		jCBSwimmerName.setName("jCBSwimmerName"); // NOI18N
 		jCBSwimmerName.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,16 +137,13 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 		jTGender.setBorder(null);
 		jTGender.setName("jTGender"); // NOI18N
 
-		jCBMinutes.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"Item 1", "Item 2", "Item 3", "Item 4" }));
+		jCBMinutes.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
 		jCBMinutes.setName("jCBMinutes"); // NOI18N
 
-		jCBSeconds.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"Item 1", "Item 2", "Item 3", "Item 4" }));
+		jCBSeconds.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 		jCBSeconds.setName("jCBSeconds"); // NOI18N
 
-		jCBMSeconds.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"Item 1", "Item 2", "Item 3", "Item 4" }));
+		jCBMSeconds.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 		jCBMSeconds.setName("jCBMSeconds"); // NOI18N
 
 		jBRegister.setText(resourceMap.getString("jBRegister.text")); // NOI18N
@@ -165,8 +162,7 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 			}
 		});
 
-		jCBEventName.setModel(new javax.swing.DefaultComboBoxModel(
-				new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+		jCBEventName.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 		jCBEventName.setName("jCBEventName"); // NOI18N
 
 		jLSwimmerName.setText(resourceMap.getString("jLSwimmerName.text")); // NOI18N
@@ -195,249 +191,122 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 		jLStatus.setText(resourceMap.getString("jLStatus.text")); // NOI18N
 		jLStatus.setName("jLStatus"); // NOI18N
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jLSwimmerName)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addGroup(
-																		layout.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.LEADING)
-																				.addComponent(
-																						jLEventName)
-																				.addComponent(
-																						jBRegister)
-																				.addGroup(
-																						layout.createParallelGroup(
-																								javax.swing.GroupLayout.Alignment.TRAILING,
-																								false)
-																								.addComponent(
-																										jCBSwimmerName,
-																										javax.swing.GroupLayout.Alignment.LEADING,
-																										0,
-																										javax.swing.GroupLayout.DEFAULT_SIZE,
-																										Short.MAX_VALUE)
-																								.addComponent(
-																										jCBEventName,
-																										javax.swing.GroupLayout.Alignment.LEADING,
-																										0,
-																										javax.swing.GroupLayout.DEFAULT_SIZE,
-																										Short.MAX_VALUE)
-																								.addGroup(
-																										javax.swing.GroupLayout.Alignment.LEADING,
-																										layout.createSequentialGroup()
-																												.addGroup(
-																														layout.createParallelGroup(
-																																javax.swing.GroupLayout.Alignment.LEADING)
-																																.addComponent(
-																																		jLMinutes)
-																																.addComponent(
-																																		jCBMinutes,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																																		56,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE))
-																												.addPreferredGap(
-																														javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-																												.addGroup(
-																														layout.createParallelGroup(
-																																javax.swing.GroupLayout.Alignment.LEADING)
-																																.addComponent(
-																																		jLSeconds)
-																																.addComponent(
-																																		jCBSeconds,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE))
-																												.addGap(14,
-																														14,
-																														14)
-																												.addGroup(
-																														layout.createParallelGroup(
-																																javax.swing.GroupLayout.Alignment.LEADING)
-																																.addComponent(
-																																		jLMSeconds)
-																																.addComponent(
-																																		jCBMSeconds,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE)))))
-																.addGap(53, 53,
-																		53)
-																.addGroup(
-																		layout.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.TRAILING)
-																				.addGroup(
-																						layout.createParallelGroup(
-																								javax.swing.GroupLayout.Alignment.TRAILING,
-																								false)
-																								.addComponent(
-																										jTClubName,
-																										javax.swing.GroupLayout.PREFERRED_SIZE,
-																										104,
-																										javax.swing.GroupLayout.PREFERRED_SIZE)
-																								.addGroup(
-																										layout.createSequentialGroup()
-																												.addComponent(
-																														jTAgeGroup,
-																														0,
-																														0,
-																														Short.MAX_VALUE)
-																												.addPreferredGap(
-																														javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-																												.addGroup(
-																														layout.createParallelGroup(
-																																javax.swing.GroupLayout.Alignment.LEADING,
-																																false)
-																																.addComponent(
-																																		jTGenderEvent,
-																																		javax.swing.GroupLayout.Alignment.TRAILING)
-																																.addComponent(
-																																		jTGender,
-																																		javax.swing.GroupLayout.Alignment.TRAILING,
-																																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																																		41,
-																																		Short.MAX_VALUE))))
-																				.addComponent(
-																						jBCancel)))
-												.addComponent(
-														jSeparatorStatus,
-														javax.swing.GroupLayout.Alignment.TRAILING,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														349, Short.MAX_VALUE)
-												.addComponent(jLStatus))
-								.addContainerGap()));
-		layout.setVerticalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(jLSwimmerName)
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addComponent(
-																		jTClubName,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addGap(11, 11,
-																		11)
-																.addGroup(
-																		layout.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.BASELINE)
-																				.addComponent(
-																						jTGender,
-																						javax.swing.GroupLayout.PREFERRED_SIZE,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						javax.swing.GroupLayout.PREFERRED_SIZE)
-																				.addComponent(
-																						jTAgeGroup,
-																						javax.swing.GroupLayout.PREFERRED_SIZE,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						javax.swing.GroupLayout.PREFERRED_SIZE))
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-																.addComponent(
-																		jTGenderEvent,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																		69,
-																		Short.MAX_VALUE)
-																.addComponent(
-																		jBCancel)
-																.addGap(1, 1, 1))
-												.addGroup(
-														layout.createSequentialGroup()
-																.addComponent(
-																		jCBSwimmerName,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																.addComponent(
-																		jLEventName)
-																.addGap(10, 10,
-																		10)
-																.addComponent(
-																		jCBEventName,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		Short.MAX_VALUE)
-																.addGroup(
-																		layout.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.BASELINE)
-																				.addComponent(
-																						jLMinutes)
-																				.addComponent(
-																						jLSeconds)
-																				.addComponent(
-																						jLMSeconds))
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																.addGroup(
-																		layout.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.BASELINE)
-																				.addComponent(
-																						jCBMinutes,
-																						javax.swing.GroupLayout.PREFERRED_SIZE,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						javax.swing.GroupLayout.PREFERRED_SIZE)
-																				.addComponent(
-																						jCBMSeconds,
-																						javax.swing.GroupLayout.PREFERRED_SIZE,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						javax.swing.GroupLayout.PREFERRED_SIZE)
-																				.addComponent(
-																						jCBSeconds,
-																						javax.swing.GroupLayout.PREFERRED_SIZE,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						javax.swing.GroupLayout.PREFERRED_SIZE))
-																.addGap(18, 18,
-																		18)
-																.addComponent(
-																		jBRegister)))
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(jSeparatorStatus,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										10,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(jLStatus).addContainerGap()));
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				layout.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(
+								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLSwimmerName)
+										.addGroup(
+												layout.createSequentialGroup()
+														.addGroup(
+																layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+																		.addComponent(jLEventName)
+																		.addComponent(jBRegister)
+																		.addGroup(
+																				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+																						.addComponent(jCBSwimmerName, javax.swing.GroupLayout.Alignment.LEADING, 0,
+																								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+																						.addComponent(jCBEventName, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE,
+																								Short.MAX_VALUE)
+																						.addGroup(
+																								javax.swing.GroupLayout.Alignment.LEADING,
+																								layout.createSequentialGroup()
+																										.addGroup(
+																												layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+																														.addComponent(jLMinutes)
+																														.addComponent(jCBMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, 56,
+																																javax.swing.GroupLayout.PREFERRED_SIZE))
+																										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+																										.addGroup(
+																												layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+																														.addComponent(jLSeconds)
+																														.addComponent(jCBSeconds, javax.swing.GroupLayout.PREFERRED_SIZE,
+																																javax.swing.GroupLayout.DEFAULT_SIZE,
+																																javax.swing.GroupLayout.PREFERRED_SIZE))
+																										.addGap(14, 14, 14)
+																										.addGroup(
+																												layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+																														.addComponent(jLMSeconds)
+																														.addComponent(jCBMSeconds, javax.swing.GroupLayout.PREFERRED_SIZE,
+																																javax.swing.GroupLayout.DEFAULT_SIZE,
+																																javax.swing.GroupLayout.PREFERRED_SIZE)))))
+														.addGap(53, 53, 53)
+														.addGroup(
+																layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+																		.addGroup(
+																				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+																						.addComponent(jTClubName, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+																						.addGroup(
+																								layout.createSequentialGroup()
+																										.addComponent(jTAgeGroup, 0, 0, Short.MAX_VALUE)
+																										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+																										.addGroup(
+																												layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+																														.addComponent(jTGenderEvent, javax.swing.GroupLayout.Alignment.TRAILING)
+																														.addComponent(jTGender, javax.swing.GroupLayout.Alignment.TRAILING,
+																																javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))))
+																		.addComponent(jBCancel)))
+										.addComponent(jSeparatorStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE).addComponent(jLStatus))
+						.addContainerGap()));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				layout.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(jLSwimmerName)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(
+								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addGroup(
+												layout.createSequentialGroup()
+														.addComponent(jTClubName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addGap(11, 11, 11)
+														.addGroup(
+																layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+																		.addComponent(jTGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+																				javax.swing.GroupLayout.PREFERRED_SIZE)
+																		.addComponent(jTAgeGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+																				javax.swing.GroupLayout.PREFERRED_SIZE))
+														.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+														.addComponent(jTGenderEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+														.addComponent(jBCancel).addGap(1, 1, 1))
+										.addGroup(
+												layout.createSequentialGroup()
+														.addComponent(jCBSwimmerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+														.addComponent(jLEventName)
+														.addGap(10, 10, 10)
+														.addComponent(jCBEventName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addGroup(
+																layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(jLMinutes).addComponent(jLSeconds)
+																		.addComponent(jLMSeconds))
+														.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+														.addGroup(
+																layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+																		.addComponent(jCBMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+																				javax.swing.GroupLayout.PREFERRED_SIZE)
+																		.addComponent(jCBMSeconds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+																				javax.swing.GroupLayout.PREFERRED_SIZE)
+																		.addComponent(jCBSeconds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+																				javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addComponent(jBRegister)))
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(jSeparatorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jLStatus).addContainerGap()));
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void jCBSwimmerNameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jCBSwimmerNameActionPerformed
 		try {
-			Swimmer swimmer = operations.returnSwimmer((String) jCBSwimmerName
-					.getSelectedItem());
+			Swimmer swimmer = operations.returnSwimmer((String) jCBSwimmerName.getSelectedItem());
 			jTClubName.setText(swimmer.getClub());
 			jTAgeGroup.setText(swimmer.getAgeGroup());
-			jTGender.setText((swimmer.getGender().equals("M")) ? "Male"
-					: "Female");
+			jTGender.setText((swimmer.getGender().equals("M")) ? "Male" : "Female");
 		} catch (Exception e) {
 		}
 	}// GEN-LAST:event_jCBSwimmerNameActionPerformed
@@ -453,34 +322,22 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 	}// GEN-LAST:event_formComponentShown
 
 	private void registerSwimmerToEvent(java.awt.event.ActionEvent evt) {
-		if (operations.isSwimmerRegisteredForEvent(operations
-				.returnSwimmer(jCBSwimmerName.getSelectedItem().toString()),
-				operations.returnEvent(jCBEventName.getSelectedItem()
-						.toString()))) {
-			JOptionPane.showMessageDialog(
-					null,
-					"Inotatorul a fost deja inregistrat la proba "
-							+ operations.returnEvent(jCBEventName
-									.getSelectedItem().toString()).getName(),
-					"Warrning!!!", 1);
+		if (operations.isSwimmerRegisteredForEvent(operations.returnSwimmer(jCBSwimmerName.getSelectedItem().toString()), operations.returnEvent(jCBEventName.getSelectedItem().toString()))) {
+			JOptionPane.showMessageDialog(null, "Inotatorul a fost deja inregistrat la proba " + operations.returnEvent(jCBEventName.getSelectedItem().toString()).getName(), "Warrning!!!", 1);
 			return;
 		}
-		Registration registration = new Registration(
-				operations.returnSwimmer(jCBSwimmerName.getSelectedItem()
-						.toString()), operations.returnEvent(jCBEventName
-						.getSelectedItem().toString()),
-				Integer.parseInt(jCBMinutes.getSelectedItem().toString()),
-				Integer.parseInt(jCBSeconds.getSelectedItem().toString()),
-				Integer.parseInt(jCBMSeconds.getSelectedItem().toString()));
+		// set default time in case it hasn't been selected
+		if (Integer.parseInt(jCBMinutes.getSelectedItem().toString()) + Integer.parseInt(jCBSeconds.getSelectedItem().toString())
+				+ Integer.parseInt(jCBMSeconds.getSelectedItem().toString()) == 0) {
+			this.setDefaultTime();
+		}
+		Registration registration = new Registration(operations.returnSwimmer(jCBSwimmerName.getSelectedItem().toString()), operations.returnEvent(jCBEventName.getSelectedItem().toString()),
+				Integer.parseInt(jCBMinutes.getSelectedItem().toString()), Integer.parseInt(jCBSeconds.getSelectedItem().toString()), Integer.parseInt(jCBMSeconds.getSelectedItem().toString()));
 		try {
 			operations.registerRegistration(registration);
-			jLStatus.setText("Inregistrat, "
-					+ registration.getSwimmer().getName() + " : "
-					+ registration.getEvent().getName());
+			jLStatus.setText("Inregistrat, " + registration.getSwimmer().getName() + " : " + registration.getEvent().getName());
 		} catch (IOException e) {
-			jLStatus.setText("Probleme cu inregistrarea, "
-					+ registration.getSwimmer().getName() + " : "
-					+ registration.getEvent().getName());
+			jLStatus.setText("Probleme cu inregistrarea, " + registration.getSwimmer().getName() + " : " + registration.getEvent().getName());
 		}
 	}// GEN-LAST:event_registerSwimmerToEvent
 
@@ -518,6 +375,12 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 		}
 	}
 
+	private void setDefaultTime() {
+		jCBMinutes.setSelectedIndex(59);
+		jCBSeconds.setSelectedIndex(59);
+		jCBMSeconds.setSelectedIndex(99);
+	}
+
 	/**
 	 * @param args
 	 *            the command line arguments
@@ -525,8 +388,7 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				RegisterSwimmerForEvent dialog = new RegisterSwimmerForEvent(
-						new javax.swing.JFrame(), true);
+				RegisterSwimmerForEvent dialog = new RegisterSwimmerForEvent(new javax.swing.JFrame(), true);
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					public void windowClosing(java.awt.event.WindowEvent e) {
 						System.exit(0);
