@@ -54,16 +54,16 @@ public class SettingsWindow  extends JDialog {
 		c.gridy = 0;
 		pane.add(jCBPoolType, c);
 
-		c.gridx = 0;
-		c.gridy = 1;
-		c.insets = new Insets(10, 10, 10, 10);
-		pane.add(new JLabel("Nume concurs"), c);
+//		c.gridx = 0;
+//		c.gridy = 1;
+//		c.insets = new Insets(10, 10, 10, 10);
+//		pane.add(new JLabel("Nume concurs"), c);
 
-		c.weightx = 0.0;
-		c.gridwidth = 2;
-		c.gridx = 2;
-		c.gridy = 1;
-		pane.add(jTEventName, c);
+//		c.weightx = 0.0;
+//		c.gridwidth = 2;
+//		c.gridx = 2;
+//		c.gridy = 1;
+//		pane.add(jTEventName, c);
 		
 		c.gridx = 0;
 		c.gridy = 2;
