@@ -883,20 +883,18 @@ public class Operations {
 				dir.mkdir();
 			}
 		} else {
-			System.out.println(pathFile.get(dirType) + separator
-			+ dataFile.get(fileType));
-//			File dir = new File(pathFile.get(dirType));
-//			if (!dir.exists()) {
-//				dir.mkdir();
-//				File file = new File(pathFile.get(dirType) + separator
-//						+ dataFile.get(fileType));
-//				file.createNewFile();
-//			} else {
-//				File file = new File(pathFile.get(dirType) + separator
-//						+ dataFile.get(fileType));
-//				if (!file.exists())
-//					file.createNewFile();
-//			}
+			File dir = new File(pathFile.get(dirType));
+			if (!dir.exists()) {
+				dir.mkdir();
+				File file = new File(pathFile.get(dirType) + separator
+						+ dataFile.get(fileType));
+				file.createNewFile();
+			} else {
+				File file = new File(pathFile.get(dirType) + separator
+						+ dataFile.get(fileType));
+				if (!file.exists())
+					file.createNewFile();
+			}
 		}
 	}
 
