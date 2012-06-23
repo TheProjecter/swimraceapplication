@@ -48,19 +48,19 @@ public class Sandbox {
 		}
 	}
 	
-	public static void main(String[] args) throws IOException {
-
-		Operations sOps = new Operations();
-		Calculations calculations = Calculations.getInstance();
-		Event event = sOps.returnEvent("Proba 11 - 100 Meters freestyle");
-		//System.out.println(calculations.calculateFinaPoints(69.00, 
-		//			calculations.getBaseTimeForEvent(event, "30 - 34", "M")));
-		SwimmerOperations swOps = new SwimmerOperations();
-		
-		String xxx = "Proba 1 - 200 Meters freestyle";
-		String[] eventInternalName = xxx.split("- ");
-		System.out.println(eventInternalName[0]);
-		System.out.println(eventInternalName[1]);
+//	public static void main(String[] args) throws IOException {
+//
+//		Operations sOps = new Operations();
+//		Calculations calculations = Calculations.getInstance();
+//		Event event = sOps.returnEvent("Proba 11 - 100 Meters freestyle");
+//		//System.out.println(calculations.calculateFinaPoints(69.00, 
+//		//			calculations.getBaseTimeForEvent(event, "30 - 34", "M")));
+//		SwimmerOperations swOps = new SwimmerOperations();
+//		
+//		String xxx = "Proba 1 - 200 Meters freestyle";
+//		String[] eventInternalName = xxx.split("- ");
+//		System.out.println(eventInternalName[0]);
+//		System.out.println(eventInternalName[1]);
 //		if (sOps.existsSwimmer("hhhhhhhhhhhhh")) {
 //			System.out.println("exists....");
 //		} else
@@ -261,7 +261,14 @@ public class Sandbox {
 		//
 		// }
 		
+//	}
+
+	public static void main(String[] args) {
+		System.out.println(System.getProperty("user.dir")
+					+ "/Data/serii");
 	}
+	
+	
 	public List<Result> getResults() {
 		return results;
 	}
