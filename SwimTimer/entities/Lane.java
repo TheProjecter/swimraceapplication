@@ -18,10 +18,6 @@ public class Lane {
 	public Lane() {
 		this.swimmer = new Swimmer();
 		this.event = new Event();
-		setEntryMinutes(0);
-		setEntrySecondes(0);
-		setEntryMSeconds(0);
-		setRegisteredTime(0);
 	}
 
 	public Lane(Swimmer swimmer, Event event, long registeredTime,

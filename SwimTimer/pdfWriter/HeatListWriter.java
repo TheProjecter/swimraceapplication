@@ -153,9 +153,14 @@ public class HeatListWriter {
 			c34.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c34);
 			table.addCell(c34);
-			PdfPCell c35 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane1().getEntryMinutes()), 2)
-					+ ":" + padLeft(Integer.toString(heats.getLane1().getEntrySecondes()), 2) + ","
-					+ padLeft(Integer.toString(heats.getLane1().getEntryMSeconds()), 2), normalFont));
+			PdfPCell c35;
+			try {
+				c35 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane1().getEntryMinutes()), 2) + ":"
+						+ padLeft(Integer.toString(heats.getLane1().getEntrySecondes()), 2) + ","
+						+ padLeft(Integer.toString(heats.getLane1().getEntryMSeconds()), 2), normalFont));
+			} catch (NullPointerException e) {
+				c35 = new PdfPCell(new Phrase(""));
+			}
 			c35.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c35);
 			table.addCell(c35);
@@ -177,9 +182,14 @@ public class HeatListWriter {
 			c44.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c44);
 			table.addCell(c44);
-			PdfPCell c45 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane2().getEntryMinutes()), 2)
-					+ ":" + padLeft(Integer.toString(heats.getLane2().getEntrySecondes()), 2) + ","
-					+ padLeft(Integer.toString(heats.getLane2().getEntryMSeconds()), 2), normalFont));
+			PdfPCell c45;
+			try {
+				c45 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane2().getEntryMinutes()), 2) + ":"
+						+ padLeft(Integer.toString(heats.getLane2().getEntrySecondes()), 2) + ","
+						+ padLeft(Integer.toString(heats.getLane2().getEntryMSeconds()), 2), normalFont));
+			} catch (NullPointerException e) {
+				c45 = new PdfPCell(new Phrase(""));
+			}
 			c45.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c45);
 			table.addCell(c45);
@@ -201,9 +211,14 @@ public class HeatListWriter {
 			c54.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c54);
 			table.addCell(c54);
-			PdfPCell c55 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane3().getEntryMinutes()), 2)
-					+ ":" + padLeft(Integer.toString(heats.getLane3().getEntrySecondes()), 2) + ","
-					+ padLeft(Integer.toString(heats.getLane3().getEntryMSeconds()), 2), normalFont));
+			PdfPCell c55;
+			try {
+				c55 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane3().getEntryMinutes()), 2) + ":"
+						+ padLeft(Integer.toString(heats.getLane3().getEntrySecondes()), 2) + ","
+						+ padLeft(Integer.toString(heats.getLane3().getEntryMSeconds()), 2), normalFont));
+			} catch (NullPointerException e) {
+				c55 = new PdfPCell(new Phrase(""));
+			}
 			c55.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c55);
 			table.addCell(c55);
@@ -225,9 +240,14 @@ public class HeatListWriter {
 			c64.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c64);
 			table.addCell(c64);
-			PdfPCell c65 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane4().getEntryMinutes()), 2)
-					+ ":" + padLeft(Integer.toString(heats.getLane4().getEntrySecondes()), 2) + ","
-					+ padLeft(Integer.toString(heats.getLane4().getEntryMSeconds()), 2), normalFont));
+			PdfPCell c65;
+			try {
+				c65 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane4().getEntryMinutes()), 2) + ":"
+						+ padLeft(Integer.toString(heats.getLane4().getEntrySecondes()), 2) + ","
+						+ padLeft(Integer.toString(heats.getLane4().getEntryMSeconds()), 2), normalFont));
+			} catch (NullPointerException e) {
+				c65 = new PdfPCell(new Phrase(""));
+			}
 			c65.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c65);
 			table.addCell(c65);
@@ -249,9 +269,14 @@ public class HeatListWriter {
 			c74.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c74);
 			table.addCell(c74);
-			PdfPCell c75 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane5().getEntryMinutes()), 2)
-					+ ":" + padLeft(Integer.toString(heats.getLane5().getEntrySecondes()), 2) + ","
-					+ padLeft(Integer.toString(heats.getLane5().getEntryMSeconds()), 2), normalFont));
+			PdfPCell c75;
+			try {
+				c75 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane5().getEntryMinutes()), 2) + ":"
+						+ padLeft(Integer.toString(heats.getLane5().getEntrySecondes()), 2) + ","
+						+ padLeft(Integer.toString(heats.getLane5().getEntryMSeconds()), 2), normalFont));
+			} catch (NullPointerException e) {
+				c75 = new PdfPCell(new Phrase(""));
+			}
 			c75.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c75);
 			table.addCell(c75);
@@ -273,9 +298,14 @@ public class HeatListWriter {
 			c84.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c84);
 			table.addCell(c84);
-			PdfPCell c85 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane6().getEntryMinutes()), 2)
-					+ ":" + padLeft(Integer.toString(heats.getLane6().getEntrySecondes()), 2) + ","
-					+ padLeft(Integer.toString(heats.getLane6().getEntryMSeconds()), 2), normalFont));
+			PdfPCell c85;
+			try {
+				c85 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane6().getEntryMinutes()), 2) + ":"
+						+ padLeft(Integer.toString(heats.getLane6().getEntrySecondes()), 2) + ","
+						+ padLeft(Integer.toString(heats.getLane6().getEntryMSeconds()), 2), normalFont));
+			} catch (NullPointerException e) {
+				c85 = new PdfPCell(new Phrase());
+			}
 			c85.setHorizontalAlignment(Element.ALIGN_LEFT);
 			disableBorders(c85);
 			table.addCell(c85);
@@ -299,10 +329,15 @@ public class HeatListWriter {
 				c94.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c94);
 				table.addCell(c94);
-				PdfPCell c95 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane7().getEntryMinutes()), 2)
-						+ ":" + padLeft(Integer.toString(heats.getLane7().getEntrySecondes()), 2) + ","
-						+ padLeft(Integer.toString(heats.getLane7().getEntryMSeconds()), 2), normalFont));
-				c95.setHorizontalAlignment(Element.ALIGN_LEFT);
+				PdfPCell c95;
+				try {
+					c95 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane7().getEntryMinutes()), 2)
+							+ ":" + padLeft(Integer.toString(heats.getLane7().getEntrySecondes()), 2) + ","
+							+ padLeft(Integer.toString(heats.getLane7().getEntryMSeconds()), 2), normalFont));
+					c95.setHorizontalAlignment(Element.ALIGN_LEFT);
+				} catch (NullPointerException e) {
+					c95 = new PdfPCell(new Phrase(""));
+				}
 				disableBorders(c95);
 				table.addCell(c95);
 
@@ -324,12 +359,14 @@ public class HeatListWriter {
 				c10_4.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c10_4);
 				table.addCell(c10_4);
-				PdfPCell c10_5 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane8().getEntryMinutes()),
-						2)
-						+ ":"
-						+ padLeft(Integer.toString(heats.getLane8().getEntrySecondes()), 2)
-						+ ","
-						+ padLeft(Integer.toString(heats.getLane8().getEntryMSeconds()), 2), normalFont));
+				PdfPCell c10_5;
+				try {
+					c10_5 = new PdfPCell(new Phrase(padLeft(Integer.toString(heats.getLane8().getEntryMinutes()), 2)
+							+ ":" + padLeft(Integer.toString(heats.getLane8().getEntrySecondes()), 2) + ","
+							+ padLeft(Integer.toString(heats.getLane8().getEntryMSeconds()), 2), normalFont));
+				} catch (NullPointerException e) {
+					c10_5 = new PdfPCell(new Phrase(""));
+				}
 				c10_5.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c10_5);
 				table.addCell(c10_5);
