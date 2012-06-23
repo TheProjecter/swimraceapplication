@@ -322,6 +322,7 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 	}// GEN-LAST:event_formComponentShown
 
 	private void registerSwimmerToEvent(java.awt.event.ActionEvent evt) {
+		boolean defaultTime = false;
 		if (operations.isSwimmerRegisteredForEvent(operations.returnSwimmer(jCBSwimmerName.getSelectedItem().toString()), operations.returnEvent(jCBEventName.getSelectedItem().toString()))) {
 			JOptionPane.showMessageDialog(null, "Inotatorul a fost deja inregistrat la proba " + operations.returnEvent(jCBEventName.getSelectedItem().toString()).getName(), "Warrning!!!", 1);
 			return;
@@ -330,12 +331,18 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 		if (Integer.parseInt(jCBMinutes.getSelectedItem().toString()) + Integer.parseInt(jCBSeconds.getSelectedItem().toString())
 				+ Integer.parseInt(jCBMSeconds.getSelectedItem().toString()) == 0) {
 			this.setDefaultTime();
+			defaultTime = true;
 		}
 		Registration registration = new Registration(operations.returnSwimmer(jCBSwimmerName.getSelectedItem().toString()), operations.returnEvent(jCBEventName.getSelectedItem().toString()),
 				Integer.parseInt(jCBMinutes.getSelectedItem().toString()), Integer.parseInt(jCBSeconds.getSelectedItem().toString()), Integer.parseInt(jCBMSeconds.getSelectedItem().toString()));
 		try {
 			operations.registerRegistration(registration);
 			jLStatus.setText("Inregistrat, " + registration.getSwimmer().getName() + " : " + registration.getEvent().getName());
+			// notify in case default times have been used
+			if (defaultTime) {
+				JOptionPane.showMessageDialog(null, "Inotatorul a fost inregistrat cu timpul 59:59:99", "Notificare", 2);
+				defaultTime = false;
+			}
 		} catch (IOException e) {
 			jLStatus.setText("Probleme cu inregistrarea, " + registration.getSwimmer().getName() + " : " + registration.getEvent().getName());
 		}
