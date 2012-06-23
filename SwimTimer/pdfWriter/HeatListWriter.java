@@ -47,7 +47,8 @@ public class HeatListWriter {
 	public HeatListWriter(Event event, String competitionTitle, List<Heat> heatList, String heatGender) {
 		setEvent(event);
 		setHeatList(heatList);
-		setFile(pathFile.get("serii") + "\\" + "Serii " + event.getName() + " " + heatGender + ".pdf");
+		setFile(pathFile.get("serii") + (osName.toLowerCase().startsWith("linux") ? "/" : "\\") + "Serii "
+				+ event.getName() + " " + heatGender + ".pdf");
 		setCompetitionTitle(competitionTitle);
 	}
 
