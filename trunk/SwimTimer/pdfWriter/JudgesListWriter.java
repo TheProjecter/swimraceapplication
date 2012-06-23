@@ -42,8 +42,8 @@ public class JudgesListWriter {
 	public JudgesListWriter(Event event, String competitionTitle, Heat heat, String heatGender) {
 		setEvent(event);
 		setHeat(heat);
-		setFile(pathFile.get("arbitrii") + (osName.toLowerCase().startsWith("linux") ? "/" : "\\") + "Foaie pt seria "
-				+ heat.getHeatNumber() + " proba " + event.getName() + " " + heatGender + ".pdf");
+		setFile(pathFile.get("arbitrii") + (osName.toLowerCase().startsWith("linux") ? "/" : "\\") + "Foaie pt "
+		+ event.getName() + " seria " + heat.getHeatNumber() + " " + heatGender + ".pdf");
 		setCompetitionTitle(competitionTitle);
 	}
 
