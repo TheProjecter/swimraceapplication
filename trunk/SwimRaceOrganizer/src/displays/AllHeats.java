@@ -20,6 +20,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -45,6 +46,8 @@ public class AllHeats extends JDialog {
 	private String poolType;
 	private String competitionTitle;
 	private String heatGender;
+	private int nrActualSaveButtons = 0;
+	private static int nrPressedSaveButtons = 0;
 
 	private JButton jBCancel = new JButton("Cancel");
 	private JButton jBGenerateRezults = new JButton("Generate Results");
@@ -52,6 +55,7 @@ public class AllHeats extends JDialog {
 	private SwimmersPerHeatSingleton swimmerPerHeat = SwimmersPerHeatSingleton.getInstance();
 	private List<Result> results = new ArrayList<Result>();
 	private static Map<String, Boolean> isHeatlaneEmpty = new HashMap<String, Boolean>();
+	private String osName = new Constants().getOsName();
 
 	private static final long serialVersionUID = 1L;
 
@@ -100,11 +104,9 @@ public class AllHeats extends JDialog {
 		/**
 		 * The lines are 8 or 10 based on the pooltype
 		 */
-		/* TO REMOVE!!! */
 		heatsPanel.setLayout(new HeatGridLayout((heatList.size() * (poolType.contains("50") ? 10 : 8)), 10));
-		// heatsPanel.setLayout(new HeatGridLayout((heatList.size() * (poolType
-		// .contains("50") ? 3 : 1)), 3));
-
+		setNrActualSaveButtons(operations.getRegistrationsForEvent(event, heatGender).size());
+		
 		for (Heat heats : heatList) {
 
 			mapHeatLaneOccupancy(heats);
@@ -232,6 +234,7 @@ public class AllHeats extends JDialog {
 						saveL1.setText("Edit");
 						statusLableL1.setText("OK");
 						statusLableL1.setForeground(new Color(0, 153, 0));
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL1.setEnabled(true);
 						tSCBL1.setEnabled(true);
@@ -242,6 +245,7 @@ public class AllHeats extends JDialog {
 						statusLableL1.setText("waiting");
 						statusLableL1.setForeground(Color.BLACK);
 						resultLanes.remove(lane1);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -265,6 +269,7 @@ public class AllHeats extends JDialog {
 						dsqL1.setText("dsq");
 						statusLableL1.setText("DSQ");
 						statusLableL1.setForeground(Color.RED);
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL1.setEnabled(true);
 						tSCBL1.setEnabled(true);
@@ -274,6 +279,7 @@ public class AllHeats extends JDialog {
 						dsqL1.setText("DSQ");
 						statusLableL1.setText("waiting");
 						statusLableL1.setForeground(Color.BLACK);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -297,6 +303,7 @@ public class AllHeats extends JDialog {
 						dnsL1.setText("dns");
 						statusLableL1.setText("DNS");
 						statusLableL1.setForeground(Color.BLUE);
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL1.setEnabled(true);
 						tSCBL1.setEnabled(true);
@@ -306,6 +313,7 @@ public class AllHeats extends JDialog {
 						dnsL1.setText("DNS");
 						statusLableL1.setText("waiting");
 						statusLableL1.setForeground(Color.BLACK);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -414,6 +422,7 @@ public class AllHeats extends JDialog {
 						saveL2.setText("Edit");
 						statusLableL2.setText("OK");
 						statusLableL2.setForeground(new Color(0, 153, 0));
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL2.setEnabled(true);
 						tSCBL2.setEnabled(true);
@@ -424,6 +433,7 @@ public class AllHeats extends JDialog {
 						statusLableL2.setText("waiting");
 						statusLableL2.setForeground(Color.BLACK);
 						resultLanes.remove(lane2);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -447,6 +457,7 @@ public class AllHeats extends JDialog {
 						dsqL2.setText("dsq");
 						statusLableL2.setText("DSQ");
 						statusLableL2.setForeground(Color.RED);
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL2.setEnabled(true);
 						tSCBL2.setEnabled(true);
@@ -456,6 +467,7 @@ public class AllHeats extends JDialog {
 						dsqL2.setText("DSQ");
 						statusLableL2.setText("waiting");
 						statusLableL2.setForeground(Color.BLACK);
+						decrementNrPressedSaveButtons();						
 					}
 				}
 			});
@@ -479,6 +491,7 @@ public class AllHeats extends JDialog {
 						dnsL2.setText("dns");
 						statusLableL2.setText("DNS");
 						statusLableL2.setForeground(Color.BLUE);
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL2.setEnabled(true);
 						tSCBL2.setEnabled(true);
@@ -488,6 +501,7 @@ public class AllHeats extends JDialog {
 						dnsL2.setText("DNS");
 						statusLableL2.setText("waiting");
 						statusLableL2.setForeground(Color.BLACK);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -598,6 +612,7 @@ public class AllHeats extends JDialog {
 						saveL3.setText("Edit");
 						statusLableL3.setText("OK");
 						statusLableL3.setForeground(new Color(0, 153, 0));
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL3.setEnabled(true);
 						tSCBL3.setEnabled(true);
@@ -608,6 +623,7 @@ public class AllHeats extends JDialog {
 						statusLableL3.setText("waiting");
 						statusLableL3.setForeground(Color.BLACK);
 						resultLanes.remove(lane3);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -631,6 +647,7 @@ public class AllHeats extends JDialog {
 						dsqL3.setText("dsq");
 						statusLableL3.setText("DSQ");
 						statusLableL3.setForeground(Color.RED);
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL3.setEnabled(true);
 						tSCBL3.setEnabled(true);
@@ -640,6 +657,7 @@ public class AllHeats extends JDialog {
 						dsqL3.setText("DSQ");
 						statusLableL3.setText("waiting");
 						statusLableL3.setForeground(Color.BLACK);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -663,6 +681,7 @@ public class AllHeats extends JDialog {
 						dnsL3.setText("dns");
 						statusLableL3.setText("DNS");
 						statusLableL3.setForeground(Color.BLUE);
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL3.setEnabled(true);
 						tSCBL3.setEnabled(true);
@@ -672,6 +691,7 @@ public class AllHeats extends JDialog {
 						dnsL3.setText("DNS");
 						statusLableL3.setText("waiting");
 						statusLableL3.setForeground(Color.BLACK);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -781,6 +801,7 @@ public class AllHeats extends JDialog {
 						saveL4.setText("Edit");
 						statusLableL4.setText("OK");
 						statusLableL4.setForeground(new Color(0, 153, 0));
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL4.setEnabled(true);
 						tSCBL4.setEnabled(true);
@@ -791,6 +812,7 @@ public class AllHeats extends JDialog {
 						statusLableL4.setText("waiting");
 						statusLableL4.setForeground(Color.BLACK);
 						resultLanes.remove(lane4);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -814,6 +836,7 @@ public class AllHeats extends JDialog {
 						dsqL4.setText("dsq");
 						statusLableL4.setText("DSQ");
 						statusLableL4.setForeground(Color.RED);
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL4.setEnabled(true);
 						tSCBL4.setEnabled(true);
@@ -823,6 +846,7 @@ public class AllHeats extends JDialog {
 						dsqL4.setText("DSQ");
 						statusLableL4.setText("waiting");
 						statusLableL4.setForeground(Color.BLACK);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -846,6 +870,7 @@ public class AllHeats extends JDialog {
 						dnsL4.setText("dns");
 						statusLableL4.setText("DNS");
 						statusLableL4.setForeground(Color.BLUE);
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL4.setEnabled(true);
 						tSCBL4.setEnabled(true);
@@ -855,6 +880,7 @@ public class AllHeats extends JDialog {
 						dnsL4.setText("DNS");
 						statusLableL4.setText("waiting");
 						statusLableL4.setForeground(Color.BLACK);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -963,6 +989,7 @@ public class AllHeats extends JDialog {
 						saveL5.setText("Edit");
 						statusLableL5.setText("OK");
 						statusLableL5.setForeground(new Color(0, 153, 0));
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL5.setEnabled(true);
 						tSCBL5.setEnabled(true);
@@ -973,6 +1000,7 @@ public class AllHeats extends JDialog {
 						statusLableL5.setText("waiting");
 						statusLableL5.setForeground(Color.BLACK);
 						resultLanes.remove(lane5);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -996,6 +1024,7 @@ public class AllHeats extends JDialog {
 						dsqL5.setText("dsq");
 						statusLableL5.setText("DSQ");
 						statusLableL5.setForeground(Color.RED);
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL5.setEnabled(true);
 						tSCBL5.setEnabled(true);
@@ -1005,6 +1034,7 @@ public class AllHeats extends JDialog {
 						dsqL5.setText("DSQ");
 						statusLableL5.setText("waiting");
 						statusLableL5.setForeground(Color.BLACK);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -1028,6 +1058,7 @@ public class AllHeats extends JDialog {
 						dnsL5.setText("dns");
 						statusLableL5.setText("DNS");
 						statusLableL5.setForeground(Color.BLUE);
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL5.setEnabled(true);
 						tSCBL5.setEnabled(true);
@@ -1037,6 +1068,7 @@ public class AllHeats extends JDialog {
 						dnsL5.setText("DNS");
 						statusLableL5.setText("waiting");
 						statusLableL5.setForeground(Color.BLACK);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -1145,6 +1177,7 @@ public class AllHeats extends JDialog {
 						saveL6.setText("Edit");
 						statusLableL6.setText("OK");
 						statusLableL6.setForeground(new Color(0, 153, 0));
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL6.setEnabled(true);
 						tSCBL6.setEnabled(true);
@@ -1155,6 +1188,7 @@ public class AllHeats extends JDialog {
 						statusLableL6.setText("waiting");
 						statusLableL6.setForeground(Color.BLACK);
 						resultLanes.remove(lane6);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -1178,6 +1212,7 @@ public class AllHeats extends JDialog {
 						dsqL6.setText("dsq");
 						statusLableL6.setText("DSQ");
 						statusLableL6.setForeground(Color.RED);
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL6.setEnabled(true);
 						tSCBL6.setEnabled(true);
@@ -1187,6 +1222,7 @@ public class AllHeats extends JDialog {
 						dsqL6.setText("DSQ");
 						statusLableL6.setText("waiting");
 						statusLableL6.setForeground(Color.BLACK);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -1210,6 +1246,7 @@ public class AllHeats extends JDialog {
 						dnsL6.setText("dns");
 						statusLableL6.setText("DNS");
 						statusLableL6.setForeground(Color.BLUE);
+						incrementNrPressedSaveButtons();
 					} else {
 						tMCBL6.setEnabled(true);
 						tSCBL6.setEnabled(true);
@@ -1219,6 +1256,7 @@ public class AllHeats extends JDialog {
 						dnsL6.setText("DNS");
 						statusLableL6.setText("waiting");
 						statusLableL6.setForeground(Color.BLACK);
+						decrementNrPressedSaveButtons();
 					}
 				}
 			});
@@ -1330,6 +1368,7 @@ public class AllHeats extends JDialog {
 							saveL7.setText("Edit");
 							statusLableL7.setText("OK");
 							statusLableL7.setForeground(new Color(0, 153, 0));
+							incrementNrPressedSaveButtons();
 						} else {
 							tMCBL7.setEnabled(true);
 							tSCBL7.setEnabled(true);
@@ -1340,6 +1379,7 @@ public class AllHeats extends JDialog {
 							statusLableL7.setText("waiting");
 							statusLableL7.setForeground(Color.BLACK);
 							resultLanes.remove(lane7);
+							decrementNrPressedSaveButtons();
 						}
 					}
 				});
@@ -1363,6 +1403,7 @@ public class AllHeats extends JDialog {
 							dsqL7.setText("dsq");
 							statusLableL7.setText("DSQ");
 							statusLableL7.setForeground(Color.RED);
+							incrementNrPressedSaveButtons();
 						} else {
 							tMCBL7.setEnabled(true);
 							tSCBL7.setEnabled(true);
@@ -1372,6 +1413,7 @@ public class AllHeats extends JDialog {
 							dsqL7.setText("DSQ");
 							statusLableL7.setText("waiting");
 							statusLableL7.setForeground(Color.BLACK);
+							decrementNrPressedSaveButtons();
 						}
 					}
 				});
@@ -1395,6 +1437,7 @@ public class AllHeats extends JDialog {
 							dnsL7.setText("dns");
 							statusLableL7.setText("DNS");
 							statusLableL7.setForeground(Color.BLUE);
+							incrementNrPressedSaveButtons();
 						} else {
 							tMCBL7.setEnabled(true);
 							tSCBL7.setEnabled(true);
@@ -1404,6 +1447,7 @@ public class AllHeats extends JDialog {
 							dnsL7.setText("DNS");
 							statusLableL7.setText("waiting");
 							statusLableL7.setForeground(Color.BLACK);
+							decrementNrPressedSaveButtons();
 						}
 					}
 				});
@@ -1515,6 +1559,7 @@ public class AllHeats extends JDialog {
 							saveL8.setText("Edit");
 							statusLableL8.setText("OK");
 							statusLableL8.setForeground(new Color(0, 153, 0));
+							incrementNrPressedSaveButtons();
 						} else {
 							tMCBL8.setEnabled(true);
 							tSCBL8.setEnabled(true);
@@ -1525,6 +1570,7 @@ public class AllHeats extends JDialog {
 							statusLableL8.setText("waiting");
 							statusLableL8.setForeground(Color.BLACK);
 							resultLanes.remove(lane8);
+							decrementNrPressedSaveButtons();
 						}
 					}
 				});
@@ -1548,6 +1594,7 @@ public class AllHeats extends JDialog {
 							dsqL8.setText("dsq");
 							statusLableL8.setText("DSQ");
 							statusLableL8.setForeground(Color.RED);
+							incrementNrPressedSaveButtons();
 						} else {
 							tMCBL8.setEnabled(true);
 							tSCBL8.setEnabled(true);
@@ -1557,6 +1604,7 @@ public class AllHeats extends JDialog {
 							dsqL8.setText("DSQ");
 							statusLableL8.setText("waiting");
 							statusLableL8.setForeground(Color.BLACK);
+							decrementNrPressedSaveButtons();
 						}
 					}
 				});
@@ -1580,6 +1628,7 @@ public class AllHeats extends JDialog {
 							dnsL8.setText("dns");
 							statusLableL8.setText("DNS");
 							statusLableL8.setForeground(Color.BLUE);
+							incrementNrPressedSaveButtons();
 						} else {
 							tMCBL8.setEnabled(true);
 							tSCBL8.setEnabled(true);
@@ -1589,6 +1638,7 @@ public class AllHeats extends JDialog {
 							dnsL8.setText("DNS");
 							statusLableL8.setText("waiting");
 							statusLableL8.setForeground(Color.BLACK);
+							decrementNrPressedSaveButtons();
 						}
 					}
 				});
@@ -1616,7 +1666,11 @@ public class AllHeats extends JDialog {
 		});
 		jBGenerateRezults.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				printResults(event.getName());
+				if (getNrActualSaveButtons() != getNrPressedSaveButtons()) {
+					JOptionPane.showMessageDialog(null, "Nu ati introdus toti timpii", "Atentie", 2);
+				} else {
+					printResults(event.getName());
+				}
 			}
 		});
 
@@ -1646,7 +1700,8 @@ public class AllHeats extends JDialog {
 	private void printResults(String eventName) {
 		try {
 			handleFile("rezultate", "-1");
-			FileWriter fstream = new FileWriter(pathFile.get("rezultate") + "\\" + "Rezultate " + eventName + " "
+			FileWriter fstream = new FileWriter(pathFile.get("rezultate")
+					+ (osName.toLowerCase().startsWith("linux") ? "/" : "\\") + "Rezultate " + eventName + " "
 					+ heatGender + ".csv", false);
 			BufferedWriter out = new BufferedWriter(fstream);
 			for (Lane lanes : resultLanes) {
@@ -1779,6 +1834,30 @@ public class AllHeats extends JDialog {
 
 	public void setHeatGender(String heatGender) {
 		this.heatGender = heatGender;
+	}
+
+	public int getNrActualSaveButtons() {
+		return nrActualSaveButtons;
+	}
+
+	public void setNrActualSaveButtons(int nrActualSaveButtons) {
+		this.nrActualSaveButtons = nrActualSaveButtons;
+	}
+
+	public static int getNrPressedSaveButtons() {
+		return nrPressedSaveButtons;
+	}
+
+	public static void setNrPressedSaveButtons(int nr) {
+		nrPressedSaveButtons = nr;
+	}
+
+	private static void incrementNrPressedSaveButtons() {
+		nrPressedSaveButtons++;
+	}
+
+	private static void decrementNrPressedSaveButtons() {
+		nrPressedSaveButtons--;
 	}
 
 }
