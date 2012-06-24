@@ -157,6 +157,7 @@ public class AllHeats extends JDialog {
 			final JLabel statusLableL1 = new JLabel("waiting", JLabel.CENTER);
 			heatsPanel.add(statusLableL1);
 			if (isHeatlaneEmpty.get("lane1")) {
+				entryTimeL1.setText("");
 				tMCBL1.setEnabled(false);
 				tSCBL1.setEnabled(false);
 				tMSCBL1.setEnabled(false);
@@ -172,6 +173,10 @@ public class AllHeats extends JDialog {
 			// are any
 			final Result perviousResultL1 = operations.getResultForSwimmer(results, heats.getLane1().getSwimmer());
 			if (!perviousResultL1.getSwimmer().getName().equals("")) {
+
+				// if it's an edit, once set the number of pressed save buttons to max
+				setNrPressedSaveButtons(operations.getRegistrationsForEvent(event, heatGender).size());
+				
 				tMCBL1.setSelectedItem(padLeft(perviousResultL1.getResultMinutes().toString(), 2));
 				tSCBL1.setSelectedItem(padLeft(perviousResultL1.getResultSecondes().toString(), 2));
 				tMSCBL1.setSelectedItem(padLeft(perviousResultL1.getResultMSeconds().toString(), 2));
@@ -345,6 +350,7 @@ public class AllHeats extends JDialog {
 			final JLabel statusLableL2 = new JLabel("waiting", JLabel.CENTER);
 			heatsPanel.add(statusLableL2);
 			if (isHeatlaneEmpty.get("lane2")) {
+				entryTimeL2.setText("");
 				tMCBL2.setEnabled(false);
 				tSCBL2.setEnabled(false);
 				tMSCBL2.setEnabled(false);
@@ -360,6 +366,10 @@ public class AllHeats extends JDialog {
 			// are any
 			final Result perviousResultL2 = operations.getResultForSwimmer(results, heats.getLane2().getSwimmer());
 			if (!perviousResultL2.getSwimmer().getName().equals("")) {
+
+				// if it's an edit, once set the number of pressed save buttons to max
+				setNrPressedSaveButtons(operations.getRegistrationsForEvent(event, heatGender).size());
+				
 				tMCBL2.setSelectedItem(padLeft(perviousResultL2.getResultMinutes().toString(), 2));
 				tSCBL2.setSelectedItem(padLeft(perviousResultL2.getResultSecondes().toString(), 2));
 				tMSCBL2.setSelectedItem(padLeft(perviousResultL2.getResultMSeconds().toString(), 2));
@@ -535,6 +545,7 @@ public class AllHeats extends JDialog {
 			final JLabel statusLableL3 = new JLabel("waiting", JLabel.CENTER);
 			heatsPanel.add(statusLableL3);
 			if (isHeatlaneEmpty.get("lane3")) {
+				entryTimeL3.setText("");
 				tMCBL3.setEnabled(false);
 				tSCBL3.setEnabled(false);
 				tMSCBL3.setEnabled(false);
@@ -550,6 +561,10 @@ public class AllHeats extends JDialog {
 			// are any
 			final Result perviousResultL3 = operations.getResultForSwimmer(results, heats.getLane3().getSwimmer());
 			if (!perviousResultL3.getSwimmer().getName().equals("")) {
+
+				// if it's an edit, once set the number of pressed save buttons to max
+				setNrPressedSaveButtons(operations.getRegistrationsForEvent(event, heatGender).size());
+				
 				tMCBL3.setSelectedItem(padLeft(perviousResultL3.getResultMinutes().toString(), 2));
 				tSCBL3.setSelectedItem(padLeft(perviousResultL3.getResultSecondes().toString(), 2));
 				tMSCBL3.setSelectedItem(padLeft(perviousResultL3.getResultMSeconds().toString(), 2));
@@ -723,6 +738,7 @@ public class AllHeats extends JDialog {
 			final JLabel statusLableL4 = new JLabel("waiting", JLabel.CENTER);
 			heatsPanel.add(statusLableL4);
 			if (isHeatlaneEmpty.get("lane4")) {
+				entryTimeL4.setText("");
 				tMCBL4.setEnabled(false);
 				tSCBL4.setEnabled(false);
 				tMSCBL4.setEnabled(false);
@@ -738,6 +754,10 @@ public class AllHeats extends JDialog {
 			// are any
 			final Result perviousResultL4 = operations.getResultForSwimmer(results, heats.getLane4().getSwimmer());
 			if (!perviousResultL4.getSwimmer().getName().equals("")) {
+
+				// if it's an edit, once set the number of pressed save buttons to max
+				setNrPressedSaveButtons(operations.getRegistrationsForEvent(event, heatGender).size());
+				
 				tMCBL4.setSelectedItem(padLeft(perviousResultL4.getResultMinutes().toString(), 2));
 				tSCBL4.setSelectedItem(padLeft(perviousResultL4.getResultSecondes().toString(), 2));
 				tMSCBL4.setSelectedItem(padLeft(perviousResultL4.getResultMSeconds().toString(), 2));
@@ -912,6 +932,7 @@ public class AllHeats extends JDialog {
 			final JLabel statusLableL5 = new JLabel("waiting", JLabel.CENTER);
 			heatsPanel.add(statusLableL5);
 			if (isHeatlaneEmpty.get("lane5")) {
+				entryTimeL5.setText("");
 				tMCBL5.setEnabled(false);
 				tSCBL5.setEnabled(false);
 				tMSCBL5.setEnabled(false);
@@ -927,6 +948,10 @@ public class AllHeats extends JDialog {
 			// are any
 			final Result perviousResultL5 = operations.getResultForSwimmer(results, heats.getLane5().getSwimmer());
 			if (!perviousResultL5.getSwimmer().getName().equals("")) {
+
+				// if it's an edit, once set the number of pressed save buttons to max
+				setNrPressedSaveButtons(operations.getRegistrationsForEvent(event, heatGender).size());
+				
 				tMCBL5.setSelectedItem(padLeft(perviousResultL5.getResultMinutes().toString(), 2));
 				tSCBL5.setSelectedItem(padLeft(perviousResultL5.getResultSecondes().toString(), 2));
 				tMSCBL5.setSelectedItem(padLeft(perviousResultL5.getResultMSeconds().toString(), 2));
@@ -1100,6 +1125,7 @@ public class AllHeats extends JDialog {
 			final JLabel statusLableL6 = new JLabel("waiting", JLabel.CENTER);
 			heatsPanel.add(statusLableL6);
 			if (isHeatlaneEmpty.get("lane6")) {
+				entryTimeL6.setText("");
 				tMCBL6.setEnabled(false);
 				tSCBL6.setEnabled(false);
 				tMSCBL6.setEnabled(false);
@@ -1115,6 +1141,10 @@ public class AllHeats extends JDialog {
 			// are any
 			Result perviousResultL6 = operations.getResultForSwimmer(results, heats.getLane6().getSwimmer());
 			if (!perviousResultL6.getSwimmer().getName().equals("")) {
+
+				// if it's an edit, once set the number of pressed save buttons to max
+				setNrPressedSaveButtons(operations.getRegistrationsForEvent(event, heatGender).size());
+				
 				tMCBL6.setSelectedItem(padLeft(perviousResultL6.getResultMinutes().toString(), 2));
 				tSCBL6.setSelectedItem(padLeft(perviousResultL6.getResultSecondes().toString(), 2));
 				tMSCBL6.setSelectedItem(padLeft(perviousResultL6.getResultMSeconds().toString(), 2));
@@ -1290,6 +1320,7 @@ public class AllHeats extends JDialog {
 				final JLabel statusLableL7 = new JLabel("waiting", JLabel.CENTER);
 				heatsPanel.add(statusLableL7);
 				if (isHeatlaneEmpty.get("lane7")) {
+					entryTimeL7.setText("");
 					tMCBL7.setEnabled(false);
 					tSCBL7.setEnabled(false);
 					tMSCBL7.setEnabled(false);
@@ -1306,6 +1337,10 @@ public class AllHeats extends JDialog {
 				// are any
 				Result perviousResultL7 = operations.getResultForSwimmer(results, heats.getLane7().getSwimmer());
 				if (!perviousResultL7.getSwimmer().getName().equals("")) {
+
+					// if it's an edit, once set the number of pressed save buttons to max
+					setNrPressedSaveButtons(operations.getRegistrationsForEvent(event, heatGender).size());
+					
 					tMCBL7.setSelectedItem(padLeft(perviousResultL7.getResultMinutes().toString(), 2));
 					tSCBL7.setSelectedItem(padLeft(perviousResultL7.getResultSecondes().toString(), 2));
 					tMSCBL7.setSelectedItem(padLeft(perviousResultL7.getResultMSeconds().toString(), 2));
@@ -1480,6 +1515,7 @@ public class AllHeats extends JDialog {
 				final JLabel statusLableL8 = new JLabel("waiting", JLabel.CENTER);
 				heatsPanel.add(statusLableL8);
 				if (isHeatlaneEmpty.get("lane8")) {
+					entryTimeL8.setText("");
 					tMCBL8.setEnabled(false);
 					tSCBL8.setEnabled(false);
 					tMSCBL8.setEnabled(false);
@@ -1496,6 +1532,10 @@ public class AllHeats extends JDialog {
 				// are any
 				Result perviousResultL8 = operations.getResultForSwimmer(results, heats.getLane8().getSwimmer());
 				if (!perviousResultL8.getSwimmer().getName().equals("")) {
+
+					// if it's an edit, once set the number of pressed save buttons to max
+					setNrPressedSaveButtons(operations.getRegistrationsForEvent(event, heatGender).size());
+					
 					tMCBL8.setSelectedItem(padLeft(perviousResultL8.getResultMinutes().toString(), 2));
 					tSCBL8.setSelectedItem(padLeft(perviousResultL8.getResultSecondes().toString(), 2));
 					tMSCBL8.setSelectedItem(padLeft(perviousResultL8.getResultMSeconds().toString(), 2));
@@ -1854,10 +1894,15 @@ public class AllHeats extends JDialog {
 
 	private static void incrementNrPressedSaveButtons() {
 		nrPressedSaveButtons++;
+		System.out.println("i " + nrPressedSaveButtons);
 	}
 
 	private static void decrementNrPressedSaveButtons() {
 		nrPressedSaveButtons--;
+		if (nrPressedSaveButtons < 0) {
+			nrPressedSaveButtons = 0; 
+		}
+		System.out.println("d " + nrPressedSaveButtons);
 	}
 
 }

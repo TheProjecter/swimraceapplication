@@ -32,16 +32,11 @@ import entities.ResultComparator;
 
 public class ResultWriter {
 
-	private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 20,
-			Font.BOLD);
-	private static Font headerFont1 = new Font(Font.FontFamily.HELVETICA, 14,
-			Font.BOLD);
-	private static Font headerFont2 = new Font(Font.FontFamily.HELVETICA, 14,
-			Font.BOLD);
-	private static Font normalHeaderFont = new Font(Font.FontFamily.HELVETICA,
-			10, Font.BOLD);
-	private static Font normalFont = new Font(Font.FontFamily.HELVETICA, 8,
-			Font.NORMAL);
+	private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD);
+	private static Font headerFont1 = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
+	private static Font headerFont2 = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
+	private static Font normalHeaderFont = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
+	private static Font normalFont = new Font(Font.FontFamily.HELVETICA, 8, Font.NORMAL);
 	private static String file;
 	private String competitionTitle;
 
@@ -51,13 +46,12 @@ public class ResultWriter {
 	private Map<String, String> pathFile = new Constants().getDataFiles();
 	private String heatGender;
 	private String requiredGender;
+	private String osName = new Constants().getOsName();
 
-	public ResultWriter(Event event, String competitionTitle,
-			String heatGender, String requiredGender) {
+	public ResultWriter(Event event, String competitionTitle, String heatGender, String requiredGender) {
 		setEvent(event);
-		setFile(pathFile.get("rezultate") + "\\" + "Rezultate "
-				+ event.getName() + " " + heatGender + " " + requiredGender
-				+ ".pdf");
+		setFile(pathFile.get("rezultate") + (osName.toLowerCase().startsWith("linux") ? "/" : "\\") + "Rezultate "
+				+ event.getName() + " " + heatGender + " " + requiredGender + ".pdf");
 		setCompetitionTitle(competitionTitle);
 		setHeatGender(heatGender);
 		setRequiredGender(requiredGender);
@@ -85,8 +79,8 @@ public class ResultWriter {
 		 * Add the logo
 		 */
 		try {
-			Image image = Image
-					.getInstance(pathFile.get("util") + "\\logo.jpg");
+			Image image = Image.getInstance(pathFile.get("util")
+					+ (osName.toLowerCase().startsWith("linux") ? "/logo.png" : "\\logo.png"));
 			image.setAlignment(Element.ALIGN_LEFT);
 			image.setWidthPercentage(50);
 			document.add(image);
@@ -99,8 +93,7 @@ public class ResultWriter {
 		/**
 		 * Add the event name
 		 */
-		Paragraph eventNameParagraph = new Paragraph(event.getName() + " "
-				+ requiredGender.toUpperCase(), headerFont2);
+		Paragraph eventNameParagraph = new Paragraph(event.getName() + " " + requiredGender.toUpperCase(), headerFont2);
 		document.add(eventNameParagraph);
 		document.add(oneEmptyLine);
 
@@ -117,13 +110,11 @@ public class ResultWriter {
 	}
 
 	private PdfPTable getResultsTable() {
-		float[] tableWidth = { 0.04f, 0.26f, 0.21f, 0.12f, 0.14f, 0.12f, 0.04f,
-				0.06f };
+		float[] tableWidth = { 0.04f, 0.26f, 0.21f, 0.12f, 0.14f, 0.12f, 0.04f, 0.06f };
 		PdfPTable table = new PdfPTable(tableWidth);
 
 		// get the results and order them after the time
-		List<Result> results = operations.returnResults(event, heatGender,
-				requiredGender);
+		List<Result> results = operations.returnResults(event, heatGender, requiredGender);
 
 		Collections.sort(results, new ResultComparator());
 		// get the age-groups
@@ -147,62 +138,45 @@ public class ResultWriter {
 					if (res.getSwimmer().getAgeGroup().equals(age)) {
 						// add the swimmer
 
-						if (loopNr > 1
-								&& previousResultTime == res.getResultTime()) {
+						if (loopNr > 1 && previousResultTime == res.getResultTime()) {
 							classification--;
 						} else {
 							classification = loopNr;
 						}
 
 						PdfPCell c21 = new PdfPCell(new Phrase(
-								Integer.toString(classification), normalFont));
+								res.getPerformanceStatus().equals("OK") ? Integer.toString(classification) : "",
+								normalFont));
 						c21.setHorizontalAlignment(Element.ALIGN_CENTER);
 						disableBorders(c21);
 						table.addCell(c21);
-						PdfPCell c22 = new PdfPCell(new Phrase(res.getSwimmer()
-								.getName(), normalFont));
+						PdfPCell c22 = new PdfPCell(new Phrase(res.getSwimmer().getName(), normalFont));
 						disableBorders(c22);
 						table.addCell(c22);
-						PdfPCell c23 = new PdfPCell(new Phrase(res.getSwimmer()
-								.getClub(), normalFont));
+						PdfPCell c23 = new PdfPCell(new Phrase(res.getSwimmer().getClub(), normalFont));
 						disableBorders(c23);
 						table.addCell(c23);
-						PdfPCell c24 = new PdfPCell(new Phrase(res.getSwimmer()
-								.getBirthYear(), normalFont));
+						PdfPCell c24 = new PdfPCell(new Phrase(res.getSwimmer().getBirthYear(), normalFont));
 						disableBorders(c24);
 						table.addCell(c24);
-						PdfPCell c25 = new PdfPCell(new Phrase(padLeft(
+						PdfPCell c25 = new PdfPCell(new Phrase(res.getPerformanceStatus().equals("OK") ? padLeft(
 								Integer.toString(res.getResultMinutes()), 2)
 								+ ":"
-								+ padLeft(Integer.toString(res
-										.getResultSecondes()), 2)
+								+ padLeft(Integer.toString(res.getResultSecondes()), 2)
 								+ ","
-								+ padLeft(Integer.toString(res
-										.getResultMSeconds()), 2), normalFont));
+								+ padLeft(Integer.toString(res.getResultMSeconds()), 2) : "-", normalFont));
 						disableBorders(c25);
 						table.addCell(c25);
-						PdfPCell c26 = new PdfPCell(
-								new Phrase(
-										calculations
-												.calculateFinaPoints(
-														res.getSwimTimeSeconds(),
-														calculations
-																.getBaseTimeForEvent(event, age, requiredGender)),
-										normalFont));
+						PdfPCell c26 = new PdfPCell(new Phrase(
+								calculations.calculateFinaPoints(res.getSwimTimeSeconds(),
+										calculations.getBaseTimeForEvent(event, age, requiredGender)), normalFont));
 						disableBorders(c26);
 						table.addCell(c26);
-						PdfPCell c27 = new PdfPCell(
-								new Phrase(
-										Integer.toString((!res
-												.getPerformanceStatus().equals(
-														"OK") ? 0
-												: calculations
-														.calculateLocalPoints(classification))),
-										normalFont));
+						PdfPCell c27 = new PdfPCell(new Phrase(Integer.toString((!res.getPerformanceStatus().equals(
+								"OK") ? 0 : calculations.calculateLocalPoints(classification))), normalFont));
 						disableBorders(c27);
 						table.addCell(c27);
-						PdfPCell c28 = new PdfPCell(new Phrase((res
-								.getPerformanceStatus().equals("OK") ? ""
+						PdfPCell c28 = new PdfPCell(new Phrase((res.getPerformanceStatus().equals("OK") ? ""
 								: res.getPerformanceStatus()), normalFont));
 						disableBorders(c28);
 						table.addCell(c28);
