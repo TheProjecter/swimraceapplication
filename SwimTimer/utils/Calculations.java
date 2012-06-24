@@ -15,6 +15,7 @@ public class Calculations {
 	private static Calculations instance;
 	private Map<String, String> styleType = new Constants().getStyleNames();
 	private Map<String, String> pathFile = new Constants().getDataFiles();
+	private String osName = new Constants().getOsName();
 
 	private Calculations() {
 	}
@@ -26,9 +27,8 @@ public class Calculations {
 	}
 
 	public int calculateLocalPoints(int place) {
-		return (place == 1) ? 10 : (place == 2) ? 8 : (place == 3) ? 6
-				: (place == 4) ? 5 : (place == 5) ? 4 : (place == 6) ? 3
-						: (place == 7) ? 2 : (place == 8) ? 1 : 0;
+		return (place == 1) ? 10 : (place == 2) ? 8 : (place == 3) ? 6 : (place == 4) ? 5 : (place == 5) ? 4
+				: (place == 6) ? 3 : (place == 7) ? 2 : (place == 8) ? 1 : 0;
 	}
 
 	private Integer getMinuteFromString(String time) {
@@ -39,15 +39,13 @@ public class Calculations {
 
 	private Integer getSecondsFromString(String time) {
 		String[] minSplit = time.split(":");
-		String[] secSplit = ((minSplit.length == 2) ? minSplit[1] : minSplit[0])
-				.split("\\.");
+		String[] secSplit = ((minSplit.length == 2) ? minSplit[1] : minSplit[0]).split("\\.");
 		return Integer.parseInt(secSplit[0]);
 	}
 
 	private Integer getMSecondsFromString(String time) {
 		String[] minSplit = time.split(":");
-		String[] secSplit = ((minSplit.length == 2) ? minSplit[1] : minSplit[0])
-				.split("\\.");
+		String[] secSplit = ((minSplit.length == 2) ? minSplit[1] : minSplit[0]).split("\\.");
 		return Integer.parseInt(secSplit[1]);
 	}
 
@@ -57,23 +55,20 @@ public class Calculations {
 		String tmp = "buzz";
 		try {
 			scanner = new Scanner(new File(pathFile.get("util")
-					+ "\\FINA Base Times.csv"));
+					+ (osName.toLowerCase().startsWith("linux") ? "/FINA Base Times.csv" : "\\FINA Base Times.csv")));
 			try {
 				while (scanner.hasNextLine()) {
 					String[] entry = scanner.nextLine().split(";");
 
 					entry[10] = entry[10].isEmpty() ? "99:99.99" : entry[10];
 					entry[11] = entry[11].isEmpty() ? "99:99.99" : entry[11];
-					
-					fina.add(new FinaBaseTimes(entry[0], entry[1], entry[2],
-							entry[4], Integer.parseInt(entry[3]), entry[5],
-							entry[6], getMinuteFromString(entry[10]),
-							getSecondsFromString(entry[10]),
-							getMSecondsFromString(entry[10]), Double
-									.parseDouble(entry[11].replace(",", "."))));
+
+					fina.add(new FinaBaseTimes(entry[0], entry[1], entry[2], entry[4], Integer.parseInt(entry[3]),
+							entry[5], entry[6], getMinuteFromString(entry[10]), getSecondsFromString(entry[10]),
+							getMSecondsFromString(entry[10]), Double.parseDouble(entry[11].replace(",", "."))));
 				}
 			} catch (NumberFormatException e) {
-				
+
 			} catch (ArrayIndexOutOfBoundsException e) {
 			} finally {
 				scanner.close();
@@ -90,47 +85,27 @@ public class Calculations {
 		Boolean matchFoundDistance = false;
 		Boolean matchFoundGender = false;
 		List<FinaBaseTimes> fina = getAllBaseTimes();
+		
 		for (FinaBaseTimes times : fina) {
 			// only base times of a certain age group are taken into account
 			if (times.getAgeGroup().equals(age)) {
 				// establish the pooltype
-				matchFoundPoolType = (times.getPoolType().equals("SCM")) ? (event
-						.getPoolType().contains("25") ? true : false) : (times
-						.getPoolType().equals("LCM")) ? (event.getPoolType()
-						.contains("50") ? true : false) : false;
+				matchFoundPoolType = (times.getPoolType().equals("SCM")) ? (event.getPoolType().contains("25") ? true
+						: false) : (times.getPoolType().equals("LCM")) ? (event.getPoolType().contains("50") ? true
+						: false) : false;
 				// establish the style
-				matchFoundStyle = (times.getStyle().equals("FREE")) ? (event
-						.getStyle().equals(styleType.get("FREE").toString()) ? true
-						: false)
-						: (times.getStyle().equals("BACK")) ? (event.getStyle()
-								.equals(styleType.get("BACK").toString()) ? true
-								: false)
-								: (times.getStyle().equals("BREAST")) ? (event
-										.getStyle().equals(
-												styleType.get("BREAST")
-														.toString()) ? true
-										: false)
-										: (times.getStyle().equals("FLY")) ? (event
-												.getStyle().equals(
-														styleType.get("FLY")
-																.toString()) ? true
-												: false)
-												: (times.getStyle()
-														.equals("MEDLEY")) ? (event
-														.getStyle()
-														.equals(styleType.get(
-																"MEDLEY")
-																.toString()) ? true
-														: false)
-														: false;
+				matchFoundStyle = (times.getStyle().equals("FREE")) ? (event.getStyle().equals(
+						styleType.get("FREE").toString()) ? true : false) : (times.getStyle().equals("BACK")) ? (event
+						.getStyle().equals(styleType.get("BACK").toString()) ? true : false) : (times.getStyle()
+						.equals("BREAST")) ? (event.getStyle().equals(styleType.get("BREAST").toString()) ? true
+						: false) : (times.getStyle().equals("FLY")) ? (event.getStyle().equals(
+						styleType.get("FLY").toString()) ? true : false) : (times.getStyle().equals("MEDLEY")) ? (event
+						.getStyle().equals(styleType.get("MEDLEY").toString()) ? true : false) : false;
 				// establish the length
-				matchFoundDistance = ((times.getLength() + " Meters")
-						.equals(event.getLength())) ? true : false;
+				matchFoundDistance = ((times.getLength() + " Meters").equals(event.getLength())) ? true : false;
 				// match the gender
-				matchFoundGender = times.getGender().toLowerCase()
-						.equals(gender.toLowerCase()) ? true : false;
-				if (matchFoundPoolType && matchFoundStyle && matchFoundDistance
-						&& matchFoundGender) {
+				matchFoundGender = times.getGender().toLowerCase().equals(gender.toLowerCase()) ? true : false;
+				if (matchFoundPoolType && matchFoundStyle && matchFoundDistance && matchFoundGender) {
 					return times.getBaseTimesSeconds();
 				}
 			}
@@ -141,8 +116,7 @@ public class Calculations {
 	public String calculateFinaPoints(double swimTime, double baseTime) {
 		if (swimTime == 0.0)
 			return "0";
-		else
-			return String.format("%.5g%n",
-					1000 * Math.pow(baseTime / swimTime, 3));
+		else			
+			return String.format("%.5g%n", 1000 * Math.pow(baseTime / swimTime, 3));
 	}
 }
