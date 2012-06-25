@@ -674,7 +674,7 @@ public class Operations {
 		List<Result> results = new ArrayList<Result>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(
-					pathFile.get("rezultate") + separator + "Rezultate "
+					pathFile.get("csv") + separator + "Rezultate "
 							+ event.getName() + " " + heatGender + ".csv"));
 			try {
 				String line = null;
