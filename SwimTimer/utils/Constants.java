@@ -36,6 +36,8 @@ public class Constants {
 					+ "/Data/serii/arbitrii");
 			this.dataFiles.put("util", System.getProperty("user.dir")
 					+ "/Data/utils");
+			this.dataFiles.put("csv", System.getProperty("user.dir")
+					+ "/Data/rezultate/csv");
 		} else if (osName.toLowerCase().startsWith("windows")) {
 			this.dataFiles.put("core", System.getProperty("user.dir")
 					+ "\\Data\\core");
@@ -47,6 +49,8 @@ public class Constants {
 					+ "\\Data\\serii\\arbitrii");
 			this.dataFiles.put("util", System.getProperty("user.dir")
 					+ "\\Data\\utils");
+			this.dataFiles.put("csv", System.getProperty("user.dir")
+					+ "\\Data\\rezultate\\csv");
 		}
 	}
 

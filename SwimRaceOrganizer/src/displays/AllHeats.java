@@ -1740,7 +1740,7 @@ public class AllHeats extends JDialog {
 	private void printResults(String eventName) {
 		try {
 			handleFile("rezultate", "-1");
-			FileWriter fstream = new FileWriter(pathFile.get("rezultate")
+			FileWriter fstream = new FileWriter(pathFile.get("csv")
 					+ (osName.toLowerCase().startsWith("linux") ? "/" : "\\") + "Rezultate " + eventName + " "
 					+ heatGender + ".csv", false);
 			BufferedWriter out = new BufferedWriter(fstream);
@@ -1894,7 +1894,6 @@ public class AllHeats extends JDialog {
 
 	private static void incrementNrPressedSaveButtons() {
 		nrPressedSaveButtons++;
-		System.out.println("i " + nrPressedSaveButtons);
 	}
 
 	private static void decrementNrPressedSaveButtons() {
@@ -1902,7 +1901,6 @@ public class AllHeats extends JDialog {
 		if (nrPressedSaveButtons < 0) {
 			nrPressedSaveButtons = 0; 
 		}
-		System.out.println("d " + nrPressedSaveButtons);
 	}
 
 }
