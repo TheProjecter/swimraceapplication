@@ -47,6 +47,8 @@ public class ResultWriter {
 	private String heatGender;
 	private String requiredGender;
 	private String osName = new Constants().getOsName();
+	private static final String[] RCODE = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+	private static final int[] BVAL = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
 
 	public ResultWriter(Event event, String competitionTitle, String heatGender, String requiredGender) {
 		setEvent(event);
@@ -108,7 +110,20 @@ public class ResultWriter {
 		document.newPage();
 
 	}
-
+	
+	private String getRomanAgeGroup(String age) {
+		int cathegory = (Integer.parseInt(age.substring(0,  2)) - 20) / 5;
+		String roman = "";
+		// algorithm from Fred Swartz
+		for (int i = 0; i < RCODE.length; i++) {
+			while (cathegory >= BVAL[i]) {
+				cathegory -= BVAL[i];
+				roman += RCODE[i];
+			}
+		}
+		return roman;
+	}
+	
 	private PdfPTable getResultsTable() {
 		float[] tableWidth = { 0.04f, 0.26f, 0.21f, 0.12f, 0.14f, 0.12f, 0.04f, 0.06f };
 		PdfPTable table = new PdfPTable(tableWidth);
@@ -128,7 +143,7 @@ public class ResultWriter {
 		for (String age : ageGroups) {
 			if (operations.searchAgeGroupInResult(results, age, requiredGender)) {
 				// Age-group
-				PdfPCell c11 = new PdfPCell(new Phrase(age, normalHeaderFont));
+				PdfPCell c11 = new PdfPCell(new Phrase(getRomanAgeGroup(age) + ". " + age, normalHeaderFont));
 				c11.setHorizontalAlignment(Element.ALIGN_LEFT);
 				disableBorders(c11);
 				c11.setColspan(8);

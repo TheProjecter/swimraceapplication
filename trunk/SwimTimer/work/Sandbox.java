@@ -38,240 +38,278 @@ public class Sandbox {
 	private final List<String> list = new ArrayList<String>();
 	private Operations operations = new Operations();
 	private List<Result> results;
-	
+
+	private static final String[] RCODE = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+	private static final int[] BVAL = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+
 	public void push() {
 		list.add("value");
 	}
+
 	public void display() {
 		for (String i : list) {
 			System.out.println(i);
 		}
 	}
-	
-//	public static void main(String[] args) throws IOException {
-//
-//		Operations sOps = new Operations();
-//		Calculations calculations = Calculations.getInstance();
-//		Event event = sOps.returnEvent("Proba 11 - 100 Meters freestyle");
-//		//System.out.println(calculations.calculateFinaPoints(69.00, 
-//		//			calculations.getBaseTimeForEvent(event, "30 - 34", "M")));
-//		SwimmerOperations swOps = new SwimmerOperations();
-//		
-//		String xxx = "Proba 1 - 200 Meters freestyle";
-//		String[] eventInternalName = xxx.split("- ");
-//		System.out.println(eventInternalName[0]);
-//		System.out.println(eventInternalName[1]);
-//		if (sOps.existsSwimmer("hhhhhhhhhhhhh")) {
-//			System.out.println("exists....");
-//		} else
-//			System.out.println("not exists...");
-//		if (x.isEmpty()) {
-//			System.out.println("x is empty");
-//		}
-//		SwimmersPerHeatSingleton swimPerHeat = SwimmersPerHeatSingleton.getInstance();
-//		swimPerHeat.push("sprint", 4);
-//		swimPerHeat.push("testNR", 6);
-//
-//		swimPerHeat.push("sprint", 3);
-//		swimPerHeat.push("testNR", 7);
-//		
-//		System.out.println(swimPerHeat.getValue("sprint"));	
-//
-//		for (Map.Entry<String, Integer> entry: swimPerHeat.getSwimmerPerHeatMapping().entrySet()) {
-//			System.out.println(entry.getKey() + " - " + entry.getValue());	
-//		}
-//		s.push();
-//		s.display();
-//		System.out.println("------");
-//		s.push();
-//		s.display();
-//		String result;
-//		Constants con = new Constants();
-//		
-//		File dir = new File(pathFile.get("core"));
-//		if (!dir.exists()) {
-//			dir.mkdir();
-//			File file = new File(pathFile.get("core") + "\\" + dataFile.get("swimmers"));
-//			file.createNewFile();
-//		}
-//		else {
-//			File file = new File(pathFile.get("core") + "\\" + dataFile.get("swimmers"));
-//			if (!file.exists()) 
-//				file.createNewFile();
-//		}			
-//		Swimmer swimmer = new Swimmer("Cezar", "1981", "25-29", "M",
-//		"Masters Timisoara").getInstance();
-//		result = swimmer.registerSwimmer();
-//		System.out.println(result);
 
-		// Event event = new Event("400 liber femei", "400", "liber", "F",
-		// "50m").getInstance();
-		// result = event.registerEvent();
-		// System.out.println(result);
+	public static String ageGroupCalculation(int age) {
+		String ageGroup = "18 - ";
+		int cathegory = 0;
+		if (age < 25) {
+			return "0. 18 - 24";
+		}
+		for (int i = 25; i < 120; i++) {
+			if (i % 5 == 0 && (age - i <= 4) && (age - i >= 0)) {
+				cathegory = (i - 20) / 5;
+				ageGroup = "" + i + " - ";
+			}
+			if ((i - age <= 4) && i % 5 == 4 && (i - age >= 0)) {
+				ageGroup = ageGroup + i;
+			}
+		}
 
-		// operations
-//		Operations sOps = new Operations();
-
-		// // sOps.clearDB("swimmers");
-		// List<Swimmer> swList = new ArrayList<Swimmer>();
-		// List<Event> eventList = new ArrayList<Event>();
-
-		// swList = sOps.returnSwimmers();
-		// for (Swimmer a : swList) {
-		// String x = a.getName();
-		// System.out.println(x);
-		// }
-
-		// eventList = sOps.returnEvents();
-		// for (Event a : eventList) {
-		// String x = a.getName();
-		// System.out.println(x);
-		// }
-
-		// Swimmer swimmer = sOps.returnSwimmer("roly");
-		// System.out.println(swimmer.getName());
-		// System.out.println(swimmer.getBirthYear());
-		// System.out.println(swimmer.getAgeGroup());
-		// System.out.println(swimmer.getGender());
-		// System.out.println(swimmer.getClub());
-
-		// Event event = sOps.returnEvent("400 liber barbati");
-		// System.out.println(event.getName());
-		// System.out.println(event.getLength());
-		// System.out.println(event.getStyle());
-		// System.out.println(event.getGender());
-		// System.out.println(event.getPoolType());
-
-		// Registration registration;
-		//		
-		// registration = new Registration(sOps.returnSwimmer("Eugen"), sOps
-		// .returnEvent("50 fluture barbati"), 0, 38, 43);
-		// registration.registerRegistration();
-		// registration = new Registration(sOps.returnSwimmer("Casian"), sOps
-		// .returnEvent("50 fluture barbati"), 0, 37, 11);
-		// registration.registerRegistration();
-
-		// List<Lane> laneList = new ArrayList<Lane>();
-		// List<Lane> lanesOnHeat = new ArrayList<Lane>();
-		// Event event = sOps.returnEvent("100 liber barbati");
-		// laneList = sOps.createLanes(event);
-		//		
-		// List ts1 = new ArrayList();
-		//		
-		// Collections.sort(laneList, new LaneComparator());
-		// int heatCount = (laneList.size())/8 + 1;
-		// int startPos = 0;
-		// int endPos = 8;
-		//		
-		// System.out.println(laneList.size()+ " | " + heatCount);
-		// for (int i = heatCount; i > 0; i--) {
-		// System.out.println();
-		// System.out.println("Heat number  " + i + " : ");
-		// lanesOnHeat = laneList.subList(startPos, endPos);
-		//			
-		// lanesOnHeat = sOps.setLanesInOrder(lanesOnHeat);
-		//			
-		// for (Lane lanes : lanesOnHeat) {
-		// System.out.println(lanes.getSwimmer().getName() + " -> "
-		// + lanes.getEvent().getStyle() + " -> "
-		// + lanes.getRegisteredTime());
-		// }
-		// startPos = startPos + 8;
-		// endPos = ((endPos + 8) < laneList.size()) ? (endPos + 8) :
-		// laneList.size();
-		// }
-//		List<Event> swimmers = sOps.returnAllEvents();
-//		for (Event ev : swimmers) {
-//			System.out.println(ev.getName());
-//		}
-
-//		HeatListWriter hWriter = new HeatListWriter(sOps.returnEvent("100 liber barbati"), "something good");
-//		hWriter.run();
-
-//		ResultWriter hWriter = new ResultWriter(sOps.returnEvent("50 liber"), "something good");
-//		hWriter.run();
-//		Event event = sOps.returnEvent("100 liber barbati");
-//		List<Heat> heatList = sOps.generateHeats(event);
-//		sOps.registerHeats(heatList, event.getName() + ".csv");
-//		Calculations calc = Calculations.getInstance();
-//		System.out.println(calc.getMinuteFromString("2:04.19"));
-//		System.out.println(calc.getSecondsFromString("2:04.19"));
-//		System.out.println(calc.getMSecondsFromString("2:04.19"));
-
-//		List<FinaBaseTimes> fina = calc.getAllBaseTimes();
-//		for (FinaBaseTimes times : fina) {
-//			System.out.println(times.getLength() + "	" + times.getStyle() + "	" + times.getBaseTimesSeconds());
-//		}
-//		double fina = calc.getBaseTimeForEvent(sOps.returnEvent("100 freestyle barbati"));
-//		System.out.println(fina);
-//		System.out.println(calc.calculateLocalPoints(8));
-		
-		//sOps.removeLineFromFile("textfile.txt", "b");
-		// for (Heat heats : heatList) {
-		// System.out.println("Heat " + heats.getHeatNumber());
-		//
-		// System.out.println(heats.getEventName() + " -> lane "
-		// + heats.getLane1().getLaneNumber() + " -> "
-		// + heats.getLane1().getSwimmer().getName() + " -> "
-		// + heats.getLane1().getEntryMinutes() + "."
-		// + heats.getLane1().getEntrySecondes() + ":"
-		// + heats.getLane1().getEntryMSeconds());
-		// System.out.println(heats.getEventName() + " -> lane "
-		// + heats.getLane2().getLaneNumber() + " -> "
-		// + heats.getLane2().getSwimmer().getName() + " -> "
-		// + heats.getLane2().getEntryMinutes() + "."
-		// + heats.getLane2().getEntrySecondes() + ":"
-		// + heats.getLane2().getEntryMSeconds());
-		// System.out.println(heats.getEventName() + " -> lane "
-		// + heats.getLane3().getLaneNumber() + " -> "
-		// + heats.getLane3().getSwimmer().getName() + " -> "
-		// + heats.getLane3().getEntryMinutes() + "."
-		// + heats.getLane3().getEntrySecondes() + ":"
-		// + heats.getLane3().getEntryMSeconds());
-		// System.out.println(heats.getEventName() + " -> lane "
-		// + heats.getLane4().getLaneNumber() + " -> "
-		// + heats.getLane4().getSwimmer().getName() + " -> "
-		// + heats.getLane4().getEntryMinutes() + "."
-		// + heats.getLane4().getEntrySecondes() + ":"
-		// + heats.getLane4().getEntryMSeconds());
-		// System.out.println(heats.getEventName() + " -> lane "
-		// + heats.getLane5().getLaneNumber() + " -> "
-		// + heats.getLane5().getSwimmer().getName() + " -> "
-		// + heats.getLane5().getEntryMinutes() + "."
-		// + heats.getLane5().getEntrySecondes() + ":"
-		// + heats.getLane5().getEntryMSeconds());
-		// System.out.println(heats.getEventName() + " -> lane "
-		// + heats.getLane6().getLaneNumber() + " -> "
-		// + heats.getLane6().getSwimmer().getName() + " -> "
-		// + heats.getLane6().getEntryMinutes() + "."
-		// + heats.getLane6().getEntrySecondes() + ":"
-		// + heats.getLane6().getEntryMSeconds());
-		// System.out.println(heats.getEventName() + " -> lane "
-		// + heats.getLane7().getLaneNumber() + " -> "
-		// + heats.getLane7().getSwimmer().getName() + " -> "
-		// + heats.getLane7().getEntryMinutes() + "."
-		// + heats.getLane7().getEntrySecondes() + ":"
-		// + heats.getLane7().getEntryMSeconds());
-		// System.out.println(heats.getEventName() + " -> lane "
-		// + heats.getLane8().getLaneNumber() + " -> "
-		// + heats.getLane8().getSwimmer().getName() + " -> "
-		// + heats.getLane8().getEntryMinutes() + "."
-		// + heats.getLane8().getEntrySecondes() + ":"
-		// + heats.getLane8().getEntryMSeconds());
-		//
-		// }
-		
-//	}
+		String roman = "";
+		// algorithm from Fred Swartz
+		for (int i = 0; i < RCODE.length; i++) {
+			while (cathegory >= BVAL[i]) {
+				cathegory -= BVAL[i];
+				roman += RCODE[i];
+			}
+		}
+		return roman + ". " + ageGroup;
+	}
 
 	public static void main(String[] args) {
-		System.out.println(System.getProperty("user.dir")
-					+ "/Data/serii");
+		System.out.println(ageGroupCalculation(34));
 	}
-	
-	
+
+	// public static void main(String[] args) throws IOException {
+	//
+	// Operations sOps = new Operations();
+	// Calculations calculations = Calculations.getInstance();
+	// Event event = sOps.returnEvent("Proba 11 - 100 Meters freestyle");
+	// //System.out.println(calculations.calculateFinaPoints(69.00,
+	// // calculations.getBaseTimeForEvent(event, "30 - 34", "M")));
+	// SwimmerOperations swOps = new SwimmerOperations();
+	//
+	// String xxx = "Proba 1 - 200 Meters freestyle";
+	// String[] eventInternalName = xxx.split("- ");
+	// System.out.println(eventInternalName[0]);
+	// System.out.println(eventInternalName[1]);
+	// if (sOps.existsSwimmer("hhhhhhhhhhhhh")) {
+	// System.out.println("exists....");
+	// } else
+	// System.out.println("not exists...");
+	// if (x.isEmpty()) {
+	// System.out.println("x is empty");
+	// }
+	// SwimmersPerHeatSingleton swimPerHeat =
+	// SwimmersPerHeatSingleton.getInstance();
+	// swimPerHeat.push("sprint", 4);
+	// swimPerHeat.push("testNR", 6);
+	//
+	// swimPerHeat.push("sprint", 3);
+	// swimPerHeat.push("testNR", 7);
+	//
+	// System.out.println(swimPerHeat.getValue("sprint"));
+	//
+	// for (Map.Entry<String, Integer> entry:
+	// swimPerHeat.getSwimmerPerHeatMapping().entrySet()) {
+	// System.out.println(entry.getKey() + " - " + entry.getValue());
+	// }
+	// s.push();
+	// s.display();
+	// System.out.println("------");
+	// s.push();
+	// s.display();
+	// String result;
+	// Constants con = new Constants();
+	//
+	// File dir = new File(pathFile.get("core"));
+	// if (!dir.exists()) {
+	// dir.mkdir();
+	// File file = new File(pathFile.get("core") + "\\" +
+	// dataFile.get("swimmers"));
+	// file.createNewFile();
+	// }
+	// else {
+	// File file = new File(pathFile.get("core") + "\\" +
+	// dataFile.get("swimmers"));
+	// if (!file.exists())
+	// file.createNewFile();
+	// }
+	// Swimmer swimmer = new Swimmer("Cezar", "1981", "25-29", "M",
+	// "Masters Timisoara").getInstance();
+	// result = swimmer.registerSwimmer();
+	// System.out.println(result);
+
+	// Event event = new Event("400 liber femei", "400", "liber", "F",
+	// "50m").getInstance();
+	// result = event.registerEvent();
+	// System.out.println(result);
+
+	// operations
+	// Operations sOps = new Operations();
+
+	// // sOps.clearDB("swimmers");
+	// List<Swimmer> swList = new ArrayList<Swimmer>();
+	// List<Event> eventList = new ArrayList<Event>();
+
+	// swList = sOps.returnSwimmers();
+	// for (Swimmer a : swList) {
+	// String x = a.getName();
+	// System.out.println(x);
+	// }
+
+	// eventList = sOps.returnEvents();
+	// for (Event a : eventList) {
+	// String x = a.getName();
+	// System.out.println(x);
+	// }
+
+	// Swimmer swimmer = sOps.returnSwimmer("roly");
+	// System.out.println(swimmer.getName());
+	// System.out.println(swimmer.getBirthYear());
+	// System.out.println(swimmer.getAgeGroup());
+	// System.out.println(swimmer.getGender());
+	// System.out.println(swimmer.getClub());
+
+	// Event event = sOps.returnEvent("400 liber barbati");
+	// System.out.println(event.getName());
+	// System.out.println(event.getLength());
+	// System.out.println(event.getStyle());
+	// System.out.println(event.getGender());
+	// System.out.println(event.getPoolType());
+
+	// Registration registration;
+	//
+	// registration = new Registration(sOps.returnSwimmer("Eugen"), sOps
+	// .returnEvent("50 fluture barbati"), 0, 38, 43);
+	// registration.registerRegistration();
+	// registration = new Registration(sOps.returnSwimmer("Casian"), sOps
+	// .returnEvent("50 fluture barbati"), 0, 37, 11);
+	// registration.registerRegistration();
+
+	// List<Lane> laneList = new ArrayList<Lane>();
+	// List<Lane> lanesOnHeat = new ArrayList<Lane>();
+	// Event event = sOps.returnEvent("100 liber barbati");
+	// laneList = sOps.createLanes(event);
+	//
+	// List ts1 = new ArrayList();
+	//
+	// Collections.sort(laneList, new LaneComparator());
+	// int heatCount = (laneList.size())/8 + 1;
+	// int startPos = 0;
+	// int endPos = 8;
+	//
+	// System.out.println(laneList.size()+ " | " + heatCount);
+	// for (int i = heatCount; i > 0; i--) {
+	// System.out.println();
+	// System.out.println("Heat number  " + i + " : ");
+	// lanesOnHeat = laneList.subList(startPos, endPos);
+	//
+	// lanesOnHeat = sOps.setLanesInOrder(lanesOnHeat);
+	//
+	// for (Lane lanes : lanesOnHeat) {
+	// System.out.println(lanes.getSwimmer().getName() + " -> "
+	// + lanes.getEvent().getStyle() + " -> "
+	// + lanes.getRegisteredTime());
+	// }
+	// startPos = startPos + 8;
+	// endPos = ((endPos + 8) < laneList.size()) ? (endPos + 8) :
+	// laneList.size();
+	// }
+	// List<Event> swimmers = sOps.returnAllEvents();
+	// for (Event ev : swimmers) {
+	// System.out.println(ev.getName());
+	// }
+
+	// HeatListWriter hWriter = new
+	// HeatListWriter(sOps.returnEvent("100 liber barbati"), "something good");
+	// hWriter.run();
+
+	// ResultWriter hWriter = new ResultWriter(sOps.returnEvent("50 liber"),
+	// "something good");
+	// hWriter.run();
+	// Event event = sOps.returnEvent("100 liber barbati");
+	// List<Heat> heatList = sOps.generateHeats(event);
+	// sOps.registerHeats(heatList, event.getName() + ".csv");
+	// Calculations calc = Calculations.getInstance();
+	// System.out.println(calc.getMinuteFromString("2:04.19"));
+	// System.out.println(calc.getSecondsFromString("2:04.19"));
+	// System.out.println(calc.getMSecondsFromString("2:04.19"));
+
+	// List<FinaBaseTimes> fina = calc.getAllBaseTimes();
+	// for (FinaBaseTimes times : fina) {
+	// System.out.println(times.getLength() + "	" + times.getStyle() + "	" +
+	// times.getBaseTimesSeconds());
+	// }
+	// double fina =
+	// calc.getBaseTimeForEvent(sOps.returnEvent("100 freestyle barbati"));
+	// System.out.println(fina);
+	// System.out.println(calc.calculateLocalPoints(8));
+
+	// sOps.removeLineFromFile("textfile.txt", "b");
+	// for (Heat heats : heatList) {
+	// System.out.println("Heat " + heats.getHeatNumber());
+	//
+	// System.out.println(heats.getEventName() + " -> lane "
+	// + heats.getLane1().getLaneNumber() + " -> "
+	// + heats.getLane1().getSwimmer().getName() + " -> "
+	// + heats.getLane1().getEntryMinutes() + "."
+	// + heats.getLane1().getEntrySecondes() + ":"
+	// + heats.getLane1().getEntryMSeconds());
+	// System.out.println(heats.getEventName() + " -> lane "
+	// + heats.getLane2().getLaneNumber() + " -> "
+	// + heats.getLane2().getSwimmer().getName() + " -> "
+	// + heats.getLane2().getEntryMinutes() + "."
+	// + heats.getLane2().getEntrySecondes() + ":"
+	// + heats.getLane2().getEntryMSeconds());
+	// System.out.println(heats.getEventName() + " -> lane "
+	// + heats.getLane3().getLaneNumber() + " -> "
+	// + heats.getLane3().getSwimmer().getName() + " -> "
+	// + heats.getLane3().getEntryMinutes() + "."
+	// + heats.getLane3().getEntrySecondes() + ":"
+	// + heats.getLane3().getEntryMSeconds());
+	// System.out.println(heats.getEventName() + " -> lane "
+	// + heats.getLane4().getLaneNumber() + " -> "
+	// + heats.getLane4().getSwimmer().getName() + " -> "
+	// + heats.getLane4().getEntryMinutes() + "."
+	// + heats.getLane4().getEntrySecondes() + ":"
+	// + heats.getLane4().getEntryMSeconds());
+	// System.out.println(heats.getEventName() + " -> lane "
+	// + heats.getLane5().getLaneNumber() + " -> "
+	// + heats.getLane5().getSwimmer().getName() + " -> "
+	// + heats.getLane5().getEntryMinutes() + "."
+	// + heats.getLane5().getEntrySecondes() + ":"
+	// + heats.getLane5().getEntryMSeconds());
+	// System.out.println(heats.getEventName() + " -> lane "
+	// + heats.getLane6().getLaneNumber() + " -> "
+	// + heats.getLane6().getSwimmer().getName() + " -> "
+	// + heats.getLane6().getEntryMinutes() + "."
+	// + heats.getLane6().getEntrySecondes() + ":"
+	// + heats.getLane6().getEntryMSeconds());
+	// System.out.println(heats.getEventName() + " -> lane "
+	// + heats.getLane7().getLaneNumber() + " -> "
+	// + heats.getLane7().getSwimmer().getName() + " -> "
+	// + heats.getLane7().getEntryMinutes() + "."
+	// + heats.getLane7().getEntrySecondes() + ":"
+	// + heats.getLane7().getEntryMSeconds());
+	// System.out.println(heats.getEventName() + " -> lane "
+	// + heats.getLane8().getLaneNumber() + " -> "
+	// + heats.getLane8().getSwimmer().getName() + " -> "
+	// + heats.getLane8().getEntryMinutes() + "."
+	// + heats.getLane8().getEntrySecondes() + ":"
+	// + heats.getLane8().getEntryMSeconds());
+	//
+	// }
+
+	// }
+
 	public List<Result> getResults() {
 		return results;
 	}
+
 	public void setResults(List<Result> results) {
 		this.results = results;
 	}

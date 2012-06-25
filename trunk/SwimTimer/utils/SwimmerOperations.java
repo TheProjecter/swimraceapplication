@@ -32,20 +32,20 @@ public class SwimmerOperations {
     	fillSwimmerNames();
     }
     
-	public String ageGroupCalculation(int age) {
+	public static String ageGroupCalculation(int age) {
 		String ageGroup = "18 - ";
 		if (age < 25) {
 			return "18 - 24";
 		}
-		for (int i = 25; i<120; i++) {
-			if (i%5 == 0 && (age - i <= 4) && (age - i >= 0)) {
+		for (int i = 25; i < 120; i++) {
+			if (i % 5 == 0 && (age - i <= 4) && (age - i >= 0)) {
 				ageGroup = "" + i + " - ";
 			}
-			if ((i - age <= 4) && i%5 == 4 && (i - age >= 0)) {
+			if ((i - age <= 4) && i % 5 == 4 && (i - age >= 0)) {
 				ageGroup = ageGroup + i;
 			}
 		}
-		
+
 		return ageGroup;
 	}
 	
