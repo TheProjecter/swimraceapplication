@@ -737,10 +737,10 @@ public class Operations {
 		try {
 			if (heatGender.equals("Mixt")) {
 				// results for Mixt heatGender
-				FileWriter fstreamM = new FileWriter(pathFile.get("rezultate")
+				FileWriter fstreamM = new FileWriter(pathFile.get("csv")
 						+ separator + "Rezultate Ordonate " + event.getName() + " "
 						+ "M" + ".csv", false);
-				FileWriter fstreamF = new FileWriter(pathFile.get("rezultate")
+				FileWriter fstreamF = new FileWriter(pathFile.get("csv")
 						+ separator + "Rezultate Ordonate " + event.getName() + " "
 						+ "F" + ".csv", false);
 				BufferedWriter outM = new BufferedWriter(fstreamM);
@@ -788,7 +788,7 @@ public class Operations {
 				outF.close();
 			} else {
 				// results for defined heatGender: M or F
-				FileWriter fstream = new FileWriter(pathFile.get("rezultate")
+				FileWriter fstream = new FileWriter(pathFile.get("csv")
 						+ separator + "Rezultate Ordonate " + event.getName() + " "
 						+ heatGender + ".csv", false);
 				BufferedWriter out = new BufferedWriter(fstream);

@@ -1894,6 +1894,7 @@ public class AllHeats extends JDialog {
 
 	private static void incrementNrPressedSaveButtons() {
 		nrPressedSaveButtons++;
+		//System.out.println("inc: " + nrPressedSaveButtons);
 	}
 
 	private static void decrementNrPressedSaveButtons() {
@@ -1901,6 +1902,7 @@ public class AllHeats extends JDialog {
 		if (nrPressedSaveButtons < 0) {
 			nrPressedSaveButtons = 0; 
 		}
+		//System.out.println("dec: " + nrPressedSaveButtons);
 	}
 
 }

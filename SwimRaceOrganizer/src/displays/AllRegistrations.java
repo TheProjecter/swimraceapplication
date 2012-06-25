@@ -40,6 +40,7 @@ public class AllRegistrations extends javax.swing.JDialog {
 	private List<Registration> registrations = new ArrayList<Registration>();
 	private Map<String, String> dataFile = new Constants().getDataFiles();
 	private Map<String, String> pathFile = new Constants().getDataFiles();
+	private String osName = new Constants().getOsName();
 
 	/** Creates new form AllRegistrations */
 	public AllRegistrations(java.awt.Frame parent, boolean modal) {
@@ -187,7 +188,8 @@ public class AllRegistrations extends javax.swing.JDialog {
 				+ registration.getSwimmer().getClub() + ";" + registration.getEvent().getName() + ";"
 				+ setZero(registration.getMinutes().toString()) + ";" + setZero(registration.getSeconds().toString())
 				+ ";" + setZero(registration.getmSeconds().toString());
-		sOps.removeLineFromFile(pathFile.get("core") + "\\" + dataFile.get("registrations"), lineToRemove);
+		sOps.removeLineFromFile(pathFile.get("core") + (osName.toLowerCase().startsWith("linux") ? "/" : "\\")
+				+ dataFile.get("registrations"), lineToRemove);
 	}// GEN-LAST:event_deleteRegistration
 
 	public String setZero(String value) {
@@ -198,15 +200,15 @@ public class AllRegistrations extends javax.swing.JDialog {
 		String[] columnNames = { "Nr.", "Swimmer Name", "BirthYear", "Age Group", "Gender", "Club", "Event Name",
 				"Entry Time" };
 		List<String[]> tableLines = new ArrayList<String[]>();
-		
+
 		int counter = 0; // display registration order number
 		for (Registration reg : registrations) {
 			String time = padLeft(Integer.toString(reg.getMinutes()), 2) + ":"
 					+ padLeft(Integer.toString(reg.getSeconds()), 2) + ":"
 					+ padLeft(Integer.toString(reg.getmSeconds()), 2);
-			tableLines.add(new String[] {Integer.toString(++counter), reg.getSwimmer().getName(), reg.getSwimmer().getBirthYear(),
-					reg.getSwimmer().getAgeGroup(), reg.getSwimmer().getGender(), reg.getSwimmer().getClub(),
-					reg.getEvent().getName(), time });
+			tableLines.add(new String[] { Integer.toString(++counter), reg.getSwimmer().getName(),
+					reg.getSwimmer().getBirthYear(), reg.getSwimmer().getAgeGroup(), reg.getSwimmer().getGender(),
+					reg.getSwimmer().getClub(), reg.getEvent().getName(), time });
 		}
 		Object[][] data = new Object[tableLines.size()][5];
 		for (int i = 0; i < tableLines.size(); i++) {
@@ -214,6 +216,7 @@ public class AllRegistrations extends javax.swing.JDialog {
 		}
 		jTAllRegistrations.setModel(new javax.swing.table.DefaultTableModel(data, columnNames) {
 			private static final long serialVersionUID = 1L;
+
 			@Override
 			public boolean isCellEditable(int row, int col) {
 				return false;
@@ -222,27 +225,27 @@ public class AllRegistrations extends javax.swing.JDialog {
 		jTAllRegistrations.getColumnModel().getColumn(0).setMinWidth(20);
 		jTAllRegistrations.getColumnModel().getColumn(0).setMaxWidth(45);
 		jTAllRegistrations.getColumnModel().getColumn(0).setWidth(45);
-		
+
 		jTAllRegistrations.getColumnModel().getColumn(1).setMinWidth(100);
 		jTAllRegistrations.getColumnModel().getColumn(1).setMaxWidth(300);
 		jTAllRegistrations.getColumnModel().getColumn(1).setWidth(300);
-		
+
 		jTAllRegistrations.getColumnModel().getColumn(2).setMinWidth(30);
 		jTAllRegistrations.getColumnModel().getColumn(2).setMaxWidth(70);
 		jTAllRegistrations.getColumnModel().getColumn(2).setWidth(70);
-		
+
 		jTAllRegistrations.getColumnModel().getColumn(3).setMinWidth(5);
 		jTAllRegistrations.getColumnModel().getColumn(3).setMaxWidth(75);
 		jTAllRegistrations.getColumnModel().getColumn(3).setWidth(75);
-		
+
 		jTAllRegistrations.getColumnModel().getColumn(4).setMinWidth(5);
 		jTAllRegistrations.getColumnModel().getColumn(4).setMaxWidth(50);
 		jTAllRegistrations.getColumnModel().getColumn(4).setWidth(50);
-		
+
 		jTAllRegistrations.getColumnModel().getColumn(5).setMinWidth(50);
 		jTAllRegistrations.getColumnModel().getColumn(5).setMaxWidth(200);
 		jTAllRegistrations.getColumnModel().getColumn(5).setWidth(200);
-		
+
 		jTAllRegistrations.getColumnModel().getColumn(6).setMinWidth(100);
 		jTAllRegistrations.getColumnModel().getColumn(6).setMaxWidth(300);
 		jTAllRegistrations.getColumnModel().getColumn(6).setWidth(300);
@@ -250,7 +253,7 @@ public class AllRegistrations extends javax.swing.JDialog {
 		jTAllRegistrations.getColumnModel().getColumn(7).setMinWidth(50);
 		jTAllRegistrations.getColumnModel().getColumn(7).setMaxWidth(90);
 		jTAllRegistrations.getColumnModel().getColumn(7).setWidth(90);
-		
+
 	}
 
 	private static String padLeft(String s, int n) {
