@@ -112,6 +112,9 @@ public class ResultWriter {
 	}
 	
 	private String getRomanAgeGroup(String age) {
+		if (age.substring(0,  2).equals("18")) {
+			return "0";
+		}
 		int cathegory = (Integer.parseInt(age.substring(0,  2)) - 20) / 5;
 		String roman = "";
 		// algorithm from Fred Swartz

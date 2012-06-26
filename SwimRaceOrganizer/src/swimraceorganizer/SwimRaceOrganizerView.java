@@ -21,8 +21,6 @@ import org.jdesktop.application.Action;
 import org.jdesktop.application.FrameView;
 import org.jdesktop.application.SingleFrameApplication;
 
-import com.roly.samaboutwindow.AboutWindow;
-
 import displays.AllEvents;
 import displays.AllRegistrations;
 import displays.AllSwimmers;
@@ -89,7 +87,8 @@ public class SwimRaceOrganizerView extends FrameView {
 						display.sleep();
 				}
 			} catch (Exception e) {
-				System.out.println("Invocation");
+				//System.out.println("Invocation");
+				System.out.println(e.getMessage());
 			}
 		}
 		// SwimRaceOrganizerApp.getApplication().show(aboutBox);

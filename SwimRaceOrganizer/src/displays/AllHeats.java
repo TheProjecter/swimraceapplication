@@ -1755,6 +1755,11 @@ public class AllHeats extends JDialog {
 		} catch (Exception e) {
 			e.getMessage();
 		}
+		
+		// clear the pressed buttons
+		setNrActualSaveButtons(0);
+		setNrPressedSaveButtons(0);
+		
 		// write the heats in pdf files
 		// ResultWriter rWriter = new ResultWriter(event, competitionTitle);
 		// rWriter.run();
@@ -1894,7 +1899,7 @@ public class AllHeats extends JDialog {
 
 	private static void incrementNrPressedSaveButtons() {
 		nrPressedSaveButtons++;
-		//System.out.println("inc: " + nrPressedSaveButtons);
+//		System.out.println("inc: " + nrPressedSaveButtons);
 	}
 
 	private static void decrementNrPressedSaveButtons() {
@@ -1902,7 +1907,7 @@ public class AllHeats extends JDialog {
 		if (nrPressedSaveButtons < 0) {
 			nrPressedSaveButtons = 0; 
 		}
-		//System.out.println("dec: " + nrPressedSaveButtons);
+//		System.out.println("dec: " + nrPressedSaveButtons);
 	}
 
 }
