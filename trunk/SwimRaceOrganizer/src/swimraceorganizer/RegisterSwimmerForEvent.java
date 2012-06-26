@@ -342,6 +342,7 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 			if (defaultTime) {
 				JOptionPane.showMessageDialog(null, "Inotatorul a fost inregistrat cu timpul 59:59:99", "Notificare", 2);
 				defaultTime = false;
+				this.resetTime();
 			}
 		} catch (IOException e) {
 			jLStatus.setText("Probleme cu inregistrarea, " + registration.getSwimmer().getName() + " : " + registration.getEvent().getName());
@@ -386,6 +387,12 @@ public class RegisterSwimmerForEvent extends javax.swing.JDialog {
 		jCBMinutes.setSelectedIndex(59);
 		jCBSeconds.setSelectedIndex(59);
 		jCBMSeconds.setSelectedIndex(99);
+	}
+
+	private void resetTime() {
+		jCBMinutes.setSelectedIndex(0);
+		jCBSeconds.setSelectedIndex(0);
+		jCBMSeconds.setSelectedIndex(0);
 	}
 
 	/**

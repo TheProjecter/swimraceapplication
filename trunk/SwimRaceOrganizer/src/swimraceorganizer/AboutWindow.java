@@ -21,6 +21,8 @@
 
 package swimraceorganizer;
 
+import java.util.Map;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -42,9 +44,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
+import utils.Constants;
+
 public class AboutWindow {
 
 	private GridData gridData;
+	private Map<String, String> pathFile = new Constants().getDataFiles();
+	private String osName = new Constants().getOsName();
 
 	public Shell createShell(final Display display) {
 		final Shell shell = new Shell(display, SWT.TITLE);
@@ -58,7 +64,8 @@ public class AboutWindow {
 		});
 
 		final Font bitstreamVeraSansMono9 = new Font(shell.getDisplay(), "Bitstream Vera Sans Mono", 9, SWT.NONE);
-		final Font bitstreamVeraSansMonoItallic9 = new Font(shell.getDisplay(), "Bitstream Vera Sans Mono", 9, SWT.ITALIC);
+		final Font bitstreamVeraSansMonoItallic9 = new Font(shell.getDisplay(), "Bitstream Vera Sans Mono", 9,
+				SWT.ITALIC);
 		final Font csFont = new Font(shell.getDisplay(), "Comic Sans MS", 16, SWT.BOLD);
 		final Font titleFont = new Font(shell.getDisplay(), "Comic Sans MS", 14, SWT.BOLD);
 		final Font descriptionFont = new Font(shell.getDisplay(), "Comic Sans MS", 10, SWT.NONE);
@@ -141,7 +148,8 @@ public class AboutWindow {
 		copyrightLable.setLayoutData(fdCopyright);
 		// Licence notice
 		final Label licenceNotice = new Label(compositeForDesc, SWT.NONE);
-		licenceNotice.setText("This program is distributed under the terms of the GNU General Public License(GPL) version 3");
+		licenceNotice
+				.setText("This program is distributed under the terms of the GNU General Public License(GPL) version 3");
 		licenceNotice.setFont(bitstreamVeraSansMonoItallic9);
 		FormData fdLicenceNotice = new FormData();
 		fdLicenceNotice.top = new FormAttachment(copyrightLable, 15);
@@ -235,8 +243,8 @@ public class AboutWindow {
 
 	private Image getLogo(Display display, String imageName) {
 		// determine the path where the pictures are stored
-		String path = System.getProperty("user.dir") + "/util/";
-		Image img = new Image(display, path + imageName);
+		String path = pathFile.get("util");
+		Image img = new Image(display, path + (osName.toLowerCase().startsWith("linux") ? "/" : "\\") + imageName);
 		return img;
 	}
 
